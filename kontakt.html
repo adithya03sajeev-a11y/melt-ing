@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kontakt — MELT-Ing GmbH</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo"><img src="https://lh7-us.googleusercontent.com/sitesv-images-rt/ACHe0d17sonBxGxE2AOlzf5h33Ex_JyVqbTvaZ9LU0JMGrFt0IMxCpyK_w7-H9xZU1NosRToqDKu_sUXQHSOHRlOhXRWR9dOq56wLGcEk5KfOOMPQZvXRFlSYXns2PzjxDkTdnL5B6j9Dru8NwidPdvRdu2jhAGLCeQ4W1BrX_6X8CMga1ZWDIpx0-3sFW6rMvY=w160" alt="MELT-Ing Logo">MELT<span>-Ing</span></a>
+  <ul class="nav-links">
+    <li><a href="melt-plate.html">MELT Plate</a></li>
+    <li class="has-dropdown"><a href="zielgruppe.html">Zielgruppe</a>
+      <div class="dropdown">
+        <a href="zielgruppe.html#investoren">Investoren</a>
+        <a href="zielgruppe.html#bauunternehmen">Bauunternehmen</a>
+        <a href="zielgruppe.html#architekten">Architekten und Planer</a>
+        <a href="zielgruppe.html#defense">Defense</a>
+        <a href="zielgruppe.html#diy">DIY</a>
+      </div>
+    </li>
+    <li class="has-dropdown"><a href="magazin.html">Magazin</a>
+      <div class="dropdown">
+        <a href="hitzeschutz.html">Hitzeschutz</a>
+        <a href="pcm.html">PCM</a>
+        <a href="bauteilaktivierung.html">Bauteilaktivierung</a>
+        <a href="komfort.html">Komfort</a>
+        <a href="lowtech.html">Low-Tech</a>
+        <a href="magazin.html#case">Case Studies</a>
+      </div>
+    </li>
+    <li><a href="ueber-uns.html">Über uns</a></li>
+  </ul>
+  <a href="kontakt.html" class="nav-cta">gleich anfragen →</a>
+</nav>
+
+<div class="page-hero">
+  <div class="section-label">Kontakt</div>
+  <h1>Experte <span class="highlight">kontaktieren.</span></h1>
+  <p>Wir suchen Visionäre, die uns helfen vom Pilotprodukt zur Serie zu kommen — insbesondere Investoren, Pilotprojekte (B2B) und Partner bei Zulassungsverfahren.</p>
+</div>
+
+<section style="padding-top:0;">
+  <div class="container">
+    <div class="contact-info reveal">
+      <div class="info-card"><div class="icon">✉</div><h3>E-Mail</h3><p>contact@melt-ing.com</p></div>
+      <div class="info-card"><div class="icon">◈</div><h3>Adresse</h3><p>John-Deere-Str. 81a<br>68163 Mannheim</p></div>
+      <div class="info-card"><div class="icon">◇</div><h3>Domains</h3><p>melt-ing.com<br>meetmelt.com</p></div>
+    </div>
+
+    <div class="form-wrap reveal">
+      <form onsubmit="event.preventDefault(); document.getElementById('formSuccess').style.display='block'; this.style.display='none';">
+        <div class="form-row"><label for="name">Name</label><input type="text" id="name" placeholder="Ihr Name" required></div>
+        <div class="form-row"><label for="email">E-Mail</label><input type="email" id="email" placeholder="ihre@email.com" required></div>
+        <div class="form-row"><label for="role">Ich bin...</label>
+          <select id="role">
+            <option>Investor:in</option>
+            <option>Bauunternehmen</option>
+            <option>Architekt:in / Planer:in</option>
+            <option>Sonstiges</option>
+          </select>
+        </div>
+        <div class="form-row"><label for="msg">Nachricht</label><textarea id="msg" placeholder="Wo drückt der Schuh?"></textarea></div>
+        <button type="submit" class="btn-primary" style="width:100%; justify-content:center; border:none; cursor:pointer;">Nachricht senden →</button>
+      </form>
+      <div id="formSuccess" style="display:none; text-align:center; padding:2rem 0;">
+        <div style="font-size:2rem; margin-bottom:1rem;">✓</div>
+        <h3 style="font-family:'Space Grotesk',sans-serif; margin-bottom:0.6rem;">Danke!</h3>
+        <p style="color:var(--melt-text-muted);">Dies ist eine Demo-Vorschau — auf der echten Seite würde Ihre Nachricht jetzt an uns gesendet.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand"><img src="https://lh7-us.googleusercontent.com/sitesv-images-rt/ACHe0d17sonBxGxE2AOlzf5h33Ex_JyVqbTvaZ9LU0JMGrFt0IMxCpyK_w7-H9xZU1NosRToqDKu_sUXQHSOHRlOhXRWR9dOq56wLGcEk5KfOOMPQZvXRFlSYXns2PzjxDkTdnL5B6j9Dru8NwidPdvRdu2jhAGLCeQ4W1BrX_6X8CMga1ZWDIpx0-3sFW6rMvY=w160" alt="">MELT<span>-Ing</span> GmbH</div>
+      <p class="footer-desc">Tailored Thermal Buffering for Buildings. Das Start-up aus Mannheim ermöglicht überragenden Komfort und Klimaresilienz in leichten, ökologischen Gebäuden.</p>
+    </div>
+    <div class="footer-col"><h4>Quick links</h4><ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="ueber-uns.html">About</a></li>
+      <li><a href="magazin.html">News</a></li>
+      <li><a href="kontakt.html">Contact</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Services</h4><ul>
+      <li><a href="komfort.html">Komfort</a></li>
+      <li><a href="pcm.html">Wärmespeicher</a></li>
+      <li><a href="hitzeschutz.html">Hitzeschutz</a></li>
+      <li><a href="bauteilaktivierung.html">Load-Shifting</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Follow us</h4><ul>
+      <li><a href="https://www.linkedin.com/company/melt-ing/">LinkedIn</a></li>
+      <li><a href="https://www.youtube.com/@MELT-IngGmbH">YouTube</a></li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom">Melt-Ing GmbH · John-Deere-Str. 81a · 68163 Mannheim · contact@melt-ing.com — dies ist ein unverbindlicher Redesign-Entwurf, kein Live-Deployment.</div>
+</footer>
+
+<script>
+const io = new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('active'); io.unobserve(e.target);} }); },{threshold:0.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>

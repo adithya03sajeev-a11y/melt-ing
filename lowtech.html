@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Was ist "Low-Tech"? — MELT-Ing GmbH</title>
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  .article-meta { font-family:'IBM Plex Mono', monospace; font-size:0.78rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--melt-text-muted); margin-bottom:1.2rem; }
+  .article-body-text { max-width:800px; margin:0 auto; }
+  .article-body-text h2 { font-family:'Space Grotesk', sans-serif; font-size:1.6rem; margin:2.6rem 0 1.1rem; }
+  .article-body-text p { color:var(--melt-text-muted); font-size:1.05rem; margin-bottom:1.2rem; line-height:1.75; }
+  .article-body-text .lead-q { font-family:'Space Grotesk', sans-serif; font-size:1.5rem; color:var(--melt-text); margin-bottom:2rem; line-height:1.35; }
+
+  /* high-tech vs low-tech comparison */
+  .tech-compare { display:grid; grid-template-columns:1fr 1fr; gap:1.4rem; margin:2.2rem 0 2.6rem; }
+  @media (max-width:640px){ .tech-compare{grid-template-columns:1fr;} }
+  .tech-side { border-radius:18px; padding:1.8rem; border:1px solid var(--melt-border); }
+  .tech-side.high { background:rgba(200,60,60,0.05); border-color:rgba(200,60,60,0.25); }
+  .tech-side.low { background:rgba(58,182,171,0.06); border-color:rgba(58,182,171,0.3); }
+  .tech-side h4 { font-family:'Space Grotesk', sans-serif; font-size:1.05rem; margin-bottom:1.1rem; }
+  .tech-list { list-style:none; }
+  .tech-list li { font-size:0.9rem; color:var(--melt-text-muted); padding:0.5rem 0; border-bottom:1px solid rgba(255,255,255,0.05); display:flex; align-items:center; gap:0.6rem; opacity:0; transform:translateX(-10px); transition:opacity .5s ease, transform .5s ease; }
+  .tech-list li.in { opacity:1; transform:translateX(0); }
+  .tech-list.high li::before { content:'✕'; color:#d97070; }
+  .tech-list.low li::before { content:'✓'; color:var(--melt-teal); }
+
+  /* physics-only badge row */
+  .physics-row { display:flex; gap:0.9rem; flex-wrap:wrap; margin:1.6rem 0 2.6rem; justify-content:center; }
+  .physics-badge { background:var(--melt-surface); border:1px solid var(--melt-border); border-radius:12px; padding:1rem 1.3rem; text-align:center; font-family:'IBM Plex Mono', monospace; font-size:0.82rem; color:var(--melt-text-muted); min-width:110px; }
+  .physics-badge .icon { font-size:1.4rem; display:block; margin-bottom:0.4rem; color:var(--melt-teal); }
+
+  /* decades timeline */
+  .decades-viz { background:var(--melt-gray); border:1px solid var(--melt-border); border-radius:22px; padding:2.2rem 2rem; margin:2.2rem 0 2.6rem; text-align:center; }
+  .decades-viz .viz-title { font-family:'IBM Plex Mono', monospace; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.07em; color:var(--melt-text-muted); margin-bottom:1.8rem; }
+  .decades-track { position:relative; height:6px; background:rgba(255,255,255,0.08); border-radius:4px; margin:0 20px; }
+  .decades-fill { position:absolute; top:0; left:0; height:100%; width:0%; background:linear-gradient(90deg, var(--melt-teal), #7FD8CE); border-radius:4px; transition:width 2.2s cubic-bezier(.16,1,.3,1); }
+  .decades-labels { display:flex; justify-content:space-between; margin-top:0.8rem; font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color:var(--melt-text-muted); }
+  .decades-caption { margin-top:1.2rem; font-size:0.9rem; color:var(--melt-text-muted); }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo"><img src="https://lh7-us.googleusercontent.com/sitesv-images-rt/ACHe0d17sonBxGxE2AOlzf5h33Ex_JyVqbTvaZ9LU0JMGrFt0IMxCpyK_w7-H9xZU1NosRToqDKu_sUXQHSOHRlOhXRWR9dOq56wLGcEk5KfOOMPQZvXRFlSYXns2PzjxDkTdnL5B6j9Dru8NwidPdvRdu2jhAGLCeQ4W1BrX_6X8CMga1ZWDIpx0-3sFW6rMvY=w160" alt="MELT-Ing Logo">MELT<span>-Ing</span></a>
+  <ul class="nav-links">
+    <li><a href="melt-plate.html">MELT Plate</a></li>
+    <li class="has-dropdown"><a href="zielgruppe.html">Zielgruppe</a>
+      <div class="dropdown">
+        <a href="zielgruppe.html#investoren">Investoren</a>
+        <a href="zielgruppe.html#bauunternehmen">Bauunternehmen</a>
+        <a href="zielgruppe.html#architekten">Architekten und Planer</a>
+        <a href="zielgruppe.html#defense">Defense</a>
+        <a href="zielgruppe.html#diy">DIY</a>
+      </div>
+    </li>
+    <li class="has-dropdown"><a href="magazin.html">Magazin</a>
+      <div class="dropdown">
+        <a href="hitzeschutz.html">Hitzeschutz</a>
+        <a href="pcm.html">PCM</a>
+        <a href="bauteilaktivierung.html">Bauteilaktivierung</a>
+        <a href="impact.html">Impact</a>
+        <a href="serielles-bauen.html">Serielles Bauen</a>
+        <a href="komfort.html">Komfort</a>
+        <a href="lowtech.html">Low-Tech</a>
+      </div>
+    </li>
+    <li><a href="ueber-uns.html">Über uns</a></li>
+  </ul>
+  <a href="kontakt.html" class="nav-cta">gleich anfragen →</a>
+</nav>
+
+<div class="page-hero" style="padding-bottom:1rem;">
+  <div class="section-label">Thema · Oktober 2025</div>
+  <h1>Warum werden Gebäude <span class="highlight">immer komplexer?</span></h1>
+</div>
+
+<section style="padding-top:0;">
+  <div class="container">
+    <div class="article-body-text reveal">
+      <p class="lead-q">Es geht auch anders!</p>
+
+      <h2>Gebäudetechnik und Low-Tech-Ansätze</h2>
+      <p>Low-Tech-Ansätze im Bauwesen setzen auf einfache, robuste Lösungen statt komplexer Gebäudetechnik. Statt Klimaanlagen, intelligenter Steuerung und aufwändiger Haustechnik nutzen sie physikalische Prinzipien: natürliche Lüftung, thermische Masse, Sonnenschutz und passive Solargewinne.</p>
+
+      <div class="tech-compare">
+        <div class="tech-side high">
+          <h4>High-Tech-Ansatz</h4>
+          <ul class="tech-list high">
+            <li>Klimaanlagen mit hohem Stromverbrauch</li>
+            <li>Sensoren & intelligente Steuerung</li>
+            <li>Regelmäßige Wartung & Software-Updates</li>
+            <li>Anfällig für Stromausfälle</li>
+          </ul>
+        </div>
+        <div class="tech-side low">
+          <h4>Low-Tech mit MELT</h4>
+          <ul class="tech-list low">
+            <li>Funktioniert rein durch Physik</li>
+            <li>Keine Sensoren, keine Kabel</li>
+            <li>Keine Wartung, kein Personal nötig</li>
+            <li>Resilient gegen Stromausfälle</li>
+          </ul>
+        </div>
+      </div>
+
+      <p>Vorteile sind niedrige Investitions- und Betriebskosten, hohe Zuverlässigkeit, einfache Wartung und Unabhängigkeit von Strom und komplexer Technik. Low-Tech bedeutet nicht „primitiv", sondern intelligent vereinfacht.</p>
+      <p>Besonders in Zeiten steigender Energiepreise und Fachkräftemangel im Handwerk gewinnen Low-Tech-Konzepte an Bedeutung. Sie sind resilient gegen Stromausfälle, Lieferkettenprobleme und technische Ausfälle.</p>
+      <p><strong>Die Herausforderung: Low-Tech erfordert gute planerische Durchdringung und funktioniert am besten in Neubauten.</strong></p>
+
+      <h2>Nicht „primitiv" sondern passiv — die MELT Plate</h2>
+      <p>MELT verkörpert Low-Tech im besten Sinne: maximale Wirkung mit minimaler Technik.</p>
+
+      <div class="physics-row">
+        <div class="physics-badge"><span class="icon">⚡</span>Ohne Strom</div>
+        <div class="physics-badge"><span class="icon">📡</span>Ohne Sensoren</div>
+        <div class="physics-badge"><span class="icon">🔌</span>Ohne Kabel</div>
+        <div class="physics-badge"><span class="icon">🔧</span>Ohne Wartung</div>
+      </div>
+
+      <p>Die MELT Plate funktioniert ohne Strom, ohne Sensoren, ohne Kabel, ohne Wartung – einfach durch Physik. Einmal zwischen den tragenden Balken installiert, puffert sie Temperaturschwankungen vollautomatisch für Jahrzehnte. Kein Ausfall, keine Software-Updates, keine Wartungsverträge.</p>
+
+      <div class="decades-viz">
+        <div class="viz-title">Erwartete Funktionsdauer ohne Wartung</div>
+        <div class="decades-track"><div class="decades-fill" id="decadesFill"></div></div>
+        <div class="decades-labels"><span>Installation</span><span>10 Jahre</span><span>20 Jahre</span><span>Jahrzehnte</span></div>
+        <div class="decades-caption">Kein Ausfall, keine Software-Updates, keine Wartungsverträge.</div>
+      </div>
+
+      <p>In unserem Bundeswehr-Projekt war genau das der Schlüssel: Wo keine Stromversorgung verlegt werden konnte, sorgte MELT dennoch für <strong>86 Prozent weniger Hitzetage</strong>. Diese „Blackbox"-Lösung macht Leichtbauten klimaresilient, ohne sie mit komplexer Gebäudetechnik zu überfrachten.</p>
+      <p style="font-size:1.1rem; color:var(--melt-text); font-family:'Space Grotesk', sans-serif;">Besonders für Property Manager bedeutet das: einmalige Investition, keine laufenden Kosten, kein technisches Personal nötig. Low-Tech heißt hier nicht Komfortverzicht, sondern robuste Einfachheit bei maximaler Wirkung.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="cta-content">
+    <h2>Neugierig gemacht?</h2>
+    <p>Wollen Sie mehr wissen? Schreiben Sie uns unter contact@melt-ing.com.</p>
+    <a href="kontakt.html" class="cta-btn">Kontakt aufnehmen →</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand"><img src="https://lh7-us.googleusercontent.com/sitesv-images-rt/ACHe0d17sonBxGxE2AOlzf5h33Ex_JyVqbTvaZ9LU0JMGrFt0IMxCpyK_w7-H9xZU1NosRToqDKu_sUXQHSOHRlOhXRWR9dOq56wLGcEk5KfOOMPQZvXRFlSYXns2PzjxDkTdnL5B6j9Dru8NwidPdvRdu2jhAGLCeQ4W1BrX_6X8CMga1ZWDIpx0-3sFW6rMvY=w160" alt="">MELT<span>-Ing</span> GmbH</div>
+      <p class="footer-desc">Tailored Thermal Buffering for Buildings. Das Start-up aus Mannheim ermöglicht überragenden Komfort und Klimaresilienz in leichten, ökologischen Gebäuden.</p>
+    </div>
+    <div class="footer-col"><h4>Quick links</h4><ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="ueber-uns.html">About</a></li>
+      <li><a href="magazin.html">News</a></li>
+      <li><a href="kontakt.html">Contact</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Services</h4><ul>
+      <li><a href="komfort.html">Komfort</a></li>
+      <li><a href="pcm.html">Wärmespeicher</a></li>
+      <li><a href="hitzeschutz.html">Hitzeschutz</a></li>
+      <li><a href="bauteilaktivierung.html">Load-Shifting</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Follow us</h4><ul>
+      <li><a href="https://www.linkedin.com/company/melt-ing/">LinkedIn</a></li>
+      <li><a href="https://www.youtube.com/@MELT-IngGmbH">YouTube</a></li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom">Melt-Ing GmbH · John-Deere-Str. 81a · 68163 Mannheim · contact@melt-ing.com — dies ist ein unverbindlicher Redesign-Entwurf, kein Live-Deployment.</div>
+</footer>
+
+<script>
+const io = new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('active'); io.unobserve(e.target);} }); },{threshold:0.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// tech comparison lists reveal one by one
+document.querySelectorAll('.tech-list').forEach(list=>{
+  const items = list.querySelectorAll('li');
+  const listIO = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        items.forEach((li,i)=>{ setTimeout(()=>li.classList.add('in'), i*140); });
+        listIO.disconnect();
+      }
+    });
+  },{threshold:0.3});
+  listIO.observe(list);
+});
+
+// decades timeline fill
+const decadesIO = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      document.getElementById('decadesFill').style.width = '100%';
+      decadesIO.disconnect();
+    }
+  });
+},{threshold:0.3});
+decadesIO.observe(document.querySelector('.decades-viz'));
+</script>
+
+</body>
+</html>
