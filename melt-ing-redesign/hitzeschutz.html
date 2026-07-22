@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hitzeschutz im Leichtbau — MELT-Ing GmbH</title>
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  .article-meta { font-family:'IBM Plex Mono', monospace; font-size:0.78rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--melt-text-muted); margin-bottom:1.2rem; }
+  .article-body-text { max-width:800px; margin:0 auto; }
+  .article-body-text h2 { font-family:'Space Grotesk', sans-serif; font-size:1.6rem; margin:2.6rem 0 1.1rem; }
+  .article-body-text p { color:var(--melt-text-muted); font-size:1.05rem; margin-bottom:1.2rem; line-height:1.75; }
+  .article-body-text .lead-q { font-family:'Space Grotesk', sans-serif; font-size:1.5rem; color:var(--melt-text); margin-bottom:2rem; line-height:1.35; }
+
+  /* three strategies stepper */
+  .strategy-viz { display:grid; grid-template-columns:repeat(3,1fr); gap:1.2rem; margin:2rem 0 2.6rem; }
+  @media (max-width:700px){ .strategy-viz{grid-template-columns:1fr;} }
+  .strategy-card { background:var(--melt-gray); border:1px solid var(--melt-border); border-radius:18px; padding:1.6rem; opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease; }
+  .strategy-card.in { opacity:1; transform:translateY(0); }
+  .strategy-num { width:36px; height:36px; border-radius:10px; background:linear-gradient(135deg, var(--melt-orange), var(--melt-orange-light)); display:flex; align-items:center; justify-content:center; font-family:'Space Grotesk', sans-serif; font-weight:700; color:var(--melt-ink,#0A0A0A); margin-bottom:1rem; }
+  .strategy-card h4 { font-family:'Space Grotesk', sans-serif; font-size:1rem; margin-bottom:0.6rem; }
+  .strategy-card p { font-size:0.88rem; color:var(--melt-text-muted); margin:0; }
+
+  /* threshold gauge: 26C limit vs MELT stabilized 25C vs typical leichtbau overshoot */
+  .threshold-viz { background:var(--melt-gray); border:1px solid var(--melt-border); border-radius:22px; padding:2.2rem 2rem; margin:2.2rem 0 2.6rem; }
+  .threshold-viz .viz-title { font-family:'IBM Plex Mono', monospace; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.07em; color:var(--melt-text-muted); margin-bottom:0.3rem; }
+  .threshold-viz .viz-note { font-family:'IBM Plex Mono', monospace; font-size:0.7rem; color:rgba(32,31,28,0.35); margin-bottom:1.6rem; }
+  svg#threshChart { width:100%; height:auto; display:block; }
+  .thresh-legend { display:flex; gap:1.6rem; margin-top:1.1rem; flex-wrap:wrap; font-family:'IBM Plex Mono', monospace; font-size:0.8rem; }
+  .thresh-legend span { display:flex; align-items:center; gap:0.5rem; color:var(--melt-text-muted); }
+  .thresh-legend .dot { width:10px; height:10px; border-radius:3px; display:inline-block; }
+
+  /* 86% ring + shield graphic */
+  .impact-row { display:grid; grid-template-columns:1fr 1fr; gap:1.6rem; align-items:center; margin:2rem 0 2.6rem; }
+  @media (max-width:700px){ .impact-row{grid-template-columns:1fr;} }
+  .ring-box { background:var(--melt-surface); border:1px solid var(--melt-border); border-radius:18px; padding:2rem; text-align:center; }
+  .big-ring { width:150px; height:150px; margin:0 auto 1rem; position:relative; }
+  .big-ring::before { content:''; position:absolute; inset:0; border-radius:50%; background:conic-gradient(var(--melt-orange) calc(var(--pct,0) * 1%), rgba(255,255,255,0.06) 0); transition:background 1.5s cubic-bezier(.16,1,.3,1); }
+  .big-ring::after { content:''; position:absolute; inset:14px; border-radius:50%; background:var(--melt-surface); }
+  .big-ring .ring-txt { position:relative; z-index:2; display:flex; align-items:center; justify-content:center; width:100%; height:100%; font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:2rem; color:var(--melt-orange-light); }
+  .shield-box { background:var(--melt-surface); border:1px solid var(--melt-border); border-radius:18px; padding:2rem; text-align:center; }
+  .shield-icon { font-size:3rem; margin-bottom:0.8rem; animation:shieldPulse 2.6s ease-in-out infinite; color:var(--melt-teal); }
+  @keyframes shieldPulse { 0%,100%{ transform:scale(1); opacity:0.85; } 50%{ transform:scale(1.08); opacity:1; } }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo"><img src="assets/img/logo.png" alt="MELT-Ing Logo"><span>-Ing</span></a>
+  <ul class="nav-links">
+    <li><a href="melt-plate.html">MELT Plate</a></li>
+    <li class="has-dropdown"><a href="zielgruppe.html">Zielgruppe</a>
+      <div class="dropdown">
+        <a href="zielgruppe.html#investoren"><span class="dd-icon">◆</span>Investoren</a>
+        <a href="zielgruppe.html#bauunternehmen"><span class="dd-icon">◈</span>Bauunternehmen</a>
+        <a href="zielgruppe.html#architekten"><span class="dd-icon">✎</span>Architekten und Planer</a>
+        <a href="zielgruppe.html#defense"><span class="dd-icon">⛨</span>Defense</a>
+        <a href="zielgruppe.html#diy"><span class="dd-icon">⚒</span>DIY</a>
+      </div>
+    </li>
+    <li class="has-dropdown"><a href="magazin.html">Magazin</a>
+      <div class="dropdown">
+        <a href="hitzeschutz.html"><span class="dd-icon">☀</span>Hitzeschutz</a>
+        <a href="pcm.html"><span class="dd-icon">◉</span>PCM</a>
+        <a href="bauteilaktivierung.html"><span class="dd-icon">▤</span>Bauteilaktivierung</a>
+        <a href="impact.html"><span class="dd-icon">◐</span>Impact</a>
+        <a href="serielles-bauen.html"><span class="dd-icon">▦</span>Serielles Bauen</a>
+        <a href="magazin.html#case"><span class="dd-icon">▣</span>Case Studies</a>
+      </div>
+    </li>
+    <li><a href="ueber-uns.html">Über uns</a></li>
+  </ul>
+  <a href="kontakt.html" class="nav-cta">gleich anfragen →</a>
+</nav>
+
+<div class="page-hero" style="padding-bottom:1rem;">
+  <div class="section-label">Klimaresilienz · Komfort · Passive Anwendungen · Oktober 2025</div>
+  <h1>Wird der Leichtbau <span class="highlight">im Sommer zu heiß?</span></h1>
+</div>
+
+<section style="padding-top:0;">
+  <div class="container">
+    <div class="article-body-text reveal">
+
+      <h2>Die Rolle der Gebäudemasse</h2>
+      <p>Hitzeschutz in Gebäuden gewinnt durch den Klimawandel zunehmend an Bedeutung. Während Wärmedämmung im Winter Heizkosten spart, verhindert sommerlicher Hitzeschutz das Aufheizen von Innenräumen.</p>
+      <p>Drei Strategien sind entscheidend:</p>
+
+      <div class="strategy-viz">
+        <div class="strategy-card"><div class="strategy-num">1</div><h4>Außenliegender Sonnenschutz</h4><p>Reduziert die Einstrahlung, bevor sie das Gebäude erreicht.</p></div>
+        <div class="strategy-card"><div class="strategy-num">2</div><h4>Nachtlüftung</h4><p>Nutzt kühle Außenluft zur Abkühlung.</p></div>
+        <div class="strategy-card"><div class="strategy-num">3</div><h4>Thermische Masse</h4><p>Speichert Wärme und gibt sie zeitversetzt ab.</p></div>
+      </div>
+
+      <p>Besonders Dachgeschosse und leichte Bauweisen sind anfällig für Überhitzung, da ihnen die speichernde Masse fehlt. Die Arbeitsstättenrichtlinie fordert für Büroräume Temperaturen unter 26°C – ein Standard, der ohne aktive Kühlung oder passive Maßnahmen in modernen Leichtbauten schwer erreichbar ist.</p>
+
+      <div class="threshold-viz">
+        <div class="viz-title">Raumtemperatur an einem heißen Sommertag</div>
+        <div class="viz-note">// Illustrative Darstellung: Grenzwert vs. typischer Leichtbau vs. MELT Plate</div>
+        <svg id="threshChart" viewBox="0 0 900 240" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="hGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#E85D2E"/><stop offset="100%" stop-color="#F4A261"/></linearGradient>
+            <linearGradient id="mGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#3AB6AB"/><stop offset="100%" stop-color="#7FD8CE"/></linearGradient>
+          </defs>
+          <line x1="0" y1="70" x2="900" y2="70" stroke="#E85D2E" stroke-dasharray="4 5" stroke-width="1.5" opacity="0.6"/>
+          <text x="0" y="64" font-family="IBM Plex Mono" font-size="11" fill="#F4A261">Grenzwert 26°C (Arbeitsstättenrichtlinie)</text>
+          <path id="hLine" d="" fill="none" stroke="url(#hGrad)" stroke-width="2.4" stroke-linecap="round"/>
+          <path id="mLine" d="" fill="none" stroke="url(#mGrad)" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+        <div class="thresh-legend">
+          <span><i class="dot" style="background:#E85D2E"></i>Leichtbau ohne Hitzeschutz</span>
+          <span><i class="dot" style="background:#3AB6AB"></i>Mit MELT Plate — stabil um 25°C</span>
+        </div>
+      </div>
+
+      <h2>Hitzeschutz im Leichtbau</h2>
+      <p>Hitzeschutz ist eine der Kernfunktionen der MELT Plate. Während herkömmliche Leichtbauten schnell überhitzen, integriert die MELT Plate thermische Masse in nur 1,2 cm Dicke.</p>
+
+      <div class="impact-row">
+        <div class="ring-box">
+          <div class="big-ring"><div class="ring-txt" id="heatRingLabel">0%</div></div>
+          <p style="color:var(--melt-text-muted); font-size:0.9rem; margin:0;">weniger Hitzetage in Containern — in Praxistests, ganz ohne Stromversorgung</p>
+        </div>
+        <div class="shield-box">
+          <div class="shield-icon">⛨</div>
+          <p style="color:var(--melt-text-muted); font-size:0.9rem; margin:0;">Die Platte wirkt als „Hitzeschild" gegen Sonneneinstrahlung — zwischen tragenden Balken installiert.</p>
+        </div>
+      </div>
+
+      <p>Das Phasenwechselmaterial in der Platte nimmt überschüssige Wärme auf und stabilisiert die Raumtemperatur automatisch im Komfortbereich um 25°C.</p>
+      <p>Besonders bei Dachsanierungen und Aufstockungen zeigt sich der Vorteil: Die leichte Platte wird zwischen tragenden Balken installiert und wirkt als „Hitzeschild" gegen Sonneneinstrahlung. So werden auch Dachgeschosswohnungen und Büros an heißen Sommertagen bewohnbar – ohne laute, stromfressende Klimaanlagen.</p>
+
+      <p>Haben wir Ihr Interesse geweckt? Dann sprechen Sie uns gerne an oder melden sich unter <a href="mailto:contact@meetmelt.com" style="color:var(--melt-teal);">contact@meetmelt.com</a> und besuchen uns auf <a href="https://www.meetmelt.com" target="_blank" rel="noopener" style="color:var(--melt-teal);">www.meetmelt.com</a>.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="cta-content">
+    <h2>Neugierig gemacht?</h2>
+    <p>Wollen Sie mehr wissen? Schreiben Sie uns unter contact@melt-ing.com.</p>
+    <a href="kontakt.html" class="cta-btn">Kontakt aufnehmen →</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand"><img src="assets/img/logo.png" alt=""><span>-Ing</span> GmbH</div>
+      <p class="footer-desc">Tailored Thermal Buffering for Buildings. Das Start-up aus Mannheim ermöglicht überragenden Komfort und Klimaresilienz in leichten, ökologischen Gebäuden.</p>
+    </div>
+    <div class="footer-col"><h4>Quick links</h4><ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="ueber-uns.html">About</a></li>
+      <li><a href="magazin.html">News</a></li>
+      <li><a href="kontakt.html">Contact</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Services</h4><ul>
+      <li><a href="komfort.html">Komfort</a></li>
+      <li><a href="pcm.html">Wärmespeicher</a></li>
+      <li><a href="hitzeschutz.html">Hitzeschutz</a></li>
+      <li><a href="bauteilaktivierung.html">Load-Shifting</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Follow us</h4><ul>
+      <li><a href="https://www.linkedin.com/company/melt-ing/">LinkedIn</a></li>
+      <li><a href="https://www.youtube.com/@MELT-IngGmbH">YouTube</a></li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom">Melt-Ing GmbH · John-Deere-Str. 81a · 68163 Mannheim · contact@melt-ing.com — dies ist ein unverbindlicher Redesign-Entwurf, kein Live-Deployment.</div>
+</footer>
+
+<script>
+const io = new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('active'); io.unobserve(e.target);} }); },{threshold:0.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// strategy cards reveal in sequence
+const stratCards = document.querySelectorAll('.strategy-card');
+const stratIO = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      stratCards.forEach((c,i)=>{ setTimeout(()=>c.classList.add('in'), i*160); });
+      stratIO.disconnect();
+    }
+  });
+},{threshold:0.3});
+stratIO.observe(document.querySelector('.strategy-viz'));
+
+// threshold chart draw-in
+function buildPath(points){ return points.map((p,i)=> (i===0?'M':'L') + p[0] + ' ' + p[1]).join(' '); }
+const W = 900, N = 70;
+const hotPts = [], meltPts = [];
+for(let i=0;i<=N;i++){
+  const x = (W/N)*i;
+  const t = i/N * Math.PI * 2.2;
+  const hotY = 130 - Math.max(0, Math.sin(t))*95;
+  const rawMeltY = 130 - Math.max(0, Math.sin(t))*95*0.22;
+  const meltY = Math.max(115, Math.min(150, rawMeltY));
+  hotPts.push([x, hotY]); meltPts.push([x, meltY]);
+}
+document.getElementById('hLine').setAttribute('d', buildPath(hotPts));
+document.getElementById('mLine').setAttribute('d', buildPath(meltPts));
+
+let threshDrawn = false;
+const threshIO = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting && !threshDrawn){
+      threshDrawn = true;
+      ['hLine','mLine'].forEach((id, idx)=>{
+        const p = document.getElementById(id);
+        const len = p.getTotalLength();
+        p.style.strokeDasharray = len; p.style.strokeDashoffset = len; p.style.transition = 'none';
+        requestAnimationFrame(()=>{
+          p.style.transition = `stroke-dashoffset ${1600+idx*300}ms ease-out ${idx*250}ms`;
+          p.style.strokeDashoffset = 0;
+        });
+      });
+    }
+  });
+},{threshold:0.3});
+threshIO.observe(document.getElementById('threshChart'));
+
+// 86% ring + counter
+const ring = document.querySelector('.big-ring');
+const ringLabel = document.getElementById('heatRingLabel');
+const ringIO = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      requestAnimationFrame(()=>{ ring.style.setProperty('--pct', 86); });
+      const dur = 1400, start = performance.now();
+      function step(t){
+        const p = Math.min(1, (t-start)/dur);
+        ringLabel.textContent = '-' + Math.round(86*(1-Math.pow(1-p,3))) + '%';
+        if(p<1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+      ringIO.disconnect();
+    }
+  });
+},{threshold:0.4});
+ringIO.observe(ring);
+</script>
+
+</body>
+</html>

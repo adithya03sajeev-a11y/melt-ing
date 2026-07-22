@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phasenwechselmaterial (PCM) — MELT-Ing GmbH</title>
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  .article-meta { font-family:'IBM Plex Mono', monospace; font-size:0.78rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--melt-text-muted); margin-bottom:1.2rem; }
+  .article-body-text { max-width:760px; margin:0 auto; }
+  .article-body-text h2 { font-family:'Space Grotesk', sans-serif; font-size:1.6rem; margin:2.6rem 0 1.1rem; }
+  .article-body-text p { color:var(--melt-text-muted); font-size:1.05rem; margin-bottom:1.2rem; line-height:1.75; }
+  .article-body-text .lead-q { font-family:'Space Grotesk', sans-serif; font-size:1.5rem; color:var(--melt-text); margin-bottom:2rem; line-height:1.35; }
+  .pull-stat { display:inline-block; background:rgba(232,93,46,0.08); border:1px solid rgba(232,93,46,0.25); border-radius:10px; padding:0.9rem 1.3rem; font-family:'IBM Plex Mono', monospace; font-size:0.95rem; color:var(--melt-orange-light); margin:0.5rem 0.6rem 0.5rem 0; }
+
+  /* phase change animation */
+  .phase-viz { background:var(--melt-gray); border:1px solid var(--melt-border); border-radius:22px; padding:2rem; margin:2.2rem 0 2.6rem; max-width:760px; margin-left:auto; margin-right:auto; }
+  .phase-viz .viz-title { font-family:'IBM Plex Mono', monospace; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.07em; color:var(--melt-text-muted); margin-bottom:1.4rem; }
+  .phase-row { display:flex; align-items:center; justify-content:space-between; gap:1rem; }
+  .phase-state { flex:1; text-align:center; }
+  .phase-icon { width:64px; height:64px; margin:0 auto 0.8rem; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.6rem; transition:all 1s ease; }
+  .phase-icon.solid { background:rgba(58,182,171,0.15); color:var(--melt-teal); }
+  .phase-icon.liquid { background:rgba(232,93,46,0.15); color:var(--melt-orange-light); }
+  .phase-label { font-size:0.82rem; color:var(--melt-text-muted); }
+  .phase-arrow { font-size:1.4rem; color:var(--melt-orange); animation:phasePulse 2.4s ease-in-out infinite; }
+  @keyframes phasePulse { 0%,100%{opacity:0.4; transform:translateX(0);} 50%{opacity:1; transform:translateX(6px);} }
+  .phase-caption { text-align:center; font-size:0.85rem; color:var(--melt-text-muted); margin-top:1.4rem; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo"><img src="assets/img/logo.png" alt="MELT-Ing Logo"><span>-Ing</span></a>
+  <ul class="nav-links">
+    <li><a href="melt-plate.html">MELT Plate</a></li>
+    <li class="has-dropdown"><a href="zielgruppe.html">Zielgruppe</a>
+      <div class="dropdown">
+        <a href="zielgruppe.html#investoren"><span class="dd-icon">◆</span>Investoren</a>
+        <a href="zielgruppe.html#bauunternehmen"><span class="dd-icon">◈</span>Bauunternehmen</a>
+        <a href="zielgruppe.html#architekten"><span class="dd-icon">✎</span>Architekten und Planer</a>
+        <a href="zielgruppe.html#defense"><span class="dd-icon">⛨</span>Defense</a>
+        <a href="zielgruppe.html#diy"><span class="dd-icon">⚒</span>DIY</a>
+      </div>
+    </li>
+    <li class="has-dropdown"><a href="magazin.html">Magazin</a>
+      <div class="dropdown">
+        <a href="hitzeschutz.html"><span class="dd-icon">☀</span>Hitzeschutz</a>
+        <a href="pcm.html"><span class="dd-icon">◉</span>PCM</a>
+        <a href="bauteilaktivierung.html"><span class="dd-icon">▤</span>Bauteilaktivierung</a>
+        <a href="komfort.html"><span class="dd-icon">❖</span>Komfort</a>
+        <a href="lowtech.html"><span class="dd-icon">✻</span>Low-Tech</a>
+        <a href="magazin.html#case"><span class="dd-icon">▣</span>Case Studies</a>
+      </div>
+    </li>
+    <li><a href="ueber-uns.html">Über uns</a></li>
+  </ul>
+  <a href="kontakt.html" class="nav-cta">gleich anfragen →</a>
+</nav>
+
+<div class="page-hero" style="padding-bottom:1rem;">
+  <div class="section-label">Technologie · Speicher · Research</div>
+  <h1>Phasenwechsel<span class="highlight">material</span></h1>
+</div>
+
+<section style="padding-top:0;">
+  <div class="container">
+    <div class="article-body-text reveal">
+      <div class="article-meta">Oktober 2025</div>
+      <p class="lead-q">Was kühlt meine Cocktails und hält mich im Winter warm?</p>
+
+      <h2>Der Phasenwechsel, ein physikalischer Effekt</h2>
+      <p>Phase Change Materials (PCM) sind Materialien, die beim Wechsel ihres Aggregatzustands große Mengen Energie speichern oder abgeben – ohne dabei ihre Temperatur zu verändern. Dieser Effekt der Schmelzenthalpie macht PCMs zu effizienten Wärmespeichern.</p>
+      <p>Während herkömmliche Baustoffe Energie nur durch Erwärmung speichern, nutzen PCMs den Phasenübergang zwischen fest und flüssig. Ein Kilogramm PCM kann dabei so viel Energie speichern wie <strong>20–30 Kilogramm Beton</strong>.</p>
+      <p>In Gebäuden eingesetzt, puffern sie Temperaturspitzen und verschieben Heiz- oder Kühllasten in günstigere Zeiten. Die Herausforderung liegt in der sicheren Verkapselung, da flüssige PCMs auslaufen können und ihre Wirkung nur bei passendem Schmelzpunkt zum Komfortbereich entfalten.</p>
+
+      <div class="phase-viz">
+        <div class="viz-title">Der Phasenübergang</div>
+        <div class="phase-row">
+          <div class="phase-state">
+            <div class="phase-icon solid" id="phaseSolid">◆</div>
+            <div class="phase-label">Fest<br>nimmt Wärme auf</div>
+          </div>
+          <div class="phase-arrow">⇄</div>
+          <div class="phase-state">
+            <div class="phase-icon liquid" id="phaseLiquid">◉</div>
+            <div class="phase-label">Flüssig<br>gibt Wärme ab</div>
+          </div>
+        </div>
+        <div class="phase-caption">Die Temperatur bleibt während des gesamten Übergangs konstant im Komfortbereich</div>
+      </div>
+
+      <h2>Phasenwechselmaterial in MELT Plates</h2>
+      <p>Die MELT Plate basiert auf der gezielten Nutzung von Phasenwechselmaterialien. Unser patentiertes Verfahren verkapselt PCM in großflächigen, skalierbaren Platten – eine technologische Innovation, die Makroverkapselung in industriellem Maßstab ermöglicht.</p>
+      <p>Die verwendete Salzsole kristallisiert genau im Komfortbereich (z. B. bei 21°C oder 25°C) und hält die Raumtemperatur konstant, während sie Wärme aufnimmt oder abgibt. Durch die große Oberfläche der Platten ist die Wärmeübertragung zum Raum optimal.</p>
+
+      <div>
+        <span class="pull-stat">20–30× Energie ggü. gleichem Gewicht Beton</span>
+        <span class="pull-stat">30× geringeres Gewicht</span>
+        <span class="pull-stat">20,8× Energiemenge bei gleichem Volumen</span>
+      </div>
+
+      <p style="margin-top:1.2rem;">Im Vergleich zu Beton speichert eine MELT Plate bei 30-fach geringerem Gewicht die 20,8-fache Energiemenge. Die Verkapselung aus sortenreinem Recyclingkunststoff ist leckagesicher und ermöglicht eine preiswerte Serienproduktion – damit holen wir PCM aus der Nische in die breite Anwendung.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="cta-content">
+    <h2>Neugierig gemacht?</h2>
+    <p>Wollen Sie mehr wissen? Schreiben Sie uns unter contact@melt-ing.com.</p>
+    <a href="kontakt.html" class="cta-btn">Kontakt aufnehmen →</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand"><img src="assets/img/logo.png" alt=""><span>-Ing</span> GmbH</div>
+      <p class="footer-desc">Tailored Thermal Buffering for Buildings. Das Start-up aus Mannheim ermöglicht überragenden Komfort und Klimaresilienz in leichten, ökologischen Gebäuden.</p>
+    </div>
+    <div class="footer-col"><h4>Quick links</h4><ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="ueber-uns.html">About</a></li>
+      <li><a href="magazin.html">News</a></li>
+      <li><a href="kontakt.html">Contact</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Services</h4><ul>
+      <li><a href="komfort.html">Komfort</a></li>
+      <li><a href="pcm.html">Wärmespeicher</a></li>
+      <li><a href="hitzeschutz.html">Hitzeschutz</a></li>
+      <li><a href="bauteilaktivierung.html">Load-Shifting</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Follow us</h4><ul>
+      <li><a href="https://www.linkedin.com/company/melt-ing/">LinkedIn</a></li>
+      <li><a href="https://www.youtube.com/@MELT-IngGmbH">YouTube</a></li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom">Melt-Ing GmbH · John-Deere-Str. 81a · 68163 Mannheim · contact@melt-ing.com — dies ist ein unverbindlicher Redesign-Entwurf, kein Live-Deployment.</div>
+</footer>
+
+<script>
+const io = new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('active'); io.unobserve(e.target);} }); },{threshold:0.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// gentle phase-change pulse animation: solid <-> liquid icon swap
+const solidEl = document.getElementById('phaseSolid');
+const liquidEl = document.getElementById('phaseLiquid');
+let toggle = false;
+setInterval(()=>{
+  toggle = !toggle;
+  solidEl.style.transform = toggle ? 'scale(0.85)' : 'scale(1)';
+  solidEl.style.opacity = toggle ? '0.5' : '1';
+  liquidEl.style.transform = toggle ? 'scale(1.1)' : 'scale(1)';
+  liquidEl.style.opacity = toggle ? '1' : '0.7';
+}, 2000);
+</script>
+
+</body>
+</html>

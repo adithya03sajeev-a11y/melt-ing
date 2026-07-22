@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MELT-Ing GmbH — Der Wärmespeicher der Zukunft</title>
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  .hero { position: relative; min-height: 92vh; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+  .hero-canvas { position:absolute; top:0; left:0; width:100%; height:100%; z-index:0; }
+  .hero-content { position:relative; z-index:2; text-align:center; max-width:920px; padding:2rem; }
+  .hero-badge { display:inline-flex; align-items:center; gap:0.5rem; padding:0.5rem 1.2rem; border:1px solid var(--melt-orange);
+    border-radius:50px; font-size:0.85rem; color:var(--melt-orange-light); margin-bottom:2rem; background: rgba(232,93,46,0.08); animation:fadeInDown 1s ease-out 0.2s both; }
+  .hero-badge .dot { width:8px; height:8px; background:var(--melt-orange); border-radius:50%; animation:pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1; transform:scale(1);} 50%{opacity:0.5; transform:scale(1.3);} }
+  .hero h1 { font-family:'Space Grotesk', sans-serif; font-size:clamp(2.4rem, 5.6vw, 4.6rem); font-weight:700; line-height:1.05; margin-bottom:1.5rem; animation:fadeInUp 1s ease-out 0.4s both; }
+  .hero h1 .highlight { background: linear-gradient(135deg, var(--melt-orange), var(--melt-orange-light)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .hero-subtitle { font-size:clamp(1rem, 2vw, 1.25rem); color:var(--melt-text-muted); max-width:640px; margin:0 auto 2.5rem; animation:fadeInUp 1s ease-out 0.6s both; }
+  .hero-cta { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; animation:fadeInUp 1s ease-out 0.8s both; }
+  .btn { padding:1rem 2.3rem; border-radius:12px; font-weight:600; font-size:1rem; cursor:pointer; transition:all 0.3s ease; text-decoration:none; display:inline-flex; align-items:center; gap:0.5rem; }
+  .btn-primary { background: linear-gradient(135deg, var(--melt-orange), #D45328); color:white; border:none; box-shadow:0 10px 40px rgba(232,93,46,0.3); }
+  .btn-primary:hover { transform:translateY(-3px); box-shadow:0 15px 50px rgba(232,93,46,0.4); }
+  .btn-secondary { background:transparent; color:var(--melt-text); border:1px solid var(--melt-border); }
+  .btn-secondary:hover { border-color:var(--melt-orange); color:var(--melt-orange-light); }
+  .scroll-indicator { position:absolute; bottom:2rem; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:0.5rem; color:var(--melt-text-muted); font-size:0.8rem; animation:bounce 2s infinite; }
+  .scroll-line { width:1px; height:40px; background:linear-gradient(to bottom, var(--melt-orange), transparent); }
+  @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0);} 50%{transform:translateX(-50%) translateY(10px);} }
+  @keyframes fadeInUp { from{opacity:0; transform:translateY(30px);} to{opacity:1; transform:translateY(0);} }
+  @keyframes fadeInDown { from{opacity:0; transform:translateY(-20px);} to{opacity:1; transform:translateY(0);} }
+
+  .problem-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; }
+  @media (max-width:900px){ .problem-grid{grid-template-columns:1fr;} }
+  .problem-visual { position:relative; height:380px; background:linear-gradient(135deg,#1a1a1a,#0a0a0a); border-radius:24px; border:1px solid var(--melt-border); display:flex; align-items:center; justify-content:center; }
+  .temp-gauge { width:260px; height:260px; position:relative; }
+  .gauge-ring { width:100%; height:100%; border-radius:50%; border:8px solid rgba(32,31,28,0.15); position:relative; }
+  .gauge-fill { position:absolute; top:0; left:0; width:100%; height:100%; border-radius:50%; border:8px solid transparent; border-top-color:var(--melt-orange); border-right-color:var(--melt-orange-light); animation:gaugeSpin 3s ease-in-out infinite alternate; }
+  @keyframes gaugeSpin { 0%{transform:rotate(-135deg);} 100%{transform:rotate(45deg);} }
+  .gauge-center { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); text-align:center; }
+  .gauge-temp { font-family:'Space Grotesk', sans-serif; font-size:2.6rem; font-weight:700; color:var(--melt-orange); }
+  .gauge-label { font-size:0.8rem; color:var(--melt-text-muted); margin-top:0.3rem; max-width:16ch; }
+  .problem-text h2 { font-family:'Space Grotesk', sans-serif; font-size:2.1rem; margin-bottom:1.4rem; line-height:1.2; }
+  .problem-text p { color:var(--melt-text-muted); font-size:1.05rem; margin-bottom:2rem; }
+  .problem-stats { display:flex; gap:2rem; flex-wrap:wrap; }
+  .pstat-number { font-family:'Space Grotesk', sans-serif; font-size:2.2rem; font-weight:700; color:var(--melt-orange); line-height:1; }
+  .pstat-label { font-size:0.8rem; color:var(--melt-text-muted); margin-top:4px; max-width:18ch; }
+
+  .tension { display:flex; gap:1.2rem; flex-wrap:wrap; margin-top:2.5rem; }
+  .tension .side { flex:1; min-width:240px; padding:1.5rem 1.4rem; border-radius:14px; border:1px solid var(--melt-border); font-family:'IBM Plex Mono', monospace; font-size:0.9rem; background:var(--melt-gray); }
+  .tension .side.a { color:var(--melt-orange-light); }
+  .tension .side.b { color:var(--melt-teal); }
+  .tension .join { align-self:center; font-family:'Space Grotesk', sans-serif; font-weight:700; color:var(--melt-orange); padding:0 0.6rem; }
+
+  /* ===== ACCORDION (matches real site's collapsible sections) ===== */
+  .acc-list { display:flex; flex-direction:column; margin-top:2.5rem; }
+  .acc-item { border-bottom:1px solid var(--melt-border); }
+  .acc-item:first-child { border-top:1px solid var(--melt-border); }
+  .acc-q { display:flex; justify-content:space-between; align-items:center; padding:1.5rem 0; cursor:pointer; gap:1rem; }
+  .acc-q-left { display:flex; align-items:center; gap:1rem; }
+  .acc-icon { width:40px; height:40px; min-width:40px; border-radius:11px; background:rgba(232,93,46,0.1); display:flex; align-items:center; justify-content:center; font-size:1.15rem; color:var(--melt-orange); }
+  .acc-q h3 { font-family:'Space Grotesk', sans-serif; font-size:1.15rem; font-weight:700; }
+  .acc-chevron { font-size:1.1rem; color:var(--melt-text-muted); transition:transform .3s ease; min-width:20px; text-align:center; }
+  .acc-item.open .acc-chevron { transform:rotate(180deg); color:var(--melt-orange); }
+  .acc-a { max-height:0; overflow:hidden; transition:max-height .4s ease; }
+  .acc-a-inner { padding-bottom:1.8rem; color:var(--melt-text-muted); font-size:0.98rem; max-width:70ch; }
+  .acc-a-inner p { margin-bottom:1rem; }
+  .acc-a-inner p:last-child { margin-bottom:0; }
+  .acc-a-inner .app-list { margin-top:0.5rem; }
+
+  .app-list { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
+  @media (max-width:760px){ .app-list{grid-template-columns:1fr 1fr;} }
+  @media (max-width:520px){ .app-list{grid-template-columns:1fr;} }
+  .app-item { padding:1.1rem 1.3rem; border-radius:12px; border:1px solid var(--melt-border); background:var(--melt-surface); font-size:0.92rem; color:var(--melt-text-muted); transition:all .25s; }
+  .app-item:hover { border-color:var(--melt-teal); color:var(--melt-text); transform:translateY(-3px); }
+
+  .mag-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1.2rem; }
+  @media (max-width:900px){ .mag-grid{grid-template-columns:1fr 1fr;} }
+  @media (max-width:520px){ .mag-grid{grid-template-columns:1fr;} }
+  .mag-card { text-decoration:none; color:inherit; border-radius:16px; overflow:hidden; border:1px solid var(--melt-border); background:var(--melt-surface); display:block; transition:all .3s; }
+  .mag-card:hover { transform:translateY(-5px); border-color:var(--melt-orange); }
+  .mag-thumb { height:96px; background:linear-gradient(135deg, var(--melt-orange), var(--melt-teal)); opacity:0.4; }
+  .mag-body { padding:1.2rem 1.3rem 1.4rem; }
+  .mag-body h4 { font-family:'Space Grotesk', sans-serif; font-size:0.98rem; margin-bottom:0.4rem; }
+  .mag-body p { font-size:0.82rem; color:var(--melt-text-muted); }
+
+  /* ===== FAQ ===== */
+  .faq-filters { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:24px; }
+  .faq-chip { font-family:'IBM Plex Mono', monospace; font-size:12px; padding:8px 14px; border-radius:20px; border:1px solid var(--melt-border); background:transparent; color:var(--melt-text-muted); cursor:pointer; transition:all .2s ease; }
+  .faq-chip.active { background:var(--melt-orange); color:#fff; border-color:var(--melt-orange); font-weight:600; }
+  .faq-chip:hover:not(.active) { border-color:var(--melt-orange); color:var(--melt-orange-light); }
+  .faq-list { display:flex; flex-direction:column; gap:10px; }
+  .faq-item { border:1px solid var(--melt-border); border-radius:12px; background:var(--melt-surface); overflow:hidden; }
+  .faq-q { width:100%; text-align:left; background:none; border:none; color:var(--melt-text); padding:18px 20px; font-family:'Space Grotesk', sans-serif; font-size:16px; font-weight:600; cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:16px; }
+  .faq-q .faq-cat-tag { font-family:'IBM Plex Mono', monospace; font-size:10px; text-transform:uppercase; letter-spacing:0.05em; color:var(--melt-teal); font-weight:600; display:block; margin-bottom:5px; }
+  .faq-icon { flex-shrink:0; width:26px; height:26px; border-radius:50%; border:1px solid var(--melt-border); display:flex; align-items:center; justify-content:center; font-size:14px; color:var(--melt-orange); transition:transform .25s ease; }
+  .faq-item.open .faq-icon { transform:rotate(45deg); }
+  .faq-a { max-height:0; overflow:hidden; transition:max-height .3s ease; }
+  .faq-a-inner { padding:0 20px 20px 20px; color:var(--melt-text-muted); font-size:14.5px; line-height:1.7; max-width:600px; }
+  .faq-footer { margin-top:30px; padding-top:24px; border-top:1px solid var(--melt-border); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:14px; }
+  .faq-footer-text { font-size:13.5px; color:var(--melt-text-muted); }
+  .faq-cta { font-family:'Inter', sans-serif; font-weight:600; font-size:14px; padding:12px 20px; border-radius:10px; background:linear-gradient(135deg, var(--melt-orange), #D45328); color:#fff; text-decoration:none; white-space:nowrap; }
+  .faq-cta:hover { opacity:0.9; }
+
+  /* ===== PCM CHECKER ===== */
+  .pcm-app { background:var(--melt-surface); border-radius:20px; overflow:hidden; border:1px solid var(--melt-border); box-shadow:0 12px 40px rgba(0,0,0,0.3); }
+  .pcm-grid { display:grid; grid-template-columns:290px 1fr; min-height:520px; }
+  @media (max-width:720px){ .pcm-grid{grid-template-columns:1fr;} .pcm-curve-panel{min-height:220px;} }
+  .pcm-curve-panel { background:var(--melt-gray); padding:32px 28px; display:flex; flex-direction:column; justify-content:space-between; border-right:1px solid var(--melt-border); }
+  .pcm-eyebrow { font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--melt-orange); margin-bottom:10px; font-weight:600; }
+  .pcm-curve-title { font-family:'Space Grotesk', sans-serif; font-size:20px; font-weight:600; line-height:1.25; margin:0 0 18px 0; color:var(--melt-text); }
+  .pcm-curve-svg-wrap { flex:1; display:flex; align-items:center; }
+  .pcm-curve-caption { font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--melt-text-muted); line-height:1.6; margin-top:16px; }
+  .pcm-curve-caption b { color:var(--melt-orange-light); font-weight:600; }
+  .pcm-main { padding:36px 40px; display:flex; flex-direction:column; }
+  @media (max-width:720px){ .pcm-main{padding:28px 22px;} }
+  .pcm-progress { display:flex; gap:6px; margin-bottom:28px; }
+  .pcm-dot { height:4px; flex:1; background:var(--melt-border); border-radius:2px; overflow:hidden; position:relative; }
+  .pcm-dot i { position:absolute; inset:0; background:var(--melt-orange); transform:scaleX(0); transform-origin:left; transition:transform .5s ease; }
+  .pcm-dot.done i { transform:scaleX(1); background:var(--melt-teal); }
+  .pcm-dot.active i { transform:scaleX(1); }
+  .pcm-q-label { font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--melt-text-muted); letter-spacing:0.05em; margin-bottom:8px; }
+  .pcm-q-text { font-family:'Space Grotesk', sans-serif; font-size:26px; font-weight:600; line-height:1.3; margin:0 0 26px 0; max-width:480px; color:var(--melt-text); }
+  @media (max-width:720px){ .pcm-q-text{font-size:21px;} }
+  .pcm-options { display:flex; flex-direction:column; gap:10px; }
+  .pcm-opt { text-align:left; background:var(--melt-gray); border:1px solid var(--melt-border); color:var(--melt-text); padding:16px 18px; border-radius:12px; font-family:'Inter', sans-serif; font-size:15px; font-weight:500; cursor:pointer; display:flex; align-items:center; gap:14px; transition:border-color .2s ease, background .2s ease, transform .15s ease; }
+  .pcm-opt:hover { border-color:var(--melt-orange); background:rgba(232,93,46,0.08); transform:translateX(2px); }
+  .pcm-opt .pcm-opt-icon { width:34px; height:34px; border-radius:9px; background:var(--melt-surface); border:1px solid var(--melt-border); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:16px; }
+  .pcm-nav { margin-top:auto; padding-top:24px; display:flex; justify-content:space-between; align-items:center; }
+  .pcm-back { font-family:'Inter', sans-serif; font-size:13px; color:var(--melt-text-muted); background:none; border:none; cursor:pointer; padding:8px 0; }
+  .pcm-back:hover { color:var(--melt-text); }
+  .pcm-back:disabled { opacity:0; pointer-events:none; }
+  .pcm-step-count { font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--melt-text-muted); }
+  .pcm-result { display:none; flex-direction:column; height:100%; }
+  .pcm-result.show { display:flex; }
+  .pcm-result-badge { display:inline-flex; align-items:center; gap:8px; font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; padding:6px 12px; border-radius:20px; background:rgba(58,182,171,0.1); color:var(--melt-teal); border:1px solid rgba(58,182,171,0.3); width:fit-content; margin-bottom:18px; font-weight:600; }
+  .pcm-result-title { font-family:'Space Grotesk', sans-serif; font-size:28px; font-weight:700; margin:0 0 14px 0; line-height:1.2; color:var(--melt-text); }
+  .pcm-result-score { font-family:'IBM Plex Mono', monospace; font-size:15px; color:var(--melt-orange-light); margin-bottom:20px; font-weight:600; }
+  .pcm-result-text { font-size:15px; line-height:1.65; color:var(--melt-text-muted); max-width:480px; margin-bottom:26px; }
+  .pcm-result-factors { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:28px; max-width:480px; }
+  .pcm-factor { background:var(--melt-gray); border:1px solid var(--melt-border); border-radius:10px; padding:12px 14px; }
+  .pcm-factor-label { font-family:'IBM Plex Mono', monospace; font-size:10px; text-transform:uppercase; letter-spacing:0.06em; color:var(--melt-text-muted); margin-bottom:4px; }
+  .pcm-factor-value { font-size:13px; font-weight:600; color:var(--melt-text); }
+  .pcm-cta-row { display:flex; gap:12px; margin-top:auto; flex-wrap:wrap; }
+  .pcm-cta { font-family:'Inter', sans-serif; font-weight:600; font-size:14px; padding:14px 22px; border-radius:10px; border:none; cursor:pointer; text-decoration:none; display:inline-flex; align-items:center; }
+  .pcm-cta.primary { background:linear-gradient(135deg, var(--melt-orange), #D45328); color:#fff; }
+  .pcm-cta.primary:hover { opacity:0.9; }
+  .pcm-cta.ghost { background:transparent; color:var(--melt-text); border:1px solid var(--melt-border); }
+  .pcm-cta.ghost:hover { border-color:var(--melt-orange); color:var(--melt-orange-light); }
+  .pcm-hidden { display:none !important; }
+
+  /* keep the four solution cards on one line on wider screens */
+  #solution-cards { grid-template-columns:repeat(4, 1fr); }
+  @media (max-width:1100px){ #solution-cards{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:640px){ #solution-cards{ grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo"><img src="assets/img/logo.png" alt="MELT-Ing Logo"><span>-Ing</span></a>
+  <ul class="nav-links">
+    <li><a href="melt-plate.html">MELT Plate</a></li>
+    <li class="has-dropdown"><a href="zielgruppe.html">Zielgruppe</a>
+      <div class="dropdown">
+        <a href="zielgruppe.html#investoren"><span class="dd-icon">◆</span>Investoren</a>
+        <a href="zielgruppe.html#bauunternehmen"><span class="dd-icon">◈</span>Bauunternehmen</a>
+        <a href="zielgruppe.html#architekten"><span class="dd-icon">✎</span>Architekten und Planer</a>
+        <a href="zielgruppe.html#defense"><span class="dd-icon">⛨</span>Defense</a>
+        <a href="zielgruppe.html#diy"><span class="dd-icon">⚒</span>DIY</a>
+      </div>
+    </li>
+    <li class="has-dropdown"><a href="magazin.html">Magazin</a>
+      <div class="dropdown">
+        <a href="hitzeschutz.html"><span class="dd-icon">☀</span>Hitzeschutz</a>
+        <a href="pcm.html"><span class="dd-icon">◉</span>PCM</a>
+        <a href="bauteilaktivierung.html"><span class="dd-icon">▤</span>Bauteilaktivierung</a>
+        <a href="komfort.html"><span class="dd-icon">❖</span>Komfort</a>
+        <a href="lowtech.html"><span class="dd-icon">✻</span>Low-Tech</a>
+        <a href="magazin.html#case"><span class="dd-icon">▣</span>Case Studies</a>
+      </div>
+    </li>
+    <li><a href="ueber-uns.html">Über uns</a></li>
+  </ul>
+  <a href="kontakt.html" class="nav-cta">gleich anfragen →</a>
+</nav>
+
+<section class="hero">
+  <canvas class="hero-canvas" id="heroCanvas"></canvas>
+  <div class="hero-content">
+    <div class="hero-badge"><span class="dot"></span>Latentwärmespeicher · Made in Mannheim</div>
+    <h1>Der Wärmespeicher<br><span class="highlight">der Zukunft.</span></h1>
+    <p class="hero-subtitle">Das Startup MELT-Ing macht leichte Gebäude klimaresilient. Bei Konstruktionen ohne Gebäudemasse schwanken die Temperaturen drastisch — starke Überhitzung und schnellere Abkühlung sind die Folge. Wir haben die Lösung.</p>
+    <div class="hero-cta">
+      <a href="kontakt.html" class="btn btn-primary">gleich anfragen →</a>
+      <a href="melt-plate.html" class="btn btn-secondary">Komfort, Hitzeschutz, Flexibilität</a>
+    </div>
+  </div>
+  <div class="scroll-indicator"><span>Scrollen</span><div class="scroll-line"></div></div>
+</section>
+
+<section style="background:var(--melt-gray);">
+  <div class="container">
+    <div class="problem-grid reveal">
+      <div class="problem-visual">
+        <div class="temp-gauge">
+          <div class="gauge-ring">
+            <div class="gauge-fill"></div>
+            <div class="gauge-center"><div class="gauge-temp" id="liveTemp">↕</div><div class="gauge-label" id="liveTempLabel">Schwankung ohne Speichermasse</div></div>
+          </div>
+        </div>
+        <div id="liveTempNote" style="text-align:center; font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:var(--melt-text-muted); margin-top:0.9rem; opacity:0.7;"></div>
+      </div>
+      <div class="problem-text">
+        <div class="section-label">Das Problem</div>
+        <h2>Bau- und Energiewende zusammenbringen</h2>
+        <p>Die Transformationen im Wärme- und Bausektor führen zu wichtigen Trends: Gebäude werden ressourceneffizienter erbaut, leichte Baustoffe und Naturstoffe spielen eine große Rolle. Doch die geringere Gebäudemasse führt zu schnelleren, größeren Temperaturschwankungen — mit der Folge von Überhitzung und geringerem Komfort, wenn nicht konstant nachgeheizt oder gekühlt wird.</p>
+        <div class="problem-stats">
+          <div><div class="pstat-number">85%</div><div class="pstat-label">CO₂-Einsparung ggü. Gas mit MELT + Wärmepumpe</div></div>
+          <div><div class="pstat-number">25°C</div><div class="pstat-label">Temperaturniveau als „STOP"-Schild im Dach</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tension reveal" style="margin-top:3rem;">
+      <div class="side a">„Den Bausektor dekarbonisieren und Ressourcen sparen"</div>
+      <div class="join">+ MELT =</div>
+      <div class="side b">„Massiv bauen bringt Komfort und schützt vor Hitze"</div>
+    </div>
+
+    <div class="acc-list reveal" id="zielgruppe">
+      <div class="acc-item">
+        <div class="acc-q"><div class="acc-q-left"><div class="acc-icon">▦</div><h3>Für den modernen Leichtbau</h3></div><span class="acc-chevron">⌄</span></div>
+        <div class="acc-a"><div class="acc-a-inner">
+          <p>Die Transformationen im Wärme- und Bausektor führen zu einigen richtigen und wichtigen Trends: Gebäude werden immer ressourceneffizienter erbaut. Hier spielen leichte Baustoffe und Naturstoffe eine große Rolle.</p>
+          <p>Die neue Art zu Bauen bringt aber einige Herausforderungen im Bereich des thermischen Komforts und der Flexibilität mit sich, da die geringere Gebäudemasse zu schnelleren und größeren Temperaturschwankungen führt.</p>
+        </div></div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-q"><div class="acc-q-left"><div class="acc-icon">⌂</div><h3>In der Dachkonstruktion und Sanierung</h3></div><span class="acc-chevron">⌄</span></div>
+        <div class="acc-a"><div class="acc-a-inner">
+          <p>Auch in Bestandsgebäuden steigt der Bedarf nach unseren Lösungen. Die Produkte von MELT eignen sich insbesondere bei Dachsanierungen und Aufstockungen, da hier leichte Bauweisen, hoher Anspruch an den Komfort und eine große Außenwand- bzw. Dachfläche zusammenkommen.</p>
+          <p>Die MELT Plate zeigt hier besonders gute Hitzeschutzeigenschaften und bietet im Dach ein „STOP"-Schild für die eingestrahlte Wärme auf etwa 25°C Temperaturniveau, ganz ohne den Einsatz von lauten und stromfressenden Klimageräten.</p>
+        </div></div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-q"><div class="acc-q-left"><div class="acc-icon">◐</div><h3>Für Wärmepumpen und Dynamik</h3></div><span class="acc-chevron">⌄</span></div>
+        <div class="acc-a"><div class="acc-a-inner">
+          <p>Neben der Erhöhung des Wohlfühlklimas und dem Hitzeschutz können die Produkte von MELT aber noch mehr. Die Flexibilität durch Speicher wird im Energiesystem der Zukunft auch finanziell belohnt.</p>
+          <p>Mit MELT-Produkten im Gebäude ist es möglich, den Eigennutzungsgrad Ihrer PV zu erhöhen — und dann die Zeiten ohne selbst erzeugten Strom entspannt und auf Wohlfühltemperatur auszusitzen.</p>
+        </div></div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-q"><div class="acc-q-left"><div class="acc-icon">▤</div><h3>...und vieles mehr</h3></div><span class="acc-chevron">⌄</span></div>
+        <div class="acc-a"><div class="acc-a-inner">
+          <p>Durch ihre große Speicherdichte und Oberfläche vielseitig einsetzbar — bei jeder Anwendung, die eine geringe Temperaturschwankung erfordert.</p>
+          <div class="app-list">
+            <div class="app-item">Nahwärmenetze (heiß oder kalt)</div>
+            <div class="app-item">Abwärmenutzung</div>
+            <div class="app-item">Gewächshäuser</div>
+            <div class="app-item">Industrielle Batchprozesse</div>
+            <div class="app-item">Lagerhäuser und Kühlhäuser</div>
+            <div class="app-item">Deckenkassettensysteme mit/ohne Kühlfunktion</div>
+          </div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label">Die Lösung</div>
+      <h2 class="section-title">Komfort, Hitzeschutz, Flexibilität durch die MELT Plate</h2>
+      <p class="section-desc">Vier Gründe, warum die MELT Plate das fehlende Puzzlestück im modernen Leichtbau ist.</p>
+    </div>
+    <div class="card-grid reveal" id="solution-cards">
+      <a class="info-card" href="pcm.html" style="text-decoration:none; color:inherit; display:block;"><div class="icon">01</div><h3>Speicher auf Wunschtemperatur</h3></a>
+      <a class="info-card" href="bauteilaktivierung.html" style="text-decoration:none; color:inherit; display:block;"><div class="icon">02</div><h3>Geld sparen</h3></a>
+      <a class="info-card" href="impact.html" style="text-decoration:none; color:inherit; display:block;"><div class="icon">03</div><h3>Gut fürs Klima</h3></a>
+      <a class="info-card" href="serielles-bauen.html" style="text-decoration:none; color:inherit; display:block;"><div class="icon">04</div><h3>Hitzeschutz trotz Leichtbau</h3></a>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--melt-gray);" id="magazin">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label">Aus dem Info-Blog</div>
+      <h2 class="section-title">Wir haben jahrelange Erfahrung bei der Integration von Phasenwechselmaterial in Produkte und Prozesse.</h2>
+      <p class="section-desc">Was können wir für Sie tun?</p>
+    </div>
+    <div class="mag-grid reveal">
+      <a class="mag-card" href="hitzeschutz.html"><div class="mag-thumb"></div><div class="mag-body"><h4>Hitzeschutz?</h4><p>Warum Hitzeschutz immer relevanter wird.</p></div></a>
+      <a class="mag-card" href="bauteilaktivierung.html"><div class="mag-thumb" style="opacity:0.25"></div><div class="mag-body"><h4>Bauteilaktivierung?</h4><p>Thermische Masse als Speicher. Wichtiger denn je.</p></div></a>
+      <a class="mag-card" href="komfort.html"><div class="mag-thumb" style="opacity:0.55"></div><div class="mag-body"><h4>Komfort?</h4><p>Was ist Komfort und was macht ein Gebäude komfortabel?</p></div></a>
+      <a class="mag-card" href="lowtech.html"><div class="mag-thumb" style="opacity:0.4"></div><div class="mag-body"><h4>Low-Tech?</h4><p>Die Gegenbewegung zu immer mehr Haustechnik.</p></div></a>
+    </div>
+  </div>
+</section>
+
+<section id="faq" style="background:var(--melt-gray);">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label">Häufige Fragen</div>
+      <h2 class="section-title">FAQ</h2>
+      <p class="section-desc">Alles, was Sie über PCM-Wärmespeicher und die MELT Plate wissen möchten.</p>
+    </div>
+
+    <div class="faq-filters reveal" id="faq-filters"></div>
+    <div class="faq-list reveal" id="faq-list"></div>
+
+    <div class="faq-footer reveal">
+      <div class="faq-footer-text">Haben Sie eine andere Frage?</div>
+      <a class="faq-cta" href="mailto:contact@melt-ing.com?subject=Frage%20zu%20PCM-W%C3%A4rmespeicherung">Team kontaktieren</a>
+    </div>
+  </div>
+</section>
+
+<section id="checker">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label">Interaktiv</div>
+      <h2 class="section-title">Eignet sich PCM für Ihr Gebäude?</h2>
+      <p class="section-desc">Beantworten Sie 6 kurze Fragen — wir zeigen live, wie sich Ihre Raumtemperatur mit und ohne Speicher verhält.</p>
+    </div>
+
+    <div class="pcm-app reveal">
+      <div class="pcm-grid">
+        <div class="pcm-curve-panel">
+          <div>
+            <div class="pcm-eyebrow">Live-Simulation</div>
+            <h3 class="pcm-curve-title">So würde sich Ihre<br>Raumtemperatur verhalten</h3>
+          </div>
+          <div class="pcm-curve-svg-wrap">
+            <svg id="pcm-curve" viewBox="0 0 240 140" width="100%" height="140">
+              <line x1="0" y1="20" x2="240" y2="20" stroke="var(--melt-border)" stroke-width="1"/>
+              <line x1="0" y1="70" x2="240" y2="70" stroke="var(--melt-border)" stroke-width="1" stroke-dasharray="3 4"/>
+              <line x1="0" y1="120" x2="240" y2="120" stroke="var(--melt-border)" stroke-width="1"/>
+              <path id="pcm-curve-raw" d="" fill="none" stroke="var(--melt-text-muted)" stroke-width="2" opacity="0.5" stroke-dasharray="4 4"/>
+              <path id="pcm-curve-flat" d="" fill="none" stroke="var(--melt-orange)" stroke-width="3" stroke-linecap="round" style="transition:opacity .5s ease; opacity:0;"/>
+            </svg>
+          </div>
+          <div class="pcm-curve-caption">
+            <span style="color:var(--melt-text-muted)">– – –</span> ohne Wärmespeicher<br>
+            <b>———</b> mit <b>PCM</b>-Wärmespeicher
+          </div>
+        </div>
+
+        <div class="pcm-main">
+          <div id="pcm-quiz">
+            <div class="pcm-progress" id="pcm-progress"></div>
+            <div class="pcm-q-label" id="pcm-q-label">FRAGE 1 / 6</div>
+            <h2 class="pcm-q-text" id="pcm-q-text"></h2>
+            <div class="pcm-options" id="pcm-options"></div>
+            <div class="pcm-nav">
+              <button class="pcm-back" id="pcm-back">← Zurück</button>
+              <div class="pcm-step-count" id="pcm-step-count"></div>
+            </div>
+          </div>
+
+          <div class="pcm-result" id="pcm-result">
+            <div class="pcm-result-badge" id="pcm-result-badge">● Ergebnis</div>
+            <h2 class="pcm-result-title" id="pcm-result-title"></h2>
+            <div class="pcm-result-score" id="pcm-result-score"></div>
+            <p class="pcm-result-text" id="pcm-result-text"></p>
+            <div class="pcm-result-factors" id="pcm-result-factors"></div>
+            <div class="pcm-cta-row">
+              <a class="pcm-cta primary" href="#" id="pcm-cta-contact">Fachliche Einschätzung anfragen</a>
+              <button class="pcm-cta ghost" id="pcm-restart">Neu starten</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section" id="kontakt-teaser">
+  <div class="cta-content">
+    <h2>Ins Gespräch kommen ist ganz einfach.</h2>
+    <p>Wo drückt der Schuh? Fragen zur Technologie, Zertifizierung, Geschäftsmodell, Anwendungsmöglichkeiten? Wir sind für Sie da.</p>
+    <a href="kontakt.html" class="cta-btn">Experte kontaktieren →</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand"><img src="assets/img/logo.png" alt=""><span>-Ing</span> GmbH</div>
+      <p class="footer-desc">Tailored Thermal Buffering for Buildings. Das Start-up aus Mannheim ermöglicht überragenden Komfort und Klimaresilienz in leichten, ökologischen Gebäuden.</p>
+    </div>
+    <div class="footer-col"><h4>Quick links</h4><ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="ueber-uns.html">About</a></li>
+      <li><a href="magazin.html">News</a></li>
+      <li><a href="kontakt.html">Contact</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Services</h4><ul>
+      <li><a href="komfort.html">Komfort</a></li>
+      <li><a href="pcm.html">Wärmespeicher</a></li>
+      <li><a href="hitzeschutz.html">Hitzeschutz</a></li>
+      <li><a href="bauteilaktivierung.html">Load-Shifting</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Follow us</h4><ul>
+      <li><a href="https://www.linkedin.com/company/melt-ing/">LinkedIn</a></li>
+      <li><a href="https://www.youtube.com/@MELT-IngGmbH">YouTube</a></li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom">Melt-Ing GmbH · John-Deere-Str. 81a · 68163 Mannheim · contact@melt-ing.com — dies ist ein unverbindlicher Redesign-Entwurf, kein Live-Deployment.</div>
+</footer>
+
+<script>
+const canvas = document.getElementById('heroCanvas');
+const ctx = canvas.getContext('2d');
+let particles = []; let mouseX=0, mouseY=0;
+function resize(){ canvas.width=window.innerWidth; canvas.height=window.innerHeight; }
+resize(); window.addEventListener('resize', resize);
+class Particle {
+  constructor(){ this.reset(); }
+  reset(){ this.x=Math.random()*canvas.width; this.y=Math.random()*canvas.height; this.size=Math.random()*2+0.5;
+    this.speedX=(Math.random()-0.5)*0.5; this.speedY=(Math.random()-0.5)*0.5; this.opacity=Math.random()*0.5+0.1;
+    this.color = Math.random()>0.7 ? '#3AB6AB' : '#E85D2E'; }
+  update(){ this.x+=this.speedX; this.y+=this.speedY;
+    const dx=mouseX-this.x, dy=mouseY-this.y, dist=Math.sqrt(dx*dx+dy*dy);
+    if(dist<150){ this.x-=dx*0.01; this.y-=dy*0.01; }
+    if(this.x<0||this.x>canvas.width||this.y<0||this.y>canvas.height) this.reset(); }
+  draw(){ ctx.beginPath(); ctx.arc(this.x,this.y,this.size,0,Math.PI*2); ctx.fillStyle=this.color; ctx.globalAlpha=this.opacity; ctx.fill(); ctx.globalAlpha=1; }
+}
+for(let i=0;i<70;i++) particles.push(new Particle());
+function drawConnections(){
+  for(let i=0;i<particles.length;i++) for(let j=i+1;j<particles.length;j++){
+    const dx=particles[i].x-particles[j].x, dy=particles[i].y-particles[j].y, dist=Math.sqrt(dx*dx+dy*dy);
+    if(dist<120){ ctx.beginPath(); ctx.moveTo(particles[i].x,particles[i].y); ctx.lineTo(particles[j].x,particles[j].y);
+      ctx.strokeStyle=`rgba(232,93,46,${0.15*(1-dist/120)})`; ctx.lineWidth=0.5; ctx.stroke(); } } }
+function animate(){ ctx.clearRect(0,0,canvas.width,canvas.height); particles.forEach(p=>{p.update();p.draw();}); drawConnections(); requestAnimationFrame(animate); }
+animate();
+window.addEventListener('mousemove', e=>{ mouseX=e.clientX; mouseY=e.clientY; });
+
+const io = new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('active'); io.unobserve(e.target);} }); },{threshold:0.15});
+
+// accordion: Bau- und Energiewende section
+document.querySelectorAll('.acc-item').forEach(item=>{
+  const q = item.querySelector('.acc-q');
+  const a = item.querySelector('.acc-a');
+  q.addEventListener('click', ()=>{
+    const isOpen = item.classList.contains('open');
+    if(isOpen){
+      item.classList.remove('open');
+      a.style.maxHeight = null;
+    } else {
+      item.classList.add('open');
+      a.style.maxHeight = a.scrollHeight + 'px';
+    }
+  });
+});
+
+// live temperature at the visitor's location, shown in the gauge
+(function(){
+  const tempEl = document.getElementById('liveTemp');
+  const labelEl = document.getElementById('liveTempLabel');
+  const noteEl = document.getElementById('liveTempNote');
+  const MANNHEIM = { lat: 49.49, lon: 8.47, name: 'Mannheim' };
+
+  function showStaticFallback(){
+    tempEl.textContent = '↕';
+    labelEl.textContent = 'Schwankung ohne Speichermasse';
+  }
+
+  function fetchWeather(lat, lon, placeLabel, isApprox){
+    fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m`)
+      .then(r => r.json())
+      .then(data => {
+        const t = data && data.current ? Math.round(data.current.temperature_2m) : null;
+        if(t === null){ tryIpLocation(true); return; }
+        tempEl.textContent = t + '°C';
+        labelEl.textContent = 'Aktuell' + (placeLabel ? ' in ' + placeLabel : ' bei Ihnen');
+        noteEl.textContent = isApprox ? 'Live-Wetterdaten (ungefährer Standort)' : 'Live-Wetterdaten für Ihren Standort';
+      })
+      .catch(()=> tryIpLocation(true));
+  }
+
+  function useMannheimFallback(){
+    fetchWeather(MANNHEIM.lat, MANNHEIM.lon, MANNHEIM.name, true);
+  }
+
+  function tryIpLocation(skipIp){
+    if(skipIp){ useMannheimFallback(); return; }
+    fetch('https://ipapi.co/json/')
+      .then(r => r.json())
+      .then(data => {
+        if(data && data.latitude && data.longitude){
+          fetchWeather(data.latitude, data.longitude, data.city, true);
+        } else {
+          useMannheimFallback();
+        }
+      })
+      .catch(useMannheimFallback);
+  }
+
+  if(navigator.geolocation){
+    navigator.geolocation.getCurrentPosition(
+      (pos) => fetchWeather(pos.coords.latitude.toFixed(2), pos.coords.longitude.toFixed(2), null, false),
+      () => tryIpLocation(false),
+      { timeout: 5000 }
+    );
+  } else {
+    tryIpLocation(false);
+  }
+})();
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+document.querySelectorAll('.stat-card .num').forEach(el=>{
+  const cio = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){
+      const target=parseFloat(el.dataset.target); const dur=1200; const start=performance.now();
+      function step(t){ const p=Math.min(1,(t-start)/dur); el.textContent=Math.round(target*(1-Math.pow(1-p,3))); if(p<1) requestAnimationFrame(step); }
+      requestAnimationFrame(step); cio.unobserve(el); } });
+  },{threshold:0.5}); cio.observe(el);
+});
+
+// ===== FAQ =====
+(function(){
+  const data = [
+    { cat:"Grundlagen", q:"Was ist ein Phasenwechselmaterial (PCM)?",
+      a:"Ein PCM ist ein Material, das beim Wechsel zwischen fest und flüssig große Mengen Energie speichert oder abgibt — ohne dabei selbst die Temperatur zu verändern. Ein Kilogramm PCM kann so viel Energie speichern wie 20–30 Kilogramm Beton." },
+    { cat:"Grundlagen", q:"Wie funktioniert die MELT Plate in meinem Gebäude?",
+      a:"Die MELT Plate wird typischerweise im Dach oder Dachgeschoss installiert und bietet dort ein „STOP\"-Schild für eingestrahlte Wärme auf etwa 25°C. Tagsüber nimmt sie überschüssige Wärme auf, nachts gibt sie diese wieder ab und ist am nächsten Tag erneut einsatzbereit." },
+    { cat:"Eignung", q:"Eignet sich PCM für jeden Gebäudetyp?",
+      a:"Das hängt von mehreren Faktoren ab: wie stark das Gebäude zu Überhitzung neigt, ob es sich um Leichtbau (schnelle Schwankungen) oder Massivbau (bereits gepuffert) handelt, und ob nachts gelüftet werden kann. Nutzen Sie den Eignungscheck oben, um das für Ihr Gebäude einzuschätzen." },
+    { cat:"Eignung", q:"Ersetzt PCM die Dämmung oder eine Klimaanlage?",
+      a:"Nein — es ergänzt beides. Dämmung verlangsamt den Wärmedurchgang, PCM puffert die Wärme, die trotzdem ankommt, und glättet so Temperaturspitzen. In vielen Fällen reduziert ein gut ausgelegtes PCM-System den Bedarf an aktiver Kühlung deutlich, ersetzt sie aber nicht zwangsläufig komplett." },
+    { cat:"Eignung", q:"In welchem Klima hilft PCM am meisten?",
+      a:"Der größte Effekt entsteht dort, wo es einen spürbaren Unterschied zwischen Tag- und Nachttemperatur gibt — denn genau diese Schwankung lässt das Material nachts die gespeicherte Wärme wieder abgeben und sich für den nächsten Tag zurücksetzen." },
+    { cat:"Installation", q:"Unterscheidet sich die Installation bei Neubau und Sanierung?",
+      a:"Im Neubau kann die MELT Plate direkt in die Dach- oder Deckenkonstruktion eingeplant werden. Bei Sanierungen wird sie meist zwischen bestehende, tragende Balken nachgerüstet — besonders bei Dachsanierungen und Aufstockungen." },
+    { cat:"Installation", q:"Beeinflusst die Platte die Statik meines Gebäudes?",
+      a:"Anders als Beton oder schwere Speichermassen belastet die MELT Plate die Statik kaum — sie ist explizit auch für die nachträgliche Sanierung geeignet." },
+    { cat:"Installation", q:"Wie lange hält ein PCM-System und braucht es Wartung?",
+      a:"Die MELT Plate funktioniert ohne Strom, Sensoren oder Kabel — rein durch Physik. Einmal installiert, arbeitet sie ohne bewegliche Teile für Jahrzehnte, ganz ohne Wartungsverträge oder technisches Personal." },
+    { cat:"Installation", q:"Gibt es eine Garantie auf die MELT Plate?",
+      a:"Konkrete Garantiebedingungen besprechen wir gerne individuell — schreiben Sie uns dazu einfach eine Nachricht." },
+    { cat:"Nachhaltigkeit", q:"Ist PCM sicher und umweltfreundlich?",
+      a:"Die Umhüllung der MELT Plate besteht zu 100% aus sortenreinem Recyclingkunststoff und ist leckagesicher konstruiert." },
+    { cat:"Nachhaltigkeit", q:"Lässt sich PCM mit Solar/PV kombinieren?",
+      a:"Ja. Mit MELT-Produkten im Gebäude lässt sich der Eigennutzungsgrad Ihrer PV-Anlage erhöhen — Sie können Zeiten ohne selbst erzeugten Strom entspannt auf Wohlfühltemperatur aussitzen." },
+    { cat:"Nachhaltigkeit", q:"Gibt es relevante Normen oder Zertifizierungen?",
+      a:"Die Komfortbewertung orientiert sich unter anderem an der DIN EN 16798-1 (adaptives Komfortfenster). Für weitere produktspezifische Zertifizierungen sprechen Sie uns gerne direkt an." },
+    { cat:"Kosten", q:"Was kostet eine MELT Plate Installation?",
+      a:"Die Kosten hängen von Gebäudegröße, benötigter Plattenzahl und Neubau vs. Sanierung ab. Nutzen Sie den Eignungscheck oben für eine erste Einschätzung und kontaktieren Sie uns für ein individuelles Angebot." },
+    { cat:"Kosten", q:"Mit welcher Wirkung kann ich rechnen?",
+      a:"In bisherigen Projekten haben wir 85% CO₂-Einsparung ggü. Gas (mit Wärmepumpe), 62% weniger Tag-Nacht-Schwankung und bis zu 86% weniger Hitzetage gemessen. Über den Eignungscheck oder eine direkte Anfrage geben wir gerne eine Einschätzung für Ihr Gebäude." }
+  ];
+
+  const filtersEl = document.getElementById('faq-filters');
+  const listEl = document.getElementById('faq-list');
+  if(!filtersEl || !listEl) return;
+  const cats = ["Alle", ...new Set(data.map(d=>d.cat))];
+  let activeCat = "Alle";
+
+  function renderFilters(){
+    filtersEl.innerHTML = '';
+    cats.forEach(cat=>{
+      const btn = document.createElement('button');
+      btn.className = 'faq-chip' + (cat===activeCat ? ' active':'');
+      btn.textContent = cat;
+      btn.onclick = () => { activeCat = cat; renderFilters(); renderList(); };
+      filtersEl.appendChild(btn);
+    });
+  }
+
+  function renderList(){
+    listEl.innerHTML = '';
+    const items = activeCat === "Alle" ? data : data.filter(d=>d.cat===activeCat);
+    items.forEach(item=>{
+      const wrap = document.createElement('div');
+      wrap.className = 'faq-item';
+      wrap.innerHTML =
+        '<button class="faq-q">' +
+          '<span><span class="faq-cat-tag">'+item.cat+'</span>'+item.q+'</span>' +
+          '<span class="faq-icon">+</span>' +
+        '</button>' +
+        '<div class="faq-a"><div class="faq-a-inner">'+item.a+'</div></div>';
+      const qBtn = wrap.querySelector('.faq-q');
+      const aBox = wrap.querySelector('.faq-a');
+      qBtn.onclick = () => {
+        const isOpen = wrap.classList.contains('open');
+        listEl.querySelectorAll('.faq-item.open').forEach(el=>{
+          el.classList.remove('open');
+          el.querySelector('.faq-a').style.maxHeight = null;
+        });
+        if(!isOpen){
+          wrap.classList.add('open');
+          aBox.style.maxHeight = aBox.scrollHeight + 'px';
+        }
+      };
+      listEl.appendChild(wrap);
+    });
+  }
+
+  renderFilters();
+  renderList();
+})();
+
+// ===== PCM SUITABILITY CHECKER =====
+(function(){
+  const quizEl = document.getElementById('pcm-quiz');
+  if(!quizEl) return;
+
+  const questions = [
+    { label:"GEBÄUDETYP", text:"Um was für ein Gebäude handelt es sich?",
+      options:[ {text:"Neubau", icon:"🏗", score:2}, {text:"Sanierungsprojekt", icon:"🔧", score:2}, {text:"Bestandsgebäude, keine Änderung geplant", icon:"🏠", score:1} ] },
+    { label:"NUTZUNG", text:"Wofür wird das Gebäude hauptsächlich genutzt?",
+      options:[ {text:"Wohnraum", icon:"🛏", score:2}, {text:"Büro / Arbeitsplatz", icon:"🖥", score:2}, {text:"Gewerbe / Einzelhandel", icon:"🛍", score:1}, {text:"Industrie / Lager", icon:"🏭", score:0} ] },
+    { label:"ÜBERHITZUNG", text:"Überhitzt das Gebäude im Sommer?",
+      options:[ {text:"Ja, häufig — ein echtes Problem", icon:"🔥", score:2}, {text:"Gelegentlich, an heißen Tagen", icon:"🌤", score:1}, {text:"Selten oder nie", icon:"❄", score:0} ] },
+    { label:"BAUWEISE", text:"Wie ist Dach bzw. Dachgeschoss gebaut?",
+      options:[ {text:"Leichtbau (Holzständer, geringe Masse)", icon:"🪵", score:2}, {text:"Mischbauweise", icon:"🧱", score:1}, {text:"Massiv (Beton, hohe therm. Masse)", icon:"🗿", score:0} ] },
+    { label:"NACHTLÜFTUNG", text:"Kann nachts gelüftet werden?",
+      options:[ {text:"Ja, Fenster/Lüftung frei nutzbar", icon:"🌬", score:2}, {text:"Eingeschränkt — nur einzelne Räume", icon:"🪟", score:1}, {text:"Nein, versiegelt oder eingeschränkt", icon:"🔒", score:0} ] },
+    { label:"KLIMA", text:"Was beschreibt Ihr lokales Klima am besten?",
+      options:[ {text:"Große Tag-Nacht-Schwankungen", icon:"🌡", score:2}, {text:"Heiße, stabile Sommer", icon:"☀️", score:1}, {text:"Kalte, stabile Winter", icon:"🏔", score:1} ] }
+  ];
+
+  let current = 0;
+  let answers = [];
+
+  const progressEl = document.getElementById('pcm-progress');
+  const qLabelEl = document.getElementById('pcm-q-label');
+  const qTextEl = document.getElementById('pcm-q-text');
+  const optionsEl = document.getElementById('pcm-options');
+  const backBtn = document.getElementById('pcm-back');
+  const stepCountEl = document.getElementById('pcm-step-count');
+  const resultEl = document.getElementById('pcm-result');
+
+  function buildProgress(){
+    progressEl.innerHTML = '';
+    questions.forEach((q,i)=>{
+      const d = document.createElement('div');
+      d.className = 'pcm-dot' + (i < current ? ' done' : (i===current ? ' active':''));
+      d.innerHTML = '<i></i>';
+      progressEl.appendChild(d);
+    });
+  }
+
+  function curvePath(flatness){
+    const points = [];
+    const amp = 45 * (1-flatness);
+    const midY = 70;
+    for(let x=0; x<=240; x+=6){
+      const t = x/240 * Math.PI * 2.4;
+      const y = midY - Math.sin(t) * amp;
+      points.push(x.toFixed(1)+','+y.toFixed(1));
+    }
+    return 'M '+points.join(' L ');
+  }
+
+  function updateCurve(){
+    const totalScore = answers.reduce((a,b)=>a+b,0);
+    const maxScore = questions.slice(0,current).reduce((sum,q)=>sum+Math.max(...q.options.map(o=>o.score)),0) || 1;
+    const flatness = current===0 ? 0.35 : Math.min(1, totalScore/maxScore);
+    document.getElementById('pcm-curve-raw').setAttribute('d', curvePath(0));
+    const flatLine = document.getElementById('pcm-curve-flat');
+    flatLine.setAttribute('d', curvePath(flatness*0.85));
+    const hasAnswered = answers.some(a => a !== undefined);
+    flatLine.style.opacity = hasAnswered ? 1 : 0;
+  }
+
+  function renderQuestion(){
+    buildProgress();
+    const q = questions[current];
+    qLabelEl.textContent = q.label;
+    qTextEl.textContent = q.text;
+    stepCountEl.textContent = (current+1) + ' / ' + questions.length;
+    backBtn.disabled = current === 0;
+    optionsEl.innerHTML = '';
+    q.options.forEach(opt=>{
+      const btn = document.createElement('button');
+      btn.className = 'pcm-opt';
+      btn.innerHTML = '<span class="pcm-opt-icon">'+opt.icon+'</span><span>'+opt.text+'</span>';
+      btn.onclick = () => selectAnswer(opt.score);
+      optionsEl.appendChild(btn);
+    });
+    updateCurve();
+  }
+
+  function selectAnswer(score){
+    answers[current] = score;
+    if(current < questions.length - 1){
+      current++;
+      renderQuestion();
+    } else {
+      updateCurve();
+      showResult();
+    }
+  }
+
+  backBtn.onclick = () => { if(current > 0){ current--; renderQuestion(); } };
+
+  function showResult(){
+    const total = answers.reduce((a,b)=>a+b,0);
+    const max = questions.reduce((sum,q)=>sum+Math.max(...q.options.map(o=>o.score)),0);
+    const pct = Math.round((total/max)*100);
+
+    quizEl.classList.add('pcm-hidden');
+    resultEl.classList.add('show');
+
+    let tier, title, text;
+    if(pct >= 70){
+      tier = 'Hohe Eignung';
+      title = 'PCM-Wärmespeicherung passt sehr gut';
+      text = "Ihr Gebäude zeigt genau die Bedingungen, unter denen PCM am besten wirkt: spürbarer Überhitzungsdruck, Leichtbau mit schnellen Temperaturschwankungen und die Möglichkeit zur Nachtlüftung. Eine passende MELT Plate Auslegung könnte Temperaturspitzen deutlich glätten.";
+    } else if(pct >= 40){
+      tier = 'Mittlere Eignung';
+      title = 'PCM könnte helfen — mit der richtigen Auslegung';
+      text = "Ihr Gebäude erfüllt einige, aber nicht alle Bedingungen, unter denen PCM-Wärmespeicherung den größten Mehrwert bringt. Ein genauerer Blick lohnt sich — Details wie Raumnutzung, Verglasung und Lüftungsstrategie lassen sich in einem kurzen Fragebogen nicht vollständig abbilden.";
+    } else {
+      tier = 'Geringere Eignung';
+      title = 'PCM bringt hier voraussichtlich weniger Mehrwert';
+      text = "Ihr Gebäude verfügt bereits über hohe thermische Masse und/oder eingeschränkte Lüftungsmöglichkeiten — es reguliert die Temperatur möglicherweise schon vergleichsweise gut, oder kann gespeicherte Wärme nur schwer wieder abgeben. Andere Maßnahmen wie Verschattung, Dämmung oder Lüftung könnten zuerst den größeren Effekt bringen.";
+    }
+
+    document.getElementById('pcm-result-badge').innerHTML = '● ' + tier;
+    document.getElementById('pcm-result-title').textContent = title;
+    document.getElementById('pcm-result-score').textContent = 'Eignungswert: ' + pct + ' / 100';
+    document.getElementById('pcm-result-text').textContent = text;
+
+    const factorsEl = document.getElementById('pcm-result-factors');
+    factorsEl.innerHTML = '';
+    const factorLabels = ['Gebäudetyp','Nutzung','Überhitzungsrisiko','Bauweise / Masse','Nachtlüftung','Klimaprofil'];
+    answers.forEach((score,i)=>{
+      const max_i = Math.max(...questions[i].options.map(o=>o.score)) || 1;
+      const strength = score >= max_i ? 'Stark' : (score > 0 ? 'Teilweise' : 'Schwach');
+      const div = document.createElement('div');
+      div.className = 'pcm-factor';
+      div.innerHTML = '<div class="pcm-factor-label">'+factorLabels[i]+'</div><div class="pcm-factor-value">'+strength+'</div>';
+      factorsEl.appendChild(div);
+    });
+  }
+
+  document.getElementById('pcm-restart').onclick = () => {
+    current = 0; answers = [];
+    resultEl.classList.remove('show');
+    quizEl.classList.remove('pcm-hidden');
+    renderQuestion();
+  };
+
+  document.getElementById('pcm-cta-contact').href = 'mailto:contact@melt-ing.com?subject=Anfrage%20PCM-Eignungscheck';
+
+  renderQuestion();
+})();
+</script>
+
+</body>
+</html>
