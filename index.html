@@ -32,7 +32,7 @@
   @media (max-width:900px){ .problem-grid{grid-template-columns:1fr;} }
   .problem-visual { position:relative; height:380px; background:linear-gradient(135deg,#1a1a1a,#0a0a0a); border-radius:24px; border:1px solid var(--melt-border); display:flex; align-items:center; justify-content:center; }
   .temp-gauge { width:260px; height:260px; position:relative; }
-  .gauge-ring { width:100%; height:100%; border-radius:50%; border:8px solid rgba(255,255,255,0.05); position:relative; }
+  .gauge-ring { width:100%; height:100%; border-radius:50%; border:8px solid rgba(32,31,28,0.15); position:relative; }
   .gauge-fill { position:absolute; top:0; left:0; width:100%; height:100%; border-radius:50%; border:8px solid transparent; border-top-color:var(--melt-orange); border-right-color:var(--melt-orange-light); animation:gaugeSpin 3s ease-in-out infinite alternate; }
   @keyframes gaugeSpin { 0%{transform:rotate(-135deg);} 100%{transform:rotate(45deg);} }
   .gauge-center { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); text-align:center; }
@@ -49,6 +49,22 @@
   .tension .side.a { color:var(--melt-orange-light); }
   .tension .side.b { color:var(--melt-teal); }
   .tension .join { align-self:center; font-family:'Space Grotesk', sans-serif; font-weight:700; color:var(--melt-orange); padding:0 0.6rem; }
+
+  /* ===== ACCORDION (matches real site's collapsible sections) ===== */
+  .acc-list { display:flex; flex-direction:column; margin-top:2.5rem; }
+  .acc-item { border-bottom:1px solid var(--melt-border); }
+  .acc-item:first-child { border-top:1px solid var(--melt-border); }
+  .acc-q { display:flex; justify-content:space-between; align-items:center; padding:1.5rem 0; cursor:pointer; gap:1rem; }
+  .acc-q-left { display:flex; align-items:center; gap:1rem; }
+  .acc-icon { width:40px; height:40px; min-width:40px; border-radius:11px; background:rgba(232,93,46,0.1); display:flex; align-items:center; justify-content:center; font-size:1.15rem; color:var(--melt-orange); }
+  .acc-q h3 { font-family:'Space Grotesk', sans-serif; font-size:1.15rem; font-weight:700; }
+  .acc-chevron { font-size:1.1rem; color:var(--melt-text-muted); transition:transform .3s ease; min-width:20px; text-align:center; }
+  .acc-item.open .acc-chevron { transform:rotate(180deg); color:var(--melt-orange); }
+  .acc-a { max-height:0; overflow:hidden; transition:max-height .4s ease; }
+  .acc-a-inner { padding-bottom:1.8rem; color:var(--melt-text-muted); font-size:0.98rem; max-width:70ch; }
+  .acc-a-inner p { margin-bottom:1rem; }
+  .acc-a-inner p:last-child { margin-bottom:0; }
+  .acc-a-inner .app-list { margin-top:0.5rem; }
 
   .app-list { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
   @media (max-width:760px){ .app-list{grid-template-columns:1fr 1fr;} }
@@ -140,26 +156,26 @@
 <body>
 
 <nav class="nav">
-  <a href="index.html" class="nav-logo"><img src="https://lh7-us.googleusercontent.com/sitesv-images-rt/ACHe0d17sonBxGxE2AOlzf5h33Ex_JyVqbTvaZ9LU0JMGrFt0IMxCpyK_w7-H9xZU1NosRToqDKu_sUXQHSOHRlOhXRWR9dOq56wLGcEk5KfOOMPQZvXRFlSYXns2PzjxDkTdnL5B6j9Dru8NwidPdvRdu2jhAGLCeQ4W1BrX_6X8CMga1ZWDIpx0-3sFW6rMvY=w160" alt="MELT-Ing Logo">MELT<span>-Ing</span></a>
+  <a href="index.html" class="nav-logo"><img src="assets/img/logo.png" alt="MELT-Ing Logo"><span>-Ing</span></a>
   <ul class="nav-links">
     <li><a href="melt-plate.html">MELT Plate</a></li>
     <li class="has-dropdown"><a href="zielgruppe.html">Zielgruppe</a>
       <div class="dropdown">
-        <a href="zielgruppe.html#investoren">Investoren</a>
-        <a href="zielgruppe.html#bauunternehmen">Bauunternehmen</a>
-        <a href="zielgruppe.html#architekten">Architekten und Planer</a>
-        <a href="zielgruppe.html#defense">Defense</a>
-        <a href="zielgruppe.html#diy">DIY</a>
+        <a href="zielgruppe.html#investoren"><span class="dd-icon">◆</span>Investoren</a>
+        <a href="zielgruppe.html#bauunternehmen"><span class="dd-icon">◈</span>Bauunternehmen</a>
+        <a href="zielgruppe.html#architekten"><span class="dd-icon">✎</span>Architekten und Planer</a>
+        <a href="zielgruppe.html#defense"><span class="dd-icon">⛨</span>Defense</a>
+        <a href="zielgruppe.html#diy"><span class="dd-icon">⚒</span>DIY</a>
       </div>
     </li>
     <li class="has-dropdown"><a href="magazin.html">Magazin</a>
       <div class="dropdown">
-        <a href="hitzeschutz.html">Hitzeschutz</a>
-        <a href="pcm.html">PCM</a>
-        <a href="bauteilaktivierung.html">Bauteilaktivierung</a>
-        <a href="komfort.html">Komfort</a>
-        <a href="lowtech.html">Low-Tech</a>
-        <a href="magazin.html#case">Case Studies</a>
+        <a href="hitzeschutz.html"><span class="dd-icon">☀</span>Hitzeschutz</a>
+        <a href="pcm.html"><span class="dd-icon">◉</span>PCM</a>
+        <a href="bauteilaktivierung.html"><span class="dd-icon">▤</span>Bauteilaktivierung</a>
+        <a href="komfort.html"><span class="dd-icon">❖</span>Komfort</a>
+        <a href="lowtech.html"><span class="dd-icon">✻</span>Low-Tech</a>
+        <a href="magazin.html#case"><span class="dd-icon">▣</span>Case Studies</a>
       </div>
     </li>
     <li><a href="ueber-uns.html">Über uns</a></li>
@@ -203,6 +219,50 @@
         </div>
       </div>
     </div>
+
+    <div class="tension reveal" style="margin-top:3rem;">
+      <div class="side a">„Den Bausektor dekarbonisieren und Ressourcen sparen"</div>
+      <div class="join">+ MELT =</div>
+      <div class="side b">„Massiv bauen bringt Komfort und schützt vor Hitze"</div>
+    </div>
+
+    <div class="acc-list reveal" id="zielgruppe">
+      <div class="acc-item">
+        <div class="acc-q"><div class="acc-q-left"><div class="acc-icon">▦</div><h3>Für den modernen Leichtbau</h3></div><span class="acc-chevron">⌄</span></div>
+        <div class="acc-a"><div class="acc-a-inner">
+          <p>Die Transformationen im Wärme- und Bausektor führen zu einigen richtigen und wichtigen Trends: Gebäude werden immer ressourceneffizienter erbaut. Hier spielen leichte Baustoffe und Naturstoffe eine große Rolle.</p>
+          <p>Die neue Art zu Bauen bringt aber einige Herausforderungen im Bereich des thermischen Komforts und der Flexibilität mit sich, da die geringere Gebäudemasse zu schnelleren und größeren Temperaturschwankungen führt.</p>
+        </div></div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-q"><div class="acc-q-left"><div class="acc-icon">⌂</div><h3>In der Dachkonstruktion und Sanierung</h3></div><span class="acc-chevron">⌄</span></div>
+        <div class="acc-a"><div class="acc-a-inner">
+          <p>Auch in Bestandsgebäuden steigt der Bedarf nach unseren Lösungen. Die Produkte von MELT eignen sich insbesondere bei Dachsanierungen und Aufstockungen, da hier leichte Bauweisen, hoher Anspruch an den Komfort und eine große Außenwand- bzw. Dachfläche zusammenkommen.</p>
+          <p>Die MELT Plate zeigt hier besonders gute Hitzeschutzeigenschaften und bietet im Dach ein „STOP"-Schild für die eingestrahlte Wärme auf etwa 25°C Temperaturniveau, ganz ohne den Einsatz von lauten und stromfressenden Klimageräten.</p>
+        </div></div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-q"><div class="acc-q-left"><div class="acc-icon">◐</div><h3>Für Wärmepumpen und Dynamik</h3></div><span class="acc-chevron">⌄</span></div>
+        <div class="acc-a"><div class="acc-a-inner">
+          <p>Neben der Erhöhung des Wohlfühlklimas und dem Hitzeschutz können die Produkte von MELT aber noch mehr. Die Flexibilität durch Speicher wird im Energiesystem der Zukunft auch finanziell belohnt.</p>
+          <p>Mit MELT-Produkten im Gebäude ist es möglich, den Eigennutzungsgrad Ihrer PV zu erhöhen — und dann die Zeiten ohne selbst erzeugten Strom entspannt und auf Wohlfühltemperatur auszusitzen.</p>
+        </div></div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-q"><div class="acc-q-left"><div class="acc-icon">▤</div><h3>...und vieles mehr</h3></div><span class="acc-chevron">⌄</span></div>
+        <div class="acc-a"><div class="acc-a-inner">
+          <p>Durch ihre große Speicherdichte und Oberfläche vielseitig einsetzbar — bei jeder Anwendung, die eine geringe Temperaturschwankung erfordert.</p>
+          <div class="app-list">
+            <div class="app-item">Nahwärmenetze (heiß oder kalt)</div>
+            <div class="app-item">Abwärmenutzung</div>
+            <div class="app-item">Gewächshäuser</div>
+            <div class="app-item">Industrielle Batchprozesse</div>
+            <div class="app-item">Lagerhäuser und Kühlhäuser</div>
+            <div class="app-item">Deckenkassettensysteme mit/ohne Kühlfunktion</div>
+          </div>
+        </div></div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -214,55 +274,10 @@
       <p class="section-desc">Vier Gründe, warum die MELT Plate das fehlende Puzzlestück im modernen Leichtbau ist.</p>
     </div>
     <div class="card-grid reveal" id="solution-cards">
-      <div class="info-card"><div class="icon">01</div><h3>Speicher auf Wunschtemperatur</h3>
-        <p>Wir entwickeln und produzieren großflächige, frei skalierbare Latentspeicher. Große Wärmemengen können mit unserer Technologie auf dem von Ihnen gewünschten Temperaturniveau gespeichert werden.</p>
-        <a class="more" href="pcm.html">Über die Technologie →</a></div>
-      <div class="info-card"><div class="icon">02</div><h3>Geld sparen</h3>
-        <p>Die Verfügbarkeit erneuerbarer Energien schwankt natürlicherweise. Unsere Speicher machen zeitlich flexibel. Sie sparen Geld, egal ob mit eigener PV oder bei dynamischem Stromtarif.</p>
-        <a class="more" href="bauteilaktivierung.html">Mehr über Dynamik →</a></div>
-      <div class="info-card"><div class="icon">03</div><h3>Gut fürs Klima</h3>
-        <p>Unsere Speicher sind die optimale Ergänzung zur Wärmepumpe. Diese läuft dann noch energieeffizienter. Im Vergleich zu Gas sparen Sie mit MELT-Produkten und der Wärmepumpe 85% CO2 ein.</p>
-        <a class="more" href="impact.html">Mehr erfahren →</a></div>
-      <div class="info-card"><div class="icon">04</div><h3>Hitzeschutz trotz Leichtbau</h3>
-        <p>Leichtbauten sind die Zukunft — ökologischer, in hoher Qualität vorgefertigt, schneller und preiswerter. Mit MELT ergänzen wir das fehlende Puzzlestück zum „No-Brainer" — Hitzeschutz und Flexibilität.</p>
-        <a class="more" href="serielles-bauen.html">Mehr über Klimaresilienz →</a></div>
-    </div>
-    <div class="tension reveal">
-      <div class="side a">„Den Bausektor dekarbonisieren und Ressourcen sparen"</div>
-      <div class="join">+ MELT =</div>
-      <div class="side b">„Massiv bauen bringt Komfort und schützt vor Hitze"</div>
-    </div>
-  </div>
-</section>
-
-<section style="background:var(--melt-gray);">
-  <div class="container">
-    <div class="section-header reveal">
-      <div class="section-label">Impact</div>
-      <h2 class="section-title">Aus der Produktforschung in die Anwendung für echten Impact</h2>
-    </div>
-    <div class="stat-band reveal">
-      <div class="stat-card"><div class="num" data-target="85">0</div><div class="label">% CO₂-Einsparung im Vergleich zu Gas, mit MELT-Produkten und Wärmepumpe</div></div>
-      <div class="stat-card"><div class="num" data-target="25">0</div><div class="label">°C — „STOP"-Schild für eingestrahlte Wärme im Dach</div></div>
-      <div class="stat-card"><div class="num" data-target="2023">0</div><div class="label">EXIST-Gründerstipendium (BMWK) — gefördert seit</div></div>
-    </div>
-  </div>
-</section>
-
-<section id="zielgruppe">
-  <div class="container">
-    <div class="section-header reveal">
-      <div class="section-label">...und vieles mehr</div>
-      <h2 class="section-title">Unsere Produkte diskriminieren nicht ♥️</h2>
-      <p class="section-desc">Durch ihre große Speicherdichte und Oberfläche vielseitig einsetzbar — bei jeder Anwendung, die eine geringe Temperaturschwankung erfordert.</p>
-    </div>
-    <div class="app-list reveal">
-      <div class="app-item">Nahwärmenetze (heiß oder kalt)</div>
-      <div class="app-item">Abwärmenutzung</div>
-      <div class="app-item">Gewächshäuser</div>
-      <div class="app-item">Industrielle Batchprozesse</div>
-      <div class="app-item">Lagerhäuser und Kühlhäuser</div>
-      <div class="app-item">Deckenkassettensysteme mit/ohne Kühlfunktion</div>
+      <a class="info-card" href="pcm.html" style="text-decoration:none; color:inherit; display:block;"><div class="icon">01</div><h3>Speicher auf Wunschtemperatur</h3></a>
+      <a class="info-card" href="bauteilaktivierung.html" style="text-decoration:none; color:inherit; display:block;"><div class="icon">02</div><h3>Geld sparen</h3></a>
+      <a class="info-card" href="impact.html" style="text-decoration:none; color:inherit; display:block;"><div class="icon">03</div><h3>Gut fürs Klima</h3></a>
+      <a class="info-card" href="serielles-bauen.html" style="text-decoration:none; color:inherit; display:block;"><div class="icon">04</div><h3>Hitzeschutz trotz Leichtbau</h3></a>
     </div>
   </div>
 </section>
@@ -371,7 +386,7 @@
 <footer class="footer">
   <div class="footer-grid">
     <div>
-      <div class="footer-brand"><img src="https://lh7-us.googleusercontent.com/sitesv-images-rt/ACHe0d17sonBxGxE2AOlzf5h33Ex_JyVqbTvaZ9LU0JMGrFt0IMxCpyK_w7-H9xZU1NosRToqDKu_sUXQHSOHRlOhXRWR9dOq56wLGcEk5KfOOMPQZvXRFlSYXns2PzjxDkTdnL5B6j9Dru8NwidPdvRdu2jhAGLCeQ4W1BrX_6X8CMga1ZWDIpx0-3sFW6rMvY=w160" alt="">MELT<span>-Ing</span> GmbH</div>
+      <div class="footer-brand"><img src="assets/img/logo.png" alt=""><span>-Ing</span> GmbH</div>
       <p class="footer-desc">Tailored Thermal Buffering for Buildings. Das Start-up aus Mannheim ermöglicht überragenden Komfort und Klimaresilienz in leichten, ökologischen Gebäuden.</p>
     </div>
     <div class="footer-col"><h4>Quick links</h4><ul>
@@ -422,6 +437,22 @@ animate();
 window.addEventListener('mousemove', e=>{ mouseX=e.clientX; mouseY=e.clientY; });
 
 const io = new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('active'); io.unobserve(e.target);} }); },{threshold:0.15});
+
+// accordion: Bau- und Energiewende section
+document.querySelectorAll('.acc-item').forEach(item=>{
+  const q = item.querySelector('.acc-q');
+  const a = item.querySelector('.acc-a');
+  q.addEventListener('click', ()=>{
+    const isOpen = item.classList.contains('open');
+    if(isOpen){
+      item.classList.remove('open');
+      a.style.maxHeight = null;
+    } else {
+      item.classList.add('open');
+      a.style.maxHeight = a.scrollHeight + 'px';
+    }
+  });
+});
 
 // live temperature at the visitor's location, shown in the gauge
 (function(){

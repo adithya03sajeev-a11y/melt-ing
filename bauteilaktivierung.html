@@ -35,7 +35,7 @@
   /* load shifting chart */
   .loadshift-viz { background:var(--melt-gray); border:1px solid var(--melt-border); border-radius:22px; padding:2rem; margin:2rem 0 2.6rem; max-width:800px; margin-left:auto; margin-right:auto; }
   .loadshift-viz .viz-title { font-family:'IBM Plex Mono', monospace; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.07em; color:var(--melt-text-muted); margin-bottom:0.3rem; }
-  .loadshift-viz .viz-note { font-family:'IBM Plex Mono', monospace; font-size:0.7rem; color:rgba(245,245,243,0.35); margin-bottom:1.4rem; }
+  .loadshift-viz .viz-note { font-family:'IBM Plex Mono', monospace; font-size:0.7rem; color:rgba(32,31,28,0.35); margin-bottom:1.4rem; }
   svg#loadChart { width:100%; height:auto; display:block; }
   .ls-legend { display:flex; gap:1.6rem; margin-top:1.1rem; flex-wrap:wrap; font-family:'IBM Plex Mono', monospace; font-size:0.8rem; }
   .ls-legend span { display:flex; align-items:center; gap:0.5rem; color:var(--melt-text-muted); }
@@ -45,26 +45,26 @@
 <body>
 
 <nav class="nav">
-  <a href="index.html" class="nav-logo"><img src="https://lh7-us.googleusercontent.com/sitesv-images-rt/ACHe0d17sonBxGxE2AOlzf5h33Ex_JyVqbTvaZ9LU0JMGrFt0IMxCpyK_w7-H9xZU1NosRToqDKu_sUXQHSOHRlOhXRWR9dOq56wLGcEk5KfOOMPQZvXRFlSYXns2PzjxDkTdnL5B6j9Dru8NwidPdvRdu2jhAGLCeQ4W1BrX_6X8CMga1ZWDIpx0-3sFW6rMvY=w160" alt="MELT-Ing Logo">MELT<span>-Ing</span></a>
+  <a href="index.html" class="nav-logo"><img src="assets/img/logo.png" alt="MELT-Ing Logo"><span>-Ing</span></a>
   <ul class="nav-links">
     <li><a href="melt-plate.html">MELT Plate</a></li>
     <li class="has-dropdown"><a href="zielgruppe.html">Zielgruppe</a>
       <div class="dropdown">
-        <a href="zielgruppe.html#investoren">Investoren</a>
-        <a href="zielgruppe.html#bauunternehmen">Bauunternehmen</a>
-        <a href="zielgruppe.html#architekten">Architekten und Planer</a>
-        <a href="zielgruppe.html#defense">Defense</a>
-        <a href="zielgruppe.html#diy">DIY</a>
+        <a href="zielgruppe.html#investoren"><span class="dd-icon">◆</span>Investoren</a>
+        <a href="zielgruppe.html#bauunternehmen"><span class="dd-icon">◈</span>Bauunternehmen</a>
+        <a href="zielgruppe.html#architekten"><span class="dd-icon">✎</span>Architekten und Planer</a>
+        <a href="zielgruppe.html#defense"><span class="dd-icon">⛨</span>Defense</a>
+        <a href="zielgruppe.html#diy"><span class="dd-icon">⚒</span>DIY</a>
       </div>
     </li>
     <li class="has-dropdown"><a href="magazin.html">Magazin</a>
       <div class="dropdown">
-        <a href="hitzeschutz.html">Hitzeschutz</a>
-        <a href="pcm.html">PCM</a>
-        <a href="bauteilaktivierung.html">Bauteilaktivierung</a>
-        <a href="komfort.html">Komfort</a>
-        <a href="lowtech.html">Low-Tech</a>
-        <a href="magazin.html#case">Case Studies</a>
+        <a href="hitzeschutz.html"><span class="dd-icon">☀</span>Hitzeschutz</a>
+        <a href="pcm.html"><span class="dd-icon">◉</span>PCM</a>
+        <a href="bauteilaktivierung.html"><span class="dd-icon">▤</span>Bauteilaktivierung</a>
+        <a href="komfort.html"><span class="dd-icon">❖</span>Komfort</a>
+        <a href="lowtech.html"><span class="dd-icon">✻</span>Low-Tech</a>
+        <a href="magazin.html#case"><span class="dd-icon">▣</span>Case Studies</a>
       </div>
     </li>
     <li><a href="ueber-uns.html">Über uns</a></li>
@@ -115,12 +115,12 @@
           <defs>
             <linearGradient id="pvGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#F4A261" stop-opacity="0.9"/><stop offset="100%" stop-color="#F4A261" stop-opacity="0.15"/></linearGradient>
           </defs>
-          <line x1="0" y1="210" x2="900" y2="210" stroke="rgba(245,245,243,0.1)"/>
+          <line x1="0" y1="210" x2="900" y2="210" stroke="rgba(32,31,28,0.1)"/>
           <path id="pvCurve" fill="url(#pvGrad)" stroke="#F4A261" stroke-width="2" d=""></path>
           <g id="heatPumpBars"></g>
-          <text x="10" y="230" font-family="IBM Plex Mono" font-size="11" fill="rgba(245,245,243,0.4)">00:00</text>
-          <text x="420" y="230" font-family="IBM Plex Mono" font-size="11" fill="rgba(245,245,243,0.4)">12:00</text>
-          <text x="855" y="230" font-family="IBM Plex Mono" font-size="11" fill="rgba(245,245,243,0.4)">24:00</text>
+          <text x="10" y="230" font-family="IBM Plex Mono" font-size="11" fill="rgba(32,31,28,0.4)">00:00</text>
+          <text x="420" y="230" font-family="IBM Plex Mono" font-size="11" fill="rgba(32,31,28,0.4)">12:00</text>
+          <text x="855" y="230" font-family="IBM Plex Mono" font-size="11" fill="rgba(32,31,28,0.4)">24:00</text>
         </svg>
         <div class="ls-legend">
           <span><i class="dot" style="background:#F4A261"></i>PV-Verfügbarkeit / günstiger Strom</span>
@@ -144,7 +144,7 @@
 <footer class="footer">
   <div class="footer-grid">
     <div>
-      <div class="footer-brand"><img src="https://lh7-us.googleusercontent.com/sitesv-images-rt/ACHe0d17sonBxGxE2AOlzf5h33Ex_JyVqbTvaZ9LU0JMGrFt0IMxCpyK_w7-H9xZU1NosRToqDKu_sUXQHSOHRlOhXRWR9dOq56wLGcEk5KfOOMPQZvXRFlSYXns2PzjxDkTdnL5B6j9Dru8NwidPdvRdu2jhAGLCeQ4W1BrX_6X8CMga1ZWDIpx0-3sFW6rMvY=w160" alt="">MELT<span>-Ing</span> GmbH</div>
+      <div class="footer-brand"><img src="assets/img/logo.png" alt=""><span>-Ing</span> GmbH</div>
       <p class="footer-desc">Tailored Thermal Buffering for Buildings. Das Start-up aus Mannheim ermöglicht überragenden Komfort und Klimaresilienz in leichten, ökologischen Gebäuden.</p>
     </div>
     <div class="footer-col"><h4>Quick links</h4><ul>
