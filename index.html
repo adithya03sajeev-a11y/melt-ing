@@ -6,23 +6,25 @@
 <title>MELT-Ing GmbH — Der Wärmespeicher der Zukunft</title>
 <link rel="stylesheet" href="assets/style.css">
 <style>
-  .hero { position: relative; min-height: 92vh; display:flex; align-items:center; justify-content:center; overflow:hidden; }
-  .hero-canvas { position:absolute; top:0; left:0; width:100%; height:100%; z-index:0; }
-  .hero-content { position:relative; z-index:2; text-align:center; max-width:920px; padding:2rem; }
+  .hero { position: relative; min-height: 92vh; display:flex; align-items:flex-end; justify-content:flex-start; overflow:hidden; background:var(--melt-black); }
+  .hero-video { position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:0; }
+  .hero-overlay { position:absolute; inset:0; z-index:1; background:linear-gradient(0deg, rgba(21,19,15,0.88) 0%, rgba(21,19,15,0.55) 42%, rgba(21,19,15,0.25) 70%, rgba(21,19,15,0.35) 100%); }
+  .hero-content { position:relative; z-index:2; text-align:left; max-width:760px; padding:3rem 3.5rem 5rem; margin-right:auto; }
   .hero-badge { display:inline-flex; align-items:center; gap:0.5rem; padding:0.5rem 1.2rem; border:1px solid var(--melt-orange);
-    border-radius:50px; font-size:0.85rem; color:var(--melt-orange-light); margin-bottom:2rem; background: rgba(232,93,46,0.08); animation:fadeInDown 1s ease-out 0.2s both; }
+    border-radius:50px; font-size:0.85rem; color:var(--melt-orange-light); margin-bottom:2rem; background: rgba(232,93,46,0.12); animation:fadeInDown 1s ease-out 0.2s both; }
   .hero-badge .dot { width:8px; height:8px; background:var(--melt-orange); border-radius:50%; animation:pulse 2s infinite; }
   @keyframes pulse { 0%,100%{opacity:1; transform:scale(1);} 50%{opacity:0.5; transform:scale(1.3);} }
-  .hero h1 { font-family:'Space Grotesk', sans-serif; font-size:clamp(2.4rem, 5.6vw, 4.6rem); font-weight:700; line-height:1.05; margin-bottom:1.5rem; animation:fadeInUp 1s ease-out 0.4s both; }
+  .hero h1 { font-family:'Space Grotesk', sans-serif; font-size:clamp(2.4rem, 5.6vw, 4.6rem); font-weight:700; line-height:1.05; margin-bottom:1.5rem; color:#fff; animation:fadeInUp 1s ease-out 0.4s both; }
   .hero h1 .highlight { background: linear-gradient(135deg, var(--melt-orange), var(--melt-orange-light)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
-  .hero-subtitle { font-size:clamp(1rem, 2vw, 1.25rem); color:var(--melt-text-muted); max-width:640px; margin:0 auto 2.5rem; animation:fadeInUp 1s ease-out 0.6s both; }
-  .hero-cta { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; animation:fadeInUp 1s ease-out 0.8s both; }
+  .hero-subtitle { font-size:clamp(1rem, 2vw, 1.25rem); color:rgba(255,255,255,0.78); max-width:560px; margin:0 0 2.5rem; animation:fadeInUp 1s ease-out 0.6s both; }
+  .hero-cta { display:flex; gap:1rem; justify-content:flex-start; flex-wrap:wrap; animation:fadeInUp 1s ease-out 0.8s both; }
   .btn { padding:1rem 2.3rem; border-radius:12px; font-weight:600; font-size:1rem; cursor:pointer; transition:all 0.3s ease; text-decoration:none; display:inline-flex; align-items:center; gap:0.5rem; }
   .btn-primary { background: linear-gradient(135deg, var(--melt-orange), #D45328); color:white; border:none; box-shadow:0 10px 40px rgba(232,93,46,0.3); }
   .btn-primary:hover { transform:translateY(-3px); box-shadow:0 15px 50px rgba(232,93,46,0.4); }
-  .btn-secondary { background:transparent; color:var(--melt-text); border:1px solid var(--melt-border); }
+  .btn-secondary { background:rgba(255,255,255,0.06); color:#fff; border:1px solid rgba(255,255,255,0.35); }
   .btn-secondary:hover { border-color:var(--melt-orange); color:var(--melt-orange-light); }
-  .scroll-indicator { position:absolute; bottom:2rem; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:0.5rem; color:var(--melt-text-muted); font-size:0.8rem; animation:bounce 2s infinite; }
+  .scroll-indicator { position:absolute; bottom:2rem; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:0.5rem; color:rgba(255,255,255,0.7); font-size:0.8rem; animation:bounce 2s infinite; z-index:2; }
+  @media (max-width:760px){ .hero { align-items:flex-end; } .hero-content { padding:2rem 1.4rem 3.2rem; max-width:100%; } .hero-cta{justify-content:flex-start;} }
   .scroll-line { width:1px; height:40px; background:linear-gradient(to bottom, var(--melt-orange), transparent); }
   @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0);} 50%{transform:translateX(-50%) translateY(10px);} }
   @keyframes fadeInUp { from{opacity:0; transform:translateY(30px);} to{opacity:1; transform:translateY(0);} }
@@ -179,7 +181,8 @@
 </nav>
 
 <section class="hero">
-  <canvas class="hero-canvas" id="heroCanvas"></canvas>
+  <video class="hero-video" autoplay muted loop playsinline preload="auto"><source src="assets/video/teaser.mp4" type="video/mp4"></video>
+  <div class="hero-overlay"></div>
   <div class="hero-content">
     <div class="hero-badge"><span class="dot"></span>Latentwärmespeicher · Made in Mannheim</div>
     <h1>Der Wärmespeicher<br><span class="highlight">der Zukunft.</span></h1>
@@ -399,32 +402,6 @@
 </footer>
 
 <script>
-const canvas = document.getElementById('heroCanvas');
-const ctx = canvas.getContext('2d');
-let particles = []; let mouseX=0, mouseY=0;
-function resize(){ canvas.width=window.innerWidth; canvas.height=window.innerHeight; }
-resize(); window.addEventListener('resize', resize);
-class Particle {
-  constructor(){ this.reset(); }
-  reset(){ this.x=Math.random()*canvas.width; this.y=Math.random()*canvas.height; this.size=Math.random()*2+0.5;
-    this.speedX=(Math.random()-0.5)*0.5; this.speedY=(Math.random()-0.5)*0.5; this.opacity=Math.random()*0.5+0.1;
-    this.color = Math.random()>0.7 ? '#3AB6AB' : '#E85D2E'; }
-  update(){ this.x+=this.speedX; this.y+=this.speedY;
-    const dx=mouseX-this.x, dy=mouseY-this.y, dist=Math.sqrt(dx*dx+dy*dy);
-    if(dist<150){ this.x-=dx*0.01; this.y-=dy*0.01; }
-    if(this.x<0||this.x>canvas.width||this.y<0||this.y>canvas.height) this.reset(); }
-  draw(){ ctx.beginPath(); ctx.arc(this.x,this.y,this.size,0,Math.PI*2); ctx.fillStyle=this.color; ctx.globalAlpha=this.opacity; ctx.fill(); ctx.globalAlpha=1; }
-}
-for(let i=0;i<70;i++) particles.push(new Particle());
-function drawConnections(){
-  for(let i=0;i<particles.length;i++) for(let j=i+1;j<particles.length;j++){
-    const dx=particles[i].x-particles[j].x, dy=particles[i].y-particles[j].y, dist=Math.sqrt(dx*dx+dy*dy);
-    if(dist<120){ ctx.beginPath(); ctx.moveTo(particles[i].x,particles[i].y); ctx.lineTo(particles[j].x,particles[j].y);
-      ctx.strokeStyle=`rgba(232,93,46,${0.15*(1-dist/120)})`; ctx.lineWidth=0.5; ctx.stroke(); } } }
-function animate(){ ctx.clearRect(0,0,canvas.width,canvas.height); particles.forEach(p=>{p.update();p.draw();}); drawConnections(); requestAnimationFrame(animate); }
-animate();
-window.addEventListener('mousemove', e=>{ mouseX=e.clientX; mouseY=e.clientY; });
-
 const io = new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('active'); io.unobserve(e.target);} }); },{threshold:0.15});
 
 // accordion: Bau- und Energiewende section
@@ -516,24 +493,8 @@ document.querySelectorAll('.stat-card .num').forEach(el=>{
       a:"Die MELT Plate wird typischerweise im Dach oder Dachgeschoss installiert und bietet dort ein „STOP\"-Schild für eingestrahlte Wärme auf etwa 25°C. Tagsüber nimmt sie überschüssige Wärme auf, nachts gibt sie diese wieder ab und ist am nächsten Tag erneut einsatzbereit." },
     { cat:"Eignung", q:"Eignet sich PCM für jeden Gebäudetyp?",
       a:"Das hängt von mehreren Faktoren ab: wie stark das Gebäude zu Überhitzung neigt, ob es sich um Leichtbau (schnelle Schwankungen) oder Massivbau (bereits gepuffert) handelt, und ob nachts gelüftet werden kann. Nutzen Sie den Eignungscheck oben, um das für Ihr Gebäude einzuschätzen." },
-    { cat:"Eignung", q:"Ersetzt PCM die Dämmung oder eine Klimaanlage?",
-      a:"Nein — es ergänzt beides. Dämmung verlangsamt den Wärmedurchgang, PCM puffert die Wärme, die trotzdem ankommt, und glättet so Temperaturspitzen. In vielen Fällen reduziert ein gut ausgelegtes PCM-System den Bedarf an aktiver Kühlung deutlich, ersetzt sie aber nicht zwangsläufig komplett." },
-    { cat:"Eignung", q:"In welchem Klima hilft PCM am meisten?",
-      a:"Der größte Effekt entsteht dort, wo es einen spürbaren Unterschied zwischen Tag- und Nachttemperatur gibt — denn genau diese Schwankung lässt das Material nachts die gespeicherte Wärme wieder abgeben und sich für den nächsten Tag zurücksetzen." },
-    { cat:"Installation", q:"Unterscheidet sich die Installation bei Neubau und Sanierung?",
-      a:"Im Neubau kann die MELT Plate direkt in die Dach- oder Deckenkonstruktion eingeplant werden. Bei Sanierungen wird sie meist zwischen bestehende, tragende Balken nachgerüstet — besonders bei Dachsanierungen und Aufstockungen." },
-    { cat:"Installation", q:"Beeinflusst die Platte die Statik meines Gebäudes?",
-      a:"Anders als Beton oder schwere Speichermassen belastet die MELT Plate die Statik kaum — sie ist explizit auch für die nachträgliche Sanierung geeignet." },
     { cat:"Installation", q:"Wie lange hält ein PCM-System und braucht es Wartung?",
       a:"Die MELT Plate funktioniert ohne Strom, Sensoren oder Kabel — rein durch Physik. Einmal installiert, arbeitet sie ohne bewegliche Teile für Jahrzehnte, ganz ohne Wartungsverträge oder technisches Personal." },
-    { cat:"Installation", q:"Gibt es eine Garantie auf die MELT Plate?",
-      a:"Konkrete Garantiebedingungen besprechen wir gerne individuell — schreiben Sie uns dazu einfach eine Nachricht." },
-    { cat:"Nachhaltigkeit", q:"Ist PCM sicher und umweltfreundlich?",
-      a:"Die Umhüllung der MELT Plate besteht zu 100% aus sortenreinem Recyclingkunststoff und ist leckagesicher konstruiert." },
-    { cat:"Nachhaltigkeit", q:"Lässt sich PCM mit Solar/PV kombinieren?",
-      a:"Ja. Mit MELT-Produkten im Gebäude lässt sich der Eigennutzungsgrad Ihrer PV-Anlage erhöhen — Sie können Zeiten ohne selbst erzeugten Strom entspannt auf Wohlfühltemperatur aussitzen." },
-    { cat:"Nachhaltigkeit", q:"Gibt es relevante Normen oder Zertifizierungen?",
-      a:"Die Komfortbewertung orientiert sich unter anderem an der DIN EN 16798-1 (adaptives Komfortfenster). Für weitere produktspezifische Zertifizierungen sprechen Sie uns gerne direkt an." },
     { cat:"Kosten", q:"Was kostet eine MELT Plate Installation?",
       a:"Die Kosten hängen von Gebäudegröße, benötigter Plattenzahl und Neubau vs. Sanierung ab. Nutzen Sie den Eignungscheck oben für eine erste Einschätzung und kontaktieren Sie uns für ein individuelles Angebot." },
     { cat:"Kosten", q:"Mit welcher Wirkung kann ich rechnen?",
