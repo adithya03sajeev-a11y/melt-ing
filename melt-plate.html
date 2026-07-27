@@ -23,7 +23,7 @@
   @media (max-width:620px){ .buffer-row{grid-template-columns:1fr;} }
   .buffer-box { border-radius:16px; border:1px solid var(--melt-border); background:var(--melt-gray); padding:1.6rem; text-align:center; }
   .buffer-box .glyph { font-size:2rem; margin-bottom:0.6rem; }
-  .buffer-box.cool .glyph { color:var(--melt-teal); }
+  .buffer-box.cool .glyph { color:var(--melt-blue); }
   .buffer-box.warm .glyph { color:var(--melt-orange); }
   .buffer-box h4 { font-family:'Manrope', sans-serif; font-size:1rem; margin-bottom:0.4rem; }
   .buffer-box p { color:var(--melt-text-muted); font-size:0.88rem; }
@@ -31,7 +31,7 @@
   /* animated comparison chart */
   .chart-card { background:var(--melt-gray); border:1px solid var(--melt-border); border-radius:22px; padding:2.2rem 2rem 1.6rem; }
   .chart-card .chart-label { font-family:'IBM Plex Mono', monospace; font-size:0.78rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--melt-text-muted); margin-bottom:0.3rem; }
-  .chart-card .chart-note { font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:rgba(32,31,28,0.35); margin-bottom:1.4rem; }
+  .chart-card .chart-note { font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:rgba(10,10,10,0.35); margin-bottom:1.4rem; }
   svg#compareChart { width:100%; height:auto; display:block; }
   .chart-legend { display:flex; gap:1.6rem; margin-top:1.2rem; flex-wrap:wrap; font-family:'IBM Plex Mono', monospace; font-size:0.82rem; }
   .chart-legend span { display:flex; align-items:center; gap:0.5rem; color:var(--melt-text-muted); }
@@ -133,20 +133,20 @@
         <svg id="compareChart" viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <linearGradient id="ohneGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#E85D2E"/><stop offset="100%" stop-color="#F4A261"/></linearGradient>
-            <linearGradient id="mitGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#3AB6AB"/><stop offset="100%" stop-color="#7FD8CE"/></linearGradient>
+            <linearGradient id="mitGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#1B6FA8"/><stop offset="100%" stop-color="#6BB6E0"/></linearGradient>
           </defs>
-          <line x1="0" y1="60" x2="900" y2="60" stroke="rgba(32,31,28,0.06)"/>
-          <line x1="0" y1="150" x2="900" y2="150" stroke="rgba(32,31,28,0.14)" stroke-dasharray="2 5"/>
-          <line x1="0" y1="240" x2="900" y2="240" stroke="rgba(32,31,28,0.06)"/>
-          <text x="0" y="54" font-family="IBM Plex Mono" font-size="11" fill="rgba(32,31,28,0.4)">heiß</text>
-          <text x="0" y="155" font-family="IBM Plex Mono" font-size="11" fill="rgba(32,31,28,0.4)">Komfortbereich</text>
-          <text x="0" y="245" font-family="IBM Plex Mono" font-size="11" fill="rgba(32,31,28,0.4)">kühl</text>
+          <line x1="0" y1="60" x2="900" y2="60" stroke="rgba(10,10,10,0.06)"/>
+          <line x1="0" y1="150" x2="900" y2="150" stroke="rgba(10,10,10,0.14)" stroke-dasharray="2 5"/>
+          <line x1="0" y1="240" x2="900" y2="240" stroke="rgba(10,10,10,0.06)"/>
+          <text x="0" y="54" font-family="IBM Plex Mono" font-size="11" fill="rgba(10,10,10,0.4)">heiß</text>
+          <text x="0" y="155" font-family="IBM Plex Mono" font-size="11" fill="rgba(10,10,10,0.4)">Komfortbereich</text>
+          <text x="0" y="245" font-family="IBM Plex Mono" font-size="11" fill="rgba(10,10,10,0.4)">kühl</text>
           <path id="ohneLine" d="" fill="none" stroke="url(#ohneGrad)" stroke-width="2.6" stroke-linecap="round"/>
           <path id="mitLine" d="" fill="none" stroke="url(#mitGrad)" stroke-width="3.2" stroke-linecap="round"/>
         </svg>
         <div class="chart-legend">
           <span><i class="dot" style="background:#E85D2E"></i>Container ohne MELT Plates</span>
-          <span><i class="dot" style="background:#3AB6AB"></i>Container mit MELT Plates</span>
+          <span><i class="dot" style="background:#1B6FA8"></i>Container mit MELT Plates</span>
         </div>
       </div>
     </div>
@@ -156,7 +156,7 @@
       <h2 class="section-title">Die passende Plate für Ihren Anwendungsfall</h2>
     </div>
     <div class="variant-grid reveal" style="margin-bottom:4.5rem;">
-      <div class="variant-card" style="--variant-color:#3AB6AB;">
+      <div class="variant-card" style="--variant-color:#1B6FA8;">
         <div class="variant-temp">21°C</div>
         <h3>MELT Plate Flex</h3>
         <p>Für Anwendungen bei denen die Temperaturen zwischen 18°C und 25°C schwanken. Auch wenn aktive Kühlung möglich ist, erzielt die Flex die beste Reduktion der Kühllast.</p>
