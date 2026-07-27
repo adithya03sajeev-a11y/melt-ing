@@ -8,9 +8,9 @@
 <style>
   .article-meta { font-family:'IBM Plex Mono', monospace; font-size:0.78rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--melt-text-muted); margin-bottom:1.2rem; }
   .article-body-text { max-width:800px; margin:0 auto; }
-  .article-body-text h2 { font-family:'Space Grotesk', sans-serif; font-size:1.6rem; margin:2.6rem 0 1.1rem; }
+  .article-body-text h2 { font-family:'Manrope', sans-serif; font-size:1.6rem; margin:2.6rem 0 1.1rem; }
   .article-body-text p { color:var(--melt-text-muted); font-size:1.05rem; margin-bottom:1.2rem; line-height:1.75; }
-  .article-body-text .lead-q { font-family:'Space Grotesk', sans-serif; font-size:1.5rem; color:var(--melt-text); margin-bottom:2rem; line-height:1.35; }
+  .article-body-text .lead-q { font-family:'Manrope', sans-serif; font-size:1.5rem; color:var(--melt-text); margin-bottom:2rem; line-height:1.35; }
 
   /* SDG ring trio */
   .sdg-viz { background:var(--melt-gray); border:1px solid var(--melt-border); border-radius:22px; padding:2.2rem 2rem; margin:2.2rem 0 2.6rem; max-width:800px; margin-left:auto; margin-right:auto; }
@@ -18,13 +18,13 @@
   .sdg-row { display:grid; grid-template-columns:repeat(3,1fr); gap:1.4rem; }
   @media (max-width:700px){ .sdg-row{grid-template-columns:1fr;} }
   .sdg-card { background:var(--melt-surface); border:1px solid var(--melt-border); border-radius:16px; padding:1.6rem 1.3rem; text-align:center; }
-  .sdg-num { font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:0.85rem; color:var(--melt-ink, #0A0A0A); background:linear-gradient(135deg, var(--melt-orange), var(--melt-orange-light)); display:inline-block; padding:0.3rem 0.8rem; border-radius:100px; margin-bottom:1rem; }
+  .sdg-num { font-family:'Manrope', sans-serif; font-weight:700; font-size:0.85rem; color:var(--melt-ink, #0A0A0A); background:linear-gradient(135deg, var(--melt-orange), var(--melt-orange-light)); display:inline-block; padding:0.3rem 0.8rem; border-radius:100px; margin-bottom:1rem; }
   .sdg-ring-wrap { width:110px; height:110px; margin:0 auto 1rem; position:relative; }
   .sdg-ring-wrap .ring { position:relative; width:100%; height:100%; border-radius:50%; }
   .sdg-ring-wrap .ring::before { content:''; position:absolute; inset:0; border-radius:50%; background:conic-gradient(var(--sdg-color, var(--melt-orange)) calc(var(--pct,0) * 1%), rgba(32,31,28,0.16) 0); transition:background 1.4s cubic-bezier(.16,1,.3,1); }
   .sdg-ring-wrap .ring::after { content:''; position:absolute; inset:10px; border-radius:50%; background:var(--melt-surface); }
-  .sdg-ring-wrap .ring-label { position:relative; z-index:2; display:flex; align-items:center; justify-content:center; width:100%; height:100%; font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:1.25rem; color:var(--sdg-color, var(--melt-orange-light)); }
-  .sdg-card h4 { font-family:'Space Grotesk', sans-serif; font-size:0.98rem; margin-bottom:0.5rem; }
+  .sdg-ring-wrap .ring-label { position:relative; z-index:2; display:flex; align-items:center; justify-content:center; width:100%; height:100%; font-family:'Manrope', sans-serif; font-weight:700; font-size:1.25rem; color:var(--sdg-color, var(--melt-orange-light)); }
+  .sdg-card h4 { font-family:'Manrope', sans-serif; font-size:0.98rem; margin-bottom:0.5rem; }
   .sdg-card p { color:var(--melt-text-muted); font-size:0.85rem; margin:0; }
 
   /* greenwashing vs real impact comparison */
@@ -33,7 +33,7 @@
   .impact-side { border-radius:18px; padding:1.8rem; border:1px solid var(--melt-border); }
   .impact-side.fake { background:rgba(200,60,60,0.05); border-color:rgba(200,60,60,0.25); }
   .impact-side.real { background:rgba(58,182,171,0.06); border-color:rgba(58,182,171,0.3); }
-  .impact-side h4 { font-family:'Space Grotesk', sans-serif; font-size:1.05rem; margin-bottom:1rem; display:flex; align-items:center; gap:0.5rem; }
+  .impact-side h4 { font-family:'Manrope', sans-serif; font-size:1.05rem; margin-bottom:1rem; display:flex; align-items:center; gap:0.5rem; }
   .impact-side ul { list-style:none; }
   .impact-side li { font-size:0.9rem; color:var(--melt-text-muted); padding:0.5rem 0; border-bottom:1px solid rgba(32,31,28,0.15); }
 
@@ -43,32 +43,39 @@
 </head>
 <body>
 
-<nav class="nav">
+<nav class="nav" id="mainNav">
   <a href="index.html" class="nav-logo"><img src="assets/img/logo.png" alt="MELT-Ing Logo"><span>-Ing</span></a>
   <ul class="nav-links">
-    <li><a href="melt-plate.html">MELT Plate</a></li>
-    <li class="has-dropdown"><a href="zielgruppe.html">Zielgruppe</a>
+    <li><a href="melt-plate.html" data-de="MELT Plate" data-en="MELT Plate">MELT Plate</a></li>
+    <li class="has-dropdown"><a href="zielgruppe.html" data-de="Zielgruppe" data-en="Audience">Zielgruppe</a>
       <div class="dropdown">
-        <a href="zielgruppe.html#investoren"><span class="dd-icon">◆</span>Investoren</a>
-        <a href="zielgruppe.html#bauunternehmen"><span class="dd-icon">◈</span>Bauunternehmen</a>
-        <a href="zielgruppe.html#architekten"><span class="dd-icon">✎</span>Architekten und Planer</a>
-        <a href="zielgruppe.html#defense"><span class="dd-icon">⛨</span>Defense</a>
-        <a href="zielgruppe.html#diy"><span class="dd-icon">⚒</span>DIY</a>
+        <a href="zielgruppe.html#investoren"><span class="dd-icon">◆</span><span data-de="Investoren" data-en="Investors">Investoren</span></a>
+        <a href="zielgruppe.html#bauunternehmen"><span class="dd-icon">◈</span><span data-de="Bauunternehmen" data-en="Construction Companies">Bauunternehmen</span></a>
+        <a href="zielgruppe.html#architekten"><span class="dd-icon">✎</span><span data-de="Architekten und Planer" data-en="Architects & Planners">Architekten und Planer</span></a>
+        <a href="zielgruppe.html#defense"><span class="dd-icon">⛨</span><span data-de="Defense" data-en="Defense">Defense</span></a>
+        <a href="zielgruppe.html#diy"><span class="dd-icon">⚒</span><span data-de="DIY" data-en="DIY">DIY</span></a>
       </div>
     </li>
-    <li class="has-dropdown"><a href="magazin.html">Magazin</a>
+    <li class="has-dropdown"><a href="magazin.html" data-de="Magazin" data-en="Magazine">Magazin</a>
       <div class="dropdown">
-        <a href="hitzeschutz.html"><span class="dd-icon">☀</span>Hitzeschutz</a>
-        <a href="pcm.html"><span class="dd-icon">◉</span>PCM</a>
-        <a href="bauteilaktivierung.html"><span class="dd-icon">▤</span>Bauteilaktivierung</a>
-        <a href="impact.html"><span class="dd-icon">◐</span>Impact</a>
-        <a href="lowtech.html"><span class="dd-icon">✻</span>Low-Tech</a>
-        <a href="magazin.html#case"><span class="dd-icon">▣</span>Case Studies</a>
+        <a href="hitzeschutz.html"><span class="dd-icon">☀</span><span data-de="Hitzeschutz" data-en="Heat Protection">Hitzeschutz</span></a>
+        <a href="pcm.html"><span class="dd-icon">◉</span><span data-de="PCM" data-en="PCM">PCM</span></a>
+        <a href="bauteilaktivierung.html"><span class="dd-icon">▤</span><span data-de="Bauteilaktivierung" data-en="Thermal Activation">Bauteilaktivierung</span></a>
+        <a href="impact.html"><span class="dd-icon">◐</span><span data-de="Impact" data-en="Impact">Impact</span></a>
+        <a href="lowtech.html"><span class="dd-icon">✻</span><span data-de="Low-Tech" data-en="Low-Tech">Low-Tech</span></a>
+        <a href="magazin.html#case"><span class="dd-icon">▣</span><span data-de="Case Studies" data-en="Case Studies">Case Studies</span></a>
       </div>
     </li>
-    <li><a href="ueber-uns.html">Über uns</a></li>
+    <li><a href="ueber-uns.html" data-de="Über uns" data-en="About us">Über uns</a></li>
   </ul>
-  <a href="kontakt.html" class="nav-cta">gleich anfragen →</a>
+  <div class="nav-right">
+    <div class="lang-switch" id="langSwitch">
+      <button class="lang-btn active" data-lang="de">DE</button>
+      <span class="lang-sep">|</span>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </div>
+    <a href="kontakt.html" class="nav-cta" data-de="gleich anfragen →" data-en="get in touch →">gleich anfragen →</a>
+  </div>
 </nav>
 
 <div class="page-hero" style="padding-bottom:1rem;">
@@ -141,16 +148,16 @@
         <div class="badge">DBU Green Startup 24/25</div>
       </div>
 
-      <p style="font-size:1.15rem; color:var(--melt-text); font-family:'Space Grotesk', sans-serif; margin-top:2rem;">Impact bei MELT bedeutet: Klimaschutz und Klimaresilienz gleichzeitig – messbar, skalierbar, real.</p>
+      <p style="font-size:1.15rem; color:var(--melt-text); font-family:'Manrope', sans-serif; margin-top:2rem;">Impact bei MELT bedeutet: Klimaschutz und Klimaresilienz gleichzeitig – messbar, skalierbar, real.</p>
     </div>
   </div>
 </section>
 
 <section class="cta-section">
   <div class="cta-content">
-    <h2>Neugierig gemacht?</h2>
-    <p>Wollen Sie mehr wissen? Schreiben Sie uns unter contact@melt-ing.com.</p>
-    <a href="kontakt.html" class="cta-btn">Kontakt aufnehmen →</a>
+    <h2 data-i18n="cta-title">Neugierig gemacht?</h2>
+    <p data-i18n="cta-body">Wollen Sie mehr wissen? Schreiben Sie uns unter contact@melt-ing.com.</p>
+    <a href="kontakt.html" class="cta-btn" data-i18n="cta-btn">Kontakt aufnehmen →</a>
   </div>
 </section>
 
@@ -167,9 +174,9 @@
       <li><a href="kontakt.html">Contact</a></li>
     </ul></div>
     <div class="footer-col"><h4>Services</h4><ul>
-      <li><a href="komfort.html">Komfort</a></li>
+      <li><a href="komfort.html" data-de="Komfort" data-en="Comfort">Komfort</a></li>
       <li><a href="pcm.html">Wärmespeicher</a></li>
-      <li><a href="hitzeschutz.html">Hitzeschutz</a></li>
+      <li><a href="hitzeschutz.html" data-de="Hitzeschutz" data-en="Heat Protection">Hitzeschutz</a></li>
       <li><a href="bauteilaktivierung.html">Load-Shifting</a></li>
     </ul></div>
     <div class="footer-col"><h4>Follow us</h4><ul>

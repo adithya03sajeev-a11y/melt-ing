@@ -8,67 +8,74 @@
 </head>
 <body>
 
-<nav class="nav">
+<nav class="nav" id="mainNav">
   <a href="index.html" class="nav-logo"><img src="assets/img/logo.png" alt="MELT-Ing Logo"><span>-Ing</span></a>
   <ul class="nav-links">
-    <li><a href="melt-plate.html">MELT Plate</a></li>
-    <li class="has-dropdown"><a href="zielgruppe.html">Zielgruppe</a>
+    <li><a href="melt-plate.html" data-de="MELT Plate" data-en="MELT Plate">MELT Plate</a></li>
+    <li class="has-dropdown"><a href="zielgruppe.html" data-de="Zielgruppe" data-en="Audience">Zielgruppe</a>
       <div class="dropdown">
-        <a href="zielgruppe.html#investoren"><span class="dd-icon">◆</span>Investoren</a>
-        <a href="zielgruppe.html#bauunternehmen"><span class="dd-icon">◈</span>Bauunternehmen</a>
-        <a href="zielgruppe.html#architekten"><span class="dd-icon">✎</span>Architekten und Planer</a>
-        <a href="zielgruppe.html#defense"><span class="dd-icon">⛨</span>Defense</a>
-        <a href="zielgruppe.html#diy"><span class="dd-icon">⚒</span>DIY</a>
+        <a href="zielgruppe.html#investoren"><span class="dd-icon">◆</span><span data-de="Investoren" data-en="Investors">Investoren</span></a>
+        <a href="zielgruppe.html#bauunternehmen"><span class="dd-icon">◈</span><span data-de="Bauunternehmen" data-en="Construction Companies">Bauunternehmen</span></a>
+        <a href="zielgruppe.html#architekten"><span class="dd-icon">✎</span><span data-de="Architekten und Planer" data-en="Architects & Planners">Architekten und Planer</span></a>
+        <a href="zielgruppe.html#defense"><span class="dd-icon">⛨</span><span data-de="Defense" data-en="Defense">Defense</span></a>
+        <a href="zielgruppe.html#diy"><span class="dd-icon">⚒</span><span data-de="DIY" data-en="DIY">DIY</span></a>
       </div>
     </li>
-    <li class="has-dropdown"><a href="magazin.html">Magazin</a>
+    <li class="has-dropdown"><a href="magazin.html" data-de="Magazin" data-en="Magazine">Magazin</a>
       <div class="dropdown">
-        <a href="hitzeschutz.html"><span class="dd-icon">☀</span>Hitzeschutz</a>
-        <a href="pcm.html"><span class="dd-icon">◉</span>PCM</a>
-        <a href="bauteilaktivierung.html"><span class="dd-icon">▤</span>Bauteilaktivierung</a>
-        <a href="komfort.html"><span class="dd-icon">❖</span>Komfort</a>
-        <a href="lowtech.html"><span class="dd-icon">✻</span>Low-Tech</a>
-        <a href="magazin.html#case"><span class="dd-icon">▣</span>Case Studies</a>
+        <a href="hitzeschutz.html"><span class="dd-icon">☀</span><span data-de="Hitzeschutz" data-en="Heat Protection">Hitzeschutz</span></a>
+        <a href="pcm.html"><span class="dd-icon">◉</span><span data-de="PCM" data-en="PCM">PCM</span></a>
+        <a href="bauteilaktivierung.html"><span class="dd-icon">▤</span><span data-de="Bauteilaktivierung" data-en="Thermal Activation">Bauteilaktivierung</span></a>
+        <a href="komfort.html"><span class="dd-icon">❖</span><span data-de="Komfort" data-en="Comfort">Komfort</span></a>
+        <a href="lowtech.html"><span class="dd-icon">✻</span><span data-de="Low-Tech" data-en="Low-Tech">Low-Tech</span></a>
+        <a href="magazin.html#case"><span class="dd-icon">▣</span><span data-de="Case Studies" data-en="Case Studies">Case Studies</span></a>
       </div>
     </li>
-    <li><a href="ueber-uns.html">Über uns</a></li>
+    <li><a href="ueber-uns.html" data-de="Über uns" data-en="About us">Über uns</a></li>
   </ul>
-  <a href="kontakt.html" class="nav-cta">gleich anfragen →</a>
+  <div class="nav-right">
+    <div class="lang-switch" id="langSwitch">
+      <button class="lang-btn active" data-lang="de">DE</button>
+      <span class="lang-sep">|</span>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </div>
+    <a href="kontakt.html" class="nav-cta" data-de="gleich anfragen →" data-en="get in touch →">gleich anfragen →</a>
+  </div>
 </nav>
 
 <div class="page-hero">
-  <div class="section-label">Kontakt</div>
-  <h1>Experte <span class="highlight">kontaktieren.</span></h1>
-  <p>Wir suchen Visionäre, die uns helfen vom Pilotprodukt zur Serie zu kommen — insbesondere Investoren, Pilotprojekte (B2B) und Partner bei Zulassungsverfahren.</p>
+  <div class="section-label" data-i18n="hero-label">Kontakt</div>
+  <h1 data-i18n="hero-h1">Experte <span class="highlight">kontaktieren.</span></h1>
+  <p data-i18n="hero-p">Wir suchen Visionäre, die uns helfen vom Pilotprodukt zur Serie zu kommen — insbesondere Investoren, Pilotprojekte (B2B) und Partner bei Zulassungsverfahren.</p>
 </div>
 
 <section style="padding-top:0;">
   <div class="container">
     <div class="contact-info reveal">
       <div class="info-card"><div class="icon">✉</div><h3>E-Mail</h3><p>contact@melt-ing.com</p></div>
-      <div class="info-card"><div class="icon">◈</div><h3>Adresse</h3><p>John-Deere-Str. 81a<br>68163 Mannheim</p></div>
+      <div class="info-card"><div class="icon">◈</div><h3 data-i18n="addr-label">Adresse</h3><p>John-Deere-Str. 81a<br>68163 Mannheim</p></div>
       <div class="info-card"><div class="icon">◇</div><h3>Domains</h3><p>melt-ing.com<br>meetmelt.com</p></div>
     </div>
 
     <div class="form-wrap reveal">
       <form onsubmit="event.preventDefault(); document.getElementById('formSuccess').style.display='block'; this.style.display='none';">
-        <div class="form-row"><label for="name">Name</label><input type="text" id="name" placeholder="Ihr Name" required></div>
+        <div class="form-row"><label for="name" data-i18n="f-name">Name</label><input type="text" id="name" placeholder="Ihr Name" required></div>
         <div class="form-row"><label for="email">E-Mail</label><input type="email" id="email" placeholder="ihre@email.com" required></div>
-        <div class="form-row"><label for="role">Ich bin...</label>
+        <div class="form-row"><label for="role" data-i18n="f-role">Ich bin...</label>
           <select id="role">
-            <option>Investor:in</option>
-            <option>Bauunternehmen</option>
-            <option>Architekt:in / Planer:in</option>
-            <option>Sonstiges</option>
+            <option data-i18n="f-opt1">Investor:in</option>
+            <option data-i18n="f-opt2">Bauunternehmen</option>
+            <option data-i18n="f-opt3">Architekt:in / Planer:in</option>
+            <option data-i18n="f-opt4">Sonstiges</option>
           </select>
         </div>
-        <div class="form-row"><label for="msg">Nachricht</label><textarea id="msg" placeholder="Wo drückt der Schuh?"></textarea></div>
-        <button type="submit" class="btn-primary" style="width:100%; justify-content:center; border:none; cursor:pointer;">Nachricht senden →</button>
+        <div class="form-row"><label for="msg" data-i18n="f-msg">Nachricht</label><textarea id="msg" placeholder="Wo drückt der Schuh?" data-de="Wo drückt der Schuh?" data-en="What's on your mind?"></textarea></div>
+        <button type="submit" class="btn-primary" style="width:100%; justify-content:center; border:none; cursor:pointer;" data-i18n="f-submit">Nachricht senden →</button>
       </form>
       <div id="formSuccess" style="display:none; text-align:center; padding:2rem 0;">
         <div style="font-size:2rem; margin-bottom:1rem;">✓</div>
-        <h3 style="font-family:'Space Grotesk',sans-serif; margin-bottom:0.6rem;">Danke!</h3>
-        <p style="color:var(--melt-text-muted);">Dies ist eine Demo-Vorschau — auf der echten Seite würde Ihre Nachricht jetzt an uns gesendet.</p>
+        <h3 style="font-family:'Manrope',sans-serif; margin-bottom:0.6rem;" data-i18n="thanks-title">Danke!</h3>
+        <p style="color:var(--melt-text-muted);" data-i18n="thanks-body">Dies ist eine Demo-Vorschau — auf der echten Seite würde Ihre Nachricht jetzt an uns gesendet.</p>
       </div>
     </div>
   </div>
@@ -87,9 +94,9 @@
       <li><a href="kontakt.html">Contact</a></li>
     </ul></div>
     <div class="footer-col"><h4>Services</h4><ul>
-      <li><a href="komfort.html">Komfort</a></li>
+      <li><a href="komfort.html" data-de="Komfort" data-en="Comfort">Komfort</a></li>
       <li><a href="pcm.html">Wärmespeicher</a></li>
-      <li><a href="hitzeschutz.html">Hitzeschutz</a></li>
+      <li><a href="hitzeschutz.html" data-de="Hitzeschutz" data-en="Heat Protection">Hitzeschutz</a></li>
       <li><a href="bauteilaktivierung.html">Load-Shifting</a></li>
     </ul></div>
     <div class="footer-col"><h4>Follow us</h4><ul>
@@ -103,6 +110,53 @@
 <script>
 const io = new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('active'); io.unobserve(e.target);} }); },{threshold:0.15});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+
+<script>
+window.PAGE_I18N = {
+  'hero-label': { de:'Kontakt', en:'Contact' },
+  'hero-h1': { de:'Experte <span class="highlight">kontaktieren.</span>', en:'Get in touch with <span class="highlight">an expert.</span>' },
+  'hero-p': { de:'Wir suchen Visionäre, die uns helfen vom Pilotprodukt zur Serie zu kommen — insbesondere Investoren, Pilotprojekte (B2B) und Partner bei Zulassungsverfahren.', en:'We are looking for visionaries to help us move from pilot product to series production — especially investors, B2B pilot projects, and certification partners.' },
+  'addr-label': { de:'Adresse', en:'Address' },
+  'f-name': { de:'Name', en:'Name' },
+  'f-role': { de:'Ich bin...', en:'I am...' },
+  'f-opt1': { de:'Investor:in', en:'Investor' },
+  'f-opt2': { de:'Bauunternehmen', en:'Construction Company' },
+  'f-opt3': { de:'Architekt:in / Planer:in', en:'Architect / Planner' },
+  'f-opt4': { de:'Sonstiges', en:'Other' },
+  'f-msg': { de:'Nachricht', en:'Message' },
+  'f-submit': { de:'Nachricht senden →', en:'Send message →' },
+  'thanks-title': { de:'Danke!', en:'Thank you!' },
+  'thanks-body': { de:'Dies ist eine Demo-Vorschau — auf der echten Seite würde Ihre Nachricht jetzt an uns gesendet.', en:'This is a demo preview — on the live site, your message would now be sent to us.' },
+};
+</script>
+
+
+<script>
+(function(){
+  const nav = document.getElementById('mainNav');
+  if(nav){
+    function onScroll(){ if(window.scrollY > 60) nav.classList.add('scrolled'); else nav.classList.remove('scrolled'); }
+    onScroll(); window.addEventListener('scroll', onScroll, { passive:true });
+  }
+})();
+(function(){
+  function applyLang(lang){
+    document.querySelectorAll('[data-i18n]').forEach(el=>{
+      const key = el.getAttribute('data-i18n');
+      if(window.PAGE_I18N && window.PAGE_I18N[key]) el.innerHTML = window.PAGE_I18N[key][lang];
+    });
+    document.querySelectorAll('[data-de][data-en]').forEach(el=>{
+      const text = lang === 'en' ? el.getAttribute('data-en') : el.getAttribute('data-de');
+      el.textContent = text;
+    });
+    document.querySelectorAll('.lang-btn').forEach(btn=>{ btn.classList.toggle('active', btn.dataset.lang === lang); });
+    document.documentElement.lang = lang;
+  }
+  document.querySelectorAll('.lang-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=> applyLang(btn.dataset.lang));
+  });
+})();
 </script>
 
 </body>

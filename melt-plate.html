@@ -10,7 +10,7 @@
   @media (max-width:900px){ .product-hero{grid-template-columns:1fr;} }
   .product-photo-wrap { border-radius:22px; overflow:hidden; border:1px solid var(--melt-border); background:var(--melt-gray); }
   .product-photo-wrap img { width:100%; height:auto; display:block; }
-  .product-hero h1 { font-family:'Space Grotesk', sans-serif; font-size:clamp(2rem,4.2vw,3rem); font-weight:700; line-height:1.1; margin-bottom:1.1rem; }
+  .product-hero h1 { font-family:'Manrope', sans-serif; font-size:clamp(2rem,4.2vw,3rem); font-weight:700; line-height:1.1; margin-bottom:1.1rem; }
   .product-hero .tag { color:var(--melt-orange-light); font-family:'IBM Plex Mono', monospace; font-size:0.85rem; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.8rem; display:block; }
   .product-hero p.lead { color:var(--melt-text-muted); font-size:1.08rem; margin-bottom:1.6rem; }
 
@@ -25,7 +25,7 @@
   .buffer-box .glyph { font-size:2rem; margin-bottom:0.6rem; }
   .buffer-box.cool .glyph { color:var(--melt-teal); }
   .buffer-box.warm .glyph { color:var(--melt-orange); }
-  .buffer-box h4 { font-family:'Space Grotesk', sans-serif; font-size:1rem; margin-bottom:0.4rem; }
+  .buffer-box h4 { font-family:'Manrope', sans-serif; font-size:1rem; margin-bottom:0.4rem; }
   .buffer-box p { color:var(--melt-text-muted); font-size:0.88rem; }
 
   /* animated comparison chart */
@@ -42,44 +42,51 @@
   @media (max-width:900px){ .variant-grid{grid-template-columns:1fr;} }
   .variant-card { background:var(--melt-surface); border:1px solid var(--melt-border); border-radius:20px; padding:2rem 1.8rem; position:relative; overflow:hidden; }
   .variant-card::before { content:''; position:absolute; top:0; left:0; width:100%; height:3px; background:var(--variant-color, var(--melt-orange)); }
-  .variant-temp { font-family:'Space Grotesk', sans-serif; font-size:2.2rem; font-weight:700; color:var(--variant-color, var(--melt-orange)); line-height:1; margin-bottom:0.6rem; }
-  .variant-card h3 { font-family:'Space Grotesk', sans-serif; font-size:1.15rem; margin-bottom:0.8rem; }
+  .variant-temp { font-family:'Manrope', sans-serif; font-size:2.2rem; font-weight:700; color:var(--variant-color, var(--melt-orange)); line-height:1; margin-bottom:0.6rem; }
+  .variant-card h3 { font-family:'Manrope', sans-serif; font-size:1.15rem; margin-bottom:0.8rem; }
   .variant-card p { color:var(--melt-text-muted); font-size:0.92rem; }
 
   .two-col { display:grid; grid-template-columns:1fr 1fr; gap:3.5rem; align-items:start; }
   @media (max-width:900px){ .two-col{grid-template-columns:1fr;} }
-  .two-col h2 { font-family:'Space Grotesk', sans-serif; font-size:1.7rem; margin-bottom:1.1rem; }
+  .two-col h2 { font-family:'Manrope', sans-serif; font-size:1.7rem; margin-bottom:1.1rem; }
   .two-col p { color:var(--melt-text-muted); font-size:1.02rem; margin-bottom:1rem; }
 </style>
 </head>
 <body>
 
-<nav class="nav">
+<nav class="nav" id="mainNav">
   <a href="index.html" class="nav-logo"><img src="assets/img/logo.png" alt="MELT-Ing Logo"><span>-Ing</span></a>
   <ul class="nav-links">
-    <li><a href="melt-plate.html">MELT Plate</a></li>
-    <li class="has-dropdown"><a href="zielgruppe.html">Zielgruppe</a>
+    <li><a href="melt-plate.html" data-de="MELT Plate" data-en="MELT Plate">MELT Plate</a></li>
+    <li class="has-dropdown"><a href="zielgruppe.html" data-de="Zielgruppe" data-en="Audience">Zielgruppe</a>
       <div class="dropdown">
-        <a href="zielgruppe.html#investoren"><span class="dd-icon">◆</span>Investoren</a>
-        <a href="zielgruppe.html#bauunternehmen"><span class="dd-icon">◈</span>Bauunternehmen</a>
-        <a href="zielgruppe.html#architekten"><span class="dd-icon">✎</span>Architekten und Planer</a>
-        <a href="zielgruppe.html#defense"><span class="dd-icon">⛨</span>Defense</a>
-        <a href="zielgruppe.html#diy"><span class="dd-icon">⚒</span>DIY</a>
+        <a href="zielgruppe.html#investoren"><span class="dd-icon">◆</span><span data-de="Investoren" data-en="Investors">Investoren</span></a>
+        <a href="zielgruppe.html#bauunternehmen"><span class="dd-icon">◈</span><span data-de="Bauunternehmen" data-en="Construction Companies">Bauunternehmen</span></a>
+        <a href="zielgruppe.html#architekten"><span class="dd-icon">✎</span><span data-de="Architekten und Planer" data-en="Architects & Planners">Architekten und Planer</span></a>
+        <a href="zielgruppe.html#defense"><span class="dd-icon">⛨</span><span data-de="Defense" data-en="Defense">Defense</span></a>
+        <a href="zielgruppe.html#diy"><span class="dd-icon">⚒</span><span data-de="DIY" data-en="DIY">DIY</span></a>
       </div>
     </li>
-    <li class="has-dropdown"><a href="magazin.html">Magazin</a>
+    <li class="has-dropdown"><a href="magazin.html" data-de="Magazin" data-en="Magazine">Magazin</a>
       <div class="dropdown">
-        <a href="hitzeschutz.html"><span class="dd-icon">☀</span>Hitzeschutz</a>
-        <a href="pcm.html"><span class="dd-icon">◉</span>PCM</a>
-        <a href="bauteilaktivierung.html"><span class="dd-icon">▤</span>Bauteilaktivierung</a>
-        <a href="komfort.html"><span class="dd-icon">❖</span>Komfort</a>
-        <a href="lowtech.html"><span class="dd-icon">✻</span>Low-Tech</a>
-        <a href="magazin.html#case"><span class="dd-icon">▣</span>Case Studies</a>
+        <a href="hitzeschutz.html"><span class="dd-icon">☀</span><span data-de="Hitzeschutz" data-en="Heat Protection">Hitzeschutz</span></a>
+        <a href="pcm.html"><span class="dd-icon">◉</span><span data-de="PCM" data-en="PCM">PCM</span></a>
+        <a href="bauteilaktivierung.html"><span class="dd-icon">▤</span><span data-de="Bauteilaktivierung" data-en="Thermal Activation">Bauteilaktivierung</span></a>
+        <a href="komfort.html"><span class="dd-icon">❖</span><span data-de="Komfort" data-en="Comfort">Komfort</span></a>
+        <a href="lowtech.html"><span class="dd-icon">✻</span><span data-de="Low-Tech" data-en="Low-Tech">Low-Tech</span></a>
+        <a href="magazin.html#case"><span class="dd-icon">▣</span><span data-de="Case Studies" data-en="Case Studies">Case Studies</span></a>
       </div>
     </li>
-    <li><a href="ueber-uns.html">Über uns</a></li>
+    <li><a href="ueber-uns.html" data-de="Über uns" data-en="About us">Über uns</a></li>
   </ul>
-  <a href="kontakt.html" class="nav-cta">gleich anfragen →</a>
+  <div class="nav-right">
+    <div class="lang-switch" id="langSwitch">
+      <button class="lang-btn active" data-lang="de">DE</button>
+      <span class="lang-sep">|</span>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </div>
+    <a href="kontakt.html" class="nav-cta" data-de="gleich anfragen →" data-en="get in touch →">gleich anfragen →</a>
+  </div>
 </nav>
 
 <div class="page-hero" style="padding-bottom:2rem;">
@@ -112,7 +119,7 @@
 
     <div class="reveal" style="margin-bottom:4rem;">
       <div class="section-label">Temperatur puffern</div>
-      <h2 style="font-family:'Space Grotesk',sans-serif; font-size:1.6rem; margin-bottom:1rem;">Kühlen wenn es zu warm ist, wärmen wenn es zu kalt ist</h2>
+      <h2 style="font-family:'Manrope',sans-serif; font-size:1.6rem; margin-bottom:1rem;">Kühlen wenn es zu warm ist, wärmen wenn es zu kalt ist</h2>
       <div class="buffer-row">
         <div class="buffer-box cool"><div class="glyph">❄</div><h4>Kühlen</h4><p>Wenn die Temperatur den Schmelzpunkt übersteigt, nimmt das PCM Wärme auf, statt sie in den Raum zu lassen.</p></div>
         <div class="buffer-box warm"><div class="glyph">☀</div><h4>Wärmen</h4><p>Fällt die Temperatur, gibt das PCM zuvor gespeicherte Wärme wieder ab und hält den Raum stabil.</p></div>
@@ -197,9 +204,9 @@
 
 <section class="cta-section">
   <div class="cta-content">
-    <h2>Neugierig gemacht?</h2>
-    <p>Wollen Sie mehr wissen? Schreiben Sie uns unter contact@melt-ing.com.</p>
-    <a href="kontakt.html" class="cta-btn">Kontakt aufnehmen →</a>
+    <h2 data-i18n="cta-title">Neugierig gemacht?</h2>
+    <p data-i18n="cta-body">Wollen Sie mehr wissen? Schreiben Sie uns unter contact@melt-ing.com.</p>
+    <a href="kontakt.html" class="cta-btn" data-i18n="cta-btn">Kontakt aufnehmen →</a>
   </div>
 </section>
 
@@ -216,9 +223,9 @@
       <li><a href="kontakt.html">Contact</a></li>
     </ul></div>
     <div class="footer-col"><h4>Services</h4><ul>
-      <li><a href="komfort.html">Komfort</a></li>
+      <li><a href="komfort.html" data-de="Komfort" data-en="Comfort">Komfort</a></li>
       <li><a href="pcm.html">Wärmespeicher</a></li>
-      <li><a href="hitzeschutz.html">Hitzeschutz</a></li>
+      <li><a href="hitzeschutz.html" data-de="Hitzeschutz" data-en="Heat Protection">Hitzeschutz</a></li>
       <li><a href="bauteilaktivierung.html">Load-Shifting</a></li>
     </ul></div>
     <div class="footer-col"><h4>Follow us</h4><ul>

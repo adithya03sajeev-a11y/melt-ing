@@ -8,17 +8,17 @@
 <style>
   .article-meta { font-family:'IBM Plex Mono', monospace; font-size:0.78rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--melt-text-muted); margin-bottom:1.2rem; }
   .article-body-text { max-width:800px; margin:0 auto; }
-  .article-body-text h2 { font-family:'Space Grotesk', sans-serif; font-size:1.6rem; margin:2.6rem 0 1.1rem; }
+  .article-body-text h2 { font-family:'Manrope', sans-serif; font-size:1.6rem; margin:2.6rem 0 1.1rem; }
   .article-body-text p { color:var(--melt-text-muted); font-size:1.05rem; margin-bottom:1.2rem; line-height:1.75; }
-  .article-body-text .lead-q { font-family:'Space Grotesk', sans-serif; font-size:1.5rem; color:var(--melt-text); margin-bottom:2rem; line-height:1.35; }
+  .article-body-text .lead-q { font-family:'Manrope', sans-serif; font-size:1.5rem; color:var(--melt-text); margin-bottom:2rem; line-height:1.35; }
 
   /* three strategies stepper */
   .strategy-viz { display:grid; grid-template-columns:repeat(3,1fr); gap:1.2rem; margin:2rem 0 2.6rem; }
   @media (max-width:700px){ .strategy-viz{grid-template-columns:1fr;} }
   .strategy-card { background:var(--melt-gray); border:1px solid var(--melt-border); border-radius:18px; padding:1.6rem; opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease; }
   .strategy-card.in { opacity:1; transform:translateY(0); }
-  .strategy-num { width:36px; height:36px; border-radius:10px; background:linear-gradient(135deg, var(--melt-orange), var(--melt-orange-light)); display:flex; align-items:center; justify-content:center; font-family:'Space Grotesk', sans-serif; font-weight:700; color:var(--melt-ink,#0A0A0A); margin-bottom:1rem; }
-  .strategy-card h4 { font-family:'Space Grotesk', sans-serif; font-size:1rem; margin-bottom:0.6rem; }
+  .strategy-num { width:36px; height:36px; border-radius:10px; background:linear-gradient(135deg, var(--melt-orange), var(--melt-orange-light)); display:flex; align-items:center; justify-content:center; font-family:'Manrope', sans-serif; font-weight:700; color:var(--melt-ink,#0A0A0A); margin-bottom:1rem; }
+  .strategy-card h4 { font-family:'Manrope', sans-serif; font-size:1rem; margin-bottom:0.6rem; }
   .strategy-card p { font-size:0.88rem; color:var(--melt-text-muted); margin:0; }
 
   /* threshold gauge: 26C limit vs MELT stabilized 25C vs typical leichtbau overshoot */
@@ -37,7 +37,7 @@
   .big-ring { width:150px; height:150px; margin:0 auto 1rem; position:relative; }
   .big-ring::before { content:''; position:absolute; inset:0; border-radius:50%; background:conic-gradient(var(--melt-orange) calc(var(--pct,0) * 1%), rgba(255,255,255,0.06) 0); transition:background 1.5s cubic-bezier(.16,1,.3,1); }
   .big-ring::after { content:''; position:absolute; inset:14px; border-radius:50%; background:var(--melt-surface); }
-  .big-ring .ring-txt { position:relative; z-index:2; display:flex; align-items:center; justify-content:center; width:100%; height:100%; font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:2rem; color:var(--melt-orange-light); }
+  .big-ring .ring-txt { position:relative; z-index:2; display:flex; align-items:center; justify-content:center; width:100%; height:100%; font-family:'Manrope', sans-serif; font-weight:700; font-size:2rem; color:var(--melt-orange-light); }
   .shield-box { background:var(--melt-surface); border:1px solid var(--melt-border); border-radius:18px; padding:2rem; text-align:center; }
   .shield-icon { font-size:3rem; margin-bottom:0.8rem; animation:shieldPulse 2.6s ease-in-out infinite; color:var(--melt-teal); }
   @keyframes shieldPulse { 0%,100%{ transform:scale(1); opacity:0.85; } 50%{ transform:scale(1.08); opacity:1; } }
@@ -45,32 +45,39 @@
 </head>
 <body>
 
-<nav class="nav">
+<nav class="nav" id="mainNav">
   <a href="index.html" class="nav-logo"><img src="assets/img/logo.png" alt="MELT-Ing Logo"><span>-Ing</span></a>
   <ul class="nav-links">
-    <li><a href="melt-plate.html">MELT Plate</a></li>
-    <li class="has-dropdown"><a href="zielgruppe.html">Zielgruppe</a>
+    <li><a href="melt-plate.html" data-de="MELT Plate" data-en="MELT Plate">MELT Plate</a></li>
+    <li class="has-dropdown"><a href="zielgruppe.html" data-de="Zielgruppe" data-en="Audience">Zielgruppe</a>
       <div class="dropdown">
-        <a href="zielgruppe.html#investoren"><span class="dd-icon">◆</span>Investoren</a>
-        <a href="zielgruppe.html#bauunternehmen"><span class="dd-icon">◈</span>Bauunternehmen</a>
-        <a href="zielgruppe.html#architekten"><span class="dd-icon">✎</span>Architekten und Planer</a>
-        <a href="zielgruppe.html#defense"><span class="dd-icon">⛨</span>Defense</a>
-        <a href="zielgruppe.html#diy"><span class="dd-icon">⚒</span>DIY</a>
+        <a href="zielgruppe.html#investoren"><span class="dd-icon">◆</span><span data-de="Investoren" data-en="Investors">Investoren</span></a>
+        <a href="zielgruppe.html#bauunternehmen"><span class="dd-icon">◈</span><span data-de="Bauunternehmen" data-en="Construction Companies">Bauunternehmen</span></a>
+        <a href="zielgruppe.html#architekten"><span class="dd-icon">✎</span><span data-de="Architekten und Planer" data-en="Architects & Planners">Architekten und Planer</span></a>
+        <a href="zielgruppe.html#defense"><span class="dd-icon">⛨</span><span data-de="Defense" data-en="Defense">Defense</span></a>
+        <a href="zielgruppe.html#diy"><span class="dd-icon">⚒</span><span data-de="DIY" data-en="DIY">DIY</span></a>
       </div>
     </li>
-    <li class="has-dropdown"><a href="magazin.html">Magazin</a>
+    <li class="has-dropdown"><a href="magazin.html" data-de="Magazin" data-en="Magazine">Magazin</a>
       <div class="dropdown">
-        <a href="hitzeschutz.html"><span class="dd-icon">☀</span>Hitzeschutz</a>
-        <a href="pcm.html"><span class="dd-icon">◉</span>PCM</a>
-        <a href="bauteilaktivierung.html"><span class="dd-icon">▤</span>Bauteilaktivierung</a>
-        <a href="impact.html"><span class="dd-icon">◐</span>Impact</a>
-        <a href="serielles-bauen.html"><span class="dd-icon">▦</span>Serielles Bauen</a>
-        <a href="magazin.html#case"><span class="dd-icon">▣</span>Case Studies</a>
+        <a href="hitzeschutz.html"><span class="dd-icon">☀</span><span data-de="Hitzeschutz" data-en="Heat Protection">Hitzeschutz</span></a>
+        <a href="pcm.html"><span class="dd-icon">◉</span><span data-de="PCM" data-en="PCM">PCM</span></a>
+        <a href="bauteilaktivierung.html"><span class="dd-icon">▤</span><span data-de="Bauteilaktivierung" data-en="Thermal Activation">Bauteilaktivierung</span></a>
+        <a href="impact.html"><span class="dd-icon">◐</span><span data-de="Impact" data-en="Impact">Impact</span></a>
+        <a href="serielles-bauen.html"><span class="dd-icon">▦</span><span data-de="Serielles Bauen" data-en="Serielles Bauen">Serielles Bauen</span></a>
+        <a href="magazin.html#case"><span class="dd-icon">▣</span><span data-de="Case Studies" data-en="Case Studies">Case Studies</span></a>
       </div>
     </li>
-    <li><a href="ueber-uns.html">Über uns</a></li>
+    <li><a href="ueber-uns.html" data-de="Über uns" data-en="About us">Über uns</a></li>
   </ul>
-  <a href="kontakt.html" class="nav-cta">gleich anfragen →</a>
+  <div class="nav-right">
+    <div class="lang-switch" id="langSwitch">
+      <button class="lang-btn active" data-lang="de">DE</button>
+      <span class="lang-sep">|</span>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </div>
+    <a href="kontakt.html" class="nav-cta" data-de="gleich anfragen →" data-en="get in touch →">gleich anfragen →</a>
+  </div>
 </nav>
 
 <div class="page-hero" style="padding-bottom:1rem;">
@@ -137,9 +144,9 @@
 
 <section class="cta-section">
   <div class="cta-content">
-    <h2>Neugierig gemacht?</h2>
-    <p>Wollen Sie mehr wissen? Schreiben Sie uns unter contact@melt-ing.com.</p>
-    <a href="kontakt.html" class="cta-btn">Kontakt aufnehmen →</a>
+    <h2 data-i18n="cta-title">Neugierig gemacht?</h2>
+    <p data-i18n="cta-body">Wollen Sie mehr wissen? Schreiben Sie uns unter contact@melt-ing.com.</p>
+    <a href="kontakt.html" class="cta-btn" data-i18n="cta-btn">Kontakt aufnehmen →</a>
   </div>
 </section>
 
@@ -156,9 +163,9 @@
       <li><a href="kontakt.html">Contact</a></li>
     </ul></div>
     <div class="footer-col"><h4>Services</h4><ul>
-      <li><a href="komfort.html">Komfort</a></li>
+      <li><a href="komfort.html" data-de="Komfort" data-en="Comfort">Komfort</a></li>
       <li><a href="pcm.html">Wärmespeicher</a></li>
-      <li><a href="hitzeschutz.html">Hitzeschutz</a></li>
+      <li><a href="hitzeschutz.html" data-de="Hitzeschutz" data-en="Heat Protection">Hitzeschutz</a></li>
       <li><a href="bauteilaktivierung.html">Load-Shifting</a></li>
     </ul></div>
     <div class="footer-col"><h4>Follow us</h4><ul>
