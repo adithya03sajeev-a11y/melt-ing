@@ -21,7 +21,7 @@
   .band-card h4 { font-family:'Space Grotesk', sans-serif; font-size:0.95rem; margin-bottom:0.9rem; color:var(--melt-text-muted); }
   .band-track { height:20px; background:rgba(255,255,255,0.06); border-radius:10px; position:relative; overflow:hidden; margin-bottom:0.6rem; }
   .band-fill { position:absolute; top:0; height:100%; border-radius:10px; width:0%; transition:width 1.4s cubic-bezier(.16,1,.3,1), left 1.4s cubic-bezier(.16,1,.3,1); left:50%; }
-  .band-fill.winter { background:linear-gradient(90deg, var(--melt-teal), #7FD8CE); }
+  .band-fill.winter { background:linear-gradient(90deg, var(--melt-blue), #6BB6E0); }
   .band-fill.summer { background:linear-gradient(90deg, var(--melt-orange), var(--melt-orange-light)); }
   .band-range { font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:1.3rem; color:var(--melt-text); }
 
@@ -30,7 +30,7 @@
   .comfort-ba .ba-col { display:flex; flex-direction:column; align-items:center; justify-content:flex-end; height:100%; width:90px; }
   .comfort-ba .ba-bar { width:100%; border-radius:8px 8px 0 0; transition:height 1.4s cubic-bezier(.16,1,.3,1); }
   .comfort-ba .ba-bar.before { background:linear-gradient(180deg, #999, #666); height:0%; }
-  .comfort-ba .ba-bar.after { background:linear-gradient(180deg, var(--melt-teal), #2a8880); height:0%; }
+  .comfort-ba .ba-bar.after { background:linear-gradient(180deg, var(--melt-blue), #2a8880); height:0%; }
   .comfort-ba .ba-label { font-size:0.8rem; color:var(--melt-text-muted); margin-top:0.6rem; text-align:center; }
   .comfort-ba .ba-value { font-family:'Space Grotesk', sans-serif; font-weight:700; color:var(--melt-text); font-size:1.05rem; }
 
@@ -48,125 +48,131 @@
 
   .ring-box { background:var(--melt-surface); border:1px solid var(--melt-border); border-radius:18px; padding:2rem; text-align:center; max-width:340px; margin:2rem auto 2.6rem; }
   .big-ring { width:150px; height:150px; margin:0 auto 1rem; position:relative; }
-  .big-ring::before { content:''; position:absolute; inset:0; border-radius:50%; background:conic-gradient(var(--melt-teal) calc(var(--pct,0) * 1%), rgba(255,255,255,0.06) 0); transition:background 1.4s cubic-bezier(.16,1,.3,1); }
+  .big-ring::before { content:''; position:absolute; inset:0; border-radius:50%; background:conic-gradient(var(--melt-blue) calc(var(--pct,0) * 1%), rgba(255,255,255,0.06) 0); transition:background 1.4s cubic-bezier(.16,1,.3,1); }
   .big-ring::after { content:''; position:absolute; inset:14px; border-radius:50%; background:var(--melt-surface); }
-  .big-ring .ring-txt { position:relative; z-index:2; display:flex; align-items:center; justify-content:center; width:100%; height:100%; font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:2rem; color:var(--melt-teal); }
+  .big-ring .ring-txt { position:relative; z-index:2; display:flex; align-items:center; justify-content:center; width:100%; height:100%; font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:2rem; color:var(--melt-blue); }
 </style>
 </head>
 <body>
 
-<nav class="nav">
-  <a href="index.html" class="nav-logo"><img src="https://lh7-us.googleusercontent.com/sitesv-images-rt/ACHe0d17sonBxGxE2AOlzf5h33Ex_JyVqbTvaZ9LU0JMGrFt0IMxCpyK_w7-H9xZU1NosRToqDKu_sUXQHSOHRlOhXRWR9dOq56wLGcEk5KfOOMPQZvXRFlSYXns2PzjxDkTdnL5B6j9Dru8NwidPdvRdu2jhAGLCeQ4W1BrX_6X8CMga1ZWDIpx0-3sFW6rMvY=w160" alt="MELT-Ing Logo">MELT<span>-Ing</span></a>
+<nav class="nav" id="mainNav">
+  <a href="index.html" class="nav-logo"><img src="assets/img/logo.png" alt="MELT-Ing Logo"><span>-Ing</span></a>
   <ul class="nav-links">
-    <li><a href="melt-plate.html">MELT Plate</a></li>
-    <li class="has-dropdown"><a href="zielgruppe.html">Zielgruppe</a>
+    <li><a href="melt-plate.html" data-de="MELT Plate" data-en="MELT Plate">MELT Plate</a></li>
+    <li class="has-dropdown"><a href="zielgruppe.html" data-de="Zielgruppe" data-en="Audience">Zielgruppe</a>
       <div class="dropdown">
-        <a href="zielgruppe.html#investoren">Investoren</a>
-        <a href="zielgruppe.html#bauunternehmen">Bauunternehmen</a>
-        <a href="zielgruppe.html#architekten">Architekten und Planer</a>
-        <a href="zielgruppe.html#defense">Defense</a>
-        <a href="zielgruppe.html#diy">DIY</a>
+        <a href="zielgruppe.html#investoren"><span class="dd-icon">◆</span><span data-de="Investoren" data-en="Investors">Investoren</span></a>
+        <a href="zielgruppe.html#bauunternehmen"><span class="dd-icon">◈</span><span data-de="Bauunternehmen" data-en="Construction Companies">Bauunternehmen</span></a>
+        <a href="zielgruppe.html#architekten"><span class="dd-icon">✎</span><span data-de="Architekten und Planer" data-en="Architects & Planners">Architekten und Planer</span></a>
+        <a href="zielgruppe.html#defense"><span class="dd-icon">⛨</span><span data-de="Defense" data-en="Defense">Defense</span></a>
+        <a href="zielgruppe.html#diy"><span class="dd-icon">⚒</span><span data-de="DIY" data-en="DIY">DIY</span></a>
       </div>
     </li>
-    <li class="has-dropdown"><a href="magazin.html">Magazin</a>
+    <li class="has-dropdown"><a href="magazin.html" data-de="Magazin" data-en="Magazine">Magazin</a>
       <div class="dropdown">
-        <a href="hitzeschutz.html">Hitzeschutz</a>
-        <a href="pcm.html">PCM</a>
-        <a href="bauteilaktivierung.html">Bauteilaktivierung</a>
-        <a href="impact.html">Impact</a>
-        <a href="serielles-bauen.html">Serielles Bauen</a>
-        <a href="komfort.html">Komfort</a>
-        <a href="lowtech.html">Low-Tech</a>
+        <a href="hitzeschutz.html"><span class="dd-icon">☀</span><span data-de="Hitzeschutz" data-en="Heat Protection">Hitzeschutz</span></a>
+        <a href="pcm.html"><span class="dd-icon">◉</span><span data-de="PCM" data-en="PCM">PCM</span></a>
+        <a href="bauteilaktivierung.html"><span class="dd-icon">▤</span><span data-de="Bauteilaktivierung" data-en="Thermal Activation">Bauteilaktivierung</span></a>
+        <a href="impact.html"><span class="dd-icon">◐</span><span data-de="Impact" data-en="Impact">Impact</span></a>
+        <a href="serielles-bauen.html"><span class="dd-icon">▦</span><span data-de="Serielles Bauen" data-en="Serielles Bauen">Serielles Bauen</span></a>
+        <a href="lowtech.html"><span class="dd-icon">✻</span><span data-de="Low-Tech" data-en="Low-Tech">Low-Tech</span></a>
       </div>
     </li>
-    <li><a href="ueber-uns.html">Über uns</a></li>
+    <li><a href="ueber-uns.html" data-de="Über uns" data-en="About us">Über uns</a></li>
   </ul>
-  <a href="kontakt.html" class="nav-cta">gleich anfragen →</a>
+  <div class="nav-right">
+    <div class="lang-switch" id="langSwitch">
+      <button class="lang-btn active" data-lang="de">DE</button>
+      <span class="lang-sep">|</span>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </div>
+    <a href="kontakt.html" class="nav-cta" data-de="gleich anfragen →" data-en="get in touch →">gleich anfragen →</a>
+  </div>
 </nav>
 
 <div class="page-hero" style="padding-bottom:1rem;">
-  <div class="section-label">Thema · Oktober 2025</div>
-  <h1>Komfort im Dachgeschoss <span class="highlight">ohne neues Dach?</span></h1>
+  <div class="section-label" data-i18n="hero-label">Thema · Oktober 2025</div>
+  <h1 data-i18n="hero-h1">Komfort im Dachgeschoss <span class="highlight">ohne neues Dach?</span></h1>
 </div>
 
 <section style="padding-top:0;">
   <div class="container">
     <div class="article-body-text reveal">
-      <p class="lead-q">Gemütlich und komfortabel — was steckt eigentlich dahinter?</p>
+      <p class="lead-q" data-i18n="lead">Gemütlich und komfortabel — was steckt eigentlich dahinter?</p>
 
-      <h2>Was ist "Komfort"?</h2>
-      <p>Komfortklima beschreibt die thermische Behaglichkeit in Innenräumen, die von Temperatur, Luftfeuchtigkeit, Luftbewegung und Strahlungstemperatur der Umgebungsflächen abhängt.</p>
+      <h2 data-i18n="h2-1">Was ist "Komfort"?</h2>
+      <p data-i18n="p1">Komfortklima beschreibt die thermische Behaglichkeit in Innenräumen, die von Temperatur, Luftfeuchtigkeit, Luftbewegung und Strahlungstemperatur der Umgebungsflächen abhängt.</p>
 
       <div class="comfort-viz">
-        <div class="viz-title">Ideale Raumtemperatur nach Jahreszeit</div>
+        <div class="viz-title" data-i18n="viz1-title">Ideale Raumtemperatur nach Jahreszeit</div>
         <div class="comfort-bands">
           <div class="band-card">
-            <h4>❄ Winter</h4>
+            <h4 data-i18n="winter-h">❄ Winter</h4>
             <div class="band-track"><div class="band-fill winter" data-width="20" data-left="20"></div></div>
             <div class="band-range">20–22°C</div>
           </div>
           <div class="band-card">
-            <h4>☀ Sommer</h4>
+            <h4 data-i18n="summer-h">☀ Sommer</h4>
             <div class="band-track"><div class="band-fill summer" data-width="30" data-left="55"></div></div>
             <div class="band-range">23–26°C</div>
           </div>
         </div>
       </div>
 
-      <p>Entscheidend ist nicht nur die Lufttemperatur, sondern auch die gefühlte Temperatur durch Wandoberflächen. Kalte Außenwände im Winter oder heiße Dachflächen im Sommer beeinflussen den Komfort negativ, selbst wenn die Lufttemperatur stimmt.</p>
+      <p data-i18n="p2">Entscheidend ist nicht nur die Lufttemperatur, sondern auch die gefühlte Temperatur durch Wandoberflächen. Kalte Außenwände im Winter oder heiße Dachflächen im Sommer beeinflussen den Komfort negativ, selbst wenn die Lufttemperatur stimmt.</p>
 
       <div class="wall-row">
         <div class="wall-card cold">
           <div class="wall-swatch cold"></div>
-          <h4>Kalte Wandoberfläche</h4>
-          <p>Senkt die gefühlte Temperatur, auch wenn die Luft warm genug ist.</p>
+          <h4 data-i18n="wall1-h">Kalte Wandoberfläche</h4>
+          <p data-i18n="wall1-p">Senkt die gefühlte Temperatur, auch wenn die Luft warm genug ist.</p>
         </div>
         <div class="wall-card melt">
           <div class="wall-swatch melt"></div>
-          <h4>MELT-stabilisierte Oberfläche</h4>
-          <p>Stabilisiert sich im Komfortbereich — positive Strahlungstemperatur.</p>
+          <h4 data-i18n="wall2-h">MELT-stabilisierte Oberfläche</h4>
+          <p data-i18n="wall2-p">Stabilisiert sich im Komfortbereich — positive Strahlungstemperatur.</p>
         </div>
       </div>
 
-      <p>Moderne Gebäudenormen wie die DIN EN 16798 definieren Komfortklassen. Besonders in Leichtbauten sind stabile Komfortbedingungen schwerer zu erreichen, da schnelle Temperaturschwankungen zwischen Tag und Nacht auftreten. Komfortklima ist nicht nur Wohlfühlfaktor, sondern auch Gesundheits- und Produktivitätsthema.</p>
+      <p data-i18n="p3">Moderne Gebäudenormen wie die DIN EN 16798 definieren Komfortklassen. Besonders in Leichtbauten sind stabile Komfortbedingungen schwerer zu erreichen, da schnelle Temperaturschwankungen zwischen Tag und Nacht auftreten. Komfortklima ist nicht nur Wohlfühlfaktor, sondern auch Gesundheits- und Produktivitätsthema.</p>
 
-      <h2>Im Wohlfühlbereich puffern mit MELT</h2>
-      <p>Die MELT Plate ist speziell für stabiles Komfortklima entwickelt. Sie glättet Tag-Nacht-Temperaturschwankungen um bis zu 62 Prozent und hält Räume automatisch im gewünschten Temperaturbereich. Das funktioniert durch die strategische Platzierung in der Gebäudehülle: Die Platten wirken als thermischer Puffer zwischen Außenklima und Innenraum.</p>
+      <h2 data-i18n="h2-2">Im Wohlfühlbereich puffern mit MELT</h2>
+      <p data-i18n="p4">Die MELT Plate ist speziell für stabiles Komfortklima entwickelt. Sie glättet Tag-Nacht-Temperaturschwankungen um bis zu 62 Prozent und hält Räume automatisch im gewünschten Temperaturbereich. Das funktioniert durch die strategische Platzierung in der Gebäudehülle: Die Platten wirken als thermischer Puffer zwischen Außenklima und Innenraum.</p>
 
       <div class="ring-box">
         <div class="big-ring"><div class="ring-txt" id="komfortRingLabel">0%</div></div>
-        <p style="color:var(--melt-text-muted); font-size:0.9rem; margin:0;">geglättete Tag-Nacht-Temperaturschwankungen</p>
+        <p style="color:var(--melt-text-muted); font-size:0.9rem; margin:0;" data-i18n="ring-caption">geglättete Tag-Nacht-Temperaturschwankungen</p>
       </div>
 
-      <p>Im Pilotprojekt mit Willi Mayer Holzbau verdoppelten wir die Stunden im Komfortbereich – ganz ohne zusätzliche Heizenergie.</p>
+      <p data-i18n="p5">Im Pilotprojekt mit Willi Mayer Holzbau verdoppelten wir die Stunden im Komfortbereich – ganz ohne zusätzliche Heizenergie.</p>
 
       <div class="comfort-viz">
-        <div class="viz-title">Pilotprojekt Willi Mayer Holzbau</div>
+        <div class="viz-title" data-i18n="viz2-title">Pilotprojekt Willi Mayer Holzbau</div>
         <div class="comfort-ba">
-          <div class="ba-col"><div class="ba-value">1×</div><div class="ba-bar before" data-h="45"></div><div class="ba-label">Ohne MELT</div></div>
-          <div class="ba-col"><div class="ba-value">2×</div><div class="ba-bar after" data-h="90"></div><div class="ba-label">Mit MELT Plates</div></div>
+          <div class="ba-col"><div class="ba-value">1×</div><div class="ba-bar before" data-h="45"></div><div class="ba-label" data-i18n="ba1">Ohne MELT</div></div>
+          <div class="ba-col"><div class="ba-value">2×</div><div class="ba-bar after" data-h="90"></div><div class="ba-label" data-i18n="ba2">Mit MELT Plates</div></div>
         </div>
       </div>
 
-      <p>Für Bewohner bedeutet das: keine überhitzten Nachmittage, keine ausgekühlten Morgenstunden, keine ständige Anpassung der Heizung. Die Oberflächentemperatur der Platten stabilisiert sich im Komfortbereich, was die Strahlungstemperatur positiv beeinflusst.</p>
-      <p style="font-size:1.15rem; color:var(--melt-text); font-family:'Space Grotesk', sans-serif;">Das Ergebnis ist „Massivhausklima im Leichtbau" – thermische Behaglichkeit ohne die Nachteile schwerer Bauweise.</p>
+      <p data-i18n="p6">Für Bewohner bedeutet das: keine überhitzten Nachmittage, keine ausgekühlten Morgenstunden, keine ständige Anpassung der Heizung. Die Oberflächentemperatur der Platten stabilisiert sich im Komfortbereich, was die Strahlungstemperatur positiv beeinflusst.</p>
+      <p style="font-size:1.15rem; color:var(--melt-text); font-family:'Space Grotesk', sans-serif;" data-i18n="closing">Das Ergebnis ist „Massivhausklima im Leichtbau" – thermische Behaglichkeit ohne die Nachteile schwerer Bauweise.</p>
     </div>
   </div>
 </section>
 
 <section class="cta-section">
   <div class="cta-content">
-    <h2>Neugierig gemacht?</h2>
-    <p>Wollen Sie mehr wissen? Schreiben Sie uns unter contact@melt-ing.com.</p>
-    <a href="kontakt.html" class="cta-btn">Kontakt aufnehmen →</a>
+    <h2 data-i18n="cta-title">Neugierig gemacht?</h2>
+    <p data-i18n="cta-body">Wollen Sie mehr wissen? Schreiben Sie uns unter contact@melt-ing.com.</p>
+    <a href="kontakt.html" class="cta-btn" data-i18n="cta-btn">Kontakt aufnehmen →</a>
   </div>
 </section>
 
 <footer class="footer">
   <div class="footer-grid">
     <div>
-      <div class="footer-brand"><img src="https://lh7-us.googleusercontent.com/sitesv-images-rt/ACHe0d17sonBxGxE2AOlzf5h33Ex_JyVqbTvaZ9LU0JMGrFt0IMxCpyK_w7-H9xZU1NosRToqDKu_sUXQHSOHRlOhXRWR9dOq56wLGcEk5KfOOMPQZvXRFlSYXns2PzjxDkTdnL5B6j9Dru8NwidPdvRdu2jhAGLCeQ4W1BrX_6X8CMga1ZWDIpx0-3sFW6rMvY=w160" alt="">MELT<span>-Ing</span> GmbH</div>
-      <p class="footer-desc">Tailored Thermal Buffering for Buildings. Das Start-up aus Mannheim ermöglicht überragenden Komfort und Klimaresilienz in leichten, ökologischen Gebäuden.</p>
+      <div class="footer-brand"><img src="assets/img/logo.png" alt=""><span>-Ing</span> GmbH</div>
+      <p class="footer-desc" data-i18n="footer-desc">Tailored Thermal Buffering for Buildings. Das Start-up aus Mannheim ermöglicht überragenden Komfort und Klimaresilienz in leichten, ökologischen Gebäuden.</p>
     </div>
     <div class="footer-col"><h4>Quick links</h4><ul>
       <li><a href="index.html">Home</a></li>
@@ -238,5 +244,64 @@ const baIO = new IntersectionObserver((entries)=>{
 baIO.observe(document.querySelector('.comfort-ba'));
 </script>
 
+
+<script>
+window.PAGE_I18N = {
+  "hero-label": { de:"Thema · Oktober 2025", en:"Topic · October 2025" },
+  "hero-h1": { de:'Komfort im Dachgeschoss <span class="highlight">ohne neues Dach?</span>', en:'Comfort in the Attic <span class="highlight">Without a New Roof?</span>' },
+  "cta-title": { de:"Neugierig gemacht?", en:"Curious?" },
+  "cta-body": { de:"Wollen Sie mehr wissen? Schreiben Sie uns unter contact@melt-ing.com.", en:"Want to know more? Write to us at contact@melt-ing.com." },
+  "cta-btn": { de:"Kontakt aufnehmen →", en:"Get in touch →" },
+  "footer-desc": { de:"Tailored Thermal Buffering for Buildings. Das Start-up aus Mannheim ermöglicht überragenden Komfort und Klimaresilienz in leichten, ökologischen Gebäuden.", en:"Tailored Thermal Buffering for Buildings. The Mannheim-based startup enables outstanding comfort and climate resilience in lightweight, ecological buildings." },
+  "lead": { de:"Gemütlich und komfortabel — was steckt eigentlich dahinter?", en:"Cozy and comfortable — what's actually behind it?" },
+  "h2-1": { de:'Was ist "Komfort"?', en:'What Is "Comfort"?' },
+  "p1": { de:"Komfortklima beschreibt die thermische Behaglichkeit in Innenräumen, die von Temperatur, Luftfeuchtigkeit, Luftbewegung und Strahlungstemperatur der Umgebungsflächen abhängt.", en:"Comfort climate describes thermal comfort in interior spaces, which depends on temperature, humidity, air movement, and the radiant temperature of surrounding surfaces." },
+  "viz1-title": { de:"Ideale Raumtemperatur nach Jahreszeit", en:"Ideal Room Temperature by Season" },
+  "winter-h": { de:"❄ Winter", en:"❄ Winter" },
+  "summer-h": { de:"☀ Sommer", en:"☀ Summer" },
+  "p2": { de:"Entscheidend ist nicht nur die Lufttemperatur, sondern auch die gefühlte Temperatur durch Wandoberflächen. Kalte Außenwände im Winter oder heiße Dachflächen im Sommer beeinflussen den Komfort negativ, selbst wenn die Lufttemperatur stimmt.", en:"What matters isn't just air temperature, but also the perceived temperature from wall surfaces. Cold exterior walls in winter or hot roof surfaces in summer negatively affect comfort, even when the air temperature itself is right." },
+  "wall1-h": { de:"Kalte Wandoberfläche", en:"Cold Wall Surface" },
+  "wall1-p": { de:"Senkt die gefühlte Temperatur, auch wenn die Luft warm genug ist.", en:"Lowers the perceived temperature, even when the air is warm enough." },
+  "wall2-h": { de:"MELT-stabilisierte Oberfläche", en:"MELT-Stabilized Surface" },
+  "wall2-p": { de:"Stabilisiert sich im Komfortbereich — positive Strahlungstemperatur.", en:"Stabilizes within the comfort range — positive radiant temperature." },
+  "p3": { de:"Moderne Gebäudenormen wie die DIN EN 16798 definieren Komfortklassen. Besonders in Leichtbauten sind stabile Komfortbedingungen schwerer zu erreichen, da schnelle Temperaturschwankungen zwischen Tag und Nacht auftreten. Komfortklima ist nicht nur Wohlfühlfaktor, sondern auch Gesundheits- und Produktivitätsthema.", en:"Modern building standards like DIN EN 16798 define comfort classes. Stable comfort conditions are especially hard to achieve in lightweight buildings, since fast temperature swings occur between day and night. Comfort climate isn't just a feel-good factor — it's also a health and productivity issue." },
+  "h2-2": { de:"Im Wohlfühlbereich puffern mit MELT", en:"Buffering in the Comfort Zone with MELT" },
+  "p4": { de:"Die MELT Plate ist speziell für stabiles Komfortklima entwickelt. Sie glättet Tag-Nacht-Temperaturschwankungen um bis zu 62 Prozent und hält Räume automatisch im gewünschten Temperaturbereich. Das funktioniert durch die strategische Platzierung in der Gebäudehülle: Die Platten wirken als thermischer Puffer zwischen Außenklima und Innenraum.", en:"The MELT Plate is specifically designed for stable comfort climate. It smooths day-night temperature swings by up to 62 percent and automatically keeps rooms within the desired temperature range. This works through strategic placement in the building envelope: the plates act as a thermal buffer between outdoor climate and interior space." },
+  "ring-caption": { de:"geglättete Tag-Nacht-Temperaturschwankungen", en:"smoothed day-night temperature swings" },
+  "p5": { de:"Im Pilotprojekt mit Willi Mayer Holzbau verdoppelten wir die Stunden im Komfortbereich – ganz ohne zusätzliche Heizenergie.", en:"In the pilot project with Willi Mayer Holzbau, we doubled the hours spent within the comfort range — with no additional heating energy at all." },
+  "viz2-title": { de:"Pilotprojekt Willi Mayer Holzbau", en:"Pilot Project: Willi Mayer Holzbau" },
+  "ba1": { de:"Ohne MELT", en:"Without MELT" },
+  "ba2": { de:"Mit MELT Plates", en:"With MELT Plates" },
+  "p6": { de:"Für Bewohner bedeutet das: keine überhitzten Nachmittage, keine ausgekühlten Morgenstunden, keine ständige Anpassung der Heizung. Die Oberflächentemperatur der Platten stabilisiert sich im Komfortbereich, was die Strahlungstemperatur positiv beeinflusst.", en:"For occupants, this means: no overheated afternoons, no cold mornings, no constantly adjusting the heating. The plates' surface temperature stabilizes within the comfort range, which positively affects radiant temperature." },
+  "closing": { de:"Das Ergebnis ist „Massivhausklima im Leichtbau\" – thermische Behaglichkeit ohne die Nachteile schwerer Bauweise.", en:"The result is \"solid-house climate in a lightweight building\" — thermal comfort without the downsides of heavy construction." }
+};
+</script>
+
+<script>
+(function(){
+  const nav = document.getElementById('mainNav');
+  if(nav){
+    function onScroll(){ if(window.scrollY > 60) nav.classList.add('scrolled'); else nav.classList.remove('scrolled'); }
+    onScroll(); window.addEventListener('scroll', onScroll, { passive:true });
+  }
+})();
+(function(){
+  function applyLang(lang){
+    document.querySelectorAll('[data-i18n]').forEach(el=>{
+      const key = el.getAttribute('data-i18n');
+      if(window.PAGE_I18N && window.PAGE_I18N[key]) el.innerHTML = window.PAGE_I18N[key][lang];
+    });
+    document.querySelectorAll('[data-de][data-en]').forEach(el=>{
+      const text = lang === 'en' ? el.getAttribute('data-en') : el.getAttribute('data-de');
+      el.textContent = text;
+    });
+    document.querySelectorAll('.lang-btn').forEach(btn=>{ btn.classList.toggle('active', btn.dataset.lang === lang); });
+    document.documentElement.lang = lang;
+  }
+  document.querySelectorAll('.lang-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=> applyLang(btn.dataset.lang));
+  });
+})();
+</script>
 </body>
 </html>

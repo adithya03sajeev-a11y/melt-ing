@@ -97,6 +97,21 @@
   .faq-cta { font-family:'Inter', sans-serif; font-weight:600; font-size:14px; padding:12px 20px; border-radius:10px; background:linear-gradient(135deg, var(--melt-orange), #D45328); color:#fff; text-decoration:none; white-space:nowrap; }
   .faq-cta:hover { opacity:0.9; }
 
+  /* ===== dark section text overrides (problem / accordion / FAQ) ===== */
+  .section-dark .problem-text h2 { color:#fff; }
+  .section-dark .problem-text p { color:rgba(255,255,255,0.62); }
+  .section-dark .pstat-label { color:rgba(255,255,255,0.5); }
+  .section-dark .gauge-ring { border-color:rgba(255,255,255,0.15); }
+  .section-dark .gauge-label { color:rgba(255,255,255,0.55); }
+  .section-dark #liveTempNote { color:rgba(255,255,255,0.45) !important; }
+  .section-dark .acc-item { border-bottom-color:rgba(255,255,255,0.12); }
+  .section-dark .acc-item:first-child { border-top-color:rgba(255,255,255,0.12); }
+  .section-dark .acc-q h3 { color:#fff; }
+  .section-dark .acc-a-inner { color:rgba(255,255,255,0.62); }
+  .section-dark .acc-chevron { color:rgba(255,255,255,0.5); }
+  .section-dark .faq-footer { border-top-color:rgba(255,255,255,0.12); }
+  .section-dark .faq-footer-text { color:rgba(255,255,255,0.55); }
+
   /* ===== PCM CHECKER ===== */
   .pcm-app { background:var(--melt-surface); border-radius:20px; overflow:hidden; border:1px solid var(--melt-border); box-shadow:0 12px 40px rgba(0,0,0,0.3); }
   .pcm-grid { display:grid; grid-template-columns:290px 1fr; min-height:520px; }
@@ -203,7 +218,7 @@
   <div class="scroll-indicator"><span data-i18n="scroll-label">Scrollen</span><div class="scroll-line"></div></div>
 </section>
 
-<section style="background:var(--melt-gray);">
+<section class="section-dark">
   <div class="container">
     <div class="problem-grid reveal">
       <div class="problem-visual">
@@ -282,7 +297,7 @@
   </div>
 </section>
 
-<section style="background:var(--melt-gray);" id="magazin">
+<section class="section-dark" id="magazin">
   <div class="container">
     <div class="section-header reveal">
       <div class="section-label" data-i18n="mag-label">Aus dem Info-Blog</div>
@@ -298,7 +313,7 @@
   </div>
 </section>
 
-<section id="faq" style="background:var(--melt-gray);">
+<section id="faq" class="section-dark">
   <div class="container">
     <div class="section-header reveal">
       <div class="section-label" data-i18n="faq-label">Häufige Fragen</div>
@@ -319,17 +334,17 @@
 <section id="checker">
   <div class="container">
     <div class="section-header reveal">
-      <div class="section-label">Interaktiv</div>
-      <h2 class="section-title">Eignet sich PCM für Ihr Gebäude?</h2>
-      <p class="section-desc">Beantworten Sie 6 kurze Fragen — wir zeigen live, wie sich Ihre Raumtemperatur mit und ohne Speicher verhält.</p>
+      <div class="section-label" data-i18n="checker-label">Interaktiv</div>
+      <h2 class="section-title" data-i18n="checker-title">Eignet sich PCM für Ihr Gebäude?</h2>
+      <p class="section-desc" data-i18n="checker-desc">Beantworten Sie 6 kurze Fragen — wir zeigen live, wie sich Ihre Raumtemperatur mit und ohne Speicher verhält.</p>
     </div>
 
     <div class="pcm-app reveal">
       <div class="pcm-grid">
         <div class="pcm-curve-panel">
           <div>
-            <div class="pcm-eyebrow">Live-Simulation</div>
-            <h3 class="pcm-curve-title">So würde sich Ihre<br>Raumtemperatur verhalten</h3>
+            <div class="pcm-eyebrow" data-i18n="checker-eyebrow">Live-Simulation</div>
+            <h3 class="pcm-curve-title" data-i18n="checker-curve-title">So würde sich Ihre<br>Raumtemperatur verhalten</h3>
           </div>
           <div class="pcm-curve-svg-wrap">
             <svg id="pcm-curve" viewBox="0 0 240 140" width="100%" height="140">
@@ -340,7 +355,7 @@
               <path id="pcm-curve-flat" d="" fill="none" stroke="var(--melt-orange)" stroke-width="3" stroke-linecap="round" style="transition:opacity .5s ease; opacity:0;"/>
             </svg>
           </div>
-          <div class="pcm-curve-caption">
+          <div class="pcm-curve-caption" data-i18n="checker-caption">
             <span style="color:var(--melt-text-muted)">– – –</span> ohne Wärmespeicher<br>
             <b>———</b> mit <b>PCM</b>-Wärmespeicher
           </div>
@@ -580,22 +595,44 @@ document.querySelectorAll('.stat-card .num').forEach(el=>{
   if(!quizEl) return;
 
   const questions = [
-    { label:"GEBÄUDETYP", text:"Um was für ein Gebäude handelt es sich?",
-      options:[ {text:"Neubau", icon:"🏗", score:2}, {text:"Sanierungsprojekt", icon:"🔧", score:2}, {text:"Bestandsgebäude, keine Änderung geplant", icon:"🏠", score:1} ] },
-    { label:"NUTZUNG", text:"Wofür wird das Gebäude hauptsächlich genutzt?",
-      options:[ {text:"Wohnraum", icon:"🛏", score:2}, {text:"Büro / Arbeitsplatz", icon:"🖥", score:2}, {text:"Gewerbe / Einzelhandel", icon:"🛍", score:1}, {text:"Industrie / Lager", icon:"🏭", score:0} ] },
-    { label:"ÜBERHITZUNG", text:"Überhitzt das Gebäude im Sommer?",
-      options:[ {text:"Ja, häufig — ein echtes Problem", icon:"🔥", score:2}, {text:"Gelegentlich, an heißen Tagen", icon:"🌤", score:1}, {text:"Selten oder nie", icon:"❄", score:0} ] },
-    { label:"BAUWEISE", text:"Wie ist Dach bzw. Dachgeschoss gebaut?",
-      options:[ {text:"Leichtbau (Holzständer, geringe Masse)", icon:"🪵", score:2}, {text:"Mischbauweise", icon:"🧱", score:1}, {text:"Massiv (Beton, hohe therm. Masse)", icon:"🗿", score:0} ] },
-    { label:"NACHTLÜFTUNG", text:"Kann nachts gelüftet werden?",
-      options:[ {text:"Ja, Fenster/Lüftung frei nutzbar", icon:"🌬", score:2}, {text:"Eingeschränkt — nur einzelne Räume", icon:"🪟", score:1}, {text:"Nein, versiegelt oder eingeschränkt", icon:"🔒", score:0} ] },
-    { label:"KLIMA", text:"Was beschreibt Ihr lokales Klima am besten?",
-      options:[ {text:"Große Tag-Nacht-Schwankungen", icon:"🌡", score:2}, {text:"Heiße, stabile Sommer", icon:"☀️", score:1}, {text:"Kalte, stabile Winter", icon:"🏔", score:1} ] }
+    { label:{de:"GEBÄUDETYP",en:"BUILDING TYPE"}, text:{de:"Um was für ein Gebäude handelt es sich?",en:"What kind of building is this?"},
+      options:[ {text:{de:"Neubau",en:"New construction"}, icon:"🏗", score:2}, {text:{de:"Sanierungsprojekt",en:"Renovation project"}, icon:"🔧", score:2}, {text:{de:"Bestandsgebäude, keine Änderung geplant",en:"Existing building, no changes planned"}, icon:"🏠", score:1} ] },
+    { label:{de:"NUTZUNG",en:"USE"}, text:{de:"Wofür wird das Gebäude hauptsächlich genutzt?",en:"What is the building mainly used for?"},
+      options:[ {text:{de:"Wohnraum",en:"Residential"}, icon:"🛏", score:2}, {text:{de:"Büro / Arbeitsplatz",en:"Office / workspace"}, icon:"🖥", score:2}, {text:{de:"Gewerbe / Einzelhandel",en:"Commercial / retail"}, icon:"🛍", score:1}, {text:{de:"Industrie / Lager",en:"Industrial / warehouse"}, icon:"🏭", score:0} ] },
+    { label:{de:"ÜBERHITZUNG",en:"OVERHEATING"}, text:{de:"Überhitzt das Gebäude im Sommer?",en:"Does the building overheat in summer?"},
+      options:[ {text:{de:"Ja, häufig — ein echtes Problem",en:"Yes, often — a real problem"}, icon:"🔥", score:2}, {text:{de:"Gelegentlich, an heißen Tagen",en:"Occasionally, on hot days"}, icon:"🌤", score:1}, {text:{de:"Selten oder nie",en:"Rarely or never"}, icon:"❄", score:0} ] },
+    { label:{de:"BAUWEISE",en:"CONSTRUCTION"}, text:{de:"Wie ist Dach bzw. Dachgeschoss gebaut?",en:"How is the roof or attic built?"},
+      options:[ {text:{de:"Leichtbau (Holzständer, geringe Masse)",en:"Lightweight (timber frame, low mass)"}, icon:"🪵", score:2}, {text:{de:"Mischbauweise",en:"Mixed construction"}, icon:"🧱", score:1}, {text:{de:"Massiv (Beton, hohe therm. Masse)",en:"Solid (concrete, high thermal mass)"}, icon:"🗿", score:0} ] },
+    { label:{de:"NACHTLÜFTUNG",en:"NIGHT VENTILATION"}, text:{de:"Kann nachts gelüftet werden?",en:"Can the building be ventilated at night?"},
+      options:[ {text:{de:"Ja, Fenster/Lüftung frei nutzbar",en:"Yes, windows/ventilation freely usable"}, icon:"🌬", score:2}, {text:{de:"Eingeschränkt — nur einzelne Räume",en:"Limited — only some rooms"}, icon:"🪟", score:1}, {text:{de:"Nein, versiegelt oder eingeschränkt",en:"No, sealed or restricted"}, icon:"🔒", score:0} ] },
+    { label:{de:"KLIMA",en:"CLIMATE"}, text:{de:"Was beschreibt Ihr lokales Klima am besten?",en:"What best describes your local climate?"},
+      options:[ {text:{de:"Große Tag-Nacht-Schwankungen",en:"Large day-night swings"}, icon:"🌡", score:2}, {text:{de:"Heiße, stabile Sommer",en:"Hot, stable summers"}, icon:"☀️", score:1}, {text:{de:"Kalte, stabile Winter",en:"Cold, stable winters"}, icon:"🏔", score:1} ] }
   ];
 
   let current = 0;
   let answers = [];
+  let lang = document.documentElement.lang === 'en' ? 'en' : 'de';
+
+  const UI = {
+    de:{ back:'← Zurück', of:' / ', badgePrefix:'● ', scorePrefix:'Eignungswert: ', scoreSuffix:' / 100',
+      restart:'Neu starten', contact:'Fachliche Einschätzung anfragen',
+      tierHigh:'Hohe Eignung', tierMid:'Mittlere Eignung', tierLow:'Geringere Eignung',
+      titleHigh:'PCM-Wärmespeicherung passt sehr gut', titleMid:'PCM könnte helfen — mit der richtigen Auslegung', titleLow:'PCM bringt hier voraussichtlich weniger Mehrwert',
+      textHigh:"Ihr Gebäude zeigt genau die Bedingungen, unter denen PCM am besten wirkt: spürbarer Überhitzungsdruck, Leichtbau mit schnellen Temperaturschwankungen und die Möglichkeit zur Nachtlüftung. Eine passende MELT Plate Auslegung könnte Temperaturspitzen deutlich glätten.",
+      textMid:"Ihr Gebäude erfüllt einige, aber nicht alle Bedingungen, unter denen PCM-Wärmespeicherung den größten Mehrwert bringt. Ein genauerer Blick lohnt sich — Details wie Raumnutzung, Verglasung und Lüftungsstrategie lassen sich in einem kurzen Fragebogen nicht vollständig abbilden.",
+      textLow:"Ihr Gebäude verfügt bereits über hohe thermische Masse und/oder eingeschränkte Lüftungsmöglichkeiten — es reguliert die Temperatur möglicherweise schon vergleichsweise gut, oder kann gespeicherte Wärme nur schwer wieder abgeben. Andere Maßnahmen wie Verschattung, Dämmung oder Lüftung könnten zuerst den größeren Effekt bringen.",
+      factorLabels:['Gebäudetyp','Nutzung','Überhitzungsrisiko','Bauweise / Masse','Nachtlüftung','Klimaprofil'],
+      strongLbl:'Stark', partialLbl:'Teilweise', weakLbl:'Schwach' },
+    en:{ back:'← Back', of:' / ', badgePrefix:'● ', scorePrefix:'Suitability score: ', scoreSuffix:' / 100',
+      restart:'Start over', contact:'Request an expert assessment',
+      tierHigh:'High Suitability', tierMid:'Moderate Suitability', tierLow:'Lower Suitability',
+      titleHigh:'PCM heat storage is a great fit', titleMid:'PCM could help — with the right design', titleLow:'PCM likely brings less added value here',
+      textHigh:"Your building shows exactly the conditions where PCM works best: noticeable overheating pressure, lightweight construction with fast temperature swings, and the option for night ventilation. A tailored MELT Plate design could significantly flatten temperature peaks.",
+      textMid:"Your building meets some, but not all, of the conditions where PCM heat storage delivers the most value. A closer look is worthwhile — details like room usage, glazing, and ventilation strategy can't be fully captured in a short questionnaire.",
+      textLow:"Your building already has high thermal mass and/or limited ventilation options — it may already regulate temperature comparatively well, or struggle to release stored heat again. Other measures like shading, insulation, or ventilation could bring the bigger effect first.",
+      factorLabels:['Building type','Usage','Overheating risk','Construction / mass','Night ventilation','Climate profile'],
+      strongLbl:'Strong', partialLbl:'Partial', weakLbl:'Weak' }
+  };
 
   const progressEl = document.getElementById('pcm-progress');
   const qLabelEl = document.getElementById('pcm-q-label');
@@ -641,15 +678,16 @@ document.querySelectorAll('.stat-card .num').forEach(el=>{
   function renderQuestion(){
     buildProgress();
     const q = questions[current];
-    qLabelEl.textContent = q.label;
-    qTextEl.textContent = q.text;
-    stepCountEl.textContent = (current+1) + ' / ' + questions.length;
+    qLabelEl.textContent = q.label[lang];
+    qTextEl.textContent = q.text[lang];
+    stepCountEl.textContent = (current+1) + UI[lang].of + questions.length;
+    backBtn.textContent = UI[lang].back;
     backBtn.disabled = current === 0;
     optionsEl.innerHTML = '';
     q.options.forEach(opt=>{
       const btn = document.createElement('button');
       btn.className = 'pcm-opt';
-      btn.innerHTML = '<span class="pcm-opt-icon">'+opt.icon+'</span><span>'+opt.text+'</span>';
+      btn.innerHTML = '<span class="pcm-opt-icon">'+opt.icon+'</span><span>'+opt.text[lang]+'</span>';
       btn.onclick = () => selectAnswer(opt.score);
       optionsEl.appendChild(btn);
     });
@@ -677,38 +715,41 @@ document.querySelectorAll('.stat-card .num').forEach(el=>{
     quizEl.classList.add('pcm-hidden');
     resultEl.classList.add('show');
 
+    const u = UI[lang];
     let tier, title, text;
     if(pct >= 70){
-      tier = 'Hohe Eignung';
-      title = 'PCM-Wärmespeicherung passt sehr gut';
-      text = "Ihr Gebäude zeigt genau die Bedingungen, unter denen PCM am besten wirkt: spürbarer Überhitzungsdruck, Leichtbau mit schnellen Temperaturschwankungen und die Möglichkeit zur Nachtlüftung. Eine passende MELT Plate Auslegung könnte Temperaturspitzen deutlich glätten.";
+      tier = u.tierHigh; title = u.titleHigh; text = u.textHigh;
     } else if(pct >= 40){
-      tier = 'Mittlere Eignung';
-      title = 'PCM könnte helfen — mit der richtigen Auslegung';
-      text = "Ihr Gebäude erfüllt einige, aber nicht alle Bedingungen, unter denen PCM-Wärmespeicherung den größten Mehrwert bringt. Ein genauerer Blick lohnt sich — Details wie Raumnutzung, Verglasung und Lüftungsstrategie lassen sich in einem kurzen Fragebogen nicht vollständig abbilden.";
+      tier = u.tierMid; title = u.titleMid; text = u.textMid;
     } else {
-      tier = 'Geringere Eignung';
-      title = 'PCM bringt hier voraussichtlich weniger Mehrwert';
-      text = "Ihr Gebäude verfügt bereits über hohe thermische Masse und/oder eingeschränkte Lüftungsmöglichkeiten — es reguliert die Temperatur möglicherweise schon vergleichsweise gut, oder kann gespeicherte Wärme nur schwer wieder abgeben. Andere Maßnahmen wie Verschattung, Dämmung oder Lüftung könnten zuerst den größeren Effekt bringen.";
+      tier = u.tierLow; title = u.titleLow; text = u.textLow;
     }
 
-    document.getElementById('pcm-result-badge').innerHTML = '● ' + tier;
+    document.getElementById('pcm-result-badge').innerHTML = u.badgePrefix + tier;
     document.getElementById('pcm-result-title').textContent = title;
-    document.getElementById('pcm-result-score').textContent = 'Eignungswert: ' + pct + ' / 100';
+    document.getElementById('pcm-result-score').textContent = u.scorePrefix + pct + u.scoreSuffix;
     document.getElementById('pcm-result-text').textContent = text;
+    document.getElementById('pcm-restart').textContent = u.restart;
+    document.getElementById('pcm-cta-contact').textContent = u.contact;
 
     const factorsEl = document.getElementById('pcm-result-factors');
     factorsEl.innerHTML = '';
-    const factorLabels = ['Gebäudetyp','Nutzung','Überhitzungsrisiko','Bauweise / Masse','Nachtlüftung','Klimaprofil'];
     answers.forEach((score,i)=>{
       const max_i = Math.max(...questions[i].options.map(o=>o.score)) || 1;
-      const strength = score >= max_i ? 'Stark' : (score > 0 ? 'Teilweise' : 'Schwach');
+      const strength = score >= max_i ? u.strongLbl : (score > 0 ? u.partialLbl : u.weakLbl);
       const div = document.createElement('div');
       div.className = 'pcm-factor';
-      div.innerHTML = '<div class="pcm-factor-label">'+factorLabels[i]+'</div><div class="pcm-factor-value">'+strength+'</div>';
+      div.innerHTML = '<div class="pcm-factor-label">'+u.factorLabels[i]+'</div><div class="pcm-factor-value">'+strength+'</div>';
       factorsEl.appendChild(div);
     });
   }
+
+  // re-render the checker in place whenever the site-wide language toggle fires
+  window.addEventListener('melt-lang-change', (e)=>{
+    lang = e.detail === 'en' ? 'en' : 'de';
+    if(resultEl.classList.contains('show')){ showResult(); }
+    else { renderQuestion(); }
+  });
 
   document.getElementById('pcm-restart').onclick = () => {
     current = 0; answers = [];
@@ -786,6 +827,12 @@ document.querySelectorAll('.stat-card .num').forEach(el=>{
     'mag3-desc': { de:'Was ist Komfort und was macht ein Gebäude komfortabel?', en:'What is comfort, and what makes a building comfortable?' },
     'mag4-title': { de:'Low-Tech?', en:'Low-tech?' },
     'mag4-desc': { de:'Die Gegenbewegung zu immer mehr Haustechnik.', en:'The counter-movement to ever more building technology.' },
+    'checker-label': { de:'Interaktiv', en:'Interactive' },
+    'checker-title': { de:'Eignet sich PCM für Ihr Gebäude?', en:'Is PCM a Good Fit for Your Building?' },
+    'checker-desc': { de:'Beantworten Sie 6 kurze Fragen — wir zeigen live, wie sich Ihre Raumtemperatur mit und ohne Speicher verhält.', en:'Answer 6 short questions — we\'ll show live how your room temperature behaves with and without storage.' },
+    'checker-eyebrow': { de:'Live-Simulation', en:'Live Simulation' },
+    'checker-curve-title': { de:'So würde sich Ihre<br>Raumtemperatur verhalten', en:'This is how your<br>room temperature would behave' },
+    'checker-caption': { de:'<span style="color:var(--melt-text-muted)">– – –</span> ohne Wärmespeicher<br><b>———</b> mit <b>PCM</b>-Wärmespeicher', en:'<span style="color:var(--melt-text-muted)">– – –</span> without heat storage<br><b>———</b> with <b>PCM</b> heat storage' },
     'faq-label': { de:'Häufige Fragen', en:'Frequently Asked Questions' },
     'faq-desc': { de:'Alles, was Sie über PCM-Wärmespeicher und die MELT Plate wissen möchten.', en:'Everything you want to know about PCM heat storage and the MELT Plate.' },
     'faq-footer-text': { de:'Haben Sie eine andere Frage?', en:'Have a different question?' },
