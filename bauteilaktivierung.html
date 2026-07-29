@@ -117,12 +117,13 @@
 
       <div class="loadshift-viz">
         <div class="viz-title" data-i18n="viz2-title">Load-Shifting im Tagesverlauf</div>
-        <div class="viz-note" data-i18n="viz2-note">// Illustrative Darstellung: PV-Verfügbarkeit, Strompreis und Wärmepumpen-Laufzeit</div>
+        <div class="viz-note" data-i18n="viz2-note">// Illustrative Darstellung: PV-Verfügbarkeit, Windstrom, Strompreis und Wärmepumpen-Laufzeit</div>
         <svg id="loadChart" viewBox="0 0 900 260" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <linearGradient id="pvGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#F4A261" stop-opacity="0.9"/><stop offset="100%" stop-color="#F4A261" stop-opacity="0.15"/></linearGradient>
           </defs>
           <line x1="0" y1="210" x2="900" y2="210" stroke="rgba(10,10,10,0.1)"/>
+          <path id="windCurve" fill="none" stroke="#6BB6E0" stroke-width="2" stroke-dasharray="5 4" opacity="0.75" d=""></path>
           <path id="pvCurve" fill="url(#pvGrad)" stroke="#F4A261" stroke-width="2" d=""></path>
           <g id="heatPumpBars"></g>
           <text x="10" y="230" font-family="IBM Plex Mono" font-size="11" fill="rgba(10,10,10,0.4)">00:00</text>
@@ -130,8 +131,9 @@
           <text x="855" y="230" font-family="IBM Plex Mono" font-size="11" fill="rgba(10,10,10,0.4)">24:00</text>
         </svg>
         <div class="ls-legend">
-          <span><i class="dot" style="background:#F4A261"></i>PV-Verfügbarkeit / günstiger Strom</span>
-          <span><i class="dot" style="background:#1B6FA8"></i>Wärmepumpe läuft, MELT Plate puffert</span>
+          <span><i class="dot" style="background:#F4A261"></i><span data-i18n="legend-pv">PV-Verfügbarkeit / günstiger Solarstrom</span></span>
+          <span><i class="dot" style="background:#6BB6E0"></i><span data-i18n="legend-wind">Günstiger Windstrom (nachts)</span></span>
+          <span><i class="dot" style="background:#1B6FA8"></i><span data-i18n="legend-hp">Wärmepumpe läuft, MELT Plate puffert</span></span>
         </div>
       </div>
 
@@ -178,12 +180,20 @@
 const io = new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('active'); io.unobserve(e.target);} }); },{threshold:0.15});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-// build the PV curve + heat pump operation bars, animate in on scroll
+// build the PV curve + wind curve + heat pump operation bars, animate in on scroll
 const W = 900, H = 260, baseline = 210;
 function pvValue(hour){
   // bell curve centered on midday, representing solar availability
   const x = (hour - 13) / 5;
   return Math.max(0, Math.exp(-x*x) * 150);
+}
+function windValue(hour){
+  // elevated availability through most of the night, wrapping across midnight (peaks ~1am, tapers by ~6am and ramps up again after ~19:00)
+  const center = 1;
+  let d = Math.abs(hour - center);
+  d = Math.min(d, 24 - d);
+  const x = d / 5.5;
+  return Math.max(0, Math.exp(-x*x) * 95);
 }
 let path = `M0 ${baseline}`;
 for(let h=0; h<=24; h+=0.5){
@@ -194,9 +204,17 @@ for(let h=0; h<=24; h+=0.5){
 path += ` L${W} ${baseline} Z`;
 document.getElementById('pvCurve').setAttribute('d', path);
 
-// heat pump runs during the two cheapest/greenest windows: midday solar peak + a cheap early-morning wind window
+let windPath = '';
+for(let h=0; h<=24; h+=0.5){
+  const x = (W/24)*h;
+  const y = baseline - windValue(h);
+  windPath += (h===0?'M':'L') + `${x} ${y}`;
+}
+document.getElementById('windCurve').setAttribute('d', windPath);
+
+// heat pump runs during the cheapest/greenest windows: overnight wind (both edges of the day) + midday solar peak
 const barsGroup = document.getElementById('heatPumpBars');
-const windows = [[1,5],[10,16]];
+const windows = [[0,5],[10,16],[20,24]];
 windows.forEach(([startH,endH])=>{
   const x = (W/24)*startH;
   const width = (W/24)*(endH-startH);
@@ -214,11 +232,14 @@ const chartIO = new IntersectionObserver((entries)=>{
     if(entry.isIntersecting && !chartAnimated){
       chartAnimated = true;
       const pvCurve = document.getElementById('pvCurve');
-      pvCurve.style.opacity = 0;
-      pvCurve.style.transition = 'opacity 1.2s ease';
-      requestAnimationFrame(()=>{ pvCurve.style.opacity = 1; });
+      const windCurve = document.getElementById('windCurve');
+      [pvCurve, windCurve].forEach((el, i)=>{
+        el.style.opacity = 0;
+        el.style.transition = `opacity 1.2s ease ${i*0.2}s`;
+        requestAnimationFrame(()=>{ el.style.opacity = el === windCurve ? 0.75 : 1; });
+      });
       barsGroup.querySelectorAll('rect').forEach((r, i)=>{
-        r.style.transition = `width 1s ease ${0.5 + i*0.3}s`;
+        r.style.transition = `width 1s ease ${0.9 + i*0.3}s`;
         requestAnimationFrame(()=>{ r.setAttribute('width', r.dataset.targetWidth); });
       });
     }
@@ -252,7 +273,10 @@ window.PAGE_I18N = {
   "p4": { de:"Sie funktioniert vollautomatisch: Sobald die Raumtemperatur den Schmelzpunkt erreicht, nimmt das PCM Wärme auf – ohne dass die Temperatur weiter steigt. Nachts oder bei Abkühlung gibt die Platte die Energie wieder ab. Diese „passive Bauteilaktivierung\" funktioniert auch in Leichtbauten, wo klassische thermische Aktivierung nicht möglich ist.", en:"It works fully automatically: as soon as room temperature reaches the melting point, the PCM absorbs heat — without the temperature rising further. At night or as it cools, the plate releases the energy again. This \"passive thermal component activation\" also works in lightweight buildings, where classic thermal activation isn't possible." },
   "p5": { de:"Besonders in Kombination mit Wärmepumpen zeigt sich der Vorteil: Die Platte puffert Lastspitzen, sodass die Wärmepumpe in Zeiten günstigen Stroms oder hoher PV-Produktion laufen kann – <strong>echtes Load-Shifting ohne komplexe Gebäudetechnik.</strong>", en:"The advantage really shows in combination with heat pumps: the plate buffers load peaks, so the heat pump can run during times of cheap electricity or high PV output — <strong>real load-shifting without complex building technology.</strong>" },
   "viz2-title": { de:"Load-Shifting im Tagesverlauf", en:"Load-Shifting Over the Course of a Day" },
-  "viz2-note": { de:"// Illustrative Darstellung: PV-Verfügbarkeit, Strompreis und Wärmepumpen-Laufzeit", en:"// Illustrative depiction: PV availability, electricity price, and heat pump runtime" },
+  "viz2-note": { de:"// Illustrative Darstellung: PV-Verfügbarkeit, Windstrom, Strompreis und Wärmepumpen-Laufzeit", en:"// Illustrative depiction: PV availability, wind power, electricity price, and heat pump runtime" },
+  "legend-pv": { de:"PV-Verfügbarkeit / günstiger Solarstrom", en:"PV availability / cheap solar power" },
+  "legend-wind": { de:"Günstiger Windstrom (nachts)", en:"Cheap wind power (overnight)" },
+  "legend-hp": { de:"Wärmepumpe läuft, MELT Plate puffert", en:"Heat pump running, MELT Plate buffers" },
 };
 </script>
 
