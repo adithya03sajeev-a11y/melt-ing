@@ -18,10 +18,10 @@
   @media (max-width:640px){ .tech-compare{grid-template-columns:1fr;} }
   .tech-side { border-radius:18px; padding:1.8rem; border:1px solid var(--melt-border); }
   .tech-side.high { background:rgba(200,60,60,0.05); border-color:rgba(200,60,60,0.25); }
-  .tech-side.low { background:rgba(27,111,168,0.06); border-color:rgba(27,111,168,0.3); }
+  .tech-side.low { background:rgba(15, 76, 82,0.06); border-color:rgba(15, 76, 82,0.3); }
   .tech-side h4 { font-family:'Manrope', sans-serif; font-size:1.05rem; margin-bottom:1.1rem; }
   .tech-list { list-style:none; }
-  .tech-list li { font-size:0.9rem; color:var(--melt-text-muted); padding:0.5rem 0; border-bottom:1px solid rgba(10,10,10,0.15); display:flex; align-items:center; gap:0.6rem; opacity:0; transform:translateX(-10px); transition:opacity .5s ease, transform .5s ease; }
+  .tech-list li { font-size:0.9rem; color:var(--melt-text-muted); padding:0.5rem 0; border-bottom:1px solid rgba(15, 76, 82,0.15); display:flex; align-items:center; gap:0.6rem; opacity:0; transform:translateX(-10px); transition:opacity .5s ease, transform .5s ease; }
   .tech-list li.in { opacity:1; transform:translateX(0); }
   .tech-list.high li::before { content:'✕'; color:#d97070; }
   .tech-list.low li::before { content:'✓'; color:var(--melt-blue); }
@@ -34,8 +34,8 @@
   /* decades timeline */
   .decades-viz { background:var(--melt-gray); border:1px solid var(--melt-border); border-radius:22px; padding:2.2rem 2rem; margin:2.2rem 0 2.6rem; text-align:center; }
   .decades-viz .viz-title { font-family:'IBM Plex Mono', monospace; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.07em; color:var(--melt-text-muted); margin-bottom:1.8rem; }
-  .decades-track { position:relative; height:6px; background:rgba(10,10,10,0.18); border-radius:4px; margin:0 20px; }
-  .decades-fill { position:absolute; top:0; left:0; height:100%; width:0%; background:linear-gradient(90deg, var(--melt-blue), #6BB6E0); border-radius:4px; transition:width 2.2s cubic-bezier(.16,1,.3,1); }
+  .decades-track { position:relative; height:6px; background:rgba(15, 76, 82,0.18); border-radius:4px; margin:0 20px; }
+  .decades-fill { position:absolute; top:0; left:0; height:100%; width:0%; background:linear-gradient(90deg, var(--melt-blue), #3D96A0); border-radius:4px; transition:width 2.2s cubic-bezier(.16,1,.3,1); }
   .decades-labels { display:flex; justify-content:space-between; margin-top:0.8rem; font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color:var(--melt-text-muted); }
   .decades-caption { margin-top:1.2rem; font-size:0.9rem; color:var(--melt-text-muted); }
 </style>
