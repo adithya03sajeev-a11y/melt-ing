@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://melt-ing.com/sitemap.xml
