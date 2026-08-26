@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bauteilaktivierung ohne Beton — MELT-Ing GmbH</title>
+<meta name="description" content="Bauteilaktivierung ohne Beton: Wie die MELT Plate passive Lastverschiebung (Load-Shifting) und Wärmepufferung ermöglicht — ganz ohne Rohrleitungen oder Pumpen.">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  .article-meta { font-family:'IBM Plex Mono', monospace; font-size:0.78rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--melt-text-muted); margin-bottom:1.2rem; }
+  .article-body-text { max-width:800px; margin:0 auto; }
+  .article-body-text h2 { font-family:'Manrope', sans-serif; font-size:1.6rem; margin:2.6rem 0 1.1rem; }
+  .article-body-text p { color:var(--melt-text-muted); font-size:1.05rem; margin-bottom:1.2rem; line-height:1.75; }
+  .article-body-text .lead-q { font-family:'Manrope', sans-serif; font-size:1.5rem; color:var(--melt-text); margin-bottom:2rem; line-height:1.35; }
+
+  /* system comparison diagram */
+  .compare-viz { background:var(--melt-gray); border:1px solid var(--melt-border); border-radius:22px; padding:2rem; margin:2rem 0 2.6rem; max-width:800px; margin-left:auto; margin-right:auto; }
+  .compare-viz .viz-title { font-family:'IBM Plex Mono', monospace; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.07em; color:var(--melt-text-muted); margin-bottom:1.6rem; }
+  .compare-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.6rem; }
+  @media (max-width:640px){ .compare-grid{grid-template-columns:1fr;} }
+  .compare-col { background:var(--melt-surface); border-radius:16px; padding:1.4rem; text-align:center; border:1px solid var(--melt-border); }
+  .compare-col h4 { font-family:'Manrope', sans-serif; font-size:0.98rem; margin-bottom:1rem; }
+  .pipe-diagram { position:relative; height:90px; background:#111; border-radius:10px; overflow:hidden; margin-bottom:0.9rem; }
+  .pipe-diagram .slab { position:absolute; inset:0; background:linear-gradient(180deg,#2a2a2a,#1a1a1a); }
+  .pipe-diagram .pipe { position:absolute; top:50%; left:5%; right:5%; height:8px; transform:translateY(-50%); background:#333; border-radius:4px; overflow:hidden; }
+  .pipe-diagram .water-dot { position:absolute; top:0; left:-10%; width:14px; height:8px; border-radius:4px; background:var(--melt-blue); animation:flow 2.2s linear infinite; }
+  .pipe-diagram .water-dot:nth-child(2){ animation-delay:0.7s; }
+  .pipe-diagram .water-dot:nth-child(3){ animation-delay:1.4s; }
+  @keyframes flow { from{ left:-10%; } to{ left:110%; } }
+  .plate-diagram { position:relative; height:90px; background:#111; border-radius:10px; overflow:hidden; margin-bottom:0.9rem; display:flex; align-items:center; justify-content:center; }
+  .plate-diagram .melt-slab { width:80%; height:36px; border-radius:8px; background:linear-gradient(90deg, var(--melt-orange), var(--melt-orange-light)); position:relative; overflow:hidden; }
+  .plate-diagram .melt-slab::after { content:''; position:absolute; inset:0; background:linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent); width:40%; animation:shimmer 2.4s ease-in-out infinite; }
+  @keyframes shimmer { 0%{ transform:translateX(-120%);} 100%{ transform:translateX(220%);} }
+  .compare-col p { font-size:0.86rem; color:var(--melt-text-muted); margin:0; }
+
+  /* load shifting chart */
+  .loadshift-viz { background:var(--melt-gray); border:1px solid var(--melt-border); border-radius:22px; padding:2rem; margin:2rem 0 2.6rem; max-width:800px; margin-left:auto; margin-right:auto; }
+  .loadshift-viz .viz-title { font-family:'IBM Plex Mono', monospace; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.07em; color:var(--melt-text-muted); margin-bottom:0.3rem; }
+  .loadshift-viz .viz-note { font-family:'IBM Plex Mono', monospace; font-size:0.7rem; color:rgba(15, 76, 82,0.35); margin-bottom:1.4rem; }
+  svg#loadChart { width:100%; height:auto; display:block; }
+  .ls-legend { display:flex; gap:1.6rem; margin-top:1.1rem; flex-wrap:wrap; font-family:'IBM Plex Mono', monospace; font-size:0.8rem; }
+  .ls-legend span { display:flex; align-items:center; gap:0.5rem; color:var(--melt-text-muted); }
+  .ls-legend .dot { width:10px; height:10px; border-radius:3px; display:inline-block; }
+</style>
+</head>
+<body>
+
+<nav class="nav" id="mainNav">
+  <a href="index.html" class="nav-logo"><img src="assets/img/logo.png" alt="MELT-Ing Logo"><span>-Ing</span></a>
+  <ul class="nav-links">
+    <li><a href="melt-plate.html" data-de="MELT Plate" data-en="MELT Plate">MELT Plate</a></li>
+    <li class="has-dropdown"><a href="zielgruppe.html" data-de="Zielgruppe" data-en="Audience">Zielgruppe</a>
+      <div class="dropdown">
+        <a href="zielgruppe.html#investoren"><span class="dd-icon">◆</span><span data-de="Investoren" data-en="Investors">Investoren</span></a>
+        <a href="zielgruppe.html#bauunternehmen"><span class="dd-icon">◈</span><span data-de="Bauunternehmen" data-en="Construction Companies">Bauunternehmen</span></a>
+        <a href="zielgruppe.html#architekten"><span class="dd-icon">✎</span><span data-de="Architekten und Planer" data-en="Architects & Planners">Architekten und Planer</span></a>
+        <a href="zielgruppe.html#defense"><span class="dd-icon">⛨</span><span data-de="Defense" data-en="Defense">Defense</span></a>
+        <a href="zielgruppe.html#diy"><span class="dd-icon">⚒</span><span data-de="DIY" data-en="DIY">DIY</span></a>
+      </div>
+    </li>
+    <li class="has-dropdown"><a href="magazin.html" data-de="Magazin" data-en="Magazine">Magazin</a>
+      <div class="dropdown">
+        <a href="hitzeschutz.html"><span class="dd-icon">☀</span><span data-de="Hitzeschutz" data-en="Heat Protection">Hitzeschutz</span></a>
+        <a href="pcm.html"><span class="dd-icon">◉</span><span data-de="PCM" data-en="PCM">PCM</span></a>
+        <a href="bauteilaktivierung.html"><span class="dd-icon">▤</span><span data-de="Bauteilaktivierung" data-en="Thermal Activation">Bauteilaktivierung</span></a>
+        <a href="komfort.html"><span class="dd-icon">❖</span><span data-de="Komfort" data-en="Comfort">Komfort</span></a>
+        <a href="lowtech.html"><span class="dd-icon">✻</span><span data-de="Low-Tech" data-en="Low-Tech">Low-Tech</span></a>
+        <a href="magazin.html#case"><span class="dd-icon">▣</span><span data-de="Case Studies" data-en="Case Studies">Case Studies</span></a>
+      </div>
+    </li>
+    <li><a href="ueber-uns.html" data-de="Über uns" data-en="About us">Über uns</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="lang-switch" id="langSwitch">
+      <button class="lang-btn active" data-lang="de">DE</button>
+      <span class="lang-sep">|</span>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </div>
+    <a href="kontakt.html" class="nav-cta" data-de="gleich anfragen →" data-en="get in touch →">gleich anfragen →</a>
+  </div>
+</nav>
+
+<div class="page-hero" style="padding-bottom:1rem;">
+  <div class="section-label" data-i18n="hero-label">Thema · Juli 2025</div>
+  <h1 data-i18n="hero-h1">Bauteilaktivierung <span class="highlight">ohne Beton?</span></h1>
+</div>
+
+<section style="padding-top:0;">
+  <div class="container">
+    <div class="article-body-text reveal">
+      <div class="article-meta" data-i18n="meta">Geld sparen · Load-Shifting</div>
+      <p class="lead-q" data-i18n="lead">Bock auf Betonkernaktivierung ohne Beton?</p>
+
+      <h2 data-i18n="h2-1">Das Spiel mit der Gebäudemasse</h2>
+      <p data-i18n="p1">Bauteilaktivierung nutzt massive Bauteile wie Decken und Wände als Wärme- oder Kältespeicher. Dabei werden Rohrleitungen in Betondecken eingelassen, durch die temperiertes Wasser fließt. Die große thermische Masse des Betons nimmt Energie auf und gibt sie zeitverzögert an den Raum ab.</p>
+      <p data-i18n="p2">Vorteile sind niedrige Vorlauftemperaturen (ideal für Wärmepumpen), geringe Betriebskosten und hoher Komfort durch Strahlungswärme. Nachteile sind die langsame Reaktionszeit, hohe Investitionskosten und die Notwendigkeit massiver Bauteile. In modernen Leichtbauten mit Holz oder Stahl fehlt diese Masse – Bauteilaktivierung ist hier nicht umsetzbar. Zudem erfordert die Installation eine sorgfältige Planung, da nachträgliche Änderungen kaum möglich sind.</p>
+
+      <div class="compare-viz">
+        <div class="viz-title" data-i18n="viz1-title">Klassische Bauteilaktivierung vs. MELT Plate</div>
+        <div class="compare-grid">
+          <div class="compare-col">
+            <h4 data-i18n="compare1-h">Betonkernaktivierung</h4>
+            <div class="pipe-diagram"><div class="slab"></div><div class="pipe"><div class="water-dot"></div><div class="water-dot"></div><div class="water-dot"></div></div></div>
+            <p data-i18n="compare1-p">Aktiv gepumptes Wasser durch Rohrleitungen im massiven Beton — braucht Strom, Pumpe und sorgfältige Vorabplanung.</p>
+          </div>
+          <div class="compare-col">
+            <h4 data-i18n="compare2-h">MELT Plate</h4>
+            <div class="plate-diagram"><div class="melt-slab"></div></div>
+            <p data-i18n="compare2-p">Rein passive Phasenwechselspeicherung — keine Rohrleitungen, keine Pumpe, funktioniert vollautomatisch.</p>
+          </div>
+        </div>
+      </div>
+
+      <h2 data-i18n="h2-2">Thermische Masse durch MELT statt Beton</h2>
+      <p data-i18n="p3">Die MELT Plate ermöglicht eine passive Form der Bauteilaktivierung ohne Rohrleitungen und Wassersystem. Statt aktiv temperiertes Wasser durch massive Bauteile zu pumpen, aktiviert die MELT Plate die Gebäudehülle durch Phasenwechselspeicherung.</p>
+      <p data-i18n="p4">Sie funktioniert vollautomatisch: Sobald die Raumtemperatur den Schmelzpunkt erreicht, nimmt das PCM Wärme auf – ohne dass die Temperatur weiter steigt. Nachts oder bei Abkühlung gibt die Platte die Energie wieder ab. Diese „passive Bauteilaktivierung" funktioniert auch in Leichtbauten, wo klassische thermische Aktivierung nicht möglich ist.</p>
+      <p data-i18n="p5">Besonders in Kombination mit Wärmepumpen zeigt sich der Vorteil: Die Platte puffert Lastspitzen, sodass die Wärmepumpe in Zeiten günstigen Stroms oder hoher PV-Produktion laufen kann – <strong>echtes Load-Shifting ohne komplexe Gebäudetechnik.</strong></p>
+
+      <div class="loadshift-viz">
+        <div class="viz-title" data-i18n="viz2-title">Load-Shifting im Tagesverlauf</div>
+        <div class="viz-note" data-i18n="viz2-note">// Illustrative Darstellung: PV-Verfügbarkeit, Windstrom, Strompreis und Wärmepumpen-Laufzeit</div>
+        <svg id="loadChart" viewBox="0 0 900 260" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="pvGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#6FC3C9" stop-opacity="0.9"/><stop offset="100%" stop-color="#6FC3C9" stop-opacity="0.15"/></linearGradient>
+          </defs>
+          <line x1="0" y1="210" x2="900" y2="210" stroke="rgba(15, 76, 82,0.1)"/>
+          <path id="windCurve" fill="none" stroke="#3D96A0" stroke-width="2" stroke-dasharray="5 4" opacity="0.75" d=""></path>
+          <path id="pvCurve" fill="url(#pvGrad)" stroke="#6FC3C9" stroke-width="2" d=""></path>
+          <g id="heatPumpBars"></g>
+          <text x="10" y="230" font-family="IBM Plex Mono" font-size="11" fill="rgba(15, 76, 82,0.4)">00:00</text>
+          <text x="420" y="230" font-family="IBM Plex Mono" font-size="11" fill="rgba(15, 76, 82,0.4)">12:00</text>
+          <text x="855" y="230" font-family="IBM Plex Mono" font-size="11" fill="rgba(15, 76, 82,0.4)">24:00</text>
+        </svg>
+        <div class="ls-legend">
+          <span><i class="dot" style="background:#6FC3C9"></i><span data-i18n="legend-pv">PV-Verfügbarkeit / günstiger Solarstrom</span></span>
+          <span><i class="dot" style="background:#3D96A0"></i><span data-i18n="legend-wind">Günstiger Windstrom (nachts)</span></span>
+          <span><i class="dot" style="background:#0F4C52"></i><span data-i18n="legend-hp">Wärmepumpe läuft, MELT Plate puffert</span></span>
+        </div>
+      </div>
+
+      <p>Für Sie bedeutet das: gesenkte Spitzenlasten, mehr Eigenverbrauch von Solarstrom und geringere Betriebskosten — ganz ohne die Investition, Planungslast und Nachrüst-Hürden klassischer Betonkernaktivierung.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="cta-content">
+    <h2 data-i18n="cta-title">Neugierig gemacht?</h2>
+    <p data-i18n="cta-body">Wollen Sie mehr wissen? Schreiben Sie uns unter contact@melt-ing.com.</p>
+    <a href="kontakt.html" class="cta-btn" data-i18n="cta-btn">Kontakt aufnehmen →</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand"><img src="assets/img/logo.png" alt=""><span>-Ing</span> GmbH</div>
+      <p class="footer-desc">Tailored Thermal Buffering for Buildings. Das Start-up aus Mannheim ermöglicht überragenden Komfort und Klimaresilienz in leichten, ökologischen Gebäuden.</p>
+    </div>
+    <div class="footer-col"><h4>Quick links</h4><ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="ueber-uns.html">About</a></li>
+      <li><a href="magazin.html">News</a></li>
+      <li><a href="kontakt.html">Contact</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Services</h4><ul>
+      <li><a href="komfort.html" data-de="Komfort" data-en="Comfort">Komfort</a></li>
+      <li><a href="pcm.html">Wärmespeicher</a></li>
+      <li><a href="hitzeschutz.html" data-de="Hitzeschutz" data-en="Heat Protection">Hitzeschutz</a></li>
+      <li><a href="bauteilaktivierung.html">Load-Shifting</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Follow us</h4><ul>
+      <li><a href="https://www.linkedin.com/company/melt-ing/">LinkedIn</a></li>
+      <li><a href="https://www.youtube.com/@MELT-IngGmbH">YouTube</a></li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom">Melt-Ing GmbH · John-Deere-Str. 81a · 68163 Mannheim · contact@melt-ing.com — dies ist ein unverbindlicher Redesign-Entwurf, kein Live-Deployment.</div>
+</footer>
+
+<script>
+const io = new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('active'); io.unobserve(e.target);} }); },{threshold:0.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// build the PV curve + wind curve + heat pump operation bars, animate in on scroll
+const W = 900, H = 260, baseline = 210;
+function pvValue(hour){
+  // bell curve centered on midday, representing solar availability
+  const x = (hour - 13) / 5;
+  return Math.max(0, Math.exp(-x*x) * 150);
+}
+function windValue(hour){
+  // elevated availability through most of the night, wrapping across midnight (peaks ~1am, tapers by ~6am and ramps up again after ~19:00)
+  const center = 1;
+  let d = Math.abs(hour - center);
+  d = Math.min(d, 24 - d);
+  const x = d / 5.5;
+  return Math.max(0, Math.exp(-x*x) * 95);
+}
+let path = `M0 ${baseline}`;
+for(let h=0; h<=24; h+=0.5){
+  const x = (W/24)*h;
+  const y = baseline - pvValue(h);
+  path += ` L${x} ${y}`;
+}
+path += ` L${W} ${baseline} Z`;
+document.getElementById('pvCurve').setAttribute('d', path);
+
+let windPath = '';
+for(let h=0; h<=24; h+=0.5){
+  const x = (W/24)*h;
+  const y = baseline - windValue(h);
+  windPath += (h===0?'M':'L') + `${x} ${y}`;
+}
+document.getElementById('windCurve').setAttribute('d', windPath);
+
+// heat pump runs during the cheapest/greenest windows: overnight wind (both edges of the day) + midday solar peak
+const barsGroup = document.getElementById('heatPumpBars');
+const windows = [[0,5],[10,16],[20,24]];
+windows.forEach(([startH,endH])=>{
+  const x = (W/24)*startH;
+  const width = (W/24)*(endH-startH);
+  const rect = document.createElementNS('http://www.w3.org/2000/svg','rect');
+  rect.setAttribute('x', x); rect.setAttribute('y', baseline-14);
+  rect.setAttribute('width', 0); rect.setAttribute('height', 14);
+  rect.setAttribute('fill', '#0F4C52'); rect.setAttribute('rx', 3);
+  rect.dataset.targetWidth = width;
+  barsGroup.appendChild(rect);
+});
+
+let chartAnimated = false;
+const chartIO = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting && !chartAnimated){
+      chartAnimated = true;
+      const pvCurve = document.getElementById('pvCurve');
+      const windCurve = document.getElementById('windCurve');
+      [pvCurve, windCurve].forEach((el, i)=>{
+        el.style.opacity = 0;
+        el.style.transition = `opacity 1.2s ease ${i*0.2}s`;
+        requestAnimationFrame(()=>{ el.style.opacity = el === windCurve ? 0.75 : 1; });
+      });
+      barsGroup.querySelectorAll('rect').forEach((r, i)=>{
+        r.style.transition = `width 1s ease ${0.9 + i*0.3}s`;
+        requestAnimationFrame(()=>{ r.setAttribute('width', r.dataset.targetWidth); });
+      });
+    }
+  });
+},{threshold:0.3});
+chartIO.observe(document.getElementById('loadChart'));
+
+// pipe/plate diagrams already animate via CSS continuously
+</script>
+
+
+<script>
+window.PAGE_I18N = {
+  "cta-title": { de:"Neugierig gemacht?", en:"Curious?" },
+  "cta-body": { de:"Wollen Sie mehr wissen? Schreiben Sie uns unter contact@melt-ing.com.", en:"Want to know more? Write to us at contact@melt-ing.com." },
+  "cta-btn": { de:"Kontakt aufnehmen →", en:"Get in touch →" },
+  "hero-label": { de:"Thema · Juli 2025", en:"Topic · July 2025" },
+  "hero-h1": { de:'Bauteilaktivierung <span class="highlight">ohne Beton?</span>', en:'Thermal Component Activation <span class="highlight">Without Concrete?</span>' },
+  "meta": { de:"Geld sparen · Load-Shifting", en:"Save Money · Load Shifting" },
+  "lead": { de:"Bock auf Betonkernaktivierung ohne Beton?", en:"Fancy thermal core activation without the concrete?" },
+  "h2-1": { de:"Das Spiel mit der Gebäudemasse", en:"The Game of Thermal Mass" },
+  "p1": { de:"Bauteilaktivierung nutzt massive Bauteile wie Decken und Wände als Wärme- oder Kältespeicher. Dabei werden Rohrleitungen in Betondecken eingelassen, durch die temperiertes Wasser fließt. Die große thermische Masse des Betons nimmt Energie auf und gibt sie zeitverzögert an den Raum ab.", en:"Thermal component activation uses massive elements like slabs and walls as heat or cold storage. Pipes are embedded in concrete slabs, through which tempered water flows. The concrete's large thermal mass absorbs energy and releases it into the room with a time delay." },
+  "p2": { de:"Vorteile sind niedrige Vorlauftemperaturen (ideal für Wärmepumpen), geringe Betriebskosten und hoher Komfort durch Strahlungswärme. Nachteile sind die langsame Reaktionszeit, hohe Investitionskosten und die Notwendigkeit massiver Bauteile. In modernen Leichtbauten mit Holz oder Stahl fehlt diese Masse – Bauteilaktivierung ist hier nicht umsetzbar. Zudem erfordert die Installation eine sorgfältige Planung, da nachträgliche Änderungen kaum möglich sind.", en:"Advantages include low flow temperatures (ideal for heat pumps), low operating costs, and high comfort from radiant heat. Disadvantages are the slow response time, high investment costs, and the need for massive components. In modern lightweight buildings made of wood or steel, this mass is missing — thermal component activation simply isn't feasible there. Installation also requires careful planning, since retrofitting is barely possible." },
+  "viz1-title": { de:"Klassische Bauteilaktivierung vs. MELT Plate", en:"Classic Thermal Component Activation vs. MELT Plate" },
+  "compare1-h": { de:"Betonkernaktivierung", en:"Concrete Core Activation" },
+  "compare1-p": { de:"Aktiv gepumptes Wasser durch Rohrleitungen im massiven Beton — braucht Strom, Pumpe und sorgfältige Vorabplanung.", en:"Actively pumped water through pipes inside solid concrete — needs electricity, a pump, and careful upfront planning." },
+  "compare2-h": { de:"MELT Plate", en:"MELT Plate" },
+  "compare2-p": { de:"Rein passive Phasenwechselspeicherung — keine Rohrleitungen, keine Pumpe, funktioniert vollautomatisch.", en:"Purely passive phase-change storage — no pipes, no pump, works fully automatically." },
+  "h2-2": { de:"Thermische Masse durch MELT statt Beton", en:"Thermal Mass Through MELT Instead of Concrete" },
+  "p3": { de:"Die MELT Plate ermöglicht eine passive Form der Bauteilaktivierung ohne Rohrleitungen und Wassersystem. Statt aktiv temperiertes Wasser durch massive Bauteile zu pumpen, aktiviert die MELT Plate die Gebäudehülle durch Phasenwechselspeicherung.", en:"The MELT Plate enables a passive form of thermal component activation with no pipes and no water system. Instead of actively pumping tempered water through massive components, the MELT Plate activates the building envelope through phase-change storage." },
+  "p4": { de:"Sie funktioniert vollautomatisch: Sobald die Raumtemperatur den Schmelzpunkt erreicht, nimmt das PCM Wärme auf – ohne dass die Temperatur weiter steigt. Nachts oder bei Abkühlung gibt die Platte die Energie wieder ab. Diese „passive Bauteilaktivierung\" funktioniert auch in Leichtbauten, wo klassische thermische Aktivierung nicht möglich ist.", en:"It works fully automatically: as soon as room temperature reaches the melting point, the PCM absorbs heat — without the temperature rising further. At night or as it cools, the plate releases the energy again. This \"passive thermal component activation\" also works in lightweight buildings, where classic thermal activation isn't possible." },
+  "p5": { de:"Besonders in Kombination mit Wärmepumpen zeigt sich der Vorteil: Die Platte puffert Lastspitzen, sodass die Wärmepumpe in Zeiten günstigen Stroms oder hoher PV-Produktion laufen kann – <strong>echtes Load-Shifting ohne komplexe Gebäudetechnik.</strong>", en:"The advantage really shows in combination with heat pumps: the plate buffers load peaks, so the heat pump can run during times of cheap electricity or high PV output — <strong>real load-shifting without complex building technology.</strong>" },
+  "viz2-title": { de:"Load-Shifting im Tagesverlauf", en:"Load-Shifting Over the Course of a Day" },
+  "viz2-note": { de:"// Illustrative Darstellung: PV-Verfügbarkeit, Windstrom, Strompreis und Wärmepumpen-Laufzeit", en:"// Illustrative depiction: PV availability, wind power, electricity price, and heat pump runtime" },
+  "legend-pv": { de:"PV-Verfügbarkeit / günstiger Solarstrom", en:"PV availability / cheap solar power" },
+  "legend-wind": { de:"Günstiger Windstrom (nachts)", en:"Cheap wind power (overnight)" },
+  "legend-hp": { de:"Wärmepumpe läuft, MELT Plate puffert", en:"Heat pump running, MELT Plate buffers" },
+};
+</script>
+
+<script>
+(function(){
+  const nav = document.getElementById('mainNav') || document.querySelector('.nav');
+  if(nav){
+    function onScroll(){ if(window.scrollY > 60) nav.classList.add('scrolled'); else nav.classList.remove('scrolled'); }
+    onScroll(); window.addEventListener('scroll', onScroll, { passive:true });
+  }
+})();
+(function(){
+  function applyLang(lang){
+    document.querySelectorAll('[data-i18n]').forEach(el=>{
+      const key = el.getAttribute('data-i18n');
+      if(window.PAGE_I18N && window.PAGE_I18N[key]) el.innerHTML = window.PAGE_I18N[key][lang];
+    });
+    document.querySelectorAll('[data-de][data-en]').forEach(el=>{
+      const text = lang === 'en' ? el.getAttribute('data-en') : el.getAttribute('data-de');
+      el.textContent = text;
+    });
+    document.querySelectorAll('.lang-btn').forEach(btn=>{ btn.classList.toggle('active', btn.dataset.lang === lang); });
+    document.documentElement.lang = lang;
+  }
+  document.querySelectorAll('.lang-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=> applyLang(btn.dataset.lang));
+  });
+})();
+</script>
+</body>
+</html>

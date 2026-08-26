@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Über uns — MELT-Ing GmbH</title>
+<meta name="description" content="Das Team hinter MELT-Ing GmbH: Gründer, Berater und Unterstützer, die klimaresiliente Wärmespeicherung für Leichtbauten aus Mannheim entwickeln.">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  .partners-track { display:flex; gap:2.2rem; flex-wrap:wrap; justify-content:center; }
+  .partner-logo { display:flex; align-items:center; gap:0.7rem; padding:0.9rem 1.6rem; background:var(--melt-gray);
+    border-radius:12px; border:1px solid var(--melt-border); white-space:nowrap; color:var(--melt-text-muted); font-weight:500; font-size:0.88rem; transition:all 0.3s; }
+  .partner-logo:hover { border-color:var(--melt-orange); color:var(--melt-text); }
+  .partner-logo .icon { width:28px; height:28px; background:rgba(28, 122, 130,0.1); border-radius:8px; display:flex; align-items:center; justify-content:center; color:var(--melt-orange); font-size:0.9rem; }
+</style>
+</head>
+<body>
+
+<nav class="nav" id="mainNav">
+  <a href="index.html" class="nav-logo"><img src="assets/img/logo.png" alt="MELT-Ing Logo"><span>-Ing</span></a>
+  <ul class="nav-links">
+    <li><a href="melt-plate.html" data-de="MELT Plate" data-en="MELT Plate">MELT Plate</a></li>
+    <li class="has-dropdown"><a href="zielgruppe.html" data-de="Zielgruppe" data-en="Audience">Zielgruppe</a>
+      <div class="dropdown">
+        <a href="zielgruppe.html#investoren"><span class="dd-icon">◆</span><span data-de="Investoren" data-en="Investors">Investoren</span></a>
+        <a href="zielgruppe.html#bauunternehmen"><span class="dd-icon">◈</span><span data-de="Bauunternehmen" data-en="Construction Companies">Bauunternehmen</span></a>
+        <a href="zielgruppe.html#architekten"><span class="dd-icon">✎</span><span data-de="Architekten und Planer" data-en="Architects & Planners">Architekten und Planer</span></a>
+        <a href="zielgruppe.html#defense"><span class="dd-icon">⛨</span><span data-de="Defense" data-en="Defense">Defense</span></a>
+        <a href="zielgruppe.html#diy"><span class="dd-icon">⚒</span><span data-de="DIY" data-en="DIY">DIY</span></a>
+      </div>
+    </li>
+    <li class="has-dropdown"><a href="magazin.html" data-de="Magazin" data-en="Magazine">Magazin</a>
+      <div class="dropdown">
+        <a href="hitzeschutz.html"><span class="dd-icon">☀</span><span data-de="Hitzeschutz" data-en="Heat Protection">Hitzeschutz</span></a>
+        <a href="pcm.html"><span class="dd-icon">◉</span><span data-de="PCM" data-en="PCM">PCM</span></a>
+        <a href="bauteilaktivierung.html"><span class="dd-icon">▤</span><span data-de="Bauteilaktivierung" data-en="Thermal Activation">Bauteilaktivierung</span></a>
+        <a href="komfort.html"><span class="dd-icon">❖</span><span data-de="Komfort" data-en="Comfort">Komfort</span></a>
+        <a href="lowtech.html"><span class="dd-icon">✻</span><span data-de="Low-Tech" data-en="Low-Tech">Low-Tech</span></a>
+        <a href="magazin.html#case"><span class="dd-icon">▣</span><span data-de="Case Studies" data-en="Case Studies">Case Studies</span></a>
+      </div>
+    </li>
+    <li><a href="ueber-uns.html" data-de="Über uns" data-en="About us">Über uns</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="lang-switch" id="langSwitch">
+      <button class="lang-btn active" data-lang="de">DE</button>
+      <span class="lang-sep">|</span>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </div>
+    <a href="kontakt.html" class="nav-cta" data-de="gleich anfragen →" data-en="get in touch →">gleich anfragen →</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="section-label" data-i18n="hero-label">Das Team</div>
+  <h1 data-i18n="hero-h1">Ins Gespräch kommen ist <span class="highlight">ganz einfach.</span></h1>
+  <p data-i18n="hero-p">Wo drückt der Schuh? Fragen zur Technologie, Zertifizierung, Geschäftsmodell, Anwendungsmöglichkeiten? Wir sind für Sie da.</p>
+</div>
+
+<section style="padding-top:0;">
+  <div class="container">
+    <div class="team-grid reveal">
+      <div class="team-card"><div class="team-avatar">FW</div><div class="team-name">Frederik Wunder</div><div class="team-role">CEO</div><div class="team-desc">M.Sc. chem. Ing.</div></div>
+      <div class="team-card"><div class="team-avatar">SS</div><div class="team-name">Sebastian Sonnick</div><div class="team-role">CTO</div><div class="team-desc">Dr.-Ing.</div></div>
+      <div class="team-card"><div class="team-avatar">MR</div><div class="team-name">Matthias Rädle</div><div class="team-role">Advisor</div><div class="team-desc">Prof. Dr.</div></div>
+      <div class="team-card"><div class="team-avatar">PM</div><div class="team-name">Philipp Meffert</div><div class="team-role" data-i18n="pm-role">Mitarbeiter / Zertifizierung</div><div class="team-desc" data-i18n="pm-desc">M.Sc. Holztechnik</div></div>
+      <div class="team-card"><div class="team-avatar">JF</div><div class="team-name">Jonathan Frank</div><div class="team-role" data-i18n="jf-role">Masterand</div><div class="team-desc">B.Sc.</div></div>
+      <div class="team-card"><div class="team-avatar">AS</div><div class="team-name">Adithya Krishna Choondapurakkal Sajeev</div><div class="team-role" data-i18n="as-role">Masterand</div><div class="team-desc" data-i18n="as-desc">International Business and Engineering</div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label" data-i18n="supporters-label">Unsere Unterstützer</div>
+      <h2 class="section-title" data-i18n="supporters-title">Wir bauen nicht allein.</h2>
+    </div>
+    <div class="partners-track reveal">
+      <div class="partner-logo"><div class="icon">◆</div>Groundbreakers — <span data-i18n="p1">Innovationsallianz der Baubranche</span></div>
+      <div class="partner-logo"><div class="icon">◆</div>Kick Start Green Innovations — Umwelttechnik BW</div>
+      <div class="partner-logo"><div class="icon">◆</div>Axel — <span data-i18n="p3">der Energieaccelerator</span></div>
+      <div class="partner-logo"><div class="icon">◆</div>Next Mannheim — <span data-i18n="p4">Wirtschaftsförderung Mannheim</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label" data-i18n="funded-label">Gefördert durch</div>
+      <h2 class="section-title" data-i18n="funded-title">Öffentliche Förderprogramme</h2>
+    </div>
+    <div class="partners-track reveal">
+      <div class="partner-logo"><div class="icon">◆</div><span data-i18n="fund1">EXIST 2023 Gründerstipendium (BMWK)</span></div>
+      <div class="partner-logo"><div class="icon">◆</div>BW PreSeed — <span data-i18n="fund2">Mezzaninkredit L-Bank</span></div>
+      <div class="partner-logo"><div class="icon">◆</div>DBU Green Startup</div>
+      <div class="partner-logo"><div class="icon">◆</div>WIPANO</div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="cta-content">
+    <h2 data-i18n="cta-title">Das Team kennenlernen?</h2>
+    <p data-i18n="cta-body">Wir sind für Sie da — bei Fragen zur Technologie, Zertifizierung, dem Geschäftsmodell oder Anwendungsmöglichkeiten.</p>
+    <a href="kontakt.html" class="cta-btn" data-i18n="cta-btn">Experte kontaktieren →</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand"><img src="assets/img/logo.png" alt=""><span>-Ing</span> GmbH</div>
+      <p class="footer-desc">Tailored Thermal Buffering for Buildings. Das Start-up aus Mannheim ermöglicht überragenden Komfort und Klimaresilienz in leichten, ökologischen Gebäuden.</p>
+    </div>
+    <div class="footer-col"><h4>Quick links</h4><ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="ueber-uns.html">About</a></li>
+      <li><a href="magazin.html">News</a></li>
+      <li><a href="kontakt.html">Contact</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Services</h4><ul>
+      <li><a href="komfort.html" data-de="Komfort" data-en="Comfort">Komfort</a></li>
+      <li><a href="pcm.html">Wärmespeicher</a></li>
+      <li><a href="hitzeschutz.html" data-de="Hitzeschutz" data-en="Heat Protection">Hitzeschutz</a></li>
+      <li><a href="bauteilaktivierung.html">Load-Shifting</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Follow us</h4><ul>
+      <li><a href="https://www.linkedin.com/company/melt-ing/">LinkedIn</a></li>
+      <li><a href="https://www.youtube.com/@MELT-IngGmbH">YouTube</a></li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom">Melt-Ing GmbH · John-Deere-Str. 81a · 68163 Mannheim · contact@melt-ing.com — dies ist ein unverbindlicher Redesign-Entwurf, kein Live-Deployment.</div>
+</footer>
+
+<script>
+const io = new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('active'); io.unobserve(e.target);} }); },{threshold:0.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+
+<script>
+window.PAGE_I18N = {
+  "hero-label": { de:"Das Team", en:"The Team" },
+  "hero-h1": { de:"Ins Gespräch kommen ist <span class=\"highlight\">ganz einfach.</span>", en:"Starting a conversation is <span class=\"highlight\">easy.</span>" },
+  "hero-p": { de:"Wo drückt der Schuh? Fragen zur Technologie, Zertifizierung, Geschäftsmodell, Anwendungsmöglichkeiten? Wir sind für Sie da.", en:"Got a question about the technology, certification, business model, or applications? We are here for you." },
+  "pm-role": { de:"Mitarbeiter / Zertifizierung", en:"Staff / Certification" },
+  "pm-desc": { de:"M.Sc. Holztechnik", en:"M.Sc. Wood Technology" },
+  "jf-role": { de:"Masterand", en:"Master's Student" },
+  "as-role": { de:"Masterand", en:"Master's Student" },
+  "as-desc": { de:"International Business and Engineering", en:"International Business and Engineering" },
+  "supporters-label": { de:"Unsere Unterstützer", en:"Our Supporters" },
+  "supporters-title": { de:"Wir bauen nicht allein.", en:"We are not building alone." },
+  "p1": { de:"Innovationsallianz der Baubranche", en:"Construction Industry Innovation Alliance" },
+  "p3": { de:"der Energieaccelerator", en:"the energy accelerator" },
+  "p4": { de:"Wirtschaftsförderung Mannheim", en:"Mannheim Economic Development" },
+  "funded-label": { de:"Gefördert durch", en:"Funded By" },
+  "funded-title": { de:"Öffentliche Förderprogramme", en:"Public Funding Programs" },
+  "fund1": { de:"EXIST 2023 Gründerstipendium (BMWK)", en:"EXIST 2023 Founders Grant (BMWK)" },
+  "fund2": { de:"Mezzaninkredit L-Bank", en:"Mezzanine Loan L-Bank" },
+  "cta-title": { de:"Das Team kennenlernen?", en:"Want to meet the team?" },
+  "cta-body": { de:"Wir sind für Sie da — bei Fragen zur Technologie, Zertifizierung, dem Geschäftsmodell oder Anwendungsmöglichkeiten.", en:"We are here for you — for questions about the technology, certification, business model, or applications." },
+  "cta-btn": { de:"Experte kontaktieren →", en:"Contact an expert →" },
+};
+</script>
+
+<script>
+(function(){
+  const nav = document.getElementById('mainNav');
+  if(nav){
+    function onScroll(){ if(window.scrollY > 60) nav.classList.add('scrolled'); else nav.classList.remove('scrolled'); }
+    onScroll(); window.addEventListener('scroll', onScroll, { passive:true });
+  }
+})();
+(function(){
+  function applyLang(lang){
+    document.querySelectorAll('[data-i18n]').forEach(el=>{
+      const key = el.getAttribute('data-i18n');
+      if(window.PAGE_I18N && window.PAGE_I18N[key]) el.innerHTML = window.PAGE_I18N[key][lang];
+    });
+    document.querySelectorAll('[data-de][data-en]').forEach(el=>{
+      const text = lang === 'en' ? el.getAttribute('data-en') : el.getAttribute('data-de');
+      el.textContent = text;
+    });
+    document.querySelectorAll('.lang-btn').forEach(btn=>{ btn.classList.toggle('active', btn.dataset.lang === lang); });
+    document.documentElement.lang = lang;
+  }
+  document.querySelectorAll('.lang-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=> applyLang(btn.dataset.lang));
+  });
+})();
+</script>
+
+</body>
+</html>
