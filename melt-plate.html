@@ -32,7 +32,7 @@
   /* animated comparison chart */
   .chart-card { background:var(--melt-gray); border:1px solid var(--melt-border); border-radius:22px; padding:2.2rem 2rem 1.6rem; }
   .chart-card .chart-label { font-family:'IBM Plex Mono', monospace; font-size:0.78rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--melt-text-muted); margin-bottom:0.3rem; }
-  .chart-card .chart-note { font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:rgba(38, 52, 48,0.35); margin-bottom:1.4rem; }
+  .chart-card .chart-note { font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:rgba(15, 42, 56,0.35); margin-bottom:1.4rem; }
   svg#compareChart { width:100%; height:auto; display:block; }
   .chart-legend { display:flex; gap:1.6rem; margin-top:1.2rem; flex-wrap:wrap; font-family:'IBM Plex Mono', monospace; font-size:0.82rem; }
   .chart-legend span { display:flex; align-items:center; gap:0.5rem; color:var(--melt-text-muted); }
@@ -133,21 +133,21 @@
         <div class="chart-note" data-i18n="chart-note">// Illustrative Darstellung des Pufferungseffekts über 48 Stunden</div>
         <svg id="compareChart" viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg">
           <defs>
-            <linearGradient id="ohneGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#6E9483"/><stop offset="100%" stop-color="#B9D0C4"/></linearGradient>
-            <linearGradient id="mitGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#263430"/><stop offset="100%" stop-color="#4A6E5F"/></linearGradient>
+            <linearGradient id="ohneGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#2E86AB"/><stop offset="100%" stop-color="#6FB7D9"/></linearGradient>
+            <linearGradient id="mitGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#14425A"/><stop offset="100%" stop-color="#3A8FB0"/></linearGradient>
           </defs>
-          <line x1="0" y1="60" x2="900" y2="60" stroke="rgba(38, 52, 48,0.06)"/>
-          <line x1="0" y1="150" x2="900" y2="150" stroke="rgba(38, 52, 48,0.14)" stroke-dasharray="2 5"/>
-          <line x1="0" y1="240" x2="900" y2="240" stroke="rgba(38, 52, 48,0.06)"/>
-          <text x="0" y="54" font-family="IBM Plex Mono" font-size="11" fill="rgba(38, 52, 48,0.4)" data-i18n="chart-hot">heiß</text>
-          <text x="0" y="155" font-family="IBM Plex Mono" font-size="11" fill="rgba(38, 52, 48,0.4)" data-i18n="chart-comfort">Komfortbereich</text>
-          <text x="0" y="245" font-family="IBM Plex Mono" font-size="11" fill="rgba(38, 52, 48,0.4)" data-i18n="chart-cool">kühl</text>
+          <line x1="0" y1="60" x2="900" y2="60" stroke="rgba(15, 42, 56,0.06)"/>
+          <line x1="0" y1="150" x2="900" y2="150" stroke="rgba(15, 42, 56,0.14)" stroke-dasharray="2 5"/>
+          <line x1="0" y1="240" x2="900" y2="240" stroke="rgba(15, 42, 56,0.06)"/>
+          <text x="0" y="54" font-family="IBM Plex Mono" font-size="11" fill="rgba(15, 42, 56,0.4)" data-i18n="chart-hot">heiß</text>
+          <text x="0" y="155" font-family="IBM Plex Mono" font-size="11" fill="rgba(15, 42, 56,0.4)" data-i18n="chart-comfort">Komfortbereich</text>
+          <text x="0" y="245" font-family="IBM Plex Mono" font-size="11" fill="rgba(15, 42, 56,0.4)" data-i18n="chart-cool">kühl</text>
           <path id="ohneLine" d="" fill="none" stroke="url(#ohneGrad)" stroke-width="2.6" stroke-linecap="round"/>
           <path id="mitLine" d="" fill="none" stroke="url(#mitGrad)" stroke-width="3.2" stroke-linecap="round"/>
         </svg>
         <div class="chart-legend">
-          <span><i class="dot" style="background:#6E9483"></i><span data-i18n="legend1">Container ohne MELT Plates</span></span>
-          <span><i class="dot" style="background:#263430"></i><span data-i18n="legend2">Container mit MELT Plates</span></span>
+          <span><i class="dot" style="background:#2E86AB"></i><span data-i18n="legend1">Container ohne MELT Plates</span></span>
+          <span><i class="dot" style="background:#14425A"></i><span data-i18n="legend2">Container mit MELT Plates</span></span>
         </div>
       </div>
     </div>
@@ -157,17 +157,17 @@
       <h2 class="section-title" data-i18n="h2-2">Die passende Plate für Ihren Anwendungsfall</h2>
     </div>
     <div class="variant-grid reveal" style="margin-bottom:4.5rem;">
-      <div class="variant-card" style="--variant-color:#263430;">
+      <div class="variant-card" style="--variant-color:#14425A;">
         <div class="variant-temp">21°C</div>
         <h3 data-i18n="var1-h">MELT Plate Flex</h3>
         <p data-i18n="var1-p">Für Anwendungen bei denen die Temperaturen zwischen 18°C und 25°C schwanken. Auch wenn aktive Kühlung möglich ist, erzielt die Flex die beste Reduktion der Kühllast.</p>
       </div>
-      <div class="variant-card" style="--variant-color:#B9D0C4;">
+      <div class="variant-card" style="--variant-color:#6FB7D9;">
         <div class="variant-temp">25°C</div>
         <h3 data-i18n="var2-h">MELT Plate Comfort</h3>
         <p data-i18n="var2-p">Der Allrounder — gute Synergie mit Heiz- und Kühlsystemen, verhindert starke Überhitzung durch Sonneneinstrahlung und innere Lasten.</p>
       </div>
-      <div class="variant-card" style="--variant-color:#6E9483;">
+      <div class="variant-card" style="--variant-color:#2E86AB;">
         <div class="variant-temp">30°C</div>
         <h3 data-i18n="var3-h">MELT Plate active / MELT Shield</h3>
         <p data-i18n="var3-p">In Verbindung mit einer Flächenheizung wird daraus eine „Betonkernaktivierung ohne Beton". Bei starken solaren Lasten fängt das MELT Shield Hitze ab, bevor sie in den Raum gelangt.</p>
