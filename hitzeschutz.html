@@ -18,15 +18,17 @@
   @media (max-width:700px){ .strategy-viz{grid-template-columns:1fr;} }
   .strategy-card { background:var(--melt-gray); border:1px solid var(--melt-border); border-radius:18px; padding:1.6rem; opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease; }
   .strategy-card.in { opacity:1; transform:translateY(0); }
-  .strategy-num { width:36px; height:36px; border-radius:10px; background:linear-gradient(135deg, var(--melt-orange), var(--melt-orange-light)); display:flex; align-items:center; justify-content:center; font-family:'Manrope', sans-serif; font-weight:700; color:var(--melt-ink,#0F2A38); margin-bottom:1rem; }
+  .strategy-num { width:36px; height:36px; border-radius:10px; background:linear-gradient(135deg, var(--melt-orange), var(--melt-orange-light)); display:flex; align-items:center; justify-content:center; font-family:'Manrope', sans-serif; font-weight:700; color:var(--melt-ink,#0A0A0A); margin-bottom:1rem; }
   .strategy-card h4 { font-family:'Manrope', sans-serif; font-size:1rem; margin-bottom:0.6rem; }
   .strategy-card p { font-size:0.88rem; color:var(--melt-text-muted); margin:0; }
 
   /* threshold gauge: 26C limit vs MELT stabilized 25C vs typical leichtbau overshoot */
   .threshold-viz { background:var(--melt-gray); border:1px solid var(--melt-border); border-radius:22px; padding:2.2rem 2rem; margin:2.2rem 0 2.6rem; }
   .threshold-viz .viz-title { font-family:'IBM Plex Mono', monospace; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.07em; color:var(--melt-text-muted); margin-bottom:0.3rem; }
-  .threshold-viz .viz-note { font-family:'IBM Plex Mono', monospace; font-size:0.7rem; color:rgba(15, 42, 56,0.35); margin-bottom:1.6rem; }
-  svg#threshChart { width:100%; height:auto; display:block; }
+  .threshold-viz .viz-note { font-family:'IBM Plex Mono', monospace; font-size:0.7rem; color:rgba(10,10,10,0.35); margin-bottom:1.6rem; }
+  svg#threshChart { width:100%; height:auto; display:block; overflow:visible; }
+  .thresh-axis-label { font-family:'IBM Plex Mono', monospace; font-size:11px; fill:var(--melt-text-muted); }
+  .thresh-grid line { stroke:rgba(10,10,10,0.12); stroke-width:1; }
   .thresh-legend { display:flex; gap:1.6rem; margin-top:1.1rem; flex-wrap:wrap; font-family:'IBM Plex Mono', monospace; font-size:0.8rem; }
   .thresh-legend span { display:flex; align-items:center; gap:0.5rem; color:var(--melt-text-muted); }
   .thresh-legend .dot { width:10px; height:10px; border-radius:3px; display:inline-block; }
@@ -105,19 +107,36 @@
       <div class="threshold-viz">
         <div class="viz-title" data-i18n="viz-title">Raumtemperatur an einem heißen Sommertag</div>
         <div class="viz-note" data-i18n="viz-note">// Illustrative Darstellung: Grenzwert vs. typischer Leichtbau vs. MELT Plate</div>
-        <svg id="threshChart" viewBox="0 0 900 240" xmlns="http://www.w3.org/2000/svg">
+        <svg id="threshChart" viewBox="0 0 720 380" xmlns="http://www.w3.org/2000/svg">
           <defs>
-            <linearGradient id="hGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#2E86AB"/><stop offset="100%" stop-color="#6FB7D9"/></linearGradient>
-            <linearGradient id="mGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#14425A"/><stop offset="100%" stop-color="#3A8FB0"/></linearGradient>
+            <linearGradient id="hGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#E85D2E"/><stop offset="100%" stop-color="#F4A261"/></linearGradient>
+            <linearGradient id="mGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#1B6FA8"/><stop offset="100%" stop-color="#6BB6E0"/></linearGradient>
           </defs>
-          <line x1="0" y1="70" x2="900" y2="70" stroke="#2E86AB" stroke-dasharray="4 5" stroke-width="1.5" opacity="0.6"/>
-          <text x="0" y="64" font-family="IBM Plex Mono" font-size="11" fill="#6FB7D9" data-i18n="chart-limit">Grenzwert 26°C (Arbeitsstättenrichtlinie)</text>
-          <path id="hLine" d="" fill="none" stroke="url(#hGrad)" stroke-width="2.4" stroke-linecap="round"/>
-          <path id="mLine" d="" fill="none" stroke="url(#mGrad)" stroke-width="3" stroke-linecap="round"/>
+          <g class="thresh-grid">
+            <line x1="60" y1="340" x2="680" y2="340"/>
+            <line x1="60" y1="265" x2="680" y2="265"/>
+            <line x1="60" y1="190" x2="680" y2="190"/>
+            <line x1="60" y1="115" x2="680" y2="115"/>
+            <line x1="60" y1="40" x2="680" y2="40"/>
+          </g>
+          <text class="thresh-axis-label" x="30" y="344">20°C</text>
+          <text class="thresh-axis-label" x="30" y="269">23°C</text>
+          <text class="thresh-axis-label" x="30" y="194">26°C</text>
+          <text class="thresh-axis-label" x="30" y="119">29°C</text>
+          <text class="thresh-axis-label" x="30" y="44">32°C</text>
+          <text class="thresh-axis-label" x="60" y="365" text-anchor="middle">00:00</text>
+          <text class="thresh-axis-label" x="215" y="365" text-anchor="middle">06:00</text>
+          <text class="thresh-axis-label" x="370" y="365" text-anchor="middle">12:00</text>
+          <text class="thresh-axis-label" x="525" y="365" text-anchor="middle">18:00</text>
+          <text class="thresh-axis-label" x="680" y="365" text-anchor="middle">24:00</text>
+          <line x1="60" y1="190" x2="680" y2="190" stroke="#E85D2E" stroke-dasharray="4 5" stroke-width="1.5" opacity="0.7"/>
+          <text x="500" y="182" font-family="IBM Plex Mono" font-size="12" fill="#E85D2E" text-anchor="end" data-i18n="chart-limit">Grenzwert 26°C (Arbeitsstättenrichtlinie)</text>
+          <path id="hLine" d="M60.0,274.7 L85.8,296.6 L111.7,310.3 L137.5,315.0 L163.3,310.3 L189.2,296.6 L215.0,274.7 L240.8,246.2 L266.7,213.1 L292.5,177.5 L318.3,141.9 L344.2,108.8 L370.0,80.3 L395.8,58.4 L421.7,44.7 L447.5,40.0 L473.3,44.7 L499.2,58.4 L525.0,80.3 L550.8,108.8 L576.7,141.9 L602.5,177.5 L628.3,213.1 L654.2,246.2 L680.0,274.7" fill="none" stroke="url(#hGrad)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <path id="mLine" d="M60.0,237.7 L85.8,241.7 L111.7,244.1 L137.5,245.0 L163.3,244.1 L189.2,241.7 L215.0,237.7 L240.8,232.5 L266.7,226.5 L292.5,220.0 L318.3,213.5 L344.2,207.5 L370.0,202.3 L395.8,198.3 L421.7,195.9 L447.5,195.0 L473.3,195.9 L499.2,198.3 L525.0,202.3 L550.8,207.5 L576.7,213.5 L602.5,220.0 L628.3,226.5 L654.2,232.5 L680.0,237.7" fill="none" stroke="url(#mGrad)" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
         <div class="thresh-legend">
-          <span><i class="dot" style="background:#2E86AB"></i><span data-i18n="legend1">Leichtbau ohne Hitzeschutz</span></span>
-          <span><i class="dot" style="background:#14425A"></i><span data-i18n="legend2">Mit MELT Plate — stabil um 25°C</span></span>
+          <span><i class="dot" style="background:#E85D2E"></i><span data-i18n="legend1">Leichtbau ohne Hitzeschutz</span></span>
+          <span><i class="dot" style="background:#1B6FA8"></i><span data-i18n="legend2">Mit MELT Plate — stabil um 25°C</span></span>
         </div>
       </div>
 
@@ -194,20 +213,6 @@ const stratIO = new IntersectionObserver((entries)=>{
 stratIO.observe(document.querySelector('.strategy-viz'));
 
 // threshold chart draw-in
-function buildPath(points){ return points.map((p,i)=> (i===0?'M':'L') + p[0] + ' ' + p[1]).join(' '); }
-const W = 900, N = 70;
-const hotPts = [], meltPts = [];
-for(let i=0;i<=N;i++){
-  const x = (W/N)*i;
-  const t = i/N * Math.PI * 2.2;
-  const hotY = 130 - Math.max(0, Math.sin(t))*95;
-  const rawMeltY = 130 - Math.max(0, Math.sin(t))*95*0.22;
-  const meltY = Math.max(115, Math.min(150, rawMeltY));
-  hotPts.push([x, hotY]); meltPts.push([x, meltY]);
-}
-document.getElementById('hLine').setAttribute('d', buildPath(hotPts));
-document.getElementById('mLine').setAttribute('d', buildPath(meltPts));
-
 let threshDrawn = false;
 const threshIO = new IntersectionObserver((entries)=>{
   entries.forEach(entry=>{
