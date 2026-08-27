@@ -20,19 +20,37 @@
   .tl-row { margin-bottom:1.6rem; }
   .tl-label { display:flex; justify-content:space-between; font-size:0.9rem; color:var(--melt-text-muted); margin-bottom:0.5rem; }
   .tl-label b { color:var(--melt-text); font-family:'Manrope', sans-serif; }
-  .tl-track { height:16px; background:rgba(15, 42, 56,0.15); border-radius:8px; overflow:hidden; }
+  .tl-track { height:16px; background:rgba(10,10,10,0.15); border-radius:8px; overflow:hidden; }
   .tl-fill { height:100%; width:0%; border-radius:8px; transition:width 1.6s cubic-bezier(.16,1,.3,1); }
   .tl-fill.classic { background:linear-gradient(90deg, #7a7a7a, #999); }
   .tl-fill.serial { background:linear-gradient(90deg, var(--melt-orange), var(--melt-orange-light)); }
-  .tl-badge { display:inline-block; margin-top:1.4rem; background:rgba(46, 134, 171,0.1); border:1px solid rgba(46, 134, 171,0.3); border-radius:10px; padding:0.7rem 1.1rem; font-family:'IBM Plex Mono', monospace; font-size:0.88rem; color:var(--melt-orange-light); }
+  .tl-badge { display:inline-block; margin-top:1.4rem; background:rgba(232,93,46,0.1); border:1px solid rgba(232,93,46,0.3); border-radius:10px; padding:0.7rem 1.1rem; font-family:'IBM Plex Mono', monospace; font-size:0.88rem; color:var(--melt-orange-light); }
 
   /* three levers stepper */
   .lever-viz { display:flex; flex-direction:column; gap:1rem; margin:2rem 0 2.6rem; max-width:800px; margin-left:auto; margin-right:auto; }
   .lever-step { display:flex; align-items:flex-start; gap:1.2rem; background:var(--melt-surface); border:1px solid var(--melt-border); border-radius:16px; padding:1.4rem 1.6rem; opacity:0; transform:translateX(-16px); transition:opacity .6s ease, transform .6s ease; }
   .lever-step.in { opacity:1; transform:translateX(0); }
-  .lever-num { width:38px; height:38px; min-width:38px; border-radius:10px; background:linear-gradient(135deg, var(--melt-orange), var(--melt-orange-light)); display:flex; align-items:center; justify-content:center; font-family:'Manrope', sans-serif; font-weight:700; color:var(--melt-ink,#0F2A38); }
+  .lever-num { width:38px; height:38px; min-width:38px; border-radius:10px; background:linear-gradient(135deg, var(--melt-orange), var(--melt-orange-light)); display:flex; align-items:center; justify-content:center; font-family:'Manrope', sans-serif; font-weight:700; color:var(--melt-ink,#0A0A0A); }
   .lever-step h4 { font-family:'Manrope', sans-serif; font-size:1rem; margin-bottom:0.3rem; }
   .lever-step p { margin:0; font-size:0.88rem; color:var(--melt-text-muted); }
+
+  /* productivity chart */
+  .prod-viz { background:var(--melt-gray); border:1px solid var(--melt-border); border-radius:22px; padding:2.2rem 2rem 1.8rem; margin:2.2rem 0 2.6rem; max-width:800px; margin-left:auto; margin-right:auto; }
+  .prod-viz .prod-eyebrow { font-family:'IBM Plex Mono', monospace; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--melt-text-muted); margin-bottom:0.5rem; }
+  .prod-viz .prod-title { font-family:'Manrope', sans-serif; font-size:1.2rem; font-weight:700; margin-bottom:0.2rem; }
+  .prod-viz .prod-sub { font-size:0.82rem; color:var(--melt-text-muted); margin-bottom:1.4rem; }
+  .prod-chart-wrap { width:100%; }
+  .prod-chart-wrap svg { width:100%; height:auto; display:block; overflow:visible; }
+  .prod-line { fill:none; stroke-width:3; stroke-linecap:round; stroke-linejoin:round; }
+  .prod-line.gesamt { stroke:#B7B7B7; }
+  .prod-line.industrie { stroke:#6B6B6B; }
+  .prod-line.bau { stroke:var(--melt-blue); }
+  .prod-grid line { stroke:rgba(10,10,10,0.14); stroke-width:1; }
+  .prod-axis-label { font-family:'IBM Plex Mono', monospace; font-size:11px; fill:var(--melt-text-muted); }
+  .prod-legend { display:flex; gap:1.6rem; flex-wrap:wrap; margin-top:1.2rem; }
+  .prod-legend span { display:flex; align-items:center; gap:0.5rem; font-size:0.85rem; color:var(--melt-text-muted); font-family:'IBM Plex Mono', monospace; }
+  .prod-legend .sw { width:14px; height:3px; border-radius:2px; display:inline-block; }
+  .prod-caption { font-size:0.75rem; color:var(--melt-text-muted); margin-top:1rem; }
 </style>
 </head>
 <body>
@@ -86,6 +104,37 @@
       <p data-i18n="p1">Serielles Bauen bezeichnet die industrielle Vorfertigung von Gebäudemodulen oder -komponenten, die auf der Baustelle nur noch montiert werden. Vorteile sind Geschwindigkeit (bis zu 70 Prozent kürzere Bauzeit), Kostenreduktion durch Standardisierung, gleichbleibende Qualität und Unabhängigkeit von Wetter und Fachkräftemangel.</p>
       <p data-i18n="p2">Modulbau, Holzständerbau und Containersysteme sind typische Beispiele. Besonders im Wohnungsbau, bei Schulen und temporären Bauten gewinnt serielle Fertigung an Bedeutung.</p>
       <p data-i18n="p3">Die Herausforderung: Serielle Bauten sind meist Leichtbaukonstruktionen mit geringer thermischer Masse. Das führt zu Komfortproblemen durch schnelles Aufheizen im Sommer und Auskühlen im Winter. Ohne zusätzliche Maßnahmen sinkt die Akzeptanz bei Nutzern, die „Massivhaus-Qualität" erwarten.</p>
+
+      <div class="prod-viz">
+        <div class="prod-eyebrow" data-i18n="prod-eyebrow">Baubranche</div>
+        <div class="prod-title" data-i18n="prod-title">Arbeitsproduktivität je Erwerbstätigenstunde, 1991–2022</div>
+        <div class="prod-sub" data-i18n="prod-sub">(Index 1991 = 100)</div>
+        <div class="prod-chart-wrap">
+          <svg viewBox="0 0 720 380" id="prodChart">
+            <g class="prod-grid">
+              <line x1="60" y1="340" x2="680" y2="340"/>
+              <line x1="60" y1="240" x2="680" y2="240"/>
+              <line x1="60" y1="140" x2="680" y2="140"/>
+              <line x1="60" y1="40" x2="680" y2="40"/>
+            </g>
+            <text class="prod-axis-label" x="20" y="344">80</text>
+            <text class="prod-axis-label" x="12" y="244">120</text>
+            <text class="prod-axis-label" x="12" y="144">160</text>
+            <text class="prod-axis-label" x="12" y="44">200</text>
+            <text class="prod-axis-label" x="52" y="365" text-anchor="middle">1991</text>
+            <text class="prod-axis-label" x="680" y="365" text-anchor="middle">2022</text>
+            <path class="prod-line gesamt" id="lineGesamt" d="M60.0,290.0 L80.0,285.0 L100.0,282.5 L120.0,275.0 L140.0,270.0 L160.0,265.0 L180.0,257.5 L200.0,247.5 L220.0,237.5 L240.0,225.0 L260.0,217.5 L280.0,212.5 L300.0,205.0 L320.0,195.0 L340.0,187.5 L360.0,175.0 L380.0,160.0 L400.0,152.5 L420.0,190.0 L440.0,170.0 L460.0,152.5 L480.0,145.0 L500.0,140.0 L520.0,132.5 L540.0,125.0 L560.0,117.5 L580.0,107.5 L600.0,97.5 L620.0,87.5 L640.0,95.0 L660.0,75.0 L680.0,60.0"/>
+            <path class="prod-line industrie" id="lineIndustrie" d="M60.0,290.0 L80.0,287.5 L100.0,285.0 L120.0,280.0 L140.0,275.0 L160.0,270.0 L180.0,265.0 L200.0,257.5 L220.0,252.5 L240.0,245.0 L260.0,240.0 L280.0,237.5 L300.0,235.0 L320.0,230.0 L340.0,225.0 L360.0,217.5 L380.0,210.0 L400.0,207.5 L420.0,230.0 L440.0,217.5 L460.0,207.5 L480.0,205.0 L500.0,202.5 L520.0,200.0 L540.0,197.5 L560.0,195.0 L580.0,190.0 L600.0,187.5 L620.0,185.0 L640.0,192.5 L660.0,185.0 L680.0,177.5"/>
+            <path class="prod-line bau" id="lineBau" d="M60.0,290.0 L80.0,295.0 L100.0,302.5 L120.0,307.5 L140.0,312.5 L160.0,315.0 L180.0,310.0 L200.0,305.0 L220.0,300.0 L240.0,295.0 L260.0,297.5 L280.0,302.5 L300.0,305.0 L320.0,300.0 L340.0,295.0 L360.0,287.5 L380.0,282.5 L400.0,285.0 L420.0,292.5 L440.0,287.5 L460.0,280.0 L480.0,285.0 L500.0,290.0 L520.0,282.5 L540.0,277.5 L560.0,282.5 L580.0,275.0 L600.0,270.0 L620.0,277.5 L640.0,290.0 L660.0,282.5 L680.0,297.5"/>
+          </svg>
+        </div>
+        <div class="prod-legend">
+          <span><i class="sw" style="background:#B7B7B7;"></i><span data-i18n="prod-l1">Gesamtwirtschaft</span></span>
+          <span><i class="sw" style="background:#6B6B6B;"></i><span data-i18n="prod-l2">Verarbeitendes Gewerbe</span></span>
+          <span><i class="sw" style="background:var(--melt-blue);"></i><span data-i18n="prod-l3">Baugewerbe</span></span>
+        </div>
+        <div class="prod-caption" data-i18n="prod-caption">Eigene Darstellung, angelehnt an öffentlich verfügbare Produktivitätsdaten für die deutsche Baubranche — illustrativ, keine exakten Amtsdaten.</div>
+      </div>
 
       <div class="timeline-viz">
         <div class="viz-title" data-i18n="viz-title">Bauzeit im Vergleich</div>
@@ -177,6 +226,30 @@ const leverIO = new IntersectionObserver((entries)=>{
   });
 },{threshold:0.3});
 leverIO.observe(document.querySelector('.lever-viz'));
+
+// productivity chart: draw each line in left-to-right on scroll into view
+const prodLines = [
+  document.getElementById('lineGesamt'),
+  document.getElementById('lineIndustrie'),
+  document.getElementById('lineBau')
+];
+prodLines.forEach(line=>{
+  const len = line.getTotalLength();
+  line.style.strokeDasharray = len;
+  line.style.strokeDashoffset = len;
+});
+const prodIO = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      prodLines.forEach((line, i)=>{
+        line.style.transition = `stroke-dashoffset 1.8s cubic-bezier(.16,1,.3,1) ${i*0.25}s`;
+        requestAnimationFrame(()=>{ line.style.strokeDashoffset = 0; });
+      });
+      prodIO.disconnect();
+    }
+  });
+},{threshold:0.3});
+prodIO.observe(document.getElementById('prodChart'));
 </script>
 
 
@@ -197,6 +270,13 @@ window.PAGE_I18N = {
   "tl2-label": { de:"Serielles Bauen", en:"Serial Construction" },
   "tl2-val": { de:"bis zu 30%", en:"up to 30%" },
   "tl-badge": { de:"Bis zu 70% kürzere Bauzeit", en:"Up to 70% shorter construction time" },
+  "prod-eyebrow": { de:"Baubranche", en:"Construction Industry" },
+  "prod-title": { de:"Arbeitsproduktivität je Erwerbstätigenstunde, 1991–2022", en:"Labor Productivity per Hour Worked, 1991–2022" },
+  "prod-sub": { de:"(Index 1991 = 100)", en:"(Index 1991 = 100)" },
+  "prod-l1": { de:"Gesamtwirtschaft", en:"Overall Economy" },
+  "prod-l2": { de:"Verarbeitendes Gewerbe", en:"Manufacturing Industry" },
+  "prod-l3": { de:"Baugewerbe", en:"Construction Industry" },
+  "prod-caption": { de:"Eigene Darstellung, angelehnt an öffentlich verfügbare Produktivitätsdaten für die deutsche Baubranche — illustrativ, keine exakten Amtsdaten.", en:"Own illustration, based on publicly available productivity data for the German construction industry — illustrative, not exact official data." },
   "p4": { de:'Laut einer <a class="inline-source" href="https://www.ey.com/de_de/insights/strategy/bauen-studie-erlaeutert-drei-produktivitaetshebel" target="_blank" rel="noopener">Studie von EY (Ernst & Young)</a> bremsen Komplexität und Kleinteiligkeit den Wandel in der Baubranche aus. Drei große Produktivitätshebel wurden identifiziert:', en:'According to a <a class="inline-source" href="https://www.ey.com/de_de/insights/strategy/bauen-studie-erlaeutert-drei-produktivitaetshebel" target="_blank" rel="noopener">study by EY (Ernst & Young)</a>, complexity and fragmentation are slowing transformation in the construction industry. Three major productivity levers were identified:' },
   "lever1-h": { de:"Industrielle Vorfertigung", en:"Industrial Prefabrication" },
   "lever1-p": { de:"Gebäudekomponenten werden im Werk statt auf der Baustelle produziert.", en:"Building components are produced in a factory instead of on site." },
