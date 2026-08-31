@@ -7,50 +7,84 @@
 <meta name="description" content="Die MELT Plate: nur 1,2 cm dünn, puffert so viel Wärme wie 25 cm Beton. Skalierbare Phasenwechselspeicher-Platte für Leichtbau, Sanierung und Serienfertigung.">
 <link rel="stylesheet" href="assets/style.css">
 <style>
-  .product-hero { display:grid; grid-template-columns:0.85fr 1.15fr; gap:3.5rem; align-items:center; padding:2rem 0 4rem; }
-  @media (max-width:900px){ .product-hero{grid-template-columns:1fr;} }
-  .product-photo-wrap { border-radius:22px; overflow:hidden; border:1px solid var(--melt-border); background:var(--melt-gray); }
-  .product-photo-wrap img { width:100%; height:auto; display:block; }
-  .product-hero h1 { font-family:'Manrope', sans-serif; font-size:clamp(2rem,4.2vw,3rem); font-weight:700; line-height:1.1; margin-bottom:1.1rem; }
-  .product-hero .tag { color:var(--melt-orange-light); font-family:'IBM Plex Mono', monospace; font-size:0.85rem; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.8rem; display:block; }
-  .product-hero p.lead { color:var(--melt-text-muted); font-size:1.08rem; margin-bottom:1.6rem; }
+  :root{
+    --mp-ink:#17140F; --mp-ember:#E2703A; --mp-ember-deep:#B5502A;
+    --mp-cold:#2B6E82; --mp-wax:#C99A56; --mp-charcoal:#21201C; --mp-charcoal-2:#2B2924;
+    --mp-paper:#F2EEE4;
+  }
+  body{ background:var(--mp-paper) !important; }
+  .mp-wrap{ max-width:1180px; margin:0 auto; padding:0 32px; }
+  @media (max-width:640px){ .mp-wrap{ padding:0 20px; } }
 
-  .list-clean { list-style:none; margin-top:0.5rem; }
-  .list-clean li { padding:0.65rem 0; border-bottom:1px solid var(--melt-border); color:var(--melt-text-muted); font-size:0.95rem; display:flex; gap:0.6rem; }
-  .list-clean li::before { content:"◆"; color:var(--melt-orange); font-size:0.65rem; margin-top:0.4rem; }
+  /* ---------- hero: two adjacent blocks ---------- */
+  .mp-hero{ display:grid; grid-template-columns:0.85fr 1.15fr; gap:0; border-radius:24px; overflow:hidden; margin:2rem 0 0; }
+  @media (max-width:860px){ .mp-hero{ grid-template-columns:1fr; } }
+  .mp-hero-text{ background:var(--mp-charcoal); color:#F2EEE4; padding:3.2rem 2.6rem; display:flex; flex-direction:column; justify-content:center; }
+  .mp-hero-text .eyebrow{ font-family:'IBM Plex Mono',monospace; font-size:0.78rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--mp-ember); margin-bottom:1.1rem; }
+  .mp-hero-text h1{ font-family:'Manrope',sans-serif; font-size:clamp(2.1rem,4vw,3.1rem); font-weight:800; line-height:1.05; color:#fff; margin-bottom:1.2rem; }
+  .mp-hero-text p{ color:#C9C5BB; font-size:1.05rem; line-height:1.6; margin-bottom:1.8rem; max-width:38ch; }
+  .mp-btn-row{ display:flex; gap:0.9rem; flex-wrap:wrap; }
+  .mp-btn{ font-family:'Manrope',sans-serif; font-weight:700; font-size:0.92rem; padding:0.85rem 1.4rem; border-radius:100px; text-decoration:none; display:inline-flex; align-items:center; gap:0.5rem; transition:transform 0.2s; }
+  .mp-btn:hover{ transform:translateY(-2px); }
+  .mp-btn-primary{ background:var(--mp-ember); color:#fff; }
+  .mp-btn-ghost{ border:1px solid rgba(255,255,255,0.25); color:#fff; }
 
-  /* temp buffer icons */
-  .buffer-row { display:grid; grid-template-columns:1fr 1fr; gap:1.4rem; margin-top:1rem; }
-  @media (max-width:620px){ .buffer-row{grid-template-columns:1fr;} }
-  .buffer-box { border-radius:16px; border:1px solid var(--melt-border); background:var(--melt-gray); padding:1.6rem; text-align:center; }
-  .buffer-box .glyph { font-size:2rem; margin-bottom:0.6rem; }
-  .buffer-box.cool .glyph { color:var(--melt-blue); }
-  .buffer-box.warm .glyph { color:var(--melt-orange); }
-  .buffer-box h4 { font-family:'Manrope', sans-serif; font-size:1rem; margin-bottom:0.4rem; }
-  .buffer-box p { color:var(--melt-text-muted); font-size:0.88rem; }
+  .mp-hero-photo{ position:relative; min-height:420px; overflow:hidden; }
+  .mp-hero-photo img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .mp-badge{ position:absolute; background:rgba(23,20,15,0.92); backdrop-filter:blur(6px); border-radius:14px; padding:0.8rem 1.1rem; color:#fff; opacity:0; transform:translateY(8px); transition:opacity .6s ease, transform .6s ease; }
+  .mp-badge.in{ opacity:1; transform:translateY(0); }
+  .mp-badge .b-num{ font-family:'Manrope',sans-serif; font-weight:800; font-size:1.3rem; line-height:1; color:var(--mp-ember); }
+  .mp-badge .b-lbl{ font-family:'IBM Plex Mono',monospace; font-size:0.68rem; color:#C9C5BB; margin-top:0.25rem; text-transform:uppercase; letter-spacing:0.04em; }
+  .mp-badge-1{ top:8%; left:6%; }
+  .mp-badge-2{ bottom:10%; right:8%; }
 
-  /* animated comparison chart */
-  .chart-card { background:var(--melt-gray); border:1px solid var(--melt-border); border-radius:22px; padding:2.2rem 2rem 1.6rem; }
-  .chart-card .chart-label { font-family:'IBM Plex Mono', monospace; font-size:0.78rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--melt-text-muted); margin-bottom:0.3rem; }
-  .chart-card .chart-note { font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:rgba(34, 31, 25,0.35); margin-bottom:1.4rem; }
-  svg#compareChart { width:100%; height:auto; display:block; }
-  .chart-legend { display:flex; gap:1.6rem; margin-top:1.2rem; flex-wrap:wrap; font-family:'IBM Plex Mono', monospace; font-size:0.82rem; }
-  .chart-legend span { display:flex; align-items:center; gap:0.5rem; color:var(--melt-text-muted); }
-  .chart-legend .dot { width:10px; height:10px; border-radius:50%; display:inline-block; }
+  /* ---------- full-bleed photo break ---------- */
+  .mp-break{ position:relative; margin-top:4.5rem; overflow:hidden; height:52vh; min-height:340px; max-height:560px; }
+  .mp-break img{ width:100%; height:100%; object-fit:cover; display:block; filter:saturate(0.9) contrast(1.05); }
+  .mp-break::after{ content:''; position:absolute; inset:0; background:linear-gradient(0deg, rgba(23,20,15,0.75) 0%, rgba(23,20,15,0.05) 45%); }
+  .mp-break-cap{ position:absolute; left:32px; bottom:28px; right:32px; max-width:1180px; margin:0 auto; color:#fff; }
+  .mp-break-cap .eyebrow{ font-family:'IBM Plex Mono',monospace; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--mp-ember); margin-bottom:0.5rem; }
+  .mp-break-cap h2{ font-family:'Manrope',sans-serif; font-size:clamp(1.5rem,3vw,2.2rem); font-weight:700; max-width:24ch; }
 
-  /* variant cards */
-  .variant-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
-  @media (max-width:900px){ .variant-grid{grid-template-columns:1fr;} }
-  .variant-card { background:var(--melt-surface); border:1px solid var(--melt-border); border-radius:20px; padding:2rem 1.8rem; position:relative; overflow:hidden; }
-  .variant-card::before { content:''; position:absolute; top:0; left:0; width:100%; height:3px; background:var(--variant-color, var(--melt-orange)); }
-  .variant-temp { font-family:'Manrope', sans-serif; font-size:2.2rem; font-weight:700; color:var(--variant-color, var(--melt-orange)); line-height:1; margin-bottom:0.6rem; }
-  .variant-card h3 { font-family:'Manrope', sans-serif; font-size:1.15rem; margin-bottom:0.8rem; }
-  .variant-card p { color:var(--melt-text-muted); font-size:0.92rem; }
+  /* ---------- annotated material section ---------- */
+  .mp-annot{ display:grid; grid-template-columns:1fr 1.05fr; gap:3rem; align-items:center; padding:4.5rem 0; }
+  @media (max-width:900px){ .mp-annot{ grid-template-columns:1fr; } }
+  .mp-annot-text .eyebrow{ font-family:'IBM Plex Mono',monospace; font-size:0.78rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--mp-ember-deep); margin-bottom:0.8rem; display:block; }
+  .mp-annot-text h2{ font-family:'Manrope',sans-serif; font-size:clamp(1.7rem,3vw,2.3rem); font-weight:700; margin-bottom:1.1rem; color:var(--mp-ink); }
+  .mp-annot-text p{ color:#5C574C; font-size:1.02rem; line-height:1.7; margin-bottom:1rem; }
+  .mp-annot-photo{ position:relative; border-radius:20px; overflow:hidden; }
+  .mp-annot-photo img{ width:100%; display:block; }
+  .mp-leader{ position:absolute; width:1.5px; background:var(--mp-wax); transform-origin:top; opacity:0; transition:opacity .6s ease; }
+  .mp-leader.in{ opacity:1; }
+  .mp-callout{ position:absolute; background:var(--mp-wax); color:#2B2010; font-family:'Manrope',sans-serif; font-weight:700; font-size:0.85rem; padding:0.5rem 0.9rem; border-radius:9px; opacity:0; transform:scale(0.85); transition:opacity .4s ease, transform .4s ease; white-space:nowrap; }
+  .mp-callout.in{ opacity:1; transform:scale(1); }
 
-  .two-col { display:grid; grid-template-columns:1fr 1fr; gap:3.5rem; align-items:start; }
-  @media (max-width:900px){ .two-col{grid-template-columns:1fr;} }
-  .two-col h2 { font-family:'Manrope', sans-serif; font-size:1.7rem; margin-bottom:1.1rem; }
-  .two-col p { color:var(--melt-text-muted); font-size:1.02rem; margin-bottom:1rem; }
+  /* ---------- three variant blocks, bold solid ---------- */
+  .mp-variants{ padding:1rem 0 4.5rem; }
+  .mp-variants .section-head{ margin-bottom:2rem; }
+  .mp-variants .eyebrow{ font-family:'IBM Plex Mono',monospace; font-size:0.78rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--mp-ember-deep); margin-bottom:0.6rem; display:block; }
+  .mp-variants h2{ font-family:'Manrope',sans-serif; font-size:clamp(1.7rem,3vw,2.3rem); font-weight:700; color:var(--mp-ink); }
+  .mp-vgrid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1.2rem; }
+  @media (max-width:860px){ .mp-vgrid{ grid-template-columns:1fr; } }
+  .mp-vcard{ border-radius:20px; padding:2.2rem 1.9rem; color:#fff; min-height:280px; display:flex; flex-direction:column; }
+  .mp-vcard .v-temp{ font-family:'Manrope',sans-serif; font-weight:800; font-size:2.6rem; line-height:1; margin-bottom:1rem; }
+  .mp-vcard h3{ font-family:'Manrope',sans-serif; font-size:1.15rem; margin-bottom:0.8rem; }
+  .mp-vcard p{ font-size:0.92rem; line-height:1.6; opacity:0.9; }
+  .mp-vcard.cold{ background:var(--mp-cold); }
+  .mp-vcard.wax{ background:var(--mp-wax); color:#2B2010; }
+  .mp-vcard.wax p{ opacity:0.75; }
+  .mp-vcard.ember{ background:var(--mp-ember); }
+
+  /* ---------- feature divider list ---------- */
+  .mp-feat-list{ padding:1rem 0 4.5rem; }
+  .mp-feat-row{ display:grid; grid-template-columns:1fr auto; align-items:center; gap:2rem; padding:1.5rem 0; border-bottom:1px solid rgba(23,20,15,0.12); }
+  .mp-feat-row:first-child{ border-top:1px solid rgba(23,20,15,0.12); }
+  .mp-feat-row p{ color:var(--mp-ink); font-size:1.05rem; margin:0; max-width:56ch; }
+  .mp-feat-thumb{ width:76px; height:76px; border-radius:12px; overflow:hidden; flex:none; }
+  .mp-feat-thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+  .two-col h2{ color:var(--mp-ink); }
+  .cta-section{ background:var(--mp-ink) !important; }
 </style>
 </head>
 <body>
@@ -90,87 +124,127 @@
   </div>
 </nav>
 
-<div class="page-hero" style="padding-bottom:2rem;">
-  <div class="section-label" data-i18n="hero-label">Hardware, MVP, Produkt</div>
-  <h1 data-i18n="hero-h1">Die <span class="highlight">MELT Plate</span></h1>
-  <p data-i18n="hero-p">Effiziente, anpassbare Makroverkapselung für Phasenwechselmaterial.</p>
+<section style="padding-top:2.5rem;">
+  <div class="mp-wrap">
+
+    <div class="mp-hero reveal">
+      <div class="mp-hero-text">
+        <span class="eyebrow" data-i18n="hero-label">Hardware · Produkt</span>
+        <h1 data-i18n="hero-h1">Die MELT Plate</h1>
+        <p data-i18n="hero-p">Effiziente, anpassbare Makroverkapselung für Phasenwechselmaterial — nur 1,2 cm dünn, aber puffert wie eine massive Betonwand.</p>
+        <div class="mp-btn-row">
+          <a href="#material" class="mp-btn mp-btn-primary" data-i18n="hero-btn1">So funktioniert es</a>
+          <a href="kontakt.html" class="mp-btn mp-btn-ghost" data-i18n="hero-btn2">Kontakt aufnehmen</a>
+        </div>
+      </div>
+      <div class="mp-hero-photo">
+        <img src="assets/img/plate-wall.jpg" alt="Drei MELT Plates in unterschiedlichen Größen, freistehend an einer Holzwand">
+        <div class="mp-badge mp-badge-1" id="badge1"><div class="b-num">1,2 cm</div><div class="b-lbl" data-i18n="badge1">Bauhöhe</div></div>
+        <div class="mp-badge mp-badge-2" id="badge2"><div class="b-num">0,2–2,25 m²</div><div class="b-lbl" data-i18n="badge2">Flächenabdeckung / Platte</div></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="mp-break reveal">
+  <img src="assets/img/plate-install.jpg" alt="Handwerker installiert eine MELT Plate zwischen tragenden Balken einer Deckenkonstruktion">
+  <div class="mp-break-cap">
+    <span class="eyebrow" data-i18n="break-eyebrow">Installation</span>
+    <h2 data-i18n="break-h2">Wenige Handgriffe statt Baustellen-Chaos</h2>
+  </div>
 </div>
 
-<section style="padding-top:0;">
-  <div class="container">
-    <div class="product-hero reveal">
-      <div class="product-photo-wrap">
-        <img src="assets/melt-plate-photo.png" alt="Drei MELT Plates in unterschiedlichen Größen, freistehend auf Holzboden">
+<section id="material">
+  <div class="mp-wrap">
+    <div class="mp-annot reveal">
+      <div class="mp-annot-text">
+        <span class="eyebrow" data-i18n="annot-eyebrow">Wie das Material arbeitet</span>
+        <h2 data-i18n="annot-h2">Kühlen wenn es zu warm ist, wärmen wenn es zu kalt ist</h2>
+        <p data-i18n="annot-p1">Jede MELT Plate hat einen festen Schmelzpunkt — auf diesem Exemplar von Hand markiert. Erreicht die Raumtemperatur diesen Punkt, nimmt das Phasenwechselmaterial Wärme auf, statt sie in den Raum zu lassen.</p>
+        <p data-i18n="annot-p2">Fällt die Temperatur wieder, gibt die Platte die gespeicherte Wärme zeitversetzt zurück. Kein Strom, keine Sensoren — nur Physik.</p>
       </div>
-      <div>
-        <span class="tag" data-i18n="tag1">Skalierbare Wärmepufferplatte</span>
-        <p class="lead" data-i18n="lead">Mit der MELT Plate zeigen wir, wie viel Potential skalierbare, stabile und dünne Wärmepufferplatten bieten.</p>
-        <ul class="list-clean">
-          <li data-i18n="feat1">Nur 1,2 cm dick, aber deckt Flächen von 0,2 m² bis 2,25 m²</li>
-          <li data-i18n="feat2">Im Komfortbereich puffert sie so viel Energie wie eine 25 cm / 600 kg Betonwand</li>
-          <li data-i18n="feat3">Wird in Leichtbaustrukturen integriert — je besser die Anbindung zum Innenraum, desto schneller der Effekt</li>
-          <li data-i18n="feat4">Beinhaltet Salzsole, die im Komfortbereich kristallisiert und die Temperatur konstant hält</li>
-          <li data-i18n="feat5">Die Umhüllung besteht zu 100% aus sortenreinem Recyclingskunststoff</li>
-          <li data-i18n="feat6">Lässt sich in Serienproduktion preiswert herstellen</li>
-          <li data-i18n="feat7">Unser (pat. pend.) Verfahren ist extrem wandelbar — Größe und Dicke, Seitenverhältnisse, Schmelzpunkt und Stoffklasse, Farbe, Oberfläche</li>
-          <li data-i18n="feat8">Bringt Klimaresilienz in etablierte Systeme oder neue Innovationen</li>
-        </ul>
+      <div class="mp-annot-photo">
+        <img src="assets/img/plate-25c.jpg" alt="Nahaufnahme einer MELT Plate mit handschriftlicher Markierung des Schmelzpunkts bei 25°C">
+        <svg class="mp-leader" id="leaderLine" style="left:64%; top:38%; height:60px;" viewBox="0 0 2 60"><line x1="1" y1="0" x2="1" y2="60" stroke="currentColor" stroke-width="2"/></svg>
+        <div class="mp-callout" id="calloutBadge" style="left:58%; top:16%;" data-i18n="callout1">Schmelzpunkt: 25°C</div>
       </div>
     </div>
+  </div>
+</section>
 
-    <div class="reveal" style="margin-bottom:4rem;">
-      <div class="section-label" data-i18n="lbl1">Temperatur puffern</div>
-      <h2 style="font-family:'Manrope',sans-serif; font-size:1.6rem; margin-bottom:1rem;" data-i18n="h2-1">Kühlen wenn es zu warm ist, wärmen wenn es zu kalt ist</h2>
-      <div class="buffer-row">
-        <div class="buffer-box cool"><div class="glyph">❄</div><h4 data-i18n="cool-h">Kühlen</h4><p data-i18n="cool-p">Wenn die Temperatur den Schmelzpunkt übersteigt, nimmt das PCM Wärme auf, statt sie in den Raum zu lassen.</p></div>
-        <div class="buffer-box warm"><div class="glyph">☀</div><h4 data-i18n="warm-h">Wärmen</h4><p data-i18n="warm-p">Fällt die Temperatur, gibt das PCM zuvor gespeicherte Wärme wieder ab und hält den Raum stabil.</p></div>
+<section class="mp-variants">
+  <div class="mp-wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-i18n="lbl2">Drei Varianten, drei Schmelzpunkte</span>
+      <h2 data-i18n="h2-2">Die passende Plate für Ihren Anwendungsfall</h2>
+    </div>
+    <div class="mp-vgrid reveal">
+      <div class="mp-vcard cold">
+        <div class="v-temp">21°C</div>
+        <h3 data-i18n="var1-h">MELT Plate Flex</h3>
+        <p data-i18n="var1-p">Für Anwendungen bei denen die Temperaturen zwischen 18°C und 25°C schwanken. Auch wenn aktive Kühlung möglich ist, erzielt die Flex die beste Reduktion der Kühllast.</p>
+      </div>
+      <div class="mp-vcard wax">
+        <div class="v-temp">25°C</div>
+        <h3 data-i18n="var2-h">MELT Plate Comfort</h3>
+        <p data-i18n="var2-p">Der Allrounder — gute Synergie mit Heiz- und Kühlsystemen, verhindert starke Überhitzung durch Sonneneinstrahlung und innere Lasten.</p>
+      </div>
+      <div class="mp-vcard ember">
+        <div class="v-temp">30°C</div>
+        <h3 data-i18n="var3-h">MELT Plate active / MELT Shield</h3>
+        <p data-i18n="var3-p">In Verbindung mit einer Flächenheizung wird daraus eine „Betonkernaktivierung ohne Beton". Bei starken solaren Lasten fängt das MELT Shield Hitze ab, bevor sie in den Raum gelangt.</p>
       </div>
     </div>
+  </div>
+</section>
 
+<section class="mp-feat-list">
+  <div class="mp-wrap">
+    <div class="section-head reveal" style="margin-bottom:0.5rem;">
+      <span class="eyebrow" data-i18n="feat-eyebrow">Auf einen Blick</span>
+      <h2 data-i18n="feat-h2">Warum die MELT Plate</h2>
+    </div>
+    <div class="reveal">
+      <div class="mp-feat-row"><p data-i18n="feat1">Nur 1,2 cm dick, aber deckt Flächen von 0,2 m² bis 2,25 m²</p></div>
+      <div class="mp-feat-row"><p data-i18n="feat2">Im Komfortbereich puffert sie so viel Energie wie eine 25 cm / 600 kg Betonwand</p></div>
+      <div class="mp-feat-row">
+        <p data-i18n="feat3">Wird in Leichtbaustrukturen integriert — wenige Handgriffe zwischen tragenden Balken, ohne komplizierte Installation</p>
+        <div class="mp-feat-thumb"><img src="assets/img/plate-install.jpg" alt="Installation einer MELT Plate"></div>
+      </div>
+      <div class="mp-feat-row"><p data-i18n="feat4">Beinhaltet Salzsole, die im Komfortbereich kristallisiert und die Temperatur konstant hält</p></div>
+      <div class="mp-feat-row"><p data-i18n="feat5">Die Umhüllung besteht zu 100% aus sortenreinem Recyclingkunststoff</p></div>
+      <div class="mp-feat-row"><p data-i18n="feat6">Lässt sich in Serienproduktion preiswert herstellen</p></div>
+      <div class="mp-feat-row"><p data-i18n="feat7">Unser (pat. pend.) Verfahren ist extrem wandelbar — Größe und Dicke, Seitenverhältnisse, Schmelzpunkt und Stoffklasse, Farbe, Oberfläche</p></div>
+      <div class="mp-feat-row"><p data-i18n="feat8">Bringt Klimaresilienz in etablierte Systeme oder neue Innovationen</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="mp-wrap">
     <div class="reveal" style="margin-bottom:4rem;">
       <div class="chart-card">
         <div class="chart-label" data-i18n="chart-lbl">Vergleich: Leichtbaucontainer mit und ohne MELT Plates</div>
         <div class="chart-note" data-i18n="chart-note">// Illustrative Darstellung des Pufferungseffekts über 48 Stunden</div>
         <svg id="compareChart" viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg">
           <defs>
-            <linearGradient id="ohneGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#D98B54"/><stop offset="100%" stop-color="#F0C89A"/></linearGradient>
-            <linearGradient id="mitGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#146B72"/><stop offset="100%" stop-color="#4FA8AC"/></linearGradient>
+            <linearGradient id="ohneGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#E2703A"/><stop offset="100%" stop-color="#C99A56"/></linearGradient>
+            <linearGradient id="mitGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#2B6E82"/><stop offset="100%" stop-color="#4FA8AC"/></linearGradient>
           </defs>
-          <line x1="0" y1="60" x2="900" y2="60" stroke="rgba(34, 31, 25,0.06)"/>
-          <line x1="0" y1="150" x2="900" y2="150" stroke="rgba(34, 31, 25,0.14)" stroke-dasharray="2 5"/>
-          <line x1="0" y1="240" x2="900" y2="240" stroke="rgba(34, 31, 25,0.06)"/>
-          <text x="0" y="54" font-family="IBM Plex Mono" font-size="11" fill="rgba(34, 31, 25,0.4)" data-i18n="chart-hot">heiß</text>
-          <text x="0" y="155" font-family="IBM Plex Mono" font-size="11" fill="rgba(34, 31, 25,0.4)" data-i18n="chart-comfort">Komfortbereich</text>
-          <text x="0" y="245" font-family="IBM Plex Mono" font-size="11" fill="rgba(34, 31, 25,0.4)" data-i18n="chart-cool">kühl</text>
+          <line x1="0" y1="60" x2="900" y2="60" stroke="rgba(23,20,15,0.08)"/>
+          <line x1="0" y1="150" x2="900" y2="150" stroke="rgba(23,20,15,0.16)" stroke-dasharray="2 5"/>
+          <line x1="0" y1="240" x2="900" y2="240" stroke="rgba(23,20,15,0.08)"/>
+          <text x="0" y="54" font-family="IBM Plex Mono" font-size="11" fill="rgba(23,20,15,0.45)" data-i18n="chart-hot">heiß</text>
+          <text x="0" y="155" font-family="IBM Plex Mono" font-size="11" fill="rgba(23,20,15,0.45)" data-i18n="chart-comfort">Komfortbereich</text>
+          <text x="0" y="245" font-family="IBM Plex Mono" font-size="11" fill="rgba(23,20,15,0.45)" data-i18n="chart-cool">kühl</text>
           <path id="ohneLine" d="" fill="none" stroke="url(#ohneGrad)" stroke-width="2.6" stroke-linecap="round"/>
           <path id="mitLine" d="" fill="none" stroke="url(#mitGrad)" stroke-width="3.2" stroke-linecap="round"/>
         </svg>
         <div class="chart-legend">
-          <span><i class="dot" style="background:#D98B54"></i><span data-i18n="legend1">Container ohne MELT Plates</span></span>
-          <span><i class="dot" style="background:#146B72"></i><span data-i18n="legend2">Container mit MELT Plates</span></span>
+          <span><i class="dot" style="background:#E2703A"></i><span data-i18n="legend1">Container ohne MELT Plates</span></span>
+          <span><i class="dot" style="background:#2B6E82"></i><span data-i18n="legend2">Container mit MELT Plates</span></span>
         </div>
-      </div>
-    </div>
-
-    <div class="section-header reveal">
-      <div class="section-label" data-i18n="lbl2">Drei Varianten, drei Schmelzpunkte</div>
-      <h2 class="section-title" data-i18n="h2-2">Die passende Plate für Ihren Anwendungsfall</h2>
-    </div>
-    <div class="variant-grid reveal" style="margin-bottom:4.5rem;">
-      <div class="variant-card" style="--variant-color:#146B72;">
-        <div class="variant-temp">21°C</div>
-        <h3 data-i18n="var1-h">MELT Plate Flex</h3>
-        <p data-i18n="var1-p">Für Anwendungen bei denen die Temperaturen zwischen 18°C und 25°C schwanken. Auch wenn aktive Kühlung möglich ist, erzielt die Flex die beste Reduktion der Kühllast.</p>
-      </div>
-      <div class="variant-card" style="--variant-color:#F0C89A;">
-        <div class="variant-temp">25°C</div>
-        <h3 data-i18n="var2-h">MELT Plate Comfort</h3>
-        <p data-i18n="var2-p">Der Allrounder — gute Synergie mit Heiz- und Kühlsystemen, verhindert starke Überhitzung durch Sonneneinstrahlung und innere Lasten.</p>
-      </div>
-      <div class="variant-card" style="--variant-color:#D98B54;">
-        <div class="variant-temp">30°C</div>
-        <h3 data-i18n="var3-h">MELT Plate active / MELT Shield</h3>
-        <p data-i18n="var3-p">In Verbindung mit einer Flächenheizung wird daraus eine „Betonkernaktivierung ohne Beton". Bei starken solaren Lasten fängt das MELT Shield Hitze ab, bevor sie in den Raum gelangt.</p>
       </div>
     </div>
 
@@ -241,14 +315,26 @@
 const io = new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('active'); io.unobserve(e.target);} }); },{threshold:0.15});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
+// full-bleed breakout: compute exact pixel offsets via JS (avoids vw/calc edge cases)
+function sizeBreakouts(){
+  document.querySelectorAll('.mp-break').forEach(el=>{
+    const rect = el.getBoundingClientRect();
+    el.style.width = document.documentElement.clientWidth + 'px';
+    el.style.marginLeft = (-rect.left) + 'px';
+    el.style.marginRight = 'auto';
+  });
+}
+sizeBreakouts();
+window.addEventListener('resize', sizeBreakouts);
+
 // animated comparison chart: draws in on scroll into view
 function buildPath(points){ return points.map((p,i)=> (i===0?'M':'L') + p[0] + ' ' + p[1]).join(' '); }
 const W = 900, N = 70;
 const ohnePts = [], mitPts = [];
 for(let i=0;i<=N;i++){
   const x = (W/N)*i;
-  const t = i/N * Math.PI * 2.6;
-  const ohneY = 150 - Math.sin(t)*82 - Math.sin(t*2.8)*14;
+  const t = i/N * Math.PI * 4;
+  const ohneY = 150 - Math.sin(t)*82 - Math.sin(t*3)*10;
   const rawMitY = 150 - Math.sin(t)*82*0.28;
   const mitY = Math.max(120, Math.min(180, rawMitY));
   ohnePts.push([x, ohneY]); mitPts.push([x, mitY]);
@@ -275,6 +361,32 @@ const chartIO = new IntersectionObserver((entries)=>{
   });
 },{threshold:0.3});
 chartIO.observe(document.getElementById('compareChart'));
+
+// hero photo badges: fade in staggered on scroll
+const heroBadgeIO = new IntersectionObserver((entries)=>{  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      ['badge1','badge2'].forEach((id,i)=>{
+        setTimeout(()=>document.getElementById(id).classList.add('in'), 300 + i*250);
+      });
+      heroBadgeIO.disconnect();
+    }
+  });
+},{threshold:0.3});
+const heroPhotoEl = document.querySelector('.mp-hero-photo');
+if(heroPhotoEl) heroBadgeIO.observe(heroPhotoEl);
+
+// annotated material photo: leader line + callout
+const annotIO = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      document.getElementById('leaderLine').classList.add('in');
+      setTimeout(()=>document.getElementById('calloutBadge').classList.add('in'), 350);
+      annotIO.disconnect();
+    }
+  });
+},{threshold:0.4});
+const annotPhotoEl = document.querySelector('.mp-annot-photo');
+if(annotPhotoEl) annotIO.observe(annotPhotoEl);
 </script>
 
 
@@ -283,9 +395,22 @@ window.PAGE_I18N = {
   "cta-title": { de:"Neugierig gemacht?", en:"Curious?" },
   "cta-body": { de:"Wollen Sie mehr wissen? Schreiben Sie uns unter contact@melt-ing.com.", en:"Want to know more? Write to us at contact@melt-ing.com." },
   "cta-btn": { de:"Kontakt aufnehmen →", en:"Get in touch →" },
-  "hero-label": { de:"Hardware, MVP, Produkt", en:"Hardware, MVP, Product" },
-  "hero-h1": { de:'Die <span class="highlight">MELT Plate</span>', en:'The <span class="highlight">MELT Plate</span>' },
-  "hero-p": { de:"Effiziente, anpassbare Makroverkapselung für Phasenwechselmaterial.", en:"Efficient, adaptable macro-encapsulation for phase change material." },
+  "hero-label": { de:"Hardware · Produkt", en:"Hardware · Product" },
+  "hero-h1": { de:"Die MELT Plate", en:"The MELT Plate" },
+  "hero-btn1": { de:"So funktioniert es", en:"How it works" },
+  "hero-btn2": { de:"Kontakt aufnehmen", en:"Get in touch" },
+  "badge1": { de:"Bauhöhe", en:"Thickness" },
+  "badge2": { de:"Flächenabdeckung / Platte", en:"Coverage per plate" },
+  "break-eyebrow": { de:"Installation", en:"Installation" },
+  "break-h2": { de:"Wenige Handgriffe statt Baustellen-Chaos", en:"A few steps instead of construction-site chaos" },
+  "annot-eyebrow": { de:"Wie das Material arbeitet", en:"How the material works" },
+  "annot-h2": { de:"Kühlen wenn es zu warm ist, wärmen wenn es zu kalt ist", en:"Cooling when it's too warm, warming when it's too cold" },
+  "annot-p1": { de:"Jede MELT Plate hat einen festen Schmelzpunkt — auf diesem Exemplar von Hand markiert. Erreicht die Raumtemperatur diesen Punkt, nimmt das Phasenwechselmaterial Wärme auf, statt sie in den Raum zu lassen.", en:"Every MELT Plate has a fixed melting point — hand-marked on this sample. When room temperature reaches that point, the phase change material absorbs heat instead of letting it into the room." },
+  "annot-p2": { de:"Fällt die Temperatur wieder, gibt die Platte die gespeicherte Wärme zeitversetzt zurück. Kein Strom, keine Sensoren — nur Physik.", en:"As temperature drops again, the plate releases the stored heat with a time delay. No power, no sensors — just physics." },
+  "callout1": { de:"Schmelzpunkt: 25°C", en:"Melting point: 25°C" },
+  "feat-eyebrow": { de:"Auf einen Blick", en:"At a glance" },
+  "feat-h2": { de:"Warum die MELT Plate", en:"Why the MELT Plate" },
+  "hero-p": { de:"Effiziente, anpassbare Makroverkapselung für Phasenwechselmaterial — nur 1,2 cm dünn, aber puffert wie eine massive Betonwand.", en:"Efficient, adaptable macro-encapsulation for phase change material — only 1.2 cm thin, yet buffers like a massive concrete wall." },
   "tag1": { de:"Skalierbare Wärmepufferplatte", en:"Scalable Thermal Buffer Plate" },
   "lead": { de:"Mit der MELT Plate zeigen wir, wie viel Potential skalierbare, stabile und dünne Wärmepufferplatten bieten.", en:"With the MELT Plate, we show how much potential scalable, stable, and thin thermal buffer plates hold." },
   "feat1": { de:"Nur 1,2 cm dick, aber deckt Flächen von 0,2 m² bis 2,25 m²", en:"Only 1.2 cm thick, but covers areas from 0.2 m² to 2.25 m²" },
