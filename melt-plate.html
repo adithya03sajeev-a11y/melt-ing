@@ -38,13 +38,31 @@
   .mp-badge-1{ top:8%; left:6%; }
   .mp-badge-2{ bottom:10%; right:8%; }
 
-  /* ---------- full-bleed photo break ---------- */
-  .mp-break{ position:relative; margin-top:4.5rem; overflow:hidden; height:52vh; min-height:340px; max-height:560px; }
-  .mp-break img{ width:100%; height:100%; object-fit:cover; display:block; filter:saturate(0.9) contrast(1.05); }
-  .mp-break::after{ content:''; position:absolute; inset:0; background:linear-gradient(0deg, rgba(23,20,15,0.75) 0%, rgba(23,20,15,0.05) 45%); }
-  .mp-break-cap{ position:absolute; left:32px; bottom:28px; right:32px; max-width:1180px; margin:0 auto; color:#fff; }
-  .mp-break-cap .eyebrow{ font-family:'IBM Plex Mono',monospace; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--mp-ember); margin-bottom:0.5rem; }
-  .mp-break-cap h2{ font-family:'Manrope',sans-serif; font-size:clamp(1.5rem,3vw,2.2rem); font-weight:700; max-width:24ch; }
+  /* ---------- installation section: photo shown in full, no aggressive cropping ---------- */
+  .mp-install{ display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:center; padding:4.5rem 0; }
+  @media (max-width:860px){ .mp-install{ grid-template-columns:1fr; } }
+  .mp-install-photo{ border-radius:20px; overflow:hidden; }
+  .mp-install-photo img{ width:100%; height:auto; display:block; object-position:center 30%; }
+  .mp-install-text .eyebrow{ font-family:'IBM Plex Mono',monospace; font-size:0.78rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--mp-ember-deep); margin-bottom:0.8rem; display:block; }
+  .mp-install-text h2{ font-family:'Manrope',sans-serif; font-size:clamp(1.6rem,2.8vw,2.1rem); font-weight:700; margin-bottom:1.1rem; color:var(--mp-ink); }
+  .mp-install-text p{ color:#5C574C; font-size:1.02rem; line-height:1.7; }
+
+  /* ---------- colored block section wrappers ---------- */
+  .mp-block-wax{ background:var(--mp-wax); }
+  .mp-block-wax .mp-annot-text h2, .mp-block-wax .mp-annot-text .eyebrow{ color:#2B2010; }
+  .mp-block-wax .mp-annot-text p{ color:#4A3A20; }
+  .mp-block-charcoal{ background:var(--mp-charcoal); }
+  .mp-block-charcoal h2, .mp-block-charcoal .eyebrow{ color:#fff; }
+  .mp-block-charcoal .eyebrow{ color:var(--mp-ember) !important; }
+  .mp-block-charcoal .mp-feat-row{ border-bottom-color:rgba(255,255,255,0.14); }
+  .mp-block-charcoal .mp-feat-row:first-child{ border-top-color:rgba(255,255,255,0.14); }
+  .mp-block-charcoal .mp-feat-row p{ color:#EDEAE2; }
+  .mp-block-cold{ background:var(--mp-cold); }
+  .mp-block-cold h2, .mp-block-cold p, .mp-block-cold .section-label{ color:#fff !important; }
+  .mp-block-cold .chart-card{ background:rgba(255,255,255,0.08); border-color:rgba(255,255,255,0.18); }
+  .mp-block-cold .chart-label{ color:#fff; }
+  .mp-block-cold .chart-note{ color:rgba(255,255,255,0.5); }
+  .mp-block-cold .chart-legend span{ color:rgba(255,255,255,0.85); }
 
   /* ---------- annotated material section ---------- */
   .mp-annot{ display:grid; grid-template-columns:1fr 1.05fr; gap:3rem; align-items:center; padding:4.5rem 0; }
@@ -80,8 +98,6 @@
   .mp-feat-row{ display:grid; grid-template-columns:1fr auto; align-items:center; gap:2rem; padding:1.5rem 0; border-bottom:1px solid rgba(23,20,15,0.12); }
   .mp-feat-row:first-child{ border-top:1px solid rgba(23,20,15,0.12); }
   .mp-feat-row p{ color:var(--mp-ink); font-size:1.05rem; margin:0; max-width:56ch; }
-  .mp-feat-thumb{ width:76px; height:76px; border-radius:12px; overflow:hidden; flex:none; }
-  .mp-feat-thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
 
   .two-col h2{ color:var(--mp-ink); }
   .cta-section{ background:var(--mp-ink) !important; }
@@ -139,23 +155,30 @@
       </div>
       <div class="mp-hero-photo">
         <img src="assets/img/plate-wall.jpg" alt="Drei MELT Plates in unterschiedlichen Größen, freistehend an einer Holzwand">
-        <div class="mp-badge mp-badge-1" id="badge1"><div class="b-num">1,2 cm</div><div class="b-lbl" data-i18n="badge1">Bauhöhe</div></div>
-        <div class="mp-badge mp-badge-2" id="badge2"><div class="b-num">0,2–2,25 m²</div><div class="b-lbl" data-i18n="badge2">Flächenabdeckung / Platte</div></div>
+        <div class="mp-badge mp-badge-1" id="badge1"><div class="b-num">2,25 m²</div><div class="b-lbl" data-i18n="badge1">Größte Platte</div></div>
+        <div class="mp-badge mp-badge-2" id="badge2"><div class="b-num">0,2 m²</div><div class="b-lbl" data-i18n="badge2">Kleinste Platte</div></div>
       </div>
     </div>
 
   </div>
 </section>
 
-<div class="mp-break reveal">
-  <img src="assets/img/plate-install.jpg" alt="Handwerker installiert eine MELT Plate zwischen tragenden Balken einer Deckenkonstruktion">
-  <div class="mp-break-cap">
-    <span class="eyebrow" data-i18n="break-eyebrow">Installation</span>
-    <h2 data-i18n="break-h2">Wenige Handgriffe statt Baustellen-Chaos</h2>
+<section id="installation">
+  <div class="mp-wrap">
+    <div class="mp-install reveal">
+      <div class="mp-install-photo">
+        <img src="assets/img/plate-install.jpg" alt="Handwerker installiert eine MELT Plate zwischen tragenden Balken einer Deckenkonstruktion">
+      </div>
+      <div class="mp-install-text">
+        <span class="eyebrow" data-i18n="break-eyebrow">Installation</span>
+        <h2 data-i18n="break-h2">Wenige Handgriffe statt Baustellen-Chaos</h2>
+        <p data-i18n="install-p">Die MELT Plate wird zwischen tragenden Balken installiert — ohne Fachwissen in Sachen Energie oder Elektrik. Ein Handwerker, wenige Minuten, keine zusätzlichen Montageschritte auf der Baustelle.</p>
+      </div>
+    </div>
   </div>
-</div>
+</section>
 
-<section id="material">
+<section id="material" class="mp-block-wax">
   <div class="mp-wrap">
     <div class="mp-annot reveal">
       <div class="mp-annot-text">
@@ -199,7 +222,7 @@
   </div>
 </section>
 
-<section class="mp-feat-list">
+<section class="mp-feat-list mp-block-charcoal">
   <div class="mp-wrap">
     <div class="section-head reveal" style="margin-bottom:0.5rem;">
       <span class="eyebrow" data-i18n="feat-eyebrow">Auf einen Blick</span>
@@ -208,10 +231,7 @@
     <div class="reveal">
       <div class="mp-feat-row"><p data-i18n="feat1">Nur 1,2 cm dick, aber deckt Flächen von 0,2 m² bis 2,25 m²</p></div>
       <div class="mp-feat-row"><p data-i18n="feat2">Im Komfortbereich puffert sie so viel Energie wie eine 25 cm / 600 kg Betonwand</p></div>
-      <div class="mp-feat-row">
-        <p data-i18n="feat3">Wird in Leichtbaustrukturen integriert — wenige Handgriffe zwischen tragenden Balken, ohne komplizierte Installation</p>
-        <div class="mp-feat-thumb"><img src="assets/img/plate-install.jpg" alt="Installation einer MELT Plate"></div>
-      </div>
+      <div class="mp-feat-row"><p data-i18n="feat3">Wird in Leichtbaustrukturen integriert — wenige Handgriffe zwischen tragenden Balken, ohne komplizierte Installation</p></div>
       <div class="mp-feat-row"><p data-i18n="feat4">Beinhaltet Salzsole, die im Komfortbereich kristallisiert und die Temperatur konstant hält</p></div>
       <div class="mp-feat-row"><p data-i18n="feat5">Die Umhüllung besteht zu 100% aus sortenreinem Recyclingkunststoff</p></div>
       <div class="mp-feat-row"><p data-i18n="feat6">Lässt sich in Serienproduktion preiswert herstellen</p></div>
@@ -221,34 +241,38 @@
   </div>
 </section>
 
-<section>
+<section class="mp-block-cold">
   <div class="mp-wrap">
-    <div class="reveal" style="margin-bottom:4rem;">
+    <div class="reveal">
       <div class="chart-card">
         <div class="chart-label" data-i18n="chart-lbl">Vergleich: Leichtbaucontainer mit und ohne MELT Plates</div>
         <div class="chart-note" data-i18n="chart-note">// Illustrative Darstellung des Pufferungseffekts über 48 Stunden</div>
         <svg id="compareChart" viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <linearGradient id="ohneGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#E2703A"/><stop offset="100%" stop-color="#C99A56"/></linearGradient>
-            <linearGradient id="mitGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#2B6E82"/><stop offset="100%" stop-color="#4FA8AC"/></linearGradient>
+            <linearGradient id="mitGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#FFFFFF"/><stop offset="100%" stop-color="#EDEAE2"/></linearGradient>
           </defs>
-          <line x1="0" y1="60" x2="900" y2="60" stroke="rgba(23,20,15,0.08)"/>
-          <line x1="0" y1="150" x2="900" y2="150" stroke="rgba(23,20,15,0.16)" stroke-dasharray="2 5"/>
-          <line x1="0" y1="240" x2="900" y2="240" stroke="rgba(23,20,15,0.08)"/>
-          <text x="0" y="54" font-family="IBM Plex Mono" font-size="11" fill="rgba(23,20,15,0.45)" data-i18n="chart-hot">heiß</text>
-          <text x="0" y="155" font-family="IBM Plex Mono" font-size="11" fill="rgba(23,20,15,0.45)" data-i18n="chart-comfort">Komfortbereich</text>
-          <text x="0" y="245" font-family="IBM Plex Mono" font-size="11" fill="rgba(23,20,15,0.45)" data-i18n="chart-cool">kühl</text>
+          <line x1="0" y1="60" x2="900" y2="60" stroke="rgba(255,255,255,0.14)"/>
+          <line x1="0" y1="150" x2="900" y2="150" stroke="rgba(255,255,255,0.24)" stroke-dasharray="2 5"/>
+          <line x1="0" y1="240" x2="900" y2="240" stroke="rgba(255,255,255,0.14)"/>
+          <text x="0" y="54" font-family="IBM Plex Mono" font-size="11" fill="rgba(255,255,255,0.6)" data-i18n="chart-hot">heiß</text>
+          <text x="0" y="155" font-family="IBM Plex Mono" font-size="11" fill="rgba(255,255,255,0.6)" data-i18n="chart-comfort">Komfortbereich</text>
+          <text x="0" y="245" font-family="IBM Plex Mono" font-size="11" fill="rgba(255,255,255,0.6)" data-i18n="chart-cool">kühl</text>
           <path id="ohneLine" d="" fill="none" stroke="url(#ohneGrad)" stroke-width="2.6" stroke-linecap="round"/>
           <path id="mitLine" d="" fill="none" stroke="url(#mitGrad)" stroke-width="3.2" stroke-linecap="round"/>
         </svg>
         <div class="chart-legend">
           <span><i class="dot" style="background:#E2703A"></i><span data-i18n="legend1">Container ohne MELT Plates</span></span>
-          <span><i class="dot" style="background:#2B6E82"></i><span data-i18n="legend2">Container mit MELT Plates</span></span>
+          <span><i class="dot" style="background:#FFFFFF"></i><span data-i18n="legend2">Container mit MELT Plates</span></span>
         </div>
       </div>
     </div>
+  </div>
+</section>
 
-    <div class="two-col reveal" style="margin-bottom:4.5rem;">
+<section class="mp-block-wax">
+  <div class="mp-wrap">
+    <div class="two-col reveal">
       <div>
         <div class="section-label" data-i18n="lbl3">Die Zukunft ist flexibel</div>
         <h2 data-i18n="h2-3">Ihr Leichtbau auch?</h2>
@@ -262,7 +286,11 @@
         <p data-i18n="p4">Sie puffern in 1,2 cm genau so gut Schwankungen ab wie 25 cm Beton. Die beste Wirkung wird in sehr leichten „Low-Tech"-Gebäuden erzielt.</p>
       </div>
     </div>
+  </div>
+</section>
 
+<section>
+  <div class="mp-wrap">
     <div class="two-col reveal">
       <div>
         <div class="section-label" data-i18n="lbl5">„Fit for 2050" ohne Beton</div>
@@ -314,18 +342,6 @@
 <script>
 const io = new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('active'); io.unobserve(e.target);} }); },{threshold:0.15});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-
-// full-bleed breakout: compute exact pixel offsets via JS (avoids vw/calc edge cases)
-function sizeBreakouts(){
-  document.querySelectorAll('.mp-break').forEach(el=>{
-    const rect = el.getBoundingClientRect();
-    el.style.width = document.documentElement.clientWidth + 'px';
-    el.style.marginLeft = (-rect.left) + 'px';
-    el.style.marginRight = 'auto';
-  });
-}
-sizeBreakouts();
-window.addEventListener('resize', sizeBreakouts);
 
 // animated comparison chart: draws in on scroll into view
 function buildPath(points){ return points.map((p,i)=> (i===0?'M':'L') + p[0] + ' ' + p[1]).join(' '); }
@@ -403,6 +419,7 @@ window.PAGE_I18N = {
   "badge2": { de:"Flächenabdeckung / Platte", en:"Coverage per plate" },
   "break-eyebrow": { de:"Installation", en:"Installation" },
   "break-h2": { de:"Wenige Handgriffe statt Baustellen-Chaos", en:"A few steps instead of construction-site chaos" },
+  "install-p": { de:"Die MELT Plate wird zwischen tragenden Balken installiert — ohne Fachwissen in Sachen Energie oder Elektrik. Ein Handwerker, wenige Minuten, keine zusätzlichen Montageschritte auf der Baustelle.", en:"The MELT Plate is installed between load-bearing beams — no expertise in energy or electrics needed. One tradesperson, a few minutes, no extra assembly steps on site." },
   "annot-eyebrow": { de:"Wie das Material arbeitet", en:"How the material works" },
   "annot-h2": { de:"Kühlen wenn es zu warm ist, wärmen wenn es zu kalt ist", en:"Cooling when it's too warm, warming when it's too cold" },
   "annot-p1": { de:"Jede MELT Plate hat einen festen Schmelzpunkt — auf diesem Exemplar von Hand markiert. Erreicht die Raumtemperatur diesen Punkt, nimmt das Phasenwechselmaterial Wärme auf, statt sie in den Raum zu lassen.", en:"Every MELT Plate has a fixed melting point — hand-marked on this sample. When room temperature reaches that point, the phase change material absorbs heat instead of letting it into the room." },
