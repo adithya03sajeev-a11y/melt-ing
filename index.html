@@ -9,10 +9,10 @@
 <style>
   .hero { position: relative; min-height: 92vh; display:flex; align-items:flex-end; justify-content:flex-start; overflow:hidden; background:var(--melt-black); }
   .hero-video { position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:0; }
-  .hero-overlay { position:absolute; inset:0; z-index:1; background:linear-gradient(0deg, rgba(34, 31, 25,0.88) 0%, rgba(34, 31, 25,0.55) 42%, rgba(34, 31, 25,0.25) 70%, rgba(34, 31, 25,0.35) 100%); }
+  .hero-overlay { position:absolute; inset:0; z-index:1; background:linear-gradient(0deg, rgba(23, 20, 15,0.88) 0%, rgba(23, 20, 15,0.55) 42%, rgba(23, 20, 15,0.25) 70%, rgba(23, 20, 15,0.35) 100%); }
   .hero-content { position:relative; z-index:2; text-align:left; max-width:760px; padding:3rem 3.5rem 5rem; margin-right:auto; }
   .hero-badge { display:inline-flex; align-items:center; gap:0.5rem; padding:0.5rem 1.2rem; border:1px solid var(--melt-orange);
-    border-radius:50px; font-size:0.85rem; color:var(--melt-orange-light); margin-bottom:2rem; background: rgba(217, 139, 84,0.12); animation:fadeInDown 1s ease-out 0.2s both; }
+    border-radius:50px; font-size:0.85rem; color:var(--melt-orange-light); margin-bottom:2rem; background: rgba(226, 112, 58,0.12); animation:fadeInDown 1s ease-out 0.2s both; }
   .hero-badge .dot { width:8px; height:8px; background:var(--melt-orange); border-radius:50%; animation:pulse 2s infinite; }
   @keyframes pulse { 0%,100%{opacity:1; transform:scale(1);} 50%{opacity:0.5; transform:scale(1.3);} }
   .hero h1 { font-family:'Manrope', sans-serif; font-size:clamp(2.4rem, 5.6vw, 4.6rem); font-weight:700; line-height:1.05; margin-bottom:1.5rem; color:#fff; animation:fadeInUp 1s ease-out 0.4s both; }
@@ -20,12 +20,19 @@
   .hero-subtitle { font-size:clamp(1rem, 2vw, 1.25rem); color:rgba(255,255,255,0.78); max-width:560px; margin:0 0 2.5rem; animation:fadeInUp 1s ease-out 0.6s both; }
   .hero-cta { display:flex; gap:1rem; justify-content:flex-start; flex-wrap:wrap; animation:fadeInUp 1s ease-out 0.8s both; }
   .btn { padding:1rem 2.3rem; border-radius:12px; font-weight:600; font-size:1rem; cursor:pointer; transition:all 0.3s ease; text-decoration:none; display:inline-flex; align-items:center; gap:0.5rem; }
-  .btn-primary { background: linear-gradient(135deg, var(--melt-orange), #B5652E); color:white; border:none; box-shadow:0 10px 40px rgba(217, 139, 84,0.3); }
-  .btn-primary:hover { transform:translateY(-3px); box-shadow:0 15px 50px rgba(217, 139, 84,0.4); }
+  .btn-primary { background: linear-gradient(135deg, var(--melt-orange), #E2703A); color:white; border:none; box-shadow:0 10px 40px rgba(226, 112, 58,0.3); }
+  .btn-primary:hover { transform:translateY(-3px); box-shadow:0 15px 50px rgba(226, 112, 58,0.4); }
   .btn-secondary { background:rgba(255,255,255,0.06); color:#fff; border:1px solid rgba(255,255,255,0.35); }
   .btn-secondary:hover { border-color:var(--melt-orange); color:var(--melt-orange-light); }
   .scroll-indicator { position:absolute; bottom:2rem; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:0.5rem; color:rgba(255,255,255,0.7); font-size:0.8rem; animation:bounce 2s infinite; z-index:2; }
   @media (max-width:760px){ .hero { align-items:flex-end; } .hero-content { padding:2rem 1.4rem 3.2rem; max-width:100%; } .hero-cta{justify-content:flex-start;} }
+
+  .home-break{ position:relative; overflow:hidden; height:56vh; min-height:360px; max-height:600px; }
+  .home-break img{ width:100%; height:100%; object-fit:cover; object-position:65% 72%; display:block; }
+  .home-break::after{ content:''; position:absolute; inset:0; background:linear-gradient(0deg, rgba(23,20,15,0.78) 0%, rgba(23,20,15,0.05) 40%); }
+  .home-break-cap{ position:absolute; left:32px; bottom:28px; right:32px; max-width:1180px; margin:0 auto; color:#fff; }
+  .home-break-cap .eyebrow{ font-family:'IBM Plex Mono',monospace; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--melt-orange); margin-bottom:0.5rem; display:block; }
+  .home-break-cap h2{ font-family:'Manrope',sans-serif; font-size:clamp(1.5rem,3vw,2.2rem); font-weight:700; max-width:26ch; margin:0; color:#fff; }
   .scroll-line { width:1px; height:40px; background:linear-gradient(to bottom, var(--melt-orange), transparent); }
   @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0);} 50%{transform:translateX(-50%) translateY(10px);} }
   @keyframes fadeInUp { from{opacity:0; transform:translateY(30px);} to{opacity:1; transform:translateY(0);} }
@@ -33,9 +40,9 @@
 
   .problem-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; }
   @media (max-width:900px){ .problem-grid{grid-template-columns:1fr;} }
-  .problem-visual { position:relative; height:380px; background:linear-gradient(135deg,#1a1a1a,#221F19); border-radius:24px; border:1px solid var(--melt-border); display:flex; align-items:center; justify-content:center; }
+  .problem-visual { position:relative; height:380px; background:linear-gradient(135deg,#1a1a1a,#17140F); border-radius:24px; border:1px solid var(--melt-border); display:flex; align-items:center; justify-content:center; }
   .temp-gauge { width:260px; height:260px; position:relative; }
-  .gauge-ring { width:100%; height:100%; border-radius:50%; border:8px solid rgba(34, 31, 25,0.15); position:relative; }
+  .gauge-ring { width:100%; height:100%; border-radius:50%; border:8px solid rgba(23, 20, 15,0.15); position:relative; }
   .gauge-fill { position:absolute; top:0; left:0; width:100%; height:100%; border-radius:50%; border:8px solid transparent; border-top-color:var(--melt-orange); border-right-color:var(--melt-orange-light); animation:gaugeSpin 3s ease-in-out infinite alternate; }
   @keyframes gaugeSpin { 0%{transform:rotate(-135deg);} 100%{transform:rotate(45deg);} }
   .gauge-center { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); text-align:center; }
@@ -54,7 +61,7 @@
   .acc-item:first-child { border-top:1px solid var(--melt-border); }
   .acc-q { display:flex; justify-content:space-between; align-items:center; padding:1.5rem 0; cursor:pointer; gap:1rem; }
   .acc-q-left { display:flex; align-items:center; gap:1rem; }
-  .acc-icon { width:40px; height:40px; min-width:40px; border-radius:11px; background:rgba(217, 139, 84,0.1); display:flex; align-items:center; justify-content:center; font-size:1.15rem; color:var(--melt-orange); }
+  .acc-icon { width:40px; height:40px; min-width:40px; border-radius:11px; background:rgba(226, 112, 58,0.1); display:flex; align-items:center; justify-content:center; font-size:1.15rem; color:var(--melt-orange); }
   .acc-q h3 { font-family:'Manrope', sans-serif; font-size:1.15rem; font-weight:700; }
   .acc-chevron { font-size:1.1rem; color:var(--melt-text-muted); transition:transform .3s ease; min-width:20px; text-align:center; }
   .acc-item.open .acc-chevron { transform:rotate(180deg); color:var(--melt-orange); }
@@ -95,7 +102,7 @@
   .faq-a-inner { padding:0 20px 20px 20px; color:var(--melt-text-muted); font-size:14.5px; line-height:1.7; max-width:600px; }
   .faq-footer { margin-top:30px; padding-top:24px; border-top:1px solid var(--melt-border); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:14px; }
   .faq-footer-text { font-size:13.5px; color:var(--melt-text-muted); }
-  .faq-cta { font-family:'Inter', sans-serif; font-weight:600; font-size:14px; padding:12px 20px; border-radius:10px; background:linear-gradient(135deg, var(--melt-orange), #B5652E); color:#fff; text-decoration:none; white-space:nowrap; }
+  .faq-cta { font-family:'Inter', sans-serif; font-weight:600; font-size:14px; padding:12px 20px; border-radius:10px; background:linear-gradient(135deg, var(--melt-orange), #E2703A); color:#fff; text-decoration:none; white-space:nowrap; }
   .faq-cta:hover { opacity:0.9; }
 
   /* ===== dark section text overrides (problem / accordion / FAQ) ===== */
@@ -135,7 +142,7 @@
   @media (max-width:720px){ .pcm-q-text{font-size:21px;} }
   .pcm-options { display:flex; flex-direction:column; gap:10px; }
   .pcm-opt { text-align:left; background:var(--melt-gray); border:1px solid var(--melt-border); color:var(--melt-text); padding:16px 18px; border-radius:12px; font-family:'Inter', sans-serif; font-size:15px; font-weight:500; cursor:pointer; display:flex; align-items:center; gap:14px; transition:border-color .2s ease, background .2s ease, transform .15s ease; }
-  .pcm-opt:hover { border-color:var(--melt-orange); background:rgba(217, 139, 84,0.08); transform:translateX(2px); }
+  .pcm-opt:hover { border-color:var(--melt-orange); background:rgba(226, 112, 58,0.08); transform:translateX(2px); }
   .pcm-opt .pcm-opt-icon { width:34px; height:34px; border-radius:9px; background:var(--melt-surface); border:1px solid var(--melt-border); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:16px; }
   .pcm-nav { margin-top:auto; padding-top:24px; display:flex; justify-content:space-between; align-items:center; }
   .pcm-back { font-family:'Inter', sans-serif; font-size:13px; color:var(--melt-text-muted); background:none; border:none; cursor:pointer; padding:8px 0; }
@@ -144,7 +151,7 @@
   .pcm-step-count { font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--melt-text-muted); }
   .pcm-result { display:none; flex-direction:column; height:100%; }
   .pcm-result.show { display:flex; }
-  .pcm-result-badge { display:inline-flex; align-items:center; gap:8px; font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; padding:6px 12px; border-radius:20px; background:rgba(20, 107, 114,0.1); color:var(--melt-blue); border:1px solid rgba(20, 107, 114,0.3); width:fit-content; margin-bottom:18px; font-weight:600; }
+  .pcm-result-badge { display:inline-flex; align-items:center; gap:8px; font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; padding:6px 12px; border-radius:20px; background:rgba(43, 110, 130,0.1); color:var(--melt-blue); border:1px solid rgba(43, 110, 130,0.3); width:fit-content; margin-bottom:18px; font-weight:600; }
   .pcm-result-title { font-family:'Manrope', sans-serif; font-size:28px; font-weight:700; margin:0 0 14px 0; line-height:1.2; color:var(--melt-text); }
   .pcm-result-score { font-family:'IBM Plex Mono', monospace; font-size:15px; color:var(--melt-orange-light); margin-bottom:20px; font-weight:600; }
   .pcm-result-text { font-size:15px; line-height:1.65; color:var(--melt-text-muted); max-width:480px; margin-bottom:26px; }
@@ -154,7 +161,7 @@
   .pcm-factor-value { font-size:13px; font-weight:600; color:var(--melt-text); }
   .pcm-cta-row { display:flex; gap:12px; margin-top:auto; flex-wrap:wrap; }
   .pcm-cta { font-family:'Inter', sans-serif; font-weight:600; font-size:14px; padding:14px 22px; border-radius:10px; border:none; cursor:pointer; text-decoration:none; display:inline-flex; align-items:center; }
-  .pcm-cta.primary { background:linear-gradient(135deg, var(--melt-orange), #B5652E); color:#fff; }
+  .pcm-cta.primary { background:linear-gradient(135deg, var(--melt-orange), #E2703A); color:#fff; }
   .pcm-cta.primary:hover { opacity:0.9; }
   .pcm-cta.ghost { background:transparent; color:var(--melt-text); border:1px solid var(--melt-border); }
   .pcm-cta.ghost:hover { border-color:var(--melt-orange); color:var(--melt-orange-light); }
@@ -218,6 +225,14 @@
   </div>
   <div class="scroll-indicator"><span data-i18n="scroll-label">Scrollen</span><div class="scroll-line"></div></div>
 </section>
+
+<div class="home-break reveal">
+  <img src="assets/img/plate-install.jpg" alt="Handwerker installiert eine MELT Plate zwischen tragenden Balken einer Deckenkonstruktion">
+  <div class="home-break-cap">
+    <span class="eyebrow" data-i18n="break-eyebrow">Installation</span>
+    <h2 data-i18n="break-h2">Wenige Handgriffe statt Baustellen-Chaos</h2>
+  </div>
+</div>
 
 <section>
   <div class="container">
@@ -782,6 +797,8 @@ document.querySelectorAll('.stat-card .num').forEach(el=>{
 (function(){
   const I18N = {
     'hero-badge': { de:'<span class="dot"></span>Latentwärmespeicher · Made in Mannheim', en:'<span class="dot"></span>Latent Heat Storage · Made in Mannheim' },
+    'break-eyebrow': { de:'Installation', en:'Installation' },
+    'break-h2': { de:'Wenige Handgriffe statt Baustellen-Chaos', en:'A few steps instead of construction-site chaos' },
     'hero-h1': { de:'Der Wärmespeicher<br><span class="highlight">der Zukunft.</span>', en:'The Heat Storage<br><span class="highlight">of the Future.</span>' },
     'hero-sub': { de:'Das Startup MELT-Ing macht leichte Gebäude klimaresilient. Bei Konstruktionen ohne Gebäudemasse schwanken die Temperaturen drastisch — starke Überhitzung und schnellere Abkühlung sind die Folge. Wir haben die Lösung.', en:'The startup MELT-Ing makes lightweight buildings climate-resilient. In constructions without thermal mass, temperatures swing drastically — severe overheating and faster cooling are the result. We have the solution.' },
     'hero-cta1': { de:'gleich anfragen →', en:'get in touch →' },

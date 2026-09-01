@@ -20,7 +20,7 @@
   @media (max-width:700px){ .sdg-row{grid-template-columns:1fr;} }
   .sdg-card { background:var(--melt-surface); border:1px solid var(--melt-border); border-radius:16px; padding:1.6rem 1.3rem; text-align:center; display:flex; flex-direction:column; }
   .sdg-card.featured { border-color:var(--melt-orange); box-shadow:0 0 0 1px var(--melt-orange); }
-  .sdg-num { font-family:'Manrope', sans-serif; font-weight:700; font-size:0.85rem; color:var(--melt-ink, #221F19); background:linear-gradient(135deg, var(--melt-orange), var(--melt-orange-light)); display:inline-block; padding:0.3rem 0.8rem; border-radius:100px; margin-bottom:1rem; }
+  .sdg-num { font-family:'Manrope', sans-serif; font-weight:700; font-size:0.85rem; color:var(--melt-ink, #17140F); background:linear-gradient(135deg, var(--melt-orange), var(--melt-orange-light)); display:inline-block; padding:0.3rem 0.8rem; border-radius:100px; margin-bottom:1rem; }
   .sdg-icon { width:56px; height:56px; margin:0 auto 1rem; border-radius:50%; background:var(--melt-gray); display:flex; align-items:center; justify-content:center; font-size:1.5rem; }
   .sdg-card h4 { font-family:'Manrope', sans-serif; font-size:0.98rem; margin-bottom:0.5rem; }
   .sdg-card p { color:var(--melt-text-muted); font-size:0.85rem; margin:0; flex:1; }
@@ -29,7 +29,7 @@
   .dual-ring-row { display:flex; justify-content:center; gap:1.1rem; margin-bottom:1rem; }
   .mini-ring-wrap { width:74px; height:74px; position:relative; }
   .mini-ring-wrap .ring { position:relative; width:100%; height:100%; border-radius:50%; }
-  .mini-ring-wrap .ring::before { content:''; position:absolute; inset:0; border-radius:50%; background:conic-gradient(var(--sdg-color, var(--melt-orange)) calc(var(--pct,0) * 1%), rgba(34, 31, 25,0.16) 0); transition:background 1.4s cubic-bezier(.16,1,.3,1); }
+  .mini-ring-wrap .ring::before { content:''; position:absolute; inset:0; border-radius:50%; background:conic-gradient(var(--sdg-color, var(--melt-orange)) calc(var(--pct,0) * 1%), rgba(23, 20, 15,0.16) 0); transition:background 1.4s cubic-bezier(.16,1,.3,1); }
   .mini-ring-wrap .ring::after { content:''; position:absolute; inset:7px; border-radius:50%; background:var(--melt-surface); }
   .mini-ring-wrap .ring-label { position:relative; z-index:2; display:flex; align-items:center; justify-content:center; width:100%; height:100%; font-family:'Manrope', sans-serif; font-weight:700; font-size:0.95rem; color:var(--sdg-color, var(--melt-orange)); }
   .mini-ring-caption { font-size:0.72rem; color:var(--melt-text-muted); margin-top:0.35rem; }
@@ -39,13 +39,13 @@
   @media (max-width:700px){ .impact-compare{grid-template-columns:1fr;} }
   .impact-side { border-radius:18px; padding:1.8rem; border:1px solid var(--melt-border); }
   .impact-side.fake { background:rgba(200,60,60,0.05); border-color:rgba(200,60,60,0.25); }
-  .impact-side.real { background:rgba(20, 107, 114,0.06); border-color:rgba(20, 107, 114,0.3); }
+  .impact-side.real { background:rgba(43, 110, 130,0.06); border-color:rgba(43, 110, 130,0.3); }
   .impact-side h4 { font-family:'Manrope', sans-serif; font-size:1.05rem; margin-bottom:1rem; display:flex; align-items:center; gap:0.5rem; }
   .impact-side ul { list-style:none; }
-  .impact-side li { font-size:0.9rem; color:var(--melt-text-muted); padding:0.5rem 0; border-bottom:1px solid rgba(34, 31, 25,0.15); }
+  .impact-side li { font-size:0.9rem; color:var(--melt-text-muted); padding:0.5rem 0; border-bottom:1px solid rgba(23, 20, 15,0.15); }
 
   .badge-row { display:flex; gap:0.8rem; flex-wrap:wrap; margin:1.5rem 0; }
-  .badge { background:rgba(20, 107, 114,0.1); border:1px solid rgba(20, 107, 114,0.3); color:var(--melt-blue); border-radius:10px; padding:0.7rem 1.1rem; font-family:'IBM Plex Mono', monospace; font-size:0.85rem; }
+  .badge { background:rgba(43, 110, 130,0.1); border:1px solid rgba(43, 110, 130,0.3); color:var(--melt-blue); border-radius:10px; padding:0.7rem 1.1rem; font-family:'IBM Plex Mono', monospace; font-size:0.85rem; }
 </style>
 </head>
 <body>
@@ -136,11 +136,11 @@
             <div class="sdg-num">SDG 9</div>
             <div class="dual-ring-row">
               <div>
-                <div class="mini-ring-wrap" style="--sdg-color:#D98B54;"><div class="ring" style="--pct:0;" data-pct="86"><div class="ring-label" id="sdg9label-a">0%</div></div></div>
+                <div class="mini-ring-wrap" style="--sdg-color:#E2703A;"><div class="ring" style="--pct:0;" data-pct="86"><div class="ring-label" id="sdg9label-a">0%</div></div></div>
                 <div class="mini-ring-caption" data-i18n="sdg9-cap-a">Hitzeereignisse</div>
               </div>
               <div>
-                <div class="mini-ring-wrap" style="--sdg-color:#146B72;"><div class="ring" style="--pct:0;" data-pct="62"><div class="ring-label" id="sdg9label-b">0%</div></div></div>
+                <div class="mini-ring-wrap" style="--sdg-color:#2B6E82;"><div class="ring" style="--pct:0;" data-pct="62"><div class="ring-label" id="sdg9label-b">0%</div></div></div>
                 <div class="mini-ring-caption" data-i18n="sdg9-cap-b">Spitzenlasten</div>
               </div>
             </div>
