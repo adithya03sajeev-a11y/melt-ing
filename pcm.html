@@ -26,6 +26,21 @@
   .phase-arrow { font-size:1.4rem; color:var(--melt-orange); animation:phasePulse 2.4s ease-in-out infinite; }
   @keyframes phasePulse { 0%,100%{opacity:0.4; transform:translateX(0);} 50%{opacity:1; transform:translateX(6px);} }
   .phase-caption { text-align:center; font-size:0.85rem; color:var(--melt-text-muted); margin-top:1.4rem; }
+
+  /* FAQ section */
+  .faq-filters { display:flex; gap:0.6rem; flex-wrap:wrap; margin:1.6rem 0 1.8rem; }
+  .faq-pill { font-family:'IBM Plex Mono', monospace; font-size:0.85rem; padding:0.6rem 1.2rem; border-radius:100px; border:1px solid var(--melt-border); background:var(--melt-surface); color:var(--melt-text-muted); cursor:pointer; transition:all .2s; }
+  .faq-pill:hover { border-color:var(--melt-orange); color:var(--melt-text); }
+  .faq-pill.active { background:var(--melt-orange); border-color:var(--melt-orange); color:#fff; font-weight:600; }
+  .faq-list { display:flex; flex-direction:column; gap:0.9rem; }
+  .faq-item { background:var(--melt-gray); border:1px solid var(--melt-border); border-radius:16px; padding:1.3rem 1.5rem; transition:opacity .3s, transform .3s; }
+  .faq-item.faq-hidden { display:none; }
+  .faq-tag { font-family:'IBM Plex Mono', monospace; font-size:0.7rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--melt-orange); margin-bottom:0.5rem; }
+  .faq-q { display:flex; align-items:center; justify-content:space-between; width:100%; background:none; border:none; text-align:left; font-family:'Manrope', sans-serif; font-weight:700; font-size:1.02rem; color:var(--melt-text); cursor:pointer; padding:0; gap:1rem; }
+  .faq-q::after { content:'+'; font-size:1.3rem; color:var(--melt-orange); flex:none; transition:transform .3s; }
+  .faq-item.open .faq-q::after { transform:rotate(45deg); }
+  .faq-a { max-height:0; overflow:hidden; transition:max-height .4s ease, margin-top .4s ease; color:var(--melt-text-muted); font-size:0.95rem; line-height:1.65; margin-top:0; }
+  .faq-item.open .faq-a { max-height:220px; margin-top:0.9rem; }
 </style>
 </head>
 <body>
@@ -108,6 +123,74 @@
       </div>
 
       <p style="margin-top:1.2rem;" data-i18n="p6">Im Vergleich zu Beton speichert eine MELT Plate bei 30-fach geringerem Gewicht die 20,8-fache Energiemenge. Die Verkapselung aus sortenreinem Recyclingkunststoff ist leckagesicher und ermöglicht eine preiswerte Serienproduktion – damit holen wir PCM aus der Nische in die breite Anwendung.</p>
+
+      <h2 data-i18n="faq-h2">Häufig gestellte Fragen</h2>
+
+      <div class="faq-filters">
+        <button class="faq-pill" data-cat="grundlagen" data-i18n="fcat1">Grundlagen</button>
+        <button class="faq-pill" data-cat="eignung" data-i18n="fcat2">Eignung</button>
+        <button class="faq-pill" data-cat="installation" data-i18n="fcat3">Installation</button>
+        <button class="faq-pill" data-cat="kosten" data-i18n="fcat4">Kosten</button>
+        <button class="faq-pill active" data-cat="alle" data-i18n="fcat5">Alle</button>
+      </div>
+
+      <div class="faq-list" id="faqList">
+        <div class="faq-item" data-cat="grundlagen">
+          <div class="faq-tag" data-i18n="fcat1">Grundlagen</div>
+          <button class="faq-q" data-i18n="faq1-q">Was ist ein Phasenwechselmaterial (PCM)?</button>
+          <div class="faq-a" data-i18n="faq1-a">Ein PCM speichert und gibt Energie beim Übergang zwischen fest und flüssig ab — nicht durch Temperaturänderung, sondern durch den Phasenwechsel selbst. Dadurch puffert es sehr viel Wärme in einem sehr engen Temperaturbereich.</div>
+        </div>
+        <div class="faq-item" data-cat="grundlagen">
+          <div class="faq-tag" data-i18n="fcat1">Grundlagen</div>
+          <button class="faq-q" data-i18n="faq2-q">Warum bleibt die Temperatur beim Schmelzen konstant?</button>
+          <div class="faq-a" data-i18n="faq2-a">Die zugeführte Energie fließt vollständig in die sogenannte Schmelzenthalpie — die Umwandlung von fest zu flüssig — statt die Temperatur weiter steigen zu lassen. Erst wenn der gesamte Stoff geschmolzen ist, steigt die Temperatur wieder an.</div>
+        </div>
+        <div class="faq-item" data-cat="grundlagen">
+          <div class="faq-tag" data-i18n="fcat1">Grundlagen</div>
+          <button class="faq-q" data-i18n="faq3-q">Woraus besteht das PCM in der MELT Plate?</button>
+          <div class="faq-a" data-i18n="faq3-a">Wir nutzen eine Salzsole, die exakt im gewünschten Komfortbereich kristallisiert — je nach Variante bei 21°C, 25°C oder 30°C. Verkapselt ist sie in einer leckagesicheren Hülle aus sortenreinem Recyclingkunststoff.</div>
+        </div>
+        <div class="faq-item" data-cat="eignung">
+          <div class="faq-tag" data-i18n="fcat2">Eignung</div>
+          <button class="faq-q" data-i18n="faq4-q">Für welche Gebäude eignet sich die MELT Plate?</button>
+          <div class="faq-a" data-i18n="faq4-a">Besonders für Leichtbauten mit geringer thermischer Masse: Fertighäuser, Modulbau, Holzständerbau, Container und Dachgeschossausbauten. Überall dort, wo klassische Baustoffe keine Pufferung bieten, übernimmt die MELT Plate diese Aufgabe.</div>
+        </div>
+        <div class="faq-item" data-cat="eignung">
+          <div class="faq-tag" data-i18n="fcat2">Eignung</div>
+          <button class="faq-q" data-i18n="faq5-q">Welchen Schmelzpunkt sollte ich wählen — 21°C, 25°C oder 30°C?</button>
+          <div class="faq-a" data-i18n="faq5-a">Das hängt vom Anwendungsfall ab: Flex (21°C) eignet sich bei aktiver Kühlung, Comfort (25°C) ist der Allrounder für die meisten Wohngebäude, und Active/Shield (30°C) schützt gezielt vor starker Sonneneinstrahlung. Wir beraten Sie gerne zur passenden Wahl.</div>
+        </div>
+        <div class="faq-item" data-cat="eignung">
+          <div class="faq-tag" data-i18n="fcat2">Eignung</div>
+          <button class="faq-q" data-i18n="faq6-q">Funktioniert die MELT Plate auch im Winter?</button>
+          <div class="faq-a" data-i18n="faq6-a">Ja. Das Prinzip funktioniert in beide Richtungen: Sinkt die Temperatur unter den Schmelzpunkt, kristallisiert das Material und gibt die zuvor gespeicherte Wärme wieder an den Raum ab — ganz ohne zusätzliche Heizenergie.</div>
+        </div>
+        <div class="faq-item" data-cat="installation">
+          <div class="faq-tag" data-i18n="fcat3">Installation</div>
+          <button class="faq-q" data-i18n="faq7-q">Wie wird die MELT Plate installiert?</button>
+          <div class="faq-a" data-i18n="faq7-a">Die Platte wird zwischen tragenden Balken montiert — wenige Handgriffe, keine zusätzlichen Montageschritte auf der Baustelle und kein Fachwissen in Sachen Energie oder Elektrik nötig.</div>
+        </div>
+        <div class="faq-item" data-cat="installation">
+          <div class="faq-tag" data-i18n="fcat3">Installation</div>
+          <button class="faq-q" data-i18n="faq8-q">Kann ich die Platte auch nachträglich in ein bestehendes Gebäude einbauen?</button>
+          <div class="faq-a" data-i18n="faq8-a">Ja. Da sie nur 1,2 cm dünn ist, lässt sich die MELT Plate — anders als eine klassische Betonkernaktivierung — auch nachträglich in bestehende Decken und Wände integrieren, etwa bei einer Dachsanierung.</div>
+        </div>
+        <div class="faq-item" data-cat="installation">
+          <div class="faq-tag" data-i18n="fcat3">Installation</div>
+          <button class="faq-q" data-i18n="faq9-q">Braucht die Platte Strom, Sensoren oder Wartung?</button>
+          <div class="faq-a" data-i18n="faq9-a">Nein. Die MELT Plate funktioniert rein passiv durch Physik — ohne Strom, ohne Sensoren, ohne Kabel und ohne Wartungsverträge, über viele Jahre hinweg.</div>
+        </div>
+        <div class="faq-item" data-cat="kosten">
+          <div class="faq-tag" data-i18n="fcat4">Kosten</div>
+          <button class="faq-q" data-i18n="faq10-q">Was kostet eine MELT Plate?</button>
+          <div class="faq-a" data-i18n="faq10-a">Der Preis hängt von Größe, Schmelzpunkt und Stückzahl des Projekts ab — unser Preismodell honoriert größere Abnahmemengen. Schreiben Sie uns Ihre Anforderungen, wir erstellen gerne ein individuelles Angebot.</div>
+        </div>
+        <div class="faq-item" data-cat="kosten">
+          <div class="faq-tag" data-i18n="fcat4">Kosten</div>
+          <button class="faq-q" data-i18n="faq11-q">Rechnet sich die Investition?</button>
+          <div class="faq-a" data-i18n="faq11-a">Ja — durch reduzierte Heiz- und Kühllasten, weniger Bedarf an aktiver Klimatechnik und weniger Reklamationen wegen Überhitzung. Da die Platte über viele Jahre wartungsfrei arbeitet, ist es eine einmalige Investition ohne laufende Folgekosten.</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -161,10 +244,55 @@ setInterval(()=>{
   liquidEl.style.transform = toggle ? 'scale(1.1)' : 'scale(1)';
   liquidEl.style.opacity = toggle ? '1' : '0.7';
 }, 2000);
+
+// FAQ filter + accordion
+document.querySelectorAll('.faq-pill').forEach(pill=>{
+  pill.addEventListener('click', ()=>{
+    document.querySelectorAll('.faq-pill').forEach(p=>p.classList.remove('active'));
+    pill.classList.add('active');
+    const cat = pill.dataset.cat;
+    document.querySelectorAll('.faq-item').forEach(item=>{
+      item.classList.toggle('faq-hidden', cat !== 'alle' && item.dataset.cat !== cat);
+    });
+  });
+});
+document.querySelectorAll('.faq-q').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    btn.closest('.faq-item').classList.toggle('open');
+  });
+});
 </script>
 
 <script>
 window.PAGE_I18N = {
+  "faq-h2": { de:"Häufig gestellte Fragen", en:"Frequently Asked Questions" },
+  "fcat1": { de:"Grundlagen", en:"Basics" },
+  "fcat2": { de:"Eignung", en:"Suitability" },
+  "fcat3": { de:"Installation", en:"Installation" },
+  "fcat4": { de:"Kosten", en:"Cost" },
+  "fcat5": { de:"Alle", en:"All" },
+  "faq1-q": { de:"Was ist ein Phasenwechselmaterial (PCM)?", en:"What is a phase change material (PCM)?" },
+  "faq1-a": { de:"Ein PCM speichert und gibt Energie beim Übergang zwischen fest und flüssig ab — nicht durch Temperaturänderung, sondern durch den Phasenwechsel selbst. Dadurch puffert es sehr viel Wärme in einem sehr engen Temperaturbereich.", en:"A PCM stores and releases energy during the transition between solid and liquid — not through a change in temperature, but through the phase change itself. This lets it buffer a large amount of heat within a very narrow temperature range." },
+  "faq2-q": { de:"Warum bleibt die Temperatur beim Schmelzen konstant?", en:"Why does the temperature stay constant while melting?" },
+  "faq2-a": { de:"Die zugeführte Energie fließt vollständig in die sogenannte Schmelzenthalpie — die Umwandlung von fest zu flüssig — statt die Temperatur weiter steigen zu lassen. Erst wenn der gesamte Stoff geschmolzen ist, steigt die Temperatur wieder an.", en:"The energy supplied goes entirely into what's called the enthalpy of fusion — the conversion from solid to liquid — rather than raising the temperature further. Only once the entire material has melted does the temperature start rising again." },
+  "faq3-q": { de:"Woraus besteht das PCM in der MELT Plate?", en:"What is the PCM in the MELT Plate made of?" },
+  "faq3-a": { de:"Wir nutzen eine Salzsole, die exakt im gewünschten Komfortbereich kristallisiert — je nach Variante bei 21°C, 25°C oder 30°C. Verkapselt ist sie in einer leckagesicheren Hülle aus sortenreinem Recyclingkunststoff.", en:"We use a salt brine that crystallizes exactly within the desired comfort range — depending on the variant, at 21°C, 25°C, or 30°C. It's encapsulated in a leak-proof shell made of pure-grade recycled plastic." },
+  "faq4-q": { de:"Für welche Gebäude eignet sich die MELT Plate?", en:"What kinds of buildings is the MELT Plate suitable for?" },
+  "faq4-a": { de:"Besonders für Leichtbauten mit geringer thermischer Masse: Fertighäuser, Modulbau, Holzständerbau, Container und Dachgeschossausbauten. Überall dort, wo klassische Baustoffe keine Pufferung bieten, übernimmt die MELT Plate diese Aufgabe.", en:"Especially for lightweight buildings with little thermal mass: prefab houses, modular construction, timber frame construction, containers, and attic conversions. Anywhere classic building materials offer no buffering, the MELT Plate takes over that role." },
+  "faq5-q": { de:"Welchen Schmelzpunkt sollte ich wählen — 21°C, 25°C oder 30°C?", en:"Which melting point should I choose — 21°C, 25°C, or 30°C?" },
+  "faq5-a": { de:"Das hängt vom Anwendungsfall ab: Flex (21°C) eignet sich bei aktiver Kühlung, Comfort (25°C) ist der Allrounder für die meisten Wohngebäude, und Active/Shield (30°C) schützt gezielt vor starker Sonneneinstrahlung. Wir beraten Sie gerne zur passenden Wahl.", en:"It depends on your use case: Flex (21°C) works well with active cooling, Comfort (25°C) is the all-rounder for most residential buildings, and Active/Shield (30°C) specifically protects against strong solar exposure. We're happy to advise on the right choice." },
+  "faq6-q": { de:"Funktioniert die MELT Plate auch im Winter?", en:"Does the MELT Plate also work in winter?" },
+  "faq6-a": { de:"Ja. Das Prinzip funktioniert in beide Richtungen: Sinkt die Temperatur unter den Schmelzpunkt, kristallisiert das Material und gibt die zuvor gespeicherte Wärme wieder an den Raum ab — ganz ohne zusätzliche Heizenergie.", en:"Yes. The principle works in both directions: if the temperature drops below the melting point, the material crystallizes and releases the previously stored heat back into the room — with no additional heating energy needed." },
+  "faq7-q": { de:"Wie wird die MELT Plate installiert?", en:"How is the MELT Plate installed?" },
+  "faq7-a": { de:"Die Platte wird zwischen tragenden Balken montiert — wenige Handgriffe, keine zusätzlichen Montageschritte auf der Baustelle und kein Fachwissen in Sachen Energie oder Elektrik nötig.", en:"The plate is mounted between load-bearing beams — a few simple steps, no extra assembly work on site, and no expertise in energy or electrics required." },
+  "faq8-q": { de:"Kann ich die Platte auch nachträglich in ein bestehendes Gebäude einbauen?", en:"Can I retrofit the plate into an existing building?" },
+  "faq8-a": { de:"Ja. Da sie nur 1,2 cm dünn ist, lässt sich die MELT Plate — anders als eine klassische Betonkernaktivierung — auch nachträglich in bestehende Decken und Wände integrieren, etwa bei einer Dachsanierung.", en:"Yes. Since it's only 1.2 cm thin, the MELT Plate — unlike classic concrete core activation — can also be retrofitted into existing ceilings and walls, for example during a roof renovation." },
+  "faq9-q": { de:"Braucht die Platte Strom, Sensoren oder Wartung?", en:"Does the plate need power, sensors, or maintenance?" },
+  "faq9-a": { de:"Nein. Die MELT Plate funktioniert rein passiv durch Physik — ohne Strom, ohne Sensoren, ohne Kabel und ohne Wartungsverträge, über viele Jahre hinweg.", en:"No. The MELT Plate works purely passively through physics — no power, no sensors, no cables, and no maintenance contracts, for many years." },
+  "faq10-q": { de:"Was kostet eine MELT Plate?", en:"What does a MELT Plate cost?" },
+  "faq10-a": { de:"Der Preis hängt von Größe, Schmelzpunkt und Stückzahl des Projekts ab — unser Preismodell honoriert größere Abnahmemengen. Schreiben Sie uns Ihre Anforderungen, wir erstellen gerne ein individuelles Angebot.", en:"The price depends on the size, melting point, and quantity of your project — our pricing model rewards larger volumes. Send us your requirements and we'll be happy to put together a tailored quote." },
+  "faq11-q": { de:"Rechnet sich die Investition?", en:"Does the investment pay off?" },
+  "faq11-a": { de:"Ja — durch reduzierte Heiz- und Kühllasten, weniger Bedarf an aktiver Klimatechnik und weniger Reklamationen wegen Überhitzung. Da die Platte über viele Jahre wartungsfrei arbeitet, ist es eine einmalige Investition ohne laufende Folgekosten.", en:"Yes — through reduced heating and cooling loads, less need for active climate control, and fewer complaints about overheating. Since the plate works maintenance-free for many years, it's a one-time investment with no ongoing follow-up costs." },
   'hero-label': { de:'Technologie · Speicher · Research', en:'Technology · Storage · Research' },
   'hero-h1': { de:'Phasenwechsel<span class="highlight">material</span>', en:'Phase Change <span class="highlight">Material</span>' },
   'lead': { de:'Was kühlt meine Cocktails und hält mich im Winter warm?', en:'What keeps my cocktails cool and me warm in winter?' },

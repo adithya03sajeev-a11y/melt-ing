@@ -32,12 +32,17 @@
   .physics-badge .icon { font-size:1.4rem; display:block; margin-bottom:0.4rem; color:var(--melt-blue); }
 
   /* decades timeline */
-  .decades-viz { background:var(--melt-gray); border:1px solid var(--melt-border); border-radius:22px; padding:2.2rem 2rem; margin:2.2rem 0 2.6rem; text-align:center; }
-  .decades-viz .viz-title { font-family:'IBM Plex Mono', monospace; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.07em; color:var(--melt-text-muted); margin-bottom:1.8rem; }
-  .decades-track { position:relative; height:6px; background:rgba(34, 31, 25,0.18); border-radius:4px; margin:0 20px; }
+  .decades-viz { background:var(--melt-gray); border:1px solid var(--melt-border); border-radius:22px; padding:2.4rem 2.2rem 2.2rem; margin:2.2rem 0 2.6rem; }
+  .decades-viz .viz-title { font-family:'IBM Plex Mono', monospace; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.07em; color:var(--melt-text-muted); margin-bottom:2.4rem; text-align:center; }
+  .decades-track { position:relative; height:4px; background:rgba(34, 31, 25,0.14); border-radius:4px; margin:0 6px; }
   .decades-fill { position:absolute; top:0; left:0; height:100%; width:0%; background:linear-gradient(90deg, var(--melt-blue), #4FA8AC); border-radius:4px; transition:width 2.2s cubic-bezier(.16,1,.3,1); }
-  .decades-labels { display:flex; justify-content:space-between; margin-top:0.8rem; font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color:var(--melt-text-muted); }
-  .decades-caption { margin-top:1.2rem; font-size:0.9rem; color:var(--melt-text-muted); }
+  .decades-milestones { position:relative; }
+  .decades-dot { position:absolute; top:-8px; width:20px; height:20px; border-radius:50%; background:var(--melt-surface); border:3px solid rgba(34,31,25,0.18); transform:translateX(-50%) scale(0); transition:transform .5s cubic-bezier(.34,1.56,.64,1), border-color .5s ease; }
+  .decades-dot.in { transform:translateX(-50%) scale(1); border-color:var(--melt-blue); }
+  .decades-labels { position:relative; margin-top:1rem; height:3.4rem; }
+  .decades-label-item { position:absolute; transform:translateX(-50%); text-align:center; font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color:var(--melt-text-muted); white-space:nowrap; }
+  .decades-label-item b { display:block; color:var(--melt-text); font-family:'Manrope', sans-serif; font-size:0.95rem; font-weight:700; margin-bottom:0.2rem; }
+  .decades-caption { margin-top:1.4rem; font-size:0.9rem; color:var(--melt-text-muted); text-align:center; }
 
   /* low-tech vs hightech vs altbau quadrant profile chart */
   .lt-viz { background:var(--melt-gray); border:1px solid var(--melt-border); border-radius:22px; padding:2.2rem 2rem 1.8rem; margin:2.2rem 0 2.6rem; }
@@ -60,6 +65,9 @@
   .lt-legend .sw { width:22px; height:0; border-top-width:2.5px; border-top-style:dashed; display:inline-block; }
   .lt-caption { font-size:0.75rem; color:var(--melt-text-muted); margin-top:1.2rem; }
   .lt-caption a { color:var(--melt-blue); }
+  .lt-logo-mark { opacity:0; transform:translate(364px,400px) scale(0.6); transform-origin:center; transform-box:fill-box; transition:opacity .7s ease, transform .7s cubic-bezier(.34,1.4,.4,1); }
+  .lt-logo-mark.in { opacity:1; transform:translate(364px,400px) scale(1); animation:ltLogoPulse 3s ease-in-out 1.2s infinite; }
+  @keyframes ltLogoPulse { 0%,100%{ filter:drop-shadow(0 0 0 rgba(226,112,58,0)); } 50%{ filter:drop-shadow(0 0 10px rgba(226,112,58,0.45)); } }
 </style>
 </head>
 <body>
@@ -151,6 +159,15 @@
             <circle class="lt-corner" cx="136" cy="295" r="4" fill="#3D9970"/><circle class="lt-corner" cx="400" cy="295" r="4" fill="#3D9970"/><circle class="lt-corner" cx="136" cy="430" r="4" fill="#3D9970"/><circle class="lt-corner" cx="400" cy="430" r="4" fill="#3D9970"/>
             <circle class="lt-corner" cx="130" cy="304" r="4" fill="#E8A33D"/><circle class="lt-corner" cx="481" cy="304" r="4" fill="#E8A33D"/><circle class="lt-corner" cx="130" cy="472" r="4" fill="#E8A33D"/><circle class="lt-corner" cx="481" cy="472" r="4" fill="#E8A33D"/>
           </g>
+
+          <g class="lt-logo-mark" id="ltLogoMark">
+            <polygon points="-24.2,-14 0,-28 24.2,-14 0,0" fill="#F4B98A"/>
+            <polygon points="-24.2,14 -24.2,-14 0,0 0,28" fill="#E2703A"/>
+            <polygon points="24.2,-14 24.2,14 0,28 0,0" fill="#B5502A"/>
+            <polygon points="-24.2,-14 0,-28 24.2,-14 0,0" fill="none" stroke="#8A3D1E" stroke-width="0.6"/>
+            <polygon points="-24.2,14 -24.2,-14 0,0 0,28" fill="none" stroke="#8A3D1E" stroke-width="0.6"/>
+            <polygon points="24.2,-14 24.2,14 0,28 0,0" fill="none" stroke="#8A3D1E" stroke-width="0.6"/>
+          </g>
         </svg>
         <div class="lt-legend">
           <span><i class="sw" style="border-color:#3D9970; border-top-style:dotted;"></i><span data-i18n="lt-l1">Low-Tech</span></span>
@@ -195,17 +212,30 @@
         <div class="physics-badge"><span class="icon">🔧</span><span data-i18n="phys4">Ohne Wartung</span></div>
       </div>
 
-      <p data-i18n="p6">Die MELT Plate funktioniert ohne Strom, ohne Sensoren, ohne Kabel, ohne Wartung – einfach durch Physik. Einmal zwischen den tragenden Balken installiert, puffert sie Temperaturschwankungen vollautomatisch für Jahrzehnte. Kein Ausfall, keine Software-Updates, keine Wartungsverträge.</p>
+      <p data-i18n="p6">Die MELT Plate funktioniert ohne Strom, ohne Sensoren, ohne Kabel, ohne Wartung – einfach durch Physik. Einmal zwischen den tragenden Balken installiert, puffert sie Temperaturschwankungen vollautomatisch für viele Jahre. Kein Ausfall, keine Software-Updates, keine Wartungsverträge.</p>
 
       <div class="decades-viz">
         <div class="viz-title" data-i18n="viz-title">Erwartete Funktionsdauer ohne Wartung</div>
-        <div class="decades-track"><div class="decades-fill" id="decadesFill"></div></div>
-        <div class="decades-labels"><span data-i18n="dec1">Installation</span><span data-i18n="dec2">10 Jahre</span><span data-i18n="dec3">20 Jahre</span><span data-i18n="dec4">Jahrzehnte</span></div>
+        <div class="decades-track">
+          <div class="decades-fill" id="decadesFill"></div>
+          <div class="decades-milestones">
+            <div class="decades-dot" style="left:0%;"></div>
+            <div class="decades-dot" style="left:33.3%;"></div>
+            <div class="decades-dot" style="left:66.6%;"></div>
+            <div class="decades-dot" style="left:100%;"></div>
+          </div>
+        </div>
+        <div class="decades-labels">
+          <div class="decades-label-item" style="left:0%;"><b data-i18n="dec1b">Tag 1</b><span data-i18n="dec1">Installation</span></div>
+          <div class="decades-label-item" style="left:33.3%;"><b>10</b><span data-i18n="dec2">Jahre</span></div>
+          <div class="decades-label-item" style="left:66.6%;"><b>20</b><span data-i18n="dec3">Jahre</span></div>
+          <div class="decades-label-item" style="left:100%;"><b data-i18n="dec4b">und weiter</b><span data-i18n="dec4">viele Jahre mehr</span></div>
+        </div>
         <div class="decades-caption" data-i18n="dec-caption">Kein Ausfall, keine Software-Updates, keine Wartungsverträge.</div>
       </div>
 
       <p data-i18n="p7">In unserem Bundeswehr-Projekt war genau das der Schlüssel: Wo keine Stromversorgung verlegt werden konnte, sorgte MELT dennoch für <strong>86 Prozent weniger Hitzetage</strong>. Diese „Blackbox"-Lösung macht Leichtbauten klimaresilient, ohne sie mit komplexer Gebäudetechnik zu überfrachten.</p>
-      <p style="font-size:1.1rem; color:var(--melt-text); font-family:'Manrope', sans-serif;" data-i18n="closing">Besonders für Property Manager bedeutet das: einmalige Investition, keine laufenden Kosten, kein technisches Personal nötig. Low-Tech heißt hier nicht Komfortverzicht, sondern robuste Einfachheit bei maximaler Wirkung.</p>
+      <p style="font-size:1.1rem; color:var(--melt-text); font-weight:600;" data-i18n="closing">Besonders für Property Manager bedeutet das: einmalige Investition, keine laufenden Kosten, kein technisches Personal nötig. Low-Tech heißt hier nicht Komfortverzicht, sondern robuste Einfachheit bei maximaler Wirkung.</p>
     </div>
   </div>
 </section>
@@ -267,6 +297,9 @@ const decadesIO = new IntersectionObserver((entries)=>{
   entries.forEach(entry=>{
     if(entry.isIntersecting){
       document.getElementById('decadesFill').style.width = '100%';
+      document.querySelectorAll('.decades-dot').forEach((dot,i)=>{
+        setTimeout(()=>dot.classList.add('in'), 200 + i*450);
+      });
       decadesIO.disconnect();
     }
   });
@@ -282,6 +315,7 @@ const ltIO = new IntersectionObserver((entries)=>{
       });
       setTimeout(()=>{
         document.querySelectorAll('.lt-corner').forEach((c,i)=>{ setTimeout(()=>c.classList.add('in'), i*40); });
+        setTimeout(()=>document.getElementById('ltLogoMark').classList.add('in'), 700);
       }, 1000);
       ltIO.disconnect();
     }
@@ -330,12 +364,14 @@ window.PAGE_I18N = {
   "phys2": { de:"Ohne Sensoren", en:"No sensors" },
   "phys3": { de:"Ohne Kabel", en:"No cables" },
   "phys4": { de:"Ohne Wartung", en:"No maintenance" },
-  "p6": { de:"Die MELT Plate funktioniert ohne Strom, ohne Sensoren, ohne Kabel, ohne Wartung – einfach durch Physik. Einmal zwischen den tragenden Balken installiert, puffert sie Temperaturschwankungen vollautomatisch für Jahrzehnte. Kein Ausfall, keine Software-Updates, keine Wartungsverträge.", en:"The MELT Plate works without electricity, sensors, cables, or maintenance — simply through physics. Once installed between load-bearing beams, it buffers temperature fluctuations fully automatically for decades. No downtime, no software updates, no maintenance contracts." },
+  "p6": { de:"Die MELT Plate funktioniert ohne Strom, ohne Sensoren, ohne Kabel, ohne Wartung – einfach durch Physik. Einmal zwischen den tragenden Balken installiert, puffert sie Temperaturschwankungen vollautomatisch für viele Jahre. Kein Ausfall, keine Software-Updates, keine Wartungsverträge.", en:"The MELT Plate works without electricity, sensors, cables, or maintenance — simply through physics. Once installed between load-bearing beams, it buffers temperature fluctuations fully automatically for many years. No downtime, no software updates, no maintenance contracts." },
   "viz-title": { de:"Erwartete Funktionsdauer ohne Wartung", en:"Expected Service Life Without Maintenance" },
   "dec1": { de:"Installation", en:"Installation" },
-  "dec2": { de:"10 Jahre", en:"10 years" },
-  "dec3": { de:"20 Jahre", en:"20 years" },
-  "dec4": { de:"Jahrzehnte", en:"Decades" },
+  "dec1b": { de:"Tag 1", en:"Day 1" },
+  "dec2": { de:"Jahre", en:"years" },
+  "dec3": { de:"Jahre", en:"years" },
+  "dec4": { de:"viele Jahre mehr", en:"many years more" },
+  "dec4b": { de:"und weiter", en:"and beyond" },
   "dec-caption": { de:"Kein Ausfall, keine Software-Updates, keine Wartungsverträge.", en:"No downtime, no software updates, no maintenance contracts." },
   "p7": { de:"In unserem Bundeswehr-Projekt war genau das der Schlüssel: Wo keine Stromversorgung verlegt werden konnte, sorgte MELT dennoch für <strong>86 Prozent weniger Hitzetage</strong>. Diese „Blackbox\"-Lösung macht Leichtbauten klimaresilient, ohne sie mit komplexer Gebäudetechnik zu überfrachten.", en:"That was exactly the key in our Bundeswehr project: where no power supply could be run, MELT still delivered <strong>86 percent fewer heat days</strong>. This \"black box\" solution makes lightweight buildings climate-resilient without overloading them with complex building technology." },
   "closing": { de:"Besonders für Property Manager bedeutet das: einmalige Investition, keine laufenden Kosten, kein technisches Personal nötig. Low-Tech heißt hier nicht Komfortverzicht, sondern robuste Einfachheit bei maximaler Wirkung.", en:"For property managers, this means: a one-time investment, no ongoing costs, no technical staff required. Low-tech here doesn't mean giving up comfort — it means robust simplicity with maximum effect." },
