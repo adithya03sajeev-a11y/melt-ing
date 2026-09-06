@@ -41,7 +41,9 @@
   .decades-dot.in { transform:translateX(-50%) scale(1); border-color:var(--melt-blue); }
   .decades-labels { position:relative; margin-top:1rem; height:3.4rem; }
   .decades-label-item { position:absolute; transform:translateX(-50%); text-align:center; font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color:var(--melt-text-muted); white-space:nowrap; }
-  .decades-label-item b { display:block; color:var(--melt-text); font-family:'Manrope', sans-serif; font-size:0.95rem; font-weight:700; margin-bottom:0.2rem; }
+  .decades-label-item:first-child { transform:translateX(0); text-align:left; }
+  .decades-label-item:last-child { transform:translateX(-100%); text-align:right; }
+  .decades-label-item b { display:block; color:var(--melt-text); font-size:0.95rem; font-weight:700; margin-bottom:0.2rem; }
   .decades-caption { margin-top:1.4rem; font-size:0.9rem; color:var(--melt-text-muted); text-align:center; }
 
   /* low-tech vs hightech vs altbau quadrant profile chart */

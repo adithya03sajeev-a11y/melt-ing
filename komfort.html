@@ -35,7 +35,7 @@
   .cg-tick { stroke:rgba(34,31,25,0.3); stroke-width:2; }
   .cg-tick-major { stroke:var(--melt-text); stroke-width:2.5; }
   .cg-label { font-family:'IBM Plex Mono', monospace; font-size:10.5px; fill:var(--melt-text-muted); text-anchor:middle; }
-  .cg-needle-group { transform-origin:150px 155px; transform:rotate(90deg); transition:transform 1.8s cubic-bezier(.34,1.2,.4,1); }
+  .cg-needle-group { transform-origin:150px 155px; transform:rotate(-90deg); transition:transform 1.8s cubic-bezier(.34,1.2,.4,1); }
   .cg-needle { stroke:var(--melt-orange); stroke-width:3.5; stroke-linecap:round; }
   .cg-hub { fill:var(--melt-orange); }
   .cg-hub-ring { fill:var(--melt-surface); stroke:var(--melt-orange); stroke-width:2.5; }
@@ -249,9 +249,6 @@
                 <line class="cg-tick" x1="184.3" y1="49.4" x2="189.2" y2="34.2"/>
                 <line class="cg-tick-major" x1="239.8" y1="89.8" x2="252.7" y2="80.4"/>
                 <line class="cg-tick" x1="261" y1="155" x2="277" y2="155"/>
-                <text class="cg-label" x="3" y="159">0×</text>
-                <text class="cg-label" x="104" y="19">1× <tspan fill="var(--melt-text-muted)">(Basis)</tspan></text>
-                <text class="cg-label" x="285" y="65">2×</text>
                 <line class="cg-baseline" x1="117.6" y1="55.1" x2="108.9" y2="28.5"/>
                 <g class="cg-needle-group" id="cgNeedle">
                   <line class="cg-needle" x1="150" y1="155" x2="150" y2="30"/>
@@ -369,7 +366,7 @@ const cgIO = new IntersectionObserver((entries)=>{
     if(entry.isIntersecting){
       requestAnimationFrame(()=>{
         cgProgress.style.strokeDashoffset = '0';
-        cgNeedle.style.transform = 'rotate(-54deg)';
+        cgNeedle.style.transform = 'rotate(54deg)';
       });
       cgIO.disconnect();
     }
