@@ -26,16 +26,26 @@
   .band-fill.summer { background:linear-gradient(90deg, var(--melt-orange), var(--melt-orange-light)); }
   .band-range { font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:1.3rem; color:var(--melt-text); }
 
-  /* simple comfort stat: two bars, one precisely double the other */
-  .comfort-bars { display:flex; align-items:flex-end; justify-content:center; gap:3.5rem; padding:1.6rem 0 0.4rem; }
-  .cb-col { display:flex; flex-direction:column; align-items:center; }
-  .cb-value { font-family:'Manrope', sans-serif; font-weight:800; font-size:1.5rem; color:var(--melt-text); margin-bottom:0.6rem; }
-  .cb-bar-track { width:64px; height:160px; display:flex; align-items:flex-end; }
-  .cb-bar { width:100%; border-radius:8px 8px 0 0; height:0%; transition:height 1.4s cubic-bezier(.16,1,.3,1); }
-  .cb-bar-before { background:rgba(34,31,25,0.3); }
-  .cb-bar-after { background:var(--melt-blue); }
-  .cb-label { display:flex; align-items:center; gap:0.5rem; margin-top:0.8rem; font-size:0.88rem; color:var(--melt-text-muted); white-space:nowrap; }
-  .css-label { font-family:'IBM Plex Mono', monospace; font-size:0.8rem; color:var(--melt-text-muted); }
+  /* comfort gauge: open semi-circle with tick marks and needle (clock-style, no on-dial text) */
+  .comfort-gauge-wrap { display:flex; align-items:center; justify-content:center; gap:2.4rem; flex-wrap:wrap; margin:1.6rem 0 0.6rem; }
+  .comfort-gauge { width:280px; flex:none; }
+  .comfort-gauge svg { width:100%; height:auto; overflow:visible; }
+  .cg-track { fill:none; stroke:rgba(34,31,25,0.14); stroke-width:14; stroke-linecap:round; }
+  .cg-progress { fill:none; stroke:var(--melt-blue); stroke-width:14; stroke-linecap:round; stroke-dasharray:314; stroke-dashoffset:314; transition:stroke-dashoffset 1.6s cubic-bezier(.16,1,.3,1); }
+  .cg-tick { stroke:rgba(34,31,25,0.3); stroke-width:2; }
+  .cg-tick-major { stroke:var(--melt-text); stroke-width:2.5; }
+  .cg-needle-group { transform-origin:150px 155px; transform:rotate(-90deg); transition:transform 1.8s cubic-bezier(.34,1.2,.4,1); }
+  .cg-needle { stroke:var(--melt-orange); stroke-width:3.5; stroke-linecap:round; }
+  .cg-hub { fill:var(--melt-orange); }
+  .cg-hub-ring { fill:var(--melt-surface); stroke:var(--melt-orange); stroke-width:2.5; }
+  .cg-baseline { stroke:var(--melt-text-muted); stroke-width:2; stroke-dasharray:2 3; }
+  .cg-readout { text-align:center; margin-top:-0.4rem; }
+  .cg-readout .big { font-family:'Manrope', sans-serif; font-weight:700; font-size:1.8rem; color:var(--melt-text); line-height:1; }
+  .cg-readout .small { font-family:'IBM Plex Mono', monospace; font-size:0.7rem; color:var(--melt-text-muted); margin-top:0.2rem; }
+  .comfort-gauge-legend { display:flex; flex-direction:column; gap:0.9rem; }
+  .comfort-gauge-legend .leg-row { display:flex; align-items:center; gap:0.7rem; font-size:0.9rem; color:var(--melt-text); }
+  .comfort-gauge-legend .leg-dot { width:12px; height:12px; border-radius:3px; flex:none; }
+  .comfort-gauge-legend .leg-row .leg-val { font-family:'Manrope', sans-serif; font-weight:700; margin-left:auto; padding-left:1rem; }
 
   /* radiant wall comparison */
   .wall-row { display:grid; grid-template-columns:1fr 1fr; gap:1.4rem; margin:2rem 0 2.6rem; }
@@ -226,19 +236,33 @@
 
       <div class="comfort-viz">
         <div class="viz-title" data-i18n="viz2-title">Pilotprojekt Willi Mayer Holzbau</div>
-        <div class="comfort-bars">
-          <div class="cb-col">
-            <div class="cb-value">1×</div>
-            <div class="cb-bar-track"><div class="cb-bar cb-bar-before" id="cbBefore"></div></div>
-            <div class="cb-label"><span class="leg-dot" style="background:rgba(34,31,25,0.3);"></span><span data-i18n="ba1">Ohne MELT</span></div>
+        <div class="comfort-gauge-wrap">
+          <div>
+            <div class="comfort-gauge">
+              <svg viewBox="0 0 300 175" id="comfortGauge">
+                <path class="cg-track" d="M25 155 A125 125 0 0 1 275 155"/>
+                <path class="cg-progress" id="cgProgress" d="M25 155 A125 125 0 0 1 251.1 81.5"/>
+                <line class="cg-tick" x1="39" y1="155" x2="23" y2="155"/>
+                <line class="cg-tick" x1="60.2" y1="89.8" x2="47.3" y2="80.4"/>
+                <line class="cg-tick-major" x1="115.7" y1="49.4" x2="110.8" y2="34.2"/>
+                <line class="cg-tick" x1="184.3" y1="49.4" x2="189.2" y2="34.2"/>
+                <line class="cg-tick-major" x1="239.8" y1="89.8" x2="252.7" y2="80.4"/>
+                <line class="cg-tick" x1="261" y1="155" x2="277" y2="155"/>
+                <line class="cg-baseline" x1="117.6" y1="55.1" x2="108.9" y2="28.5"/>
+                <g class="cg-needle-group" id="cgNeedle">
+                  <line class="cg-needle" x1="150" y1="155" x2="150" y2="30"/>
+                  <circle class="cg-hub" cx="150" cy="155" r="7"/>
+                  <circle class="cg-hub-ring" cx="150" cy="155" r="11"/>
+                </g>
+              </svg>
+              <div class="cg-readout"><span class="big">2×</span><span class="small" data-i18n="donut-small">Stunden im Komfortbereich</span></div>
+            </div>
           </div>
-          <div class="cb-col">
-            <div class="cb-value">2×</div>
-            <div class="cb-bar-track"><div class="cb-bar cb-bar-after" id="cbAfter"></div></div>
-            <div class="cb-label"><span class="leg-dot" style="background:var(--melt-blue);"></span><span data-i18n="ba2">Mit MELT Plates</span></div>
+          <div class="comfort-gauge-legend">
+            <div class="leg-row"><span class="leg-dot" style="background:rgba(34,31,25,0.3);"></span><span data-i18n="ba1">Ohne MELT</span><span class="leg-val">1×</span></div>
+            <div class="leg-row"><span class="leg-dot" style="background:var(--melt-blue);"></span><span data-i18n="ba2">Mit MELT Plates</span><span class="leg-val">2×</span></div>
           </div>
         </div>
-        <div class="css-label" style="text-align:center; margin-top:0.6rem;" data-i18n="donut-small">Stunden im Komfortbereich</div>
       </div>
 
       <p data-i18n="p6">Für Bewohner bedeutet das: keine überhitzten Nachmittage, keine ausgekühlten Morgenstunden, keine ständige Anpassung der Heizung. Die Oberflächentemperatur der Platten stabilisiert sich im Komfortbereich, was die Strahlungstemperatur positiv beeinflusst.</p>
@@ -333,20 +357,21 @@ const ringIO = new IntersectionObserver((entries)=>{
 },{threshold:0.4});
 ringIO.observe(ring);
 
-// comfort bars: precisely 1x vs 2x height ratio (50% vs 100% of the same track)
-const cbIO = new IntersectionObserver((entries)=>{
+// comfort gauge: arc fill + needle sweep to 2x
+const cgNeedle = document.getElementById('cgNeedle');
+const cgProgress = document.getElementById('cgProgress');
+const cgIO = new IntersectionObserver((entries)=>{
   entries.forEach(entry=>{
     if(entry.isIntersecting){
       requestAnimationFrame(()=>{
-        document.getElementById('cbBefore').style.height = '50%';
-        document.getElementById('cbAfter').style.height = '100%';
+        cgProgress.style.strokeDashoffset = '0';
+        cgNeedle.style.transform = 'rotate(54deg)';
       });
-      cbIO.disconnect();
+      cgIO.disconnect();
     }
   });
 },{threshold:0.4});
-const cbTrack = document.querySelector('.comfort-bars');
-if(cbTrack) cbIO.observe(cbTrack);
+cgIO.observe(document.getElementById('comfortGauge'));
 </script>
 
 
