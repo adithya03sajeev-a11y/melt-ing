@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Die Nachhaltigkeitsziele der UN und MELT — MELT-Ing GmbH</title>
+<meta name="description" content="MELT-Ing trägt zu drei zentralen Sustainable Development Goals der Vereinten Nationen bei: bezahlbare und saubere Energie, Industrie und Infrastruktur, nachhaltige Städte.">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  .article-meta { font-family:'IBM Plex Mono', monospace; font-size:0.78rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--melt-text-muted); margin-bottom:1.2rem; }
+  .article-body-text { max-width:900px; margin:0 auto; }
+  .article-body-text h2 { font-family:'Manrope', sans-serif; font-size:1.6rem; margin:2.6rem 0 1.1rem; }
+  .article-body-text p { color:var(--melt-text-muted); font-size:1.05rem; margin-bottom:1.2rem; line-height:1.75; }
+  .article-body-text .lead-q { font-family:'Manrope', sans-serif; font-size:1.5rem; color:var(--melt-text); margin-bottom:2rem; line-height:1.35; }
+
+  .quote-block { border-left:3px solid var(--melt-orange); padding:0.6rem 0 0.6rem 1.6rem; margin:0 0 2.6rem; }
+  .quote-block p { font-family:'Manrope', sans-serif; font-size:1.25rem; font-style:italic; color:var(--melt-text); line-height:1.5; margin:0; }
+  .quote-block cite { display:block; margin-top:0.8rem; font-family:'IBM Plex Mono', monospace; font-size:0.85rem; font-style:normal; color:var(--melt-text-muted); }
+
+  .sdg-row { display:grid; grid-template-columns:1fr 1.3fr; gap:2.4rem; align-items:center; margin:0 0 3.4rem; opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease; }
+  .sdg-row.in { opacity:1; transform:translateY(0); }
+  .sdg-row.flip { grid-template-columns:1.3fr 1fr; }
+  .sdg-row.flip .sdg-icon-block { order:2; }
+  @media (max-width:760px){ .sdg-row, .sdg-row.flip { grid-template-columns:1fr; } .sdg-row.flip .sdg-icon-block { order:0; } }
+
+  .sdg-icon-block { aspect-ratio:1; border-radius:20px; padding:1.6rem; display:flex; flex-direction:column; justify-content:space-between; color:#fff; position:relative; overflow:hidden; }
+  .sdg-num-big { font-family:'Manrope', sans-serif; font-weight:800; font-size:2.6rem; line-height:1; }
+  .sdg-title-block { font-family:'Manrope', sans-serif; font-weight:800; font-size:1.05rem; text-transform:uppercase; line-height:1.25; letter-spacing:0.01em; }
+  .sdg-icon-graphic { align-self:center; width:64%; opacity:0.95; }
+  .sdg-icon-graphic svg { width:100%; height:auto; display:block; }
+  .sdg-icon-graphic .spin-part { transform-origin:center; transform-box:fill-box; }
+  .sdg-row.in .sdg-icon-block .sdg-icon-graphic .spin-part { animation:sdgSpin 1.4s cubic-bezier(.34,1.3,.4,1) both; }
+  @keyframes sdgSpin { from{ transform:scale(0) rotate(-25deg); opacity:0; } to{ transform:scale(1) rotate(0); opacity:1; } }
+
+  .sdg-text h2 { margin-top:0; }
+  .sdg-text p { margin-bottom:0; }
+</style>
+</head>
+<body>
+
+<nav class="nav" id="mainNav">
+  <a href="index.html" class="nav-logo"><img src="assets/img/logo.png" alt="MELT-Ing Logo"><span>-Ing</span></a>
+  <ul class="nav-links">
+    <li><a href="melt-plate.html" data-de="MELT Plate" data-en="MELT Plate">MELT Plate</a></li>
+    <li class="has-dropdown"><a href="zielgruppe.html" data-de="Zielgruppe" data-en="Audience">Zielgruppe</a>
+      <div class="dropdown">
+        <a href="zielgruppe.html#investoren"><span class="dd-icon">◆</span><span data-de="Investoren" data-en="Investors">Investoren</span></a>
+        <a href="zielgruppe.html#bauunternehmen"><span class="dd-icon">◈</span><span data-de="Bauunternehmen" data-en="Construction Companies">Bauunternehmen</span></a>
+        <a href="zielgruppe.html#architekten"><span class="dd-icon">✎</span><span data-de="Architekten und Planer" data-en="Architects & Planners">Architekten und Planer</span></a>
+        <a href="zielgruppe.html#defense"><span class="dd-icon">⛨</span><span data-de="Defense" data-en="Defense">Defense</span></a>
+        <a href="zielgruppe.html#diy"><span class="dd-icon">⚒</span><span data-de="DIY" data-en="DIY">DIY</span></a>
+      </div>
+    </li>
+    <li class="has-dropdown"><a href="magazin.html" data-de="Magazin" data-en="Magazine">Magazin</a>
+      <div class="dropdown">
+        <a href="hitzeschutz.html"><span class="dd-icon">☀</span><span data-de="Hitzeschutz" data-en="Heat Protection">Hitzeschutz</span></a>
+        <a href="pcm.html"><span class="dd-icon">◉</span><span data-de="PCM" data-en="PCM">PCM</span></a>
+        <a href="bauteilaktivierung.html"><span class="dd-icon">▤</span><span data-de="Bauteilaktivierung" data-en="Thermal Activation">Bauteilaktivierung</span></a>
+        <a href="impact.html"><span class="dd-icon">◐</span><span data-de="Impact" data-en="Impact">Impact</span></a>
+        <a href="serielles-bauen.html"><span class="dd-icon">▦</span><span data-de="Serielles Bauen" data-en="Serielles Bauen">Serielles Bauen</span></a>
+        <a href="nachhaltigkeit.html"><span class="dd-icon">♺</span><span data-de="Nachhaltigkeit" data-en="Sustainability">Nachhaltigkeit</span></a>
+        <a href="magazin.html#case"><span class="dd-icon">▣</span><span data-de="Case Studies" data-en="Case Studies">Case Studies</span></a>
+      </div>
+    </li>
+    <li><a href="ueber-uns.html" data-de="Über uns" data-en="About us">Über uns</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="lang-switch" id="langSwitch">
+      <button class="lang-btn active" data-lang="de">DE</button>
+      <span class="lang-sep">|</span>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </div>
+    <a href="kontakt.html" class="nav-cta" data-de="gleich anfragen →" data-en="get in touch →">gleich anfragen →</a>
+  </div>
+</nav>
+
+<div class="page-hero" style="padding-bottom:1rem;">
+  <div class="section-label" data-i18n="hero-label">Nachhaltigkeit · Thema · Mai 2024</div>
+  <h1 data-i18n="hero-h1">Die Nachhaltigkeitsziele der <span class="highlight">UN und MELT</span></h1>
+</div>
+
+<section style="padding-top:0;">
+  <div class="container">
+    <div class="article-body-text reveal">
+
+      <div class="quote-block">
+        <p data-i18n="quote">„Es ist billiger, den Planeten jetzt zu schützen, als ihn später zu reparieren."</p>
+        <cite data-i18n="quote-author">— José Manuel Barroso</cite>
+      </div>
+
+      <p class="lead-q" data-i18n="lead">MELT-Ing trägt zu drei zentralen Sustainable Development Goals der Vereinten Nationen bei.</p>
+
+      <div class="sdg-row reveal" id="sdgRow7">
+        <div class="sdg-icon-block" style="background:#FCC30B;">
+          <div class="sdg-num-big">7</div>
+          <div class="sdg-icon-graphic">
+            <svg viewBox="0 0 100 100" fill="none" stroke="#fff" stroke-width="3.5">
+              <g class="spin-part">
+                <circle cx="50" cy="50" r="14"/>
+                <path d="M50 39 L50 50" stroke-linecap="round"/>
+                <path d="M42 43 A14 14 0 1 0 58 43" stroke-linecap="round" fill="none"/>
+                <line x1="50" y1="14" x2="50" y2="24" stroke-linecap="round"/>
+                <line x1="50" y1="76" x2="50" y2="86" stroke-linecap="round"/>
+                <line x1="14" y1="50" x2="24" y2="50" stroke-linecap="round"/>
+                <line x1="76" y1="50" x2="86" y2="50" stroke-linecap="round"/>
+                <line x1="24" y1="24" x2="31" y2="31" stroke-linecap="round"/>
+                <line x1="69" y1="69" x2="76" y2="76" stroke-linecap="round"/>
+                <line x1="76" y1="24" x2="69" y2="31" stroke-linecap="round"/>
+                <line x1="31" y1="69" x2="24" y2="76" stroke-linecap="round"/>
+              </g>
+            </svg>
+          </div>
+          <div class="sdg-title-block" data-i18n="sdg7-title">Bezahlbare und saubere Energie</div>
+        </div>
+        <div class="sdg-text">
+          <h2 data-i18n="sdg7-h">Bezahlbare und saubere Energie</h2>
+          <p data-i18n="sdg7-p">Wir entwickeln Produkte, die thermische Energie speichern und es ermöglichen, flexible, günstige und saubere Energie zur Temperaturpufferung in Gebäuden zu nutzen. Dies umfasst natürliche Tag-Nacht-Schwankungen, Schwankungen bei lokal produziertem PV- und Windstrom sowie dynamische Stromtarife, bei denen nur die günstigste und sauberste Energie aus dem Netz genutzt wird.</p>
+        </div>
+      </div>
+
+      <div class="sdg-row flip reveal" id="sdgRow9">
+        <div class="sdg-icon-block" style="background:#FD6925;">
+          <div class="sdg-num-big">9</div>
+          <div class="sdg-icon-graphic">
+            <svg viewBox="0 0 100 100" class="spin-part">
+              <polygon points="50,18 68,29 68,51 50,62 32,51 32,29" fill="none" stroke="#fff" stroke-width="3.5"/>
+              <polygon points="50,38 68,49 68,71 50,82 32,71 32,49" fill="none" stroke="#fff" stroke-width="3.5"/>
+              <line x1="50" y1="18" x2="50" y2="82" stroke="#fff" stroke-width="2"/>
+            </svg>
+          </div>
+          <div class="sdg-title-block" data-i18n="sdg9-title">Industrie, Innovation und Infrastruktur</div>
+        </div>
+        <div class="sdg-text">
+          <h2 data-i18n="sdg9-h">Industrie, Innovation und Infrastruktur</h2>
+          <p data-i18n="sdg9-p">Unser Phasenwechselspeichermaterial ermöglicht Resilienz und netzentlastendes Verhalten bei Wohngebäuden und industriellen Anwendungen. In ökologischen Bauten wie CO2-armen Holzrahmenschulen reduzieren wir Hitzeereignisse um 86 Prozent. Durch Lastverschiebung verlagern wir den Netzbedarf von dunklen und windstillen Stunden in sauberere Zeiten – Spitzenlasten werden reduziert. Zudem tragen wir zur Dekarbonisierung von Wärmenetzen und energieintensiven Industrieprozessen bei.</p>
+        </div>
+      </div>
+
+      <div class="sdg-row reveal" id="sdgRow11">
+        <div class="sdg-icon-block" style="background:#FD9D24;">
+          <div class="sdg-num-big">11</div>
+          <div class="sdg-icon-graphic">
+            <svg viewBox="0 0 100 100" class="spin-part" fill="none" stroke="#fff" stroke-width="3.5" stroke-linejoin="round">
+              <rect x="16" y="52" width="14" height="34"/>
+              <rect x="34" y="38" width="16" height="48"/>
+              <polygon points="52,86 52,44 62,32 72,44 72,86"/>
+              <rect x="76" y="60" width="12" height="26"/>
+              <line x1="12" y1="86" x2="90" y2="86"/>
+            </svg>
+          </div>
+          <div class="sdg-title-block" data-i18n="sdg11-title">Nachhaltige Städte und Gemeinden</div>
+        </div>
+        <div class="sdg-text">
+          <h2 data-i18n="sdg11-h">Nachhaltige Städte und Gemeinden</h2>
+          <p data-i18n="sdg11-p">Städte sind besonders von Klimawandel und Extremwetter betroffen. Wir reduzieren heiße Stunden in Gebäuden, die zu Gesundheitsrisiken führen können, insbesondere für die wachsende ältere Bevölkerung. Gleichzeitig verringern wir die Abhängigkeit von Klimaanlagen durch Low-Tech-Lösungen und passen uns an aktuelle Trends wie serielle Sanierungen und ökologische Schnellbauten an – von Modulhäusern über Holzrahmenbau bis zu Fertigbauten.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="cta-content">
+    <h2 data-i18n="cta-title">Neugierig gemacht?</h2>
+    <p data-i18n="cta-body">Wollen Sie mehr wissen? Schreiben Sie uns unter contact@melt-ing.com.</p>
+    <a href="kontakt.html" class="cta-btn" data-i18n="cta-btn">Kontakt aufnehmen →</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand"><img src="assets/img/logo.png" alt=""><span>-Ing</span> GmbH</div>
+      <p class="footer-desc" data-i18n="footer-desc">Tailored Thermal Buffering for Buildings. Das Start-up aus Mannheim ermöglicht überragenden Komfort und Klimaresilienz in leichten, ökologischen Gebäuden.</p>
+    </div>
+    <div class="footer-col"><h4>Quick links</h4><ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="ueber-uns.html">About</a></li>
+      <li><a href="magazin.html">News</a></li>
+      <li><a href="kontakt.html">Contact</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Services</h4><ul>
+      <li><a href="komfort.html">Komfort</a></li>
+      <li><a href="pcm.html">Wärmespeicher</a></li>
+      <li><a href="hitzeschutz.html">Hitzeschutz</a></li>
+      <li><a href="bauteilaktivierung.html">Load-Shifting</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Follow us</h4><ul>
+      <li><a href="https://www.linkedin.com/company/melt-ing/">LinkedIn</a></li>
+      <li><a href="https://www.youtube.com/@MELT-IngGmbH">YouTube</a></li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom">Melt-Ing GmbH · John-Deere-Str. 81a · 68163 Mannheim · contact@melt-ing.com — dies ist ein unverbindlicher Redesign-Entwurf, kein Live-Deployment.</div>
+</footer>
+
+<script>
+const io = new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('active'); io.unobserve(e.target);} }); },{threshold:0.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+const sdgIO = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('in');
+      sdgIO.unobserve(entry.target);
+    }
+  });
+},{threshold:0.3});
+document.querySelectorAll('.sdg-row').forEach(el=>sdgIO.observe(el));
+</script>
+
+<script>
+window.PAGE_I18N = {
+  "hero-label": { de:"Nachhaltigkeit · Thema · Mai 2024", en:"Sustainability · Topic · May 2024" },
+  "hero-h1": { de:'Die Nachhaltigkeitsziele der <span class="highlight">UN und MELT</span>', en:'The <span class="highlight">UN Sustainability Goals</span> and MELT' },
+  "quote": { de:'„Es ist billiger, den Planeten jetzt zu schützen, als ihn später zu reparieren."', en:'"It is cheaper to protect the planet now than to repair it later."' },
+  "quote-author": { de:"— José Manuel Barroso", en:"— José Manuel Barroso" },
+  "lead": { de:"MELT-Ing trägt zu drei zentralen Sustainable Development Goals der Vereinten Nationen bei.", en:"MELT-Ing contributes to three central Sustainable Development Goals of the United Nations." },
+  "sdg7-title": { de:"Bezahlbare und saubere Energie", en:"Affordable and Clean Energy" },
+  "sdg7-h": { de:"Bezahlbare und saubere Energie", en:"Affordable and Clean Energy" },
+  "sdg7-p": { de:"Wir entwickeln Produkte, die thermische Energie speichern und es ermöglichen, flexible, günstige und saubere Energie zur Temperaturpufferung in Gebäuden zu nutzen. Dies umfasst natürliche Tag-Nacht-Schwankungen, Schwankungen bei lokal produziertem PV- und Windstrom sowie dynamische Stromtarife, bei denen nur die günstigste und sauberste Energie aus dem Netz genutzt wird.", en:"We develop products that store thermal energy and make it possible to use flexible, affordable, and clean energy for temperature buffering in buildings. This includes natural day-night fluctuations, variations in locally produced PV and wind power, and dynamic electricity tariffs, where only the cheapest and cleanest energy is drawn from the grid." },
+  "sdg9-title": { de:"Industrie, Innovation und Infrastruktur", en:"Industry, Innovation and Infrastructure" },
+  "sdg9-h": { de:"Industrie, Innovation und Infrastruktur", en:"Industry, Innovation and Infrastructure" },
+  "sdg9-p": { de:"Unser Phasenwechselspeichermaterial ermöglicht Resilienz und netzentlastendes Verhalten bei Wohngebäuden und industriellen Anwendungen. In ökologischen Bauten wie CO2-armen Holzrahmenschulen reduzieren wir Hitzeereignisse um 86 Prozent. Durch Lastverschiebung verlagern wir den Netzbedarf von dunklen und windstillen Stunden in sauberere Zeiten – Spitzenlasten werden reduziert. Zudem tragen wir zur Dekarbonisierung von Wärmenetzen und energieintensiven Industrieprozessen bei.", en:"Our phase change storage material enables resilience and grid-relieving behavior in residential buildings and industrial applications. In ecological buildings such as low-CO2 timber-frame schools, we reduce heat events by 86 percent. Through load shifting, we move grid demand from dark, windless hours to cleaner times — reducing peak loads. We also contribute to decarbonizing heating networks and energy-intensive industrial processes." },
+  "sdg11-title": { de:"Nachhaltige Städte und Gemeinden", en:"Sustainable Cities and Communities" },
+  "sdg11-h": { de:"Nachhaltige Städte und Gemeinden", en:"Sustainable Cities and Communities" },
+  "sdg11-p": { de:"Städte sind besonders von Klimawandel und Extremwetter betroffen. Wir reduzieren heiße Stunden in Gebäuden, die zu Gesundheitsrisiken führen können, insbesondere für die wachsende ältere Bevölkerung. Gleichzeitig verringern wir die Abhängigkeit von Klimaanlagen durch Low-Tech-Lösungen und passen uns an aktuelle Trends wie serielle Sanierungen und ökologische Schnellbauten an – von Modulhäusern über Holzrahmenbau bis zu Fertigbauten.", en:"Cities are especially affected by climate change and extreme weather. We reduce hot hours in buildings that can lead to health risks, particularly for the growing elderly population. At the same time, we reduce dependence on air conditioning through low-tech solutions and adapt to current trends such as serial renovations and fast ecological construction — from modular homes to timber-frame construction to prefabricated buildings." },
+  "cta-title": { de:"Neugierig gemacht?", en:"Curious?" },
+  "cta-body": { de:"Wollen Sie mehr wissen? Schreiben Sie uns unter contact@melt-ing.com.", en:"Want to know more? Write to us at contact@melt-ing.com." },
+  "cta-btn": { de:"Kontakt aufnehmen →", en:"Get in touch →" },
+  "footer-desc": { de:"Tailored Thermal Buffering for Buildings. Das Start-up aus Mannheim ermöglicht überragenden Komfort und Klimaresilienz in leichten, ökologischen Gebäuden.", en:"Tailored Thermal Buffering for Buildings. The Mannheim-based startup enables outstanding comfort and climate resilience in lightweight, ecological buildings." },
+};
+</script>
+
+<script>
+(function(){
+  const nav = document.getElementById('mainNav') || document.querySelector('.nav');
+  if(nav){
+    function onScroll(){ if(window.scrollY > 60) nav.classList.add('scrolled'); else nav.classList.remove('scrolled'); }
+    onScroll(); window.addEventListener('scroll', onScroll, { passive:true });
+  }
+})();
+(function(){
+  function applyLang(lang){
+    document.querySelectorAll('[data-i18n]').forEach(el=>{
+      const key = el.getAttribute('data-i18n');
+      if(window.PAGE_I18N && window.PAGE_I18N[key]) el.innerHTML = window.PAGE_I18N[key][lang];
+    });
+    document.querySelectorAll('[data-de][data-en]').forEach(el=>{
+      const text = lang === 'en' ? el.getAttribute('data-en') : el.getAttribute('data-de');
+      el.textContent = text;
+    });
+    document.querySelectorAll('.lang-btn').forEach(btn=>{ btn.classList.toggle('active', btn.dataset.lang === lang); });
+    document.documentElement.lang = lang;
+  }
+  document.querySelectorAll('.lang-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=> applyLang(btn.dataset.lang));
+  });
+})();
+</script>
+</body>
+</html>
