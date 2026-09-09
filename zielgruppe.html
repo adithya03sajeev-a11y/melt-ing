@@ -7,8 +7,16 @@
 <meta name="description" content="Für wen ist MELT relevant? Investoren, Bauunternehmen, Architekten, Defense und DIY-Selbstbauer erfahren, wie die MELT Plate Klimaresilienz in Leichtbauten bringt.">
 <link rel="stylesheet" href="assets/style.css">
 <style>
-  .audience-block { padding: 5rem 0; border-bottom:1px solid var(--melt-border); }
-  .audience-block:last-child { border-bottom:none; }
+  .audience-block { padding: 3.5rem 3rem; border-bottom:none; border-radius:28px; margin-bottom:2.2rem; transition:background .3s; }
+  .audience-block:last-child { margin-bottom:0; }
+  @media (max-width:700px){ .audience-block{ padding:2.4rem 1.6rem; } }
+  .audience-block.tone-paper { background:var(--melt-gray); }
+  .audience-block.tone-orange { background:rgba(193,80,46,0.13); }
+  .audience-block.tone-blue { background:rgba(46,134,171,0.13); }
+  .audience-block.tone-orange .audience-icon { background:rgba(193,80,46,0.22); }
+  .audience-block.tone-blue .audience-icon { background:rgba(46,134,171,0.22); color:var(--melt-blue); }
+  .audience-block.tone-blue blockquote { border-left-color:var(--melt-blue); background:rgba(46,134,171,0.08); }
+  .audience-block.tone-blue blockquote cite { color:var(--melt-blue); }
   .audience-top { display:flex; align-items:center; gap:0.9rem; margin-bottom:1.6rem; }
   .audience-icon { width:52px; height:52px; border-radius:14px; background:rgba(193, 80, 46,0.1); display:flex; align-items:center; justify-content:center; font-size:1.5rem; color:var(--melt-orange); }
   .audience-block h2 { font-family:'Manrope', sans-serif; font-size:1.9rem; }
@@ -213,7 +221,7 @@
     <p class="section-desc reveal" style="text-align:center; margin:-0.6rem 0 1rem; font-size:0.85rem;" data-i18n="card-count-note">Fünf Zielgruppen — wählen Sie oben oder scrollen Sie direkt weiter.</p>
 
     <!-- INVESTOREN -->
-    <div class="audience-block reveal" id="investoren">
+    <div class="audience-block tone-paper reveal" id="investoren">
       <div class="audience-top"><div class="audience-icon">◆</div><h2 data-i18n="inv-h">Innovative Investoren und die MELT-Ing GmbH</h2></div>
       <div class="audience-date" data-i18n="date-1">Wissen · Start-up · MELT-Ing GmbH · August 2025</div>
       <blockquote data-i18n="inv-quote">„Innovation darf kein Zukunftsversprechen mehr sein, sie muss Gegenwart werden – auf jeder Baustelle, in jeder Kommune. Erst wenn Technologie und Gestaltungswille zusammenfinden, entsteht wirklicher Fortschritt."<cite>Robert Kroth, GF von Neues Bauen – 80 Sekunden</cite></blockquote>
@@ -267,7 +275,7 @@
     </div>
 
     <!-- BAUUNTERNEHMEN -->
-    <div class="audience-block reveal" id="bauunternehmen">
+    <div class="audience-block tone-orange reveal" id="bauunternehmen">
       <div class="audience-top"><div class="audience-icon">▦</div><h2 data-i18n="bau-h">Innovative Bauunternehmen</h2></div>
       <div class="audience-date">Wissen · Start-up · MELT-Ing GmbH · August 2025</div>
       <blockquote data-i18n="bau-quote">„Dank neuer Fertigungs- und Montageprozesse sowie innovativer, kreislauffähiger Bauprodukte wird schon heute von vielen Unternehmen in Deutschland vorgedacht und umgesetzt."</blockquote>
@@ -309,7 +317,7 @@
     </div>
 
     <!-- ARCHITEKTEN -->
-    <div class="audience-block reveal" id="architekten">
+    <div class="audience-block tone-blue reveal" id="architekten">
       <div class="audience-top"><div class="audience-icon">◈</div><h2 data-i18n="arch-h">Innovative Architekten und Planer</h2></div>
       <div class="audience-date">Wissen · Start-up · MELT-Ing GmbH · August 2025</div>
       <blockquote data-i18n="arch-quote1">„Mit einer sehr leichten Bauweise ist eine rein natürliche Kühlung nur schwer umsetzbar."<cite>Zukunft Bauen: Forschung für die Praxis „LOWTECH", S. 88, Szenario Mannheim 2045</cite></blockquote>
@@ -333,7 +341,7 @@
     </div>
 
     <!-- DEFENSE -->
-    <div class="audience-block reveal" id="defense">
+    <div class="audience-block tone-paper reveal" id="defense">
       <div class="audience-top"><div class="audience-icon">◐</div><h2 data-i18n="def-h">Defense und Dual Use</h2></div>
       <div class="audience-date">Wissen · Start-up · MELT-Ing GmbH · August 2025</div>
       <blockquote data-i18n="def-quote">„...Abschließend möchte ich nochmals betonen, dass Europa bereit ist, Verantwortung wahrzunehmen. Mit „ReArm Europe" könnten fast 800 Milliarden Euro für ein sicheres und resilientes Europa mobilisiert werden."<cite>Ursula von der Leyen</cite></blockquote>
@@ -358,7 +366,7 @@
     </div>
 
     <!-- DIY -->
-    <div class="audience-block reveal" id="diy">
+    <div class="audience-block tone-orange reveal" id="diy">
       <div class="audience-top"><div class="audience-icon">✎</div><h2 data-i18n="diy-h">Für Selbermacher*innen</h2></div>
       <div class="audience-date">Wissen · Start-up · MELT-Ing GmbH · August 2025</div>
       <blockquote data-i18n="diy-quote">„Wow — das passt ja perfekt zu meinem Tiny House."<cite>Ja</cite></blockquote>

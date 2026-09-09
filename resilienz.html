@@ -82,10 +82,12 @@
           <line x1="0" y1="60" x2="900" y2="60" stroke="rgba(43,31,24,0.08)"/>
           <line x1="0" y1="130" x2="900" y2="130" stroke="rgba(43,31,24,0.16)" stroke-dasharray="2 5"/>
           <line x1="0" y1="200" x2="900" y2="200" stroke="rgba(43,31,24,0.08)"/>
+          <rect x="0" y="40" width="150" height="18" fill="var(--melt-gray)"/>
           <text x="0" y="54" font-family="IBM Plex Mono" font-size="11" fill="var(--melt-text-muted)" data-i18n="chart-hot">Belastungsspitze</text>
-          <text x="0" y="135" font-family="IBM Plex Mono" font-size="11" fill="var(--melt-text-muted)" data-i18n="chart-comfort">Stabiler Bereich</text>
-          <path id="shockLine" class="shock-line" stroke="var(--melt-orange)" d="M0,130 L60,132 L120,60 L130,205 L190,55 L200,210 L260,65 L280,200 L340,70 L900,130"/>
-          <path id="respLine" class="shock-line" stroke="var(--melt-blue)" stroke-width="3.6" d="M0,130 L100,128 L200,122 L300,118 L400,124 L500,120 L600,126 L700,122 L800,128 L900,124"/>
+          <rect x="0" y="103" width="130" height="18" fill="var(--melt-gray)"/>
+          <text x="0" y="116" font-family="IBM Plex Mono" font-size="11" fill="var(--melt-text-muted)" data-i18n="chart-comfort">Stabiler Bereich</text>
+          <path id="shockLine" class="shock-line" stroke="var(--melt-orange)" d="M0,130 L60,132 L120,60 L130,205 L190,55 L200,210 L260,65 L280,200 L340,70 L360,195 L420,68 L440,190 L500,72 L520,188 L580,75 L600,185 L660,78 L680,180 L740,80 L760,178 L820,82 L840,175 L900,85"/>
+          <path id="respLine" class="shock-line" stroke="var(--melt-blue)" stroke-width="3.6" d="M0,148 L100,146 L200,144 L300,142 L400,145 L500,143 L600,146 L700,144 L800,147 L900,145"/>
         </svg>
         <div class="shock-legend">
           <span><i class="dot" style="background:var(--melt-orange);"></i><span data-i18n="legend1">Ohne Resilienz — ungedämpfte Schwankung</span></span>
