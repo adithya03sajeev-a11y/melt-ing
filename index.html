@@ -9,7 +9,7 @@
 <style>
   .hero { position: relative; min-height: 92vh; display:flex; align-items:flex-end; justify-content:flex-start; overflow:hidden; background:var(--melt-black); }
   .hero-video { position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:0; }
-  .hero-overlay { position:absolute; inset:0; z-index:1; background:linear-gradient(0deg, rgba(34, 31, 25,0.88) 0%, rgba(34, 31, 25,0.55) 42%, rgba(34, 31, 25,0.25) 70%, rgba(34, 31, 25,0.35) 100%); }
+  .hero-overlay { position:absolute; inset:0; z-index:1; background:linear-gradient(0deg, rgba(43, 31, 24,0.88) 0%, rgba(43, 31, 24,0.55) 42%, rgba(43, 31, 24,0.25) 70%, rgba(43, 31, 24,0.35) 100%); }
   .hero-content { position:relative; z-index:2; text-align:left; max-width:760px; padding:3rem 3.5rem 5rem; margin-right:auto; }
   .hero-badge { display:inline-flex; align-items:center; gap:0.5rem; padding:0.5rem 1.2rem; border:1px solid var(--melt-orange);
     border-radius:50px; font-size:0.85rem; color:var(--melt-orange-light); margin-bottom:2rem; background: rgba(193, 80, 46,0.12); animation:fadeInDown 1s ease-out 0.2s both; }
@@ -35,7 +35,7 @@
   @media (max-width:900px){ .problem-grid{grid-template-columns:1fr;} }
   .problem-visual { position:relative; height:380px; background:linear-gradient(135deg,#1a1a1a,#2B1F18); border-radius:24px; border:1px solid var(--melt-border); display:flex; align-items:center; justify-content:center; }
   .temp-gauge { width:260px; height:260px; position:relative; }
-  .gauge-ring { width:100%; height:100%; border-radius:50%; border:8px solid rgba(34, 31, 25,0.15); position:relative; }
+  .gauge-ring { width:100%; height:100%; border-radius:50%; border:8px solid rgba(43, 31, 24,0.15); position:relative; }
   .gauge-fill { position:absolute; top:0; left:0; width:100%; height:100%; border-radius:50%; border:8px solid transparent; border-top-color:var(--melt-orange); border-right-color:var(--melt-orange-light); animation:gaugeSpin 3s ease-in-out infinite alternate; }
   @keyframes gaugeSpin { 0%{transform:rotate(-135deg);} 100%{transform:rotate(45deg);} }
   .gauge-center { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); text-align:center; }
@@ -144,7 +144,7 @@
   .pcm-step-count { font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--melt-text-muted); }
   .pcm-result { display:none; flex-direction:column; height:100%; }
   .pcm-result.show { display:flex; }
-  .pcm-result-badge { display:inline-flex; align-items:center; gap:8px; font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; padding:6px 12px; border-radius:20px; background:rgba(20, 107, 114,0.1); color:var(--melt-blue); border:1px solid rgba(20, 107, 114,0.3); width:fit-content; margin-bottom:18px; font-weight:600; }
+  .pcm-result-badge { display:inline-flex; align-items:center; gap:8px; font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; padding:6px 12px; border-radius:20px; background:rgba(46, 134, 171,0.1); color:var(--melt-blue); border:1px solid rgba(46, 134, 171,0.3); width:fit-content; margin-bottom:18px; font-weight:600; }
   .pcm-result-title { font-family:'Manrope', sans-serif; font-size:28px; font-weight:700; margin:0 0 14px 0; line-height:1.2; color:var(--melt-text); }
   .pcm-result-score { font-family:'IBM Plex Mono', monospace; font-size:15px; color:var(--melt-orange-light); margin-bottom:20px; font-weight:600; }
   .pcm-result-text { font-size:15px; line-height:1.65; color:var(--melt-text-muted); max-width:480px; margin-bottom:26px; }
@@ -188,6 +188,8 @@
         <a href="bauteilaktivierung.html"><span class="dd-icon">▤</span><span data-de="Bauteilaktivierung" data-en="Thermal Activation">Bauteilaktivierung</span></a>
         <a href="komfort.html"><span class="dd-icon">❖</span><span data-de="Komfort" data-en="Comfort">Komfort</span></a>
         <a href="lowtech.html"><span class="dd-icon">✻</span><span data-de="Low-Tech" data-en="Low-Tech">Low-Tech</span></a>
+        <a href="nachhaltigkeit.html"><span class="dd-icon">♺</span><span data-de="Nachhaltigkeit" data-en="Sustainability">Nachhaltigkeit</span></a>
+        <a href="resilienz.html"><span class="dd-icon">⛨</span><span data-de="Resilienz" data-en="Resilience">Resilienz</span></a>
         <a href="magazin.html#case"><span class="dd-icon">▣</span><span data-de="Case Studies" data-en="Case Studies">Case Studies</span></a>
       </div>
     </li>

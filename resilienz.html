@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Was ist Resilienz? — MELT-Ing GmbH</title>
+<meta name="description" content="Resilienz im Baukontext: Klimaresilienz, Katastrophenresilienz und operative Resilienz. Wie die MELT Plate Gebäude widerstandsfähig gegen Schocks und Schwankungen macht.">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  .article-body-text { max-width:900px; margin:0 auto; }
+  .article-body-text h2 { font-family:'Manrope', sans-serif; font-size:1.6rem; margin:2.6rem 0 1.1rem; }
+  .article-body-text p { color:var(--melt-text-muted); font-size:1.05rem; margin-bottom:1.2rem; line-height:1.75; }
+  .article-body-text p strong { color:var(--melt-text); font-weight:700; }
+
+  /* shock-absorption visual: jagged shock vs smoothed response */
+  .shock-viz { background:var(--melt-gray); border:1px solid var(--melt-border); border-radius:22px; padding:2.2rem 2rem 1.8rem; margin:2.2rem 0 2.6rem; }
+  .shock-viz .viz-title { font-family:'IBM Plex Mono', monospace; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.07em; color:var(--melt-text-muted); margin-bottom:1.6rem; }
+  svg#shockChart { width:100%; height:auto; display:block; }
+  .shock-line { fill:none; stroke-width:3; stroke-linecap:round; stroke-dasharray:1000; stroke-dashoffset:1000; transition:stroke-dashoffset 1.8s cubic-bezier(.16,1,.3,1); }
+  .shock-legend { display:flex; gap:1.6rem; margin-top:1rem; flex-wrap:wrap; font-family:'IBM Plex Mono', monospace; font-size:0.82rem; }
+  .shock-legend span { display:flex; align-items:center; gap:0.5rem; color:var(--melt-text-muted); }
+  .shock-legend .dot { width:10px; height:10px; border-radius:50%; display:inline-block; }
+</style>
+</head>
+<body>
+
+<nav class="nav" id="mainNav">
+  <a href="index.html" class="nav-logo"><img src="assets/img/logo.png" alt="MELT-Ing Logo"><span>-Ing</span></a>
+  <ul class="nav-links">
+    <li><a href="melt-plate.html" data-de="MELT Plate" data-en="MELT Plate">MELT Plate</a></li>
+    <li class="has-dropdown"><a href="zielgruppe.html" data-de="Zielgruppe" data-en="Audience">Zielgruppe</a>
+      <div class="dropdown">
+        <a href="zielgruppe.html#investoren"><span class="dd-icon">◆</span><span data-de="Investoren" data-en="Investors">Investoren</span></a>
+        <a href="zielgruppe.html#bauunternehmen"><span class="dd-icon">◈</span><span data-de="Bauunternehmen" data-en="Construction Companies">Bauunternehmen</span></a>
+        <a href="zielgruppe.html#architekten"><span class="dd-icon">✎</span><span data-de="Architekten und Planer" data-en="Architects & Planners">Architekten und Planer</span></a>
+        <a href="zielgruppe.html#defense"><span class="dd-icon">⛨</span><span data-de="Defense" data-en="Defense">Defense</span></a>
+        <a href="zielgruppe.html#diy"><span class="dd-icon">⚒</span><span data-de="DIY" data-en="DIY">DIY</span></a>
+      </div>
+    </li>
+    <li class="has-dropdown"><a href="magazin.html" data-de="Magazin" data-en="Magazine">Magazin</a>
+      <div class="dropdown">
+        <a href="hitzeschutz.html"><span class="dd-icon">☀</span><span data-de="Hitzeschutz" data-en="Heat Protection">Hitzeschutz</span></a>
+        <a href="pcm.html"><span class="dd-icon">◉</span><span data-de="PCM" data-en="PCM">PCM</span></a>
+        <a href="bauteilaktivierung.html"><span class="dd-icon">▤</span><span data-de="Bauteilaktivierung" data-en="Thermal Activation">Bauteilaktivierung</span></a>
+        <a href="impact.html"><span class="dd-icon">◐</span><span data-de="Impact" data-en="Impact">Impact</span></a>
+        <a href="serielles-bauen.html"><span class="dd-icon">▦</span><span data-de="Serielles Bauen" data-en="Serielles Bauen">Serielles Bauen</span></a>
+        <a href="nachhaltigkeit.html"><span class="dd-icon">♺</span><span data-de="Nachhaltigkeit" data-en="Sustainability">Nachhaltigkeit</span></a>
+        <a href="resilienz.html"><span class="dd-icon">⛨</span><span data-de="Resilienz" data-en="Resilience">Resilienz</span></a>
+        <a href="magazin.html#case"><span class="dd-icon">▣</span><span data-de="Case Studies" data-en="Case Studies">Case Studies</span></a>
+      </div>
+    </li>
+    <li><a href="ueber-uns.html" data-de="Über uns" data-en="About us">Über uns</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="lang-switch" id="langSwitch">
+      <button class="lang-btn active" data-lang="de">DE</button>
+      <span class="lang-sep">|</span>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </div>
+    <a href="kontakt.html" class="nav-cta" data-de="gleich anfragen →" data-en="get in touch →">gleich anfragen →</a>
+  </div>
+</nav>
+
+<div class="page-hero" style="padding-bottom:1rem;">
+  <div class="section-label" data-i18n="hero-label">Resilienz · Thema · August 2025</div>
+  <h1 data-i18n="hero-h1">Was ist <span class="highlight">Resilienz?</span></h1>
+</div>
+
+<section style="padding-top:0;">
+  <div class="container">
+    <div class="article-body-text reveal">
+
+      <h2 data-i18n="h2-1">Aushalten oder Anpassen</h2>
+      <p data-i18n="p1">Resilienz beschreibt die Fähigkeit von Systemen, Schocks und Störungen zu absorbieren, sich anzupassen und zu erholen.</p>
+      <p data-i18n="p2">Im Baukontext umfasst das Klimaresilienz (Anpassung an Extremwetter), Katastrophenresilienz (Widerstand gegen Naturgewalten) und operative Resilienz (Funktionsfähigkeit bei Stromausfall). Klimawandel, Hitzewellen, Starkregen und Energiekrisen erhöhen den Bedarf an resilienten Gebäuden.</p>
+      <p data-i18n="p3">Resilienz ist nicht nur technisch, sondern auch sozial: Vulnerable Gruppen wie ältere Menschen sind besonders von Überhitzung betroffen. Resiliente Gebäude benötigen weniger externe Energie, kommen mit Extremen zurecht und schützen Bewohner. Low-Tech-Ansätze, Redundanz und passive Systeme erhöhen Resilienz.</p>
+      <p data-i18n="p4">Die Herausforderung: Resilienz kostet oft zusätzlich und erfordert vorausschauende Planung – wird aber durch Klimawandel unverzichtbar.</p>
+
+      <div class="shock-viz">
+        <div class="viz-title" data-i18n="viz-title">Schock und Reaktion: Innentemperatur bei einer Hitzewelle</div>
+        <svg id="shockChart" viewBox="0 0 900 260" xmlns="http://www.w3.org/2000/svg">
+          <line x1="0" y1="60" x2="900" y2="60" stroke="rgba(43,31,24,0.08)"/>
+          <line x1="0" y1="130" x2="900" y2="130" stroke="rgba(43,31,24,0.16)" stroke-dasharray="2 5"/>
+          <line x1="0" y1="200" x2="900" y2="200" stroke="rgba(43,31,24,0.08)"/>
+          <text x="0" y="54" font-family="IBM Plex Mono" font-size="11" fill="var(--melt-text-muted)" data-i18n="chart-hot">Belastungsspitze</text>
+          <text x="0" y="135" font-family="IBM Plex Mono" font-size="11" fill="var(--melt-text-muted)" data-i18n="chart-comfort">Stabiler Bereich</text>
+          <path id="shockLine" class="shock-line" stroke="var(--melt-orange)" d="M0,130 L60,132 L120,60 L130,205 L190,55 L200,210 L260,65 L280,200 L340,70 L900,130"/>
+          <path id="respLine" class="shock-line" stroke="var(--melt-blue)" stroke-width="3.6" d="M0,130 L100,128 L200,122 L300,118 L400,124 L500,120 L600,126 L700,122 L800,128 L900,124"/>
+        </svg>
+        <div class="shock-legend">
+          <span><i class="dot" style="background:var(--melt-orange);"></i><span data-i18n="legend1">Ohne Resilienz — ungedämpfte Schwankung</span></span>
+          <span><i class="dot" style="background:var(--melt-blue);"></i><span data-i18n="legend2">Mit MELT — gedämpfte, stabile Reaktion</span></span>
+        </div>
+      </div>
+
+      <h2 data-i18n="h2-2">Schwankungen und Schocks aushalten mit MELT</h2>
+      <p data-i18n="p5">Resilienz ist das Kernversprechen von MELT. Unsere Produkte machen Gebäude klimaresilient gegen Hitzewellen, ohne auf externe Infrastruktur angewiesen zu sein.</p>
+      <p data-i18n="p6">Im Bundeswehr-Projekt demonstrierten wir Katastrophenresilienz: selbst ohne Stromversorgung funktionierten die Platten einwandfrei und reduzierten Hitzetage um <strong>86 Prozent</strong>. Diese Autarkie ist entscheidend bei Stromausfällen, Lieferengpässen oder Katastrophen.</p>
+      <p data-i18n="p7">Für vulnerable Gruppen wie ältere Menschen bedeutet das Gesundheitsschutz: Weniger heiße Stunden reduzieren Gesundheitsrisiken.</p>
+      <p data-i18n="p8">Operative Resilienz zeigt sich im Defense-Bereich: Einsatzbereite Infrastruktur auch unter erschwerten Bedingungen. Klimaresilienz ermöglichen wir durch passive Systeme, die über viele Jahre funktionieren – ohne Wartung, ohne Technik-Abhängigkeit.</p>
+      <p data-i18n="p9">MELT macht "fit for 2050" nicht zu einer Hoffnung, sondern zu einer robusten, physikalischen Realität. Resilienz ist bei uns kein Add-on, sondern die Grundfunktion.</p>
+
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="cta-content">
+    <h2 data-i18n="cta-title">Neugierig gemacht?</h2>
+    <p data-i18n="cta-body">Wollen Sie mehr wissen? Schreiben Sie uns unter contact@melt-ing.com.</p>
+    <a href="kontakt.html" class="cta-btn" data-i18n="cta-btn">Kontakt aufnehmen →</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand"><img src="assets/img/logo.png" alt=""><span>-Ing</span> GmbH</div>
+      <p class="footer-desc" data-i18n="footer-desc">Tailored Thermal Buffering for Buildings. Das Start-up aus Mannheim ermöglicht überragenden Komfort und Klimaresilienz in leichten, ökologischen Gebäuden.</p>
+    </div>
+    <div class="footer-col"><h4>Quick links</h4><ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="ueber-uns.html">About</a></li>
+      <li><a href="magazin.html">News</a></li>
+      <li><a href="kontakt.html">Contact</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Services</h4><ul>
+      <li><a href="komfort.html">Komfort</a></li>
+      <li><a href="pcm.html">Wärmespeicher</a></li>
+      <li><a href="hitzeschutz.html">Hitzeschutz</a></li>
+      <li><a href="bauteilaktivierung.html">Load-Shifting</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Follow us</h4><ul>
+      <li><a href="https://www.linkedin.com/company/melt-ing/">LinkedIn</a></li>
+      <li><a href="https://www.youtube.com/@MELT-IngGmbH">YouTube</a></li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom">Melt-Ing GmbH · John-Deere-Str. 81a · 68163 Mannheim · contact@melt-ing.com — dies ist ein unverbindlicher Redesign-Entwurf, kein Live-Deployment.</div>
+</footer>
+
+<script>
+const io = new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('active'); io.unobserve(e.target);} }); },{threshold:0.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+const shockIO = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      const shockLine = document.getElementById('shockLine');
+      const respLine = document.getElementById('respLine');
+      const len1 = shockLine.getTotalLength();
+      const len2 = respLine.getTotalLength();
+      shockLine.style.strokeDasharray = len1;
+      shockLine.style.strokeDashoffset = len1;
+      respLine.style.strokeDasharray = len2;
+      respLine.style.strokeDashoffset = len2;
+      requestAnimationFrame(()=>{
+        shockLine.style.strokeDashoffset = 0;
+        setTimeout(()=>{ respLine.style.strokeDashoffset = 0; }, 300);
+      });
+      shockIO.disconnect();
+    }
+  });
+},{threshold:0.3});
+shockIO.observe(document.getElementById('shockChart'));
+</script>
+
+<script>
+window.PAGE_I18N = {
+  "hero-label": { de:"Resilienz · Thema · August 2025", en:"Resilience · Topic · August 2025" },
+  "hero-h1": { de:'Was ist <span class="highlight">Resilienz?</span>', en:'What is <span class="highlight">Resilience?</span>' },
+  "h2-1": { de:"Aushalten oder Anpassen", en:"Withstand or Adapt" },
+  "p1": { de:"Resilienz beschreibt die Fähigkeit von Systemen, Schocks und Störungen zu absorbieren, sich anzupassen und zu erholen.", en:"Resilience describes the ability of systems to absorb shocks and disruptions, adapt, and recover." },
+  "p2": { de:"Im Baukontext umfasst das Klimaresilienz (Anpassung an Extremwetter), Katastrophenresilienz (Widerstand gegen Naturgewalten) und operative Resilienz (Funktionsfähigkeit bei Stromausfall). Klimawandel, Hitzewellen, Starkregen und Energiekrisen erhöhen den Bedarf an resilienten Gebäuden.", en:"In construction, this includes climate resilience (adapting to extreme weather), disaster resilience (withstanding natural forces), and operational resilience (functioning during power outages). Climate change, heat waves, heavy rain, and energy crises are increasing the need for resilient buildings." },
+  "p3": { de:"Resilienz ist nicht nur technisch, sondern auch sozial: Vulnerable Gruppen wie ältere Menschen sind besonders von Überhitzung betroffen. Resiliente Gebäude benötigen weniger externe Energie, kommen mit Extremen zurecht und schützen Bewohner. Low-Tech-Ansätze, Redundanz und passive Systeme erhöhen Resilienz.", en:"Resilience isn't just technical — it's also social: vulnerable groups such as the elderly are especially affected by overheating. Resilient buildings require less external energy, cope with extremes, and protect occupants. Low-tech approaches, redundancy, and passive systems all increase resilience." },
+  "p4": { de:"Die Herausforderung: Resilienz kostet oft zusätzlich und erfordert vorausschauende Planung – wird aber durch Klimawandel unverzichtbar.", en:"The challenge: resilience often costs extra and requires forward-looking planning — but climate change is making it indispensable." },
+  "viz-title": { de:"Schock und Reaktion: Innentemperatur bei einer Hitzewelle", en:"Shock and Response: Indoor Temperature During a Heat Wave" },
+  "chart-hot": { de:"Belastungsspitze", en:"Peak stress" },
+  "chart-comfort": { de:"Stabiler Bereich", en:"Stable range" },
+  "legend1": { de:"Ohne Resilienz — ungedämpfte Schwankung", en:"Without resilience — undamped fluctuation" },
+  "legend2": { de:"Mit MELT — gedämpfte, stabile Reaktion", en:"With MELT — damped, stable response" },
+  "h2-2": { de:"Schwankungen und Schocks aushalten mit MELT", en:"Withstanding Fluctuations and Shocks with MELT" },
+  "p5": { de:"Resilienz ist das Kernversprechen von MELT. Unsere Produkte machen Gebäude klimaresilient gegen Hitzewellen, ohne auf externe Infrastruktur angewiesen zu sein.", en:"Resilience is MELT's core promise. Our products make buildings climate-resilient against heat waves, without relying on external infrastructure." },
+  "p6": { de:'Im Bundeswehr-Projekt demonstrierten wir Katastrophenresilienz: selbst ohne Stromversorgung funktionierten die Platten einwandfrei und reduzierten Hitzetage um <strong>86 Prozent</strong>. Diese Autarkie ist entscheidend bei Stromausfällen, Lieferengpässen oder Katastrophen.', en:'In our project with the German Armed Forces, we demonstrated disaster resilience: even without a power supply, the plates worked flawlessly and reduced heat days by <strong>86 percent</strong>. This self-sufficiency is crucial during power outages, supply shortages, or disasters.' },
+  "p7": { de:"Für vulnerable Gruppen wie ältere Menschen bedeutet das Gesundheitsschutz: Weniger heiße Stunden reduzieren Gesundheitsrisiken.", en:"For vulnerable groups such as the elderly, this means health protection: fewer hot hours reduce health risks." },
+  "p8": { de:"Operative Resilienz zeigt sich im Defense-Bereich: Einsatzbereite Infrastruktur auch unter erschwerten Bedingungen. Klimaresilienz ermöglichen wir durch passive Systeme, die über viele Jahre funktionieren – ohne Wartung, ohne Technik-Abhängigkeit.", en:"Operational resilience shows up in the defense sector: mission-ready infrastructure even under difficult conditions. We enable climate resilience through passive systems that function for many years — without maintenance, without dependence on technology." },
+  "p9": { de:'MELT macht "fit for 2050" nicht zu einer Hoffnung, sondern zu einer robusten, physikalischen Realität. Resilienz ist bei uns kein Add-on, sondern die Grundfunktion.', en:'MELT turns "fit for 2050" from a hope into a robust, physical reality. For us, resilience isn\'t an add-on — it\'s the core function.' },
+  "cta-title": { de:"Neugierig gemacht?", en:"Curious?" },
+  "cta-body": { de:"Wollen Sie mehr wissen? Schreiben Sie uns unter contact@melt-ing.com.", en:"Want to know more? Write to us at contact@melt-ing.com." },
+  "cta-btn": { de:"Kontakt aufnehmen →", en:"Get in touch →" },
+  "footer-desc": { de:"Tailored Thermal Buffering for Buildings. Das Start-up aus Mannheim ermöglicht überragenden Komfort und Klimaresilienz in leichten, ökologischen Gebäuden.", en:"Tailored Thermal Buffering for Buildings. The Mannheim-based startup enables outstanding comfort and climate resilience in lightweight, ecological buildings." },
+};
+</script>
+
+<script>
+(function(){
+  const nav = document.getElementById('mainNav') || document.querySelector('.nav');
+  if(nav){
+    function onScroll(){ if(window.scrollY > 60) nav.classList.add('scrolled'); else nav.classList.remove('scrolled'); }
+    onScroll(); window.addEventListener('scroll', onScroll, { passive:true });
+  }
+})();
+(function(){
+  function applyLang(lang){
+    document.querySelectorAll('[data-i18n]').forEach(el=>{
+      const key = el.getAttribute('data-i18n');
+      if(window.PAGE_I18N && window.PAGE_I18N[key]) el.innerHTML = window.PAGE_I18N[key][lang];
+    });
+    document.querySelectorAll('[data-de][data-en]').forEach(el=>{
+      const text = lang === 'en' ? el.getAttribute('data-en') : el.getAttribute('data-de');
+      el.textContent = text;
+    });
+    document.querySelectorAll('.lang-btn').forEach(btn=>{ btn.classList.toggle('active', btn.dataset.lang === lang); });
+    document.documentElement.lang = lang;
+  }
+  document.querySelectorAll('.lang-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=> applyLang(btn.dataset.lang));
+  });
+})();
+</script>
+</body>
+</html>
