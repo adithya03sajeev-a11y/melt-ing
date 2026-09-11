@@ -15,24 +15,24 @@
   .lead-q { font-family:'Manrope', sans-serif; font-size:1.5rem; color:var(--melt-text); margin-bottom:2rem; line-height:1.35; }
 
   /* lifecycle phase timeline: original icon illustrations, own color language */
-  .lifecycle-viz { background:var(--melt-surface); border:1px solid var(--melt-border); border-radius:22px; padding:2.4rem 2rem 2rem; margin:2rem 0 2.6rem; overflow-x:auto; }
+  .lifecycle-viz { background:var(--melt-surface); border:1px solid var(--melt-border); border-radius:22px; padding:2.4rem 1.6rem 2rem; margin:2rem 0 2.6rem; }
   .lifecycle-viz .viz-title { font-family:'IBM Plex Mono', monospace; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.07em; color:var(--melt-text-muted); margin-bottom:2rem; }
-  .lc-icon-row { display:flex; align-items:flex-end; gap:0; min-width:820px; padding-bottom:0.6rem; border-bottom:2px solid var(--melt-border); position:relative; }
-  .lc-icon-col { flex:1; display:flex; flex-direction:column; align-items:center; opacity:0; transform:translateY(16px) scale(0.85); transition:opacity .5s ease, transform .5s cubic-bezier(.34,1.3,.4,1); }
+  .lc-icon-row { display:flex; flex-wrap:wrap; align-items:flex-start; justify-content:center; gap:1rem 0.4rem; padding-bottom:1rem; border-bottom:2px solid var(--melt-border); position:relative; }
+  .lc-icon-col { flex:0 1 128px; width:128px; box-sizing:border-box; display:flex; flex-direction:column; align-items:center; opacity:0; transform:translateY(16px) scale(0.85); transition:opacity .5s ease, transform .5s cubic-bezier(.34,1.3,.4,1); }
   .lc-icon-row.in .lc-icon-col { opacity:1; transform:translateY(0) scale(1); }
   .lc-icon-col:nth-child(1){transition-delay:.05s;} .lc-icon-col:nth-child(2){transition-delay:.12s;} .lc-icon-col:nth-child(3){transition-delay:.19s;}
   .lc-icon-col:nth-child(4){transition-delay:.26s;} .lc-icon-col:nth-child(5){transition-delay:.33s;} .lc-icon-col:nth-child(6){transition-delay:.42s;}
   .lc-icon-col:nth-child(7){transition-delay:.51s;} .lc-icon-col:nth-child(8){transition-delay:.58s;} .lc-icon-col:nth-child(9){transition-delay:.65s;}
   .lc-icon-col svg { width:44px; height:44px; margin-bottom:0.7rem; }
-  .lc-icon-col .lc-step-label { font-size:0.72rem; color:var(--melt-text-muted); text-align:center; line-height:1.3; min-height:2.4em; }
-  .lc-phase-bands { display:flex; min-width:820px; margin-top:0.5rem; }
+  .lc-icon-col .lc-step-label { font-size:0.7rem; color:var(--melt-text-muted); text-align:center; line-height:1.3; min-height:2.4em; width:100%; overflow-wrap:normal; word-break:keep-all; padding:0 0.1rem; }
+  .lc-phase-bands { display:flex; margin-top:0.5rem; flex-wrap:wrap; gap:4px; }
   .lc-phase-bands .band { text-align:center; font-family:'IBM Plex Mono', monospace; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.04em; color:#fff; padding:0.5rem 0.4rem; border-radius:6px; opacity:0; transform:scaleX(0.7); transition:opacity .5s ease, transform .5s ease; }
   .lc-phase-bands.in .band { opacity:1; transform:scaleX(1); }
   .lc-phase-bands .band.prod { flex:5; background:var(--melt-orange); margin-right:4px; transition-delay:.7s; }
   .lc-phase-bands .band.use { flex:1; background:var(--melt-blue); margin-right:4px; transition-delay:.8s; }
   .lc-phase-bands .band.disposal { flex:3; background:#8A8578; transition-delay:.9s; }
   .lc-callout { background:var(--melt-ink); color:#fff; border-radius:14px; padding:1.3rem 1.6rem; font-family:'Manrope', sans-serif; font-weight:700; font-size:1.05rem; line-height:1.5; margin-top:1.8rem; }
-  .lc-callout u { text-decoration-color:var(--melt-orange-light); }
+  .lc-callout em { font-style:normal; color:var(--melt-orange-light); }
   .lc-source { font-size:0.75rem; color:var(--melt-text-muted); margin-top:1rem; text-align:right; }
 
   /* CO2 comparison bars */
@@ -76,6 +76,7 @@
         <a href="case-study-hitzeschutz.html"><span class="dd-icon">▣</span><span data-de="Case Studies" data-en="Case Studies">Case Studies</span></a>
       </div>
     </li>
+    <li><a href="downloads.html" data-de="Downloads" data-en="Downloads">Downloads</a></li>
     <li><a href="ueber-uns.html" data-de="Über uns" data-en="About us">Über uns</a></li>
   </ul>
   <div class="nav-right">
@@ -195,7 +196,7 @@
           <div class="band disposal" data-i18n="lc-p3">Entsorgungsphase</div>
         </div>
 
-        <div class="lc-callout" data-i18n="lc-callout">Bis zur Hälfte des Gesamtenergiebedarfs eines Gebäudes fallen an, <u>bevor</u> dieses in den Betrieb geht.</div>
+        <div class="lc-callout" data-i18n="lc-callout">Bis zur Hälfte des Gesamtenergiebedarfs eines Gebäudes fallen an, <em>bevor</em> dieses in den Betrieb geht.</div>
         <div class="lc-source">Eigene Darstellung nach Angaben. Quelle: DUH, 2021</div>
       </div>
       </div>
@@ -315,7 +316,7 @@ window.PAGE_I18N = {
   "lc-s7": { de:"Rückbau", en:"Deconstruction" },
   "lc-s8": { de:"Transport", en:"Transport" },
   "lc-s9": { de:"Entsorgung", en:"Disposal" },
-  "lc-callout": { de:"Bis zur Hälfte des Gesamtenergiebedarfs eines Gebäudes fallen an, <u>bevor</u> dieses in den Betrieb geht.", en:"Up to half of a building's total energy demand occurs <u>before</u> it even goes into operation." },
+  "lc-callout": { de:"Bis zur Hälfte des Gesamtenergiebedarfs eines Gebäudes fallen an, <em>bevor</em> dieses in den Betrieb geht.", en:"Up to half of a building's total energy demand occurs <em>before</em> it even goes into operation." },
   "h2-2": { de:"MELT als Marketinginstrument für den Leichtbau", en:"MELT as a Marketing Tool for Lightweight Construction" },
   "p5": { de:"Der größte Hebel für graue Energie liegt nicht nur in unseren Platten selbst – sondern darin, dass wir Bauherren vom Massivbau zum Leichtbau konvertieren. Aktuell entscheidet sich die Mehrheit der Deutschen für massive Beton- oder Ziegelbauten.", en:"The biggest lever for embodied energy isn't just in our plates themselves — it's in converting builders from solid to lightweight construction. Currently, the majority of Germans choose solid concrete or brick construction." },
   "p6": { de:'Jede dieser Entscheidungen bedeutet enorme graue Energie: Eine massive Betonwand hat einen <strong>8-mal höheren CO₂-Footprint</strong> als die thermisch gleichwertige MELT-Lösung.', en:'Each of these decisions means enormous embodied energy: a solid concrete wall has an <strong>8 times higher CO₂ footprint</strong> than the thermally equivalent MELT solution.' },
