@@ -144,28 +144,32 @@
           </g>
           <g stroke="rgba(43,31,24,0.08)"><line x1="60" y1="20" x2="340" y2="20"/><line x1="60" y1="60" x2="340" y2="60"/><line x1="60" y1="100" x2="340" y2="100"/><line x1="60" y1="140" x2="340" y2="140"/><line x1="60" y1="180" x2="340" y2="180"/><line x1="60" y1="220" x2="340" y2="220"/></g>
 
-          <!-- Reference box: whisk 88-197.6, box 88-164, median 128 -->
-          <line x1="140" y1="88" x2="140" y2="197.6" stroke="#8A8578" stroke-width="1.5"/>
-          <line x1="120" y1="88" x2="160" y2="88" stroke="#8A8578" stroke-width="1.5"/>
-          <line x1="120" y1="197.6" x2="160" y2="197.6" stroke="#8A8578" stroke-width="1.5"/>
-          <rect class="box-rect ref" x="105" y="88" width="70" height="76" fill="none" stroke="#8A8578" stroke-width="2"/>
-          <line x1="105" y1="128" x2="175" y2="128" stroke="#8A8578" stroke-width="2.5"/>
-          <text x="140" y="72" text-anchor="middle" font-size="12" fill="#8A8578">✕</text>
-          <text x="140" y="212" text-anchor="middle" font-size="12" fill="#8A8578">✕</text>
+          <!-- Reference box: green outline, black whiskers/outliers, matches original chart -->
+          <line x1="140" y1="90" x2="140" y2="198" stroke="#4A4A45" stroke-width="1.5"/>
+          <line x1="120" y1="90" x2="160" y2="90" stroke="#4A4A45" stroke-width="1.5"/>
+          <line x1="120" y1="198" x2="160" y2="198" stroke="#4A4A45" stroke-width="1.5"/>
+          <rect class="box-rect ref" x="105" y="103" width="70" height="61" fill="none" stroke="#5CB85C" stroke-width="2"/>
+          <line x1="105" y1="127" x2="175" y2="127" stroke="#5CB85C" stroke-width="2.5"/>
+          <rect x="136.5" y="130.5" width="7" height="7" fill="none" stroke="#333" stroke-width="1.4"/>
+          <text x="140" y="80" text-anchor="middle" font-size="13" fill="#333">✕</text>
+          <text x="140" y="214" text-anchor="middle" font-size="13" fill="#333">✕</text>
 
-          <!-- MELT box: whisk 132-206.4, box 152-188, median 180 -->
-          <line x1="260" y1="132" x2="260" y2="206.4" stroke="var(--melt-orange)" stroke-width="1.5"/>
-          <line x1="240" y1="132" x2="280" y2="132" stroke="var(--melt-orange)" stroke-width="1.5"/>
-          <line x1="240" y1="206.4" x2="280" y2="206.4" stroke="var(--melt-orange)" stroke-width="1.5"/>
-          <rect class="box-rect melt" x="225" y="152" width="70" height="36" fill="none" stroke="var(--melt-orange)" stroke-width="2"/>
-          <line x1="225" y1="180" x2="295" y2="180" stroke="var(--melt-orange)" stroke-width="2.5"/>
+          <!-- MELT box: tan/orange outline, salmon outliers, dark red mean marker -->
+          <line x1="260" y1="153" x2="260" y2="202" stroke="#4A4A45" stroke-width="1.5"/>
+          <line x1="240" y1="153" x2="280" y2="153" stroke="#4A4A45" stroke-width="1.5"/>
+          <line x1="240" y1="202" x2="280" y2="202" stroke="#4A4A45" stroke-width="1.5"/>
+          <rect class="box-rect melt" x="225" y="166" width="70" height="23" fill="none" stroke="#E0A458" stroke-width="2"/>
+          <line x1="225" y1="180" x2="295" y2="180" stroke="#E0A458" stroke-width="2.5"/>
+          <rect x="256.5" y="174.5" width="7" height="7" fill="none" stroke="#A94442" stroke-width="1.4"/>
+          <text x="260" y="135" text-anchor="middle" font-size="13" fill="#C0705A">✕</text>
+          <text x="260" y="215" text-anchor="middle" font-size="13" fill="#C0705A">✕</text>
 
           <text x="140" y="284" text-anchor="middle" font-family="IBM Plex Mono" font-size="12" fill="var(--melt-text)">Reference</text>
           <text x="260" y="284" text-anchor="middle" font-family="IBM Plex Mono" font-size="12" fill="var(--melt-text)">MELTPlates</text>
         </svg>
         <div class="box-legend">
-          <span><i style="background:#8A8578;"></i><span data-i18n="box-l1">Ohne MELT (Referenz)</span></span>
-          <span><i style="background:var(--melt-orange);"></i><span data-i18n="box-l2">Mit MELT Plates</span></span>
+          <span><i style="background:#5CB85C;"></i><span data-i18n="box-l1">Ohne MELT (Referenz)</span></span>
+          <span><i style="background:#E0A458;"></i><span data-i18n="box-l2">Mit MELT Plates</span></span>
         </div>
       </div>
       </div>
@@ -177,6 +181,10 @@
         <li data-i18n="res2">Deutliche Reduktion von Temperaturen zwischen 25°C und 30°C.</li>
         <li data-i18n="res3">Die Temperaturschwankung in den Sommermonaten im 24-Stundenzeitraum konnte sowohl im Mittel als auch in der Standardabweichung stark reduziert werden.</li>
       </ul>
+
+      <div class="reveal" style="border-radius:16px; overflow:hidden; margin:1.6rem 0;">
+        <img src="assets/img/ceiling-grid-closeup.jpg" alt="Fertig montierte Deckenkonstruktion mit MELT Plates im Testcontainer" style="width:100%; display:block;">
+      </div>
 
       <div class="real-viz" id="realViz">
         <div class="viz-title" data-i18n="real-title">Ausschnitt aus den real aufgezeichneten Daten aus September 2023</div>
