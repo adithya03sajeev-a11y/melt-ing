@@ -187,7 +187,9 @@ section:has(> .container .content-block):has(+ .cta-section) { padding-bottom:0;
 section:has(+ .cta-section) .content-block:last-child { margin-bottom:0; }
 .content-block.tone-blue .viz-title,.content-block.tone-orange .viz-title { color:inherit; opacity:0.7; }
 section.band-orange { background:rgba(193,80,46,0.10); }
-section.band-blue { background:rgba(18,58,92,0.22); }
+section.band-blue { background:#14425A; }
+section.band-blue .section-title { color:#fff; }
+section.band-blue .section-desc { color:rgba(255,255,255,0.68); }
 
 .card-grid#solution-cards .info-card { background:var(--melt-surface); border-color:rgba(18,58,92,0.22); }
 .card-grid#solution-cards .info-card h3 { color:var(--melt-text); }
