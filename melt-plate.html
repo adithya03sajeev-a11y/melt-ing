@@ -102,6 +102,31 @@
 
 <section style="padding-top:0;">
   <div class="container">
+    <div class="content-block tone-orange reveal" style="margin-bottom:2.5rem;">
+      <div class="chart-card">
+        <div class="chart-label" data-i18n="chart-lbl">Vergleich: Leichtbaucontainer mit und ohne MELT Plates</div>
+        <div class="chart-note" data-i18n="chart-note">// Illustrative Darstellung des Pufferungseffekts über 48 Stunden</div>
+        <svg id="compareChart" viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="ohneGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#C1502E"/><stop offset="100%" stop-color="#E08A5F"/></linearGradient>
+            <linearGradient id="mitGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#123A5C"/><stop offset="100%" stop-color="#2C6690"/></linearGradient>
+          </defs>
+          <line x1="0" y1="60" x2="900" y2="60" stroke="rgba(43, 31, 24,0.06)"/>
+          <line x1="0" y1="150" x2="900" y2="150" stroke="rgba(43, 31, 24,0.14)" stroke-dasharray="2 5"/>
+          <line x1="0" y1="240" x2="900" y2="240" stroke="rgba(43, 31, 24,0.06)"/>
+          <text x="0" y="54" font-family="IBM Plex Mono" font-size="11" fill="rgba(43, 31, 24,0.4)" data-i18n="chart-hot">heiß</text>
+          <text x="0" y="155" font-family="IBM Plex Mono" font-size="11" fill="rgba(43, 31, 24,0.4)" data-i18n="chart-comfort">Komfortbereich</text>
+          <text x="0" y="245" font-family="IBM Plex Mono" font-size="11" fill="rgba(43, 31, 24,0.4)" data-i18n="chart-cool">kühl</text>
+          <path id="ohneLine" d="" fill="none" stroke="url(#ohneGrad)" stroke-width="2.6" stroke-linecap="round"/>
+          <path id="mitLine" d="" fill="none" stroke="url(#mitGrad)" stroke-width="3.2" stroke-linecap="round"/>
+        </svg>
+        <div class="chart-legend">
+          <span><i class="dot" style="background:#C1502E"></i><span data-i18n="legend1">Container ohne MELT Plates</span></span>
+          <span><i class="dot" style="background:#123A5C"></i><span data-i18n="legend2">Container mit MELT Plates</span></span>
+        </div>
+      </div>
+    </div>
+
     <div class="product-hero reveal">
       <div class="product-photo-wrap">
         <img src="assets/img/plate-25c.jpg" alt="MELT Plate mit handschriftlicher 25°C Markierung">
@@ -128,31 +153,6 @@
       <div class="buffer-row">
         <div class="buffer-box cool"><div class="glyph">❄</div><h4 data-i18n="cool-h">Kühlen</h4><p data-i18n="cool-p">Wenn die Temperatur den Schmelzpunkt übersteigt, nimmt das PCM Wärme auf, statt sie in den Raum zu lassen.</p></div>
         <div class="buffer-box warm"><div class="glyph">☀</div><h4 data-i18n="warm-h">Wärmen</h4><p data-i18n="warm-p">Fällt die Temperatur, gibt das PCM zuvor gespeicherte Wärme wieder ab und hält den Raum stabil.</p></div>
-      </div>
-    </div>
-
-    <div class="content-block tone-orange reveal" style="margin-bottom:2.5rem;">
-      <div class="chart-card">
-        <div class="chart-label" data-i18n="chart-lbl">Vergleich: Leichtbaucontainer mit und ohne MELT Plates</div>
-        <div class="chart-note" data-i18n="chart-note">// Illustrative Darstellung des Pufferungseffekts über 48 Stunden</div>
-        <svg id="compareChart" viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="ohneGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#C1502E"/><stop offset="100%" stop-color="#E08A5F"/></linearGradient>
-            <linearGradient id="mitGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#123A5C"/><stop offset="100%" stop-color="#2C6690"/></linearGradient>
-          </defs>
-          <line x1="0" y1="60" x2="900" y2="60" stroke="rgba(43, 31, 24,0.06)"/>
-          <line x1="0" y1="150" x2="900" y2="150" stroke="rgba(43, 31, 24,0.14)" stroke-dasharray="2 5"/>
-          <line x1="0" y1="240" x2="900" y2="240" stroke="rgba(43, 31, 24,0.06)"/>
-          <text x="0" y="54" font-family="IBM Plex Mono" font-size="11" fill="rgba(43, 31, 24,0.4)" data-i18n="chart-hot">heiß</text>
-          <text x="0" y="155" font-family="IBM Plex Mono" font-size="11" fill="rgba(43, 31, 24,0.4)" data-i18n="chart-comfort">Komfortbereich</text>
-          <text x="0" y="245" font-family="IBM Plex Mono" font-size="11" fill="rgba(43, 31, 24,0.4)" data-i18n="chart-cool">kühl</text>
-          <path id="ohneLine" d="" fill="none" stroke="url(#ohneGrad)" stroke-width="2.6" stroke-linecap="round"/>
-          <path id="mitLine" d="" fill="none" stroke="url(#mitGrad)" stroke-width="3.2" stroke-linecap="round"/>
-        </svg>
-        <div class="chart-legend">
-          <span><i class="dot" style="background:#C1502E"></i><span data-i18n="legend1">Container ohne MELT Plates</span></span>
-          <span><i class="dot" style="background:#123A5C"></i><span data-i18n="legend2">Container mit MELT Plates</span></span>
-        </div>
       </div>
     </div>
 

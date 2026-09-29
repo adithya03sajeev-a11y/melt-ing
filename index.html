@@ -20,8 +20,8 @@
   .hero-subtitle { font-size:clamp(1rem, 2vw, 1.25rem); color:rgba(255,255,255,0.78); max-width:560px; margin:0 0 2.5rem; animation:fadeInUp 1s ease-out 0.6s both; }
   .hero-cta { display:flex; gap:1rem; justify-content:flex-start; flex-wrap:wrap; animation:fadeInUp 1s ease-out 0.8s both; }
   .btn { padding:1rem 2.3rem; border-radius:12px; font-weight:600; font-size:1rem; cursor:pointer; transition:all 0.3s ease; text-decoration:none; display:inline-flex; align-items:center; gap:0.5rem; }
-  .btn-primary { background: linear-gradient(135deg, var(--melt-orange), #9E3E22); color:white; border:none; box-shadow:0 10px 40px rgba(193, 80, 46,0.3); }
-  .btn-primary:hover { transform:translateY(-3px); box-shadow:0 15px 50px rgba(193, 80, 46,0.4); }
+  .btn-primary { background: var(--melt-orange); color:white; border:none; box-shadow:0 6px 16px rgba(193, 80, 46,0.16); }
+  .btn-primary:hover { transform:translateY(-3px); box-shadow:0 8px 20px rgba(193, 80, 46,0.22); }
   .btn-secondary { background:rgba(255,255,255,0.06); color:#fff; border:1px solid rgba(255,255,255,0.35); }
   .btn-secondary:hover { border-color:var(--melt-orange); color:var(--melt-orange-light); }
   .scroll-indicator { position:absolute; bottom:2rem; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:0.5rem; color:rgba(255,255,255,0.7); font-size:0.8rem; animation:bounce 2s infinite; z-index:2; }
@@ -75,7 +75,7 @@
   @media (max-width:520px){ .mag-grid{grid-template-columns:1fr;} }
   .mag-card { text-decoration:none; color:inherit; border-radius:16px; overflow:hidden; border:1px solid var(--melt-border); background:var(--melt-surface); display:block; transition:all .3s; }
   .mag-card:hover { transform:translateY(-5px); border-color:var(--melt-orange); }
-  .mag-thumb { height:96px; background:linear-gradient(135deg, var(--melt-orange), var(--melt-blue)); opacity:0.4; }
+  .mag-thumb { height:96px; background:var(--melt-orange); opacity:0.25; }
   .mag-body { padding:1.2rem 1.3rem 1.4rem; }
   .mag-body h4 { font-family:'Manrope', sans-serif; font-size:0.98rem; margin-bottom:0.4rem; }
   .mag-body p { font-size:0.82rem; color:var(--melt-text-muted); }
@@ -95,7 +95,7 @@
   .faq-a-inner { padding:0 20px 20px 20px; color:var(--melt-text-muted); font-size:14.5px; line-height:1.7; max-width:600px; }
   .faq-footer { margin-top:30px; padding-top:24px; border-top:1px solid var(--melt-border); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:14px; }
   .faq-footer-text { font-size:13.5px; color:var(--melt-text-muted); }
-  .faq-cta { font-family:'Inter', sans-serif; font-weight:600; font-size:14px; padding:12px 20px; border-radius:10px; background:linear-gradient(135deg, var(--melt-orange), #9E3E22); color:#fff; text-decoration:none; white-space:nowrap; }
+  .faq-cta { font-family:'Inter', sans-serif; font-weight:600; font-size:14px; padding:12px 20px; border-radius:10px; background:var(--melt-orange); color:#fff; text-decoration:none; white-space:nowrap; }
   .faq-cta:hover { opacity:0.9; }
 
   /* ===== dark section text overrides (problem / accordion / FAQ) ===== */
@@ -154,7 +154,7 @@
   .pcm-factor-value { font-size:13px; font-weight:600; color:var(--melt-text); }
   .pcm-cta-row { display:flex; gap:12px; margin-top:auto; flex-wrap:wrap; }
   .pcm-cta { font-family:'Inter', sans-serif; font-weight:600; font-size:14px; padding:14px 22px; border-radius:10px; border:none; cursor:pointer; text-decoration:none; display:inline-flex; align-items:center; }
-  .pcm-cta.primary { background:linear-gradient(135deg, var(--melt-orange), #9E3E22); color:#fff; }
+  .pcm-cta.primary { background:var(--melt-orange); color:#fff; }
   .pcm-cta.primary:hover { opacity:0.9; }
   .pcm-cta.ghost { background:transparent; color:var(--melt-text); border:1px solid var(--melt-border); }
   .pcm-cta.ghost:hover { border-color:var(--melt-orange); color:var(--melt-orange-light); }
@@ -341,15 +341,15 @@
     <div class="section-header reveal">
       <div class="section-label" data-i18n="checker-label">Interaktiv</div>
       <h2 class="section-title" data-i18n="checker-title">Eignet sich PCM für Ihr Gebäude?</h2>
-      <p class="section-desc" data-i18n="checker-desc">Beantworten Sie 6 kurze Fragen — wir zeigen live, wie sich Ihre Raumtemperatur mit und ohne Speicher verhält.</p>
+      <p class="section-desc" data-i18n="checker-desc">Beantworten Sie 6 kurze Fragen — wir schätzen das Potential für die Pufferung mit MELT Plates in Ihrem Gebäude.</p>
     </div>
 
     <div class="pcm-app reveal">
       <div class="pcm-grid">
         <div class="pcm-curve-panel">
           <div>
-            <div class="pcm-eyebrow" data-i18n="checker-eyebrow">Live-Simulation</div>
-            <h3 class="pcm-curve-title" data-i18n="checker-curve-title">So würde sich Ihre<br>Raumtemperatur verhalten</h3>
+            <div class="pcm-eyebrow" data-i18n="checker-eyebrow">Potenzialanalyse</div>
+            <h3 class="pcm-curve-title" data-i18n="checker-curve-title">Potential für die Pufferung<br>mit MELT Plates</h3>
           </div>
           <div class="pcm-curve-svg-wrap">
             <svg id="pcm-curve" viewBox="0 0 240 140" width="100%" height="140">
@@ -556,19 +556,23 @@ document.querySelectorAll('.stat-card .num').forEach(el=>{
   const filtersEl = document.getElementById('faq-filters');
   const listEl = document.getElementById('faq-list');
   if(!filtersEl || !listEl) return;
-  let activeCat = "Alle";
+  // default filter is "Grundlagen" (Basics), tracked by the language-independent German category value
+  let activeCat = "Grundlagen";
 
   function renderFilters(){
     filtersEl.innerHTML = '';
     const catKey = currentLang === 'en' ? 'catEn' : 'cat';
     const allLabel = currentLang === 'en' ? 'All' : 'Alle';
-    const cats = [...new Set(data.map(d=>d[catKey])), allLabel];
+    const cats = [...new Set(data.map(d=>d.cat))];
+    cats.push("Alle");
     cats.forEach(cat=>{
       const btn = document.createElement('button');
-      const isActive = (activeCat === "Alle" && cat === allLabel) || activeCat === cat;
+      const isActive = activeCat === cat;
+      const item = data.find(d=>d.cat===cat);
+      const label = cat === "Alle" ? allLabel : (item ? item[catKey] : cat);
       btn.className = 'faq-chip' + (isActive ? ' active':'');
-      btn.textContent = cat;
-      btn.onclick = () => { activeCat = (cat === allLabel) ? "Alle" : cat; renderFilters(); renderList(); };
+      btn.textContent = label;
+      btn.onclick = () => { activeCat = cat; renderFilters(); renderList(); };
       filtersEl.appendChild(btn);
     });
   }
@@ -578,7 +582,7 @@ document.querySelectorAll('.stat-card .num').forEach(el=>{
     const catKey = currentLang === 'en' ? 'catEn' : 'cat';
     const qKey = currentLang === 'en' ? 'qEn' : 'q';
     const aKey = currentLang === 'en' ? 'aEn' : 'a';
-    const items = activeCat === "Alle" ? data : data.filter(d=>d.cat===activeCat || d.catEn===activeCat);
+    const items = activeCat === "Alle" ? data : data.filter(d=>d.cat===activeCat);
     items.forEach(item=>{
       const wrap = document.createElement('div');
       wrap.className = 'faq-item';
@@ -847,9 +851,9 @@ document.querySelectorAll('.stat-card .num').forEach(el=>{
     'mag4-desc': { de:'Die Gegenbewegung zu immer mehr Haustechnik.', en:'The counter-movement to ever more building technology.' },
     'checker-label': { de:'Interaktiv', en:'Interactive' },
     'checker-title': { de:'Eignet sich PCM für Ihr Gebäude?', en:'Is PCM a Good Fit for Your Building?' },
-    'checker-desc': { de:'Beantworten Sie 6 kurze Fragen — wir zeigen live, wie sich Ihre Raumtemperatur mit und ohne Speicher verhält.', en:'Answer 6 short questions — we\'ll show live how your room temperature behaves with and without storage.' },
-    'checker-eyebrow': { de:'Live-Simulation', en:'Live Simulation' },
-    'checker-curve-title': { de:'So würde sich Ihre<br>Raumtemperatur verhalten', en:'This is how your<br>room temperature would behave' },
+    'checker-desc': { de:'Beantworten Sie 6 kurze Fragen — wir schätzen das Potential für die Pufferung mit MELT Plates in Ihrem Gebäude.', en:'Answer 6 short questions — we\'ll estimate the potential for buffering with MELT Plates in your building.' },
+    'checker-eyebrow': { de:'Potenzialanalyse', en:'Potential Analysis' },
+    'checker-curve-title': { de:'Potential für die Pufferung<br>mit MELT Plates', en:'Potential for buffering<br>with MELT Plates' },
     'checker-caption': { de:'<span style="color:var(--melt-text-muted)">– – –</span> ohne Wärmespeicher<br><b>———</b> mit <b>PCM</b>-Wärmespeicher', en:'<span style="color:var(--melt-text-muted)">– – –</span> without heat storage<br><b>———</b> with <b>PCM</b> heat storage' },
     'faq-label': { de:'Häufige Fragen', en:'Frequently Asked Questions' },
     'faq-desc': { de:'Alles, was Sie über PCM-Wärmespeicher und die MELT Plate wissen möchten.', en:'Everything you want to know about PCM heat storage and the MELT Plate.' },
